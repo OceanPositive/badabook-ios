@@ -5,11 +5,8 @@ import PackageDescription
 let package = Package(
     name: "AppPackage",
     platforms: [
-        .iOS(.v15),
-        .macOS(.v12),
-        .tvOS(.v15),
-        .visionOS(.v1),
-        .watchOS(.v8),
+        .iOS(.v17),
+        .macOS(.v14),
     ],
     products: [
         .library(
