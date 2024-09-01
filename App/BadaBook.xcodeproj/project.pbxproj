@@ -13,6 +13,9 @@
 		C305F3B52C8452000046256D /* BadaUI in Frameworks */ = {isa = PBXBuildFile; productRef = C305F3B42C8452000046256D /* BadaUI */; };
 		C305F3B72C8452070046256D /* BadaCore in Frameworks */ = {isa = PBXBuildFile; productRef = C305F3B62C8452070046256D /* BadaCore */; };
 		C305F3B92C8452070046256D /* BadaUI in Frameworks */ = {isa = PBXBuildFile; productRef = C305F3B82C8452070046256D /* BadaUI */; };
+		C30EC7BF2C8482E300B46F13 /* BadaApp in Frameworks */ = {isa = PBXBuildFile; productRef = C30EC7BE2C8482E300B46F13 /* BadaApp */; };
+		C30EC7C12C8482E800B46F13 /* BadaApp in Frameworks */ = {isa = PBXBuildFile; productRef = C30EC7C02C8482E800B46F13 /* BadaApp */; };
+		C30EC7C32C8482EC00B46F13 /* BadaApp in Frameworks */ = {isa = PBXBuildFile; productRef = C30EC7C22C8482EC00B46F13 /* BadaApp */; };
 		C3DC6EB62B78B76000E1968B /* MacApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3DC6EB52B78B76000E1968B /* MacApp.swift */; };
 		C3DC6EBA2B78B76100E1968B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C3DC6EB92B78B76100E1968B /* Assets.xcassets */; };
 		C3DC6EDB2B78B8E800E1968B /* PhoneApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3DC6EDA2B78B8E800E1968B /* PhoneApp.swift */; };
@@ -53,6 +56,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C30EC7C32C8482EC00B46F13 /* BadaApp in Frameworks */,
 				C305F3B92C8452070046256D /* BadaUI in Frameworks */,
 				C305F3B72C8452070046256D /* BadaCore in Frameworks */,
 			);
@@ -62,6 +66,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C30EC7BF2C8482E300B46F13 /* BadaApp in Frameworks */,
 				C305F3B12C8451F90046256D /* BadaUI in Frameworks */,
 				C305F3AF2C8451F90046256D /* BadaCore in Frameworks */,
 			);
@@ -71,6 +76,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C30EC7C12C8482E800B46F13 /* BadaApp in Frameworks */,
 				C305F3B52C8452000046256D /* BadaUI in Frameworks */,
 				C305F3B32C8452000046256D /* BadaCore in Frameworks */,
 			);
@@ -171,6 +177,7 @@
 			packageProductDependencies = (
 				C305F3B62C8452070046256D /* BadaCore */,
 				C305F3B82C8452070046256D /* BadaUI */,
+				C30EC7C22C8482EC00B46F13 /* BadaApp */,
 			);
 			productName = macOS;
 			productReference = C3DC6EB32B78B76000E1968B /* macOS.app */;
@@ -193,6 +200,7 @@
 			packageProductDependencies = (
 				C305F3AE2C8451F90046256D /* BadaCore */,
 				C305F3B02C8451F90046256D /* BadaUI */,
+				C30EC7BE2C8482E300B46F13 /* BadaApp */,
 			);
 			productName = iOS;
 			productReference = C3DC6ED82B78B8E800E1968B /* iOS.app */;
@@ -214,6 +222,7 @@
 			packageProductDependencies = (
 				C305F3B22C8452000046256D /* BadaCore */,
 				C305F3B42C8452000046256D /* BadaUI */,
+				C30EC7C02C8482E800B46F13 /* BadaApp */,
 			);
 			productName = iPadOS;
 			productReference = C3DC6EEA2B78B9A200E1968B /* iPadOS.app */;
@@ -714,6 +723,18 @@
 		C305F3B82C8452070046256D /* BadaUI */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = BadaUI;
+		};
+		C30EC7BE2C8482E300B46F13 /* BadaApp */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = BadaApp;
+		};
+		C30EC7C02C8482E800B46F13 /* BadaApp */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = BadaApp;
+		};
+		C30EC7C22C8482EC00B46F13 /* BadaApp */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = BadaApp;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
