@@ -15,15 +15,29 @@
     {
       "target" : {
         "containerPath" : "container:",
-        "identifier" : "AppCoreTests",
-        "name" : "AppCoreTests"
+        "identifier" : "BadaCoreTests",
+        "name" : "BadaCoreTests"
       }
     },
     {
       "target" : {
         "containerPath" : "container:",
-        "identifier" : "AppUITests",
-        "name" : "AppUITests"
+        "identifier" : "BadaUITests",
+        "name" : "BadaUITests"
+      }
+    },
+    {
+      "target" : {
+        "containerPath" : "container:",
+        "identifier" : "BadaDataTests",
+        "name" : "BadaDataTests"
+      }
+    },
+    {
+      "target" : {
+        "containerPath" : "container:",
+        "identifier" : "BadaDomainTests",
+        "name" : "BadaDomainTests"
       }
     }
   ],
