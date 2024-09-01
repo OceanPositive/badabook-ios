@@ -1,8 +1,8 @@
 import SwiftUI
 import XCTest
-@testable import AppUI
+@testable import BadaUI
 
-final class AppUITests: XCTestCase {
+final class BadaUITests: XCTestCase {
     func testExample() throws {
         XCTAssertEqual(1 + 1, 2)
     }

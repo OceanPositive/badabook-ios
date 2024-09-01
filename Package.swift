@@ -9,29 +9,42 @@ let package = Package(
         .macOS(.v14),
     ],
     products: [
-        .library(
-            name: "AppCore",
-            targets: ["AppCore"]
-        ),
-        .library(
-            name: "AppUI",
-            targets: ["AppUI"]
-        ),
+        .library(name: "BadaCore", targets: ["BadaCore"]),
+        .library(name: "BadaData", targets: ["BadaData"]),
+        .library(name: "BadaDomain", targets: ["BadaDomain"]),
+        .library(name: "BadaUI", targets: ["BadaUI"]),
+    ],
+    dependencies: [
+        .package(url: "https://github.com/DevYeom/OneWay.git", exact: "2.6.0"),
     ],
     targets: [
         .target(
-            name: "AppCore"
+            name: "BadaCore",
+            dependencies: [
+                "OneWay",
+            ]
         ),
         .testTarget(
-            name: "AppCoreTests",
-            dependencies: ["AppCore"]
+            name: "BadaCoreTests",
+            dependencies: ["BadaCore"]
         ),
-        .target(
-            name: "AppUI"
-        ),
+
+        .target(name: "BadaData"),
         .testTarget(
-            name: "AppUITests",
-            dependencies: ["AppUI"]
+            name: "BadaDataTests",
+            dependencies: ["BadaData"]
+        ),
+
+        .target(name: "BadaDomain"),
+        .testTarget(
+            name: "BadaDomainTests",
+            dependencies: ["BadaDomain"]
+        ),
+
+        .target(name: "BadaUI"),
+        .testTarget(
+            name: "BadaUITests",
+            dependencies: ["BadaUI"]
         ),
     ]
 )

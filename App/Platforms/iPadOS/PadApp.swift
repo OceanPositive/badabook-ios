@@ -1,5 +1,5 @@
-import AppCore
-import AppUI
+import BadaCore
+import BadaUI
 import SwiftUI
 
 @main

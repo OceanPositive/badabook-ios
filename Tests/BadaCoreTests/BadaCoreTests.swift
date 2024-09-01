@@ -1,7 +1,7 @@
 import XCTest
-@testable import AppCore
+@testable import BadaCore
 
-final class AppCoreTests: XCTestCase {
+final class BadaCoreTests: XCTestCase {
     func testExample() throws {
         XCTAssertEqual(1 + 1, 2)
     }
