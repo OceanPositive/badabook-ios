@@ -17,7 +17,7 @@
                BlueprintIdentifier = "C3DC6EB22B78B76000E1968B"
                BuildableName = "macOS.app"
                BlueprintName = "macOS"
-               ReferencedContainer = "container:AppProject.xcodeproj">
+               ReferencedContainer = "container:BadaBook.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -46,7 +46,7 @@
             BlueprintIdentifier = "C3DC6EB22B78B76000E1968B"
             BuildableName = "macOS.app"
             BlueprintName = "macOS"
-            ReferencedContainer = "container:AppProject.xcodeproj">
+            ReferencedContainer = "container:BadaBook.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <EnvironmentVariables>
@@ -70,7 +70,7 @@
             BlueprintIdentifier = "C3DC6EB22B78B76000E1968B"
             BuildableName = "macOS.app"
             BlueprintName = "macOS"
-            ReferencedContainer = "container:AppProject.xcodeproj">
+            ReferencedContainer = "container:BadaBook.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>
