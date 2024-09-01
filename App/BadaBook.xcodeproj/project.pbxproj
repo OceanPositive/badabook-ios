@@ -244,7 +244,7 @@
 					};
 				};
 			};
-			buildConfigurationList = C3F0AC472B2EE3A900D2165B /* Build configuration list for PBXProject "AppProject" */;
+			buildConfigurationList = C3F0AC472B2EE3A900D2165B /* Build configuration list for PBXProject "BadaBook" */;
 			compatibilityVersion = "Xcode 14.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -683,7 +683,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		C3F0AC472B2EE3A900D2165B /* Build configuration list for PBXProject "AppProject" */ = {
+		C3F0AC472B2EE3A900D2165B /* Build configuration list for PBXProject "BadaBook" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				C3F0AC722B2EE3AA00D2165B /* Debug */,

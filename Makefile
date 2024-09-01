@@ -2,7 +2,7 @@ PLATFORM_IOS = iOS Simulator,name=iPhone 15
 PLATFORM_IPADOS = iOS Simulator,name=iPad (10th generation)
 PLATFORM_MACOS = macOS
 
-PROJECT = App/AppProject.xcodeproj
+PROJECT = App/BadaBook.xcodeproj
 SCHEME = AppTests
 TEST_PLAN = AppTests
 CONFIG = debug
