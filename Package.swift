@@ -9,6 +9,7 @@ let package = Package(
         .macOS(.v14),
     ],
     products: [
+        .library(name: "BadaApp", targets: ["BadaApp"]),
         .library(name: "BadaCore", targets: ["BadaCore"]),
         .library(name: "BadaData", targets: ["BadaData"]),
         .library(name: "BadaDomain", targets: ["BadaDomain"]),
@@ -18,6 +19,21 @@ let package = Package(
         .package(url: "https://github.com/DevYeom/OneWay.git", exact: "2.6.0"),
     ],
     targets: [
+        .target(
+            name: "BadaApp",
+            dependencies: [
+                "BadaCore",
+                "BadaDomain",
+                "BadaUI",
+            ]
+        ),
+        .testTarget(
+            name: "BadaAppTests",
+            dependencies: [
+                "BadaApp",
+            ]
+        ),
+
         .target(
             name: "BadaCore",
             dependencies: [

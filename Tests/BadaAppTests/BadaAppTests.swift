@@ -1,7 +1,7 @@
 import XCTest
-@testable import BadaUI
+@testable import BadaApp
 
-final class BadaUITests: XCTestCase {
+final class BadaAppTests: XCTestCase {
     func testExample() throws {
         XCTAssertEqual(1 + 1, 2)
     }
