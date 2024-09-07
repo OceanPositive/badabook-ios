@@ -1,12 +1,12 @@
-// swift-tools-version: 5.10
+// swift-tools-version: 6.0
 
 import PackageDescription
 
 let package = Package(
     name: "AppPackage",
     platforms: [
-        .iOS(.v17),
-        .macOS(.v14),
+        .iOS(.v18),
+        .macOS(.v15),
     ],
     products: [
         .library(name: "BadaApp", targets: ["BadaApp"]),
@@ -63,10 +63,3 @@ let package = Package(
         ),
     ]
 )
-
-for target in package.targets {
-    target.swiftSettings = target.swiftSettings ?? []
-    target.swiftSettings?.append(
-        .enableExperimentalFeature("StrictConcurrency")
-    )
-}
