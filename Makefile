@@ -3,7 +3,8 @@ PLATFORM_IPADOS = iOS Simulator,name=iPad (10th generation)
 PLATFORM_MACOS = macOS
 
 PROJECT = App/BadaBook.xcodeproj
-SCHEME = AppTests
+APP_SCHEME = BadaApp
+TEST_SCHEME = AppTests
 TEST_PLAN = AppTests
 CONFIG = debug
 
@@ -15,9 +16,14 @@ test:
 		"$(PLATFORM_IPADOS)" \
 		"$(PLATFORM_MACOS)"; \
 	do \
+		xcodebuild build-for-testing \
+			-project $(PROJECT) \
+			-scheme $(APP_SCHEME) \
+			-configuration $(CONFIG) \
+			-destination platform="$$platform" || exit 1; \
 		xcodebuild test \
 			-project $(PROJECT) \
-			-scheme $(SCHEME) \
+			-scheme $(TEST_SCHEME) \
 			-testPlan $(TEST_PLAN) \
 			-configuration $(CONFIG) \
 			-destination platform="$$platform" || exit 1; \

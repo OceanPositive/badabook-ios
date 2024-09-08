@@ -48,7 +48,10 @@ let package = Package(
         .target(name: "BadaData"),
         .testTarget(
             name: "BadaDataTests",
-            dependencies: ["BadaData"]
+            dependencies: [
+                "BadaData",
+                "BadaDomain",
+            ]
         ),
 
         .target(name: "BadaDomain"),
@@ -64,3 +67,10 @@ let package = Package(
         ),
     ]
 )
+
+for target in package.targets {
+    target.swiftSettings = target.swiftSettings ?? []
+    target.swiftSettings?.append(
+        .enableExperimentalFeature("StrictConcurrency")
+    )
+}
