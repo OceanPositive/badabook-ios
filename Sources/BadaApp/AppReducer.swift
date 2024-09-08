@@ -9,6 +9,8 @@ public struct AppReducer: Reducer {
 
     public struct State: Sendable, Equatable {
         var scenePhase: ScenePhase = .none
+        var isLaunched: Bool = false
+
         public init() { }
     }
 
@@ -24,6 +26,9 @@ public struct AppReducer: Reducer {
             return .none
         case .active:
             state.scenePhase = .active
+            if !state.isLaunched {
+                state.isLaunched = true
+            }
             return .none
         }
     }
