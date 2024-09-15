@@ -1,6 +1,8 @@
 import Foundation
 import SwiftData
+import BadaDomain
 
+@Repository
 enum PersistentStore {
     case main
     case mainTest
@@ -25,6 +27,7 @@ enum PersistentStore {
 }
 
 extension PersistentStore {
+    @Repository
     private static let _mainContainer: ModelContainer = {
         do {
             let container = try ModelContainer(
@@ -45,10 +48,12 @@ extension PersistentStore {
         }
     }()
 
+    @Repository
     private static let _mainContext: ModelContext = {
         ModelContext(_mainContainer)
     }()
 
+    @Repository
     private static let _mainTestContainer: ModelContainer = {
         do {
             let container = try ModelContainer(
@@ -69,6 +74,7 @@ extension PersistentStore {
         }
     }()
 
+    @Repository
     private static let _mainTestContext: ModelContext = {
         ModelContext(_mainTestContainer)
     }()
