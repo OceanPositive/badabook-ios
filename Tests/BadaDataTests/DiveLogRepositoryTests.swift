@@ -5,11 +5,11 @@ import BadaDomain
 final class DiveLogRepositoryTests: XCTestCase {
     var sut: DiveLogRepository!
 
-    override func setUp() {
-        sut = DiveLogRepository(persistentStore: PersistentStore.mainTest)
+    override func setUp() async throws {
+        sut = await DiveLogRepository(persistentStore: PersistentStore.mainTest)
     }
 
-    func test_insert() {
+    func test_insert() async {
         let diveLog = DiveLog(
             location: DiveLog.Location(
                 latitude: 1,
@@ -29,14 +29,14 @@ final class DiveLogRepositoryTests: XCTestCase {
             notes: "notes1"
         )
 
-        switch sut.insert(diveLog: diveLog) {
+        switch await sut.insert(diveLog: diveLog) {
         case .success:
             XCTAssert(true)
         case let .failure(error):
             XCTFail(error.localizedDescription)
         }
 
-        switch sut.diveLogs() {
+        switch await sut.diveLogs() {
         case let .success(diveLogs):
             XCTAssertEqual(diveLogs.count, 1)
             XCTAssertEqual(diveLogs.first!, diveLog)

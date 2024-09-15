@@ -1,5 +1,6 @@
 import Foundation
 
+@Repository
 package protocol DiveLogRepositoryType {
     func insert(diveLog: DiveLog) -> Result<Void, DiveLogRepositoryError>
     func diveLogs() -> Result<[DiveLog], DiveLogRepositoryError>
