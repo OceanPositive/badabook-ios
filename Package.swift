@@ -29,11 +29,8 @@ let package = Package(
         ),
         .testTarget(
             name: "BadaAppTests",
-            dependencies: [
-                "BadaApp",
-            ]
+            dependencies: ["BadaApp"]
         ),
-
         .target(
             name: "BadaCore",
             dependencies: [
@@ -44,22 +41,21 @@ let package = Package(
             name: "BadaCoreTests",
             dependencies: ["BadaCore"]
         ),
-
-        .target(name: "BadaData"),
-        .testTarget(
-            name: "BadaDataTests",
+        .target(
+            name: "BadaData",
             dependencies: [
-                "BadaData",
                 "BadaDomain",
             ]
         ),
-
+        .testTarget(
+            name: "BadaDataTests",
+            dependencies: ["BadaData"]
+        ),
         .target(name: "BadaDomain"),
         .testTarget(
             name: "BadaDomainTests",
             dependencies: ["BadaDomain"]
         ),
-
         .target(name: "BadaUI"),
         .testTarget(
             name: "BadaUITests",
