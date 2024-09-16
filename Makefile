@@ -7,20 +7,32 @@ TEST_SCHEME = AppTests
 TEST_PLAN = AppTests
 CONFIG = debug
 
-default: test
+default: test-all
 
-test:
-	for platform in \
-		"$(PLATFORM_IOS)" \
-		"$(PLATFORM_IPADOS)" \
-		"$(PLATFORM_MACOS)"; \
-	do \
-		xcodebuild test \
-			-project $(PROJECT) \
-			-scheme $(TEST_SCHEME) \
-			-testPlan $(TEST_PLAN) \
-			-configuration $(CONFIG) \
-			-destination platform="$$platform" || exit 1; \
-	done;
+test-ios:
+	xcodebuild test \
+		-project $(PROJECT) \
+		-scheme $(TEST_SCHEME) \
+		-testPlan $(TEST_PLAN) \
+		-configuration $(CONFIG) \
+		-destination platform="$(PLATFORM_IOS)" || exit 1;
 
-.PHONY: test
+test-ipados:
+	xcodebuild test \
+		-project $(PROJECT) \
+		-scheme $(TEST_SCHEME) \
+		-testPlan $(TEST_PLAN) \
+		-configuration $(CONFIG) \
+		-destination platform="$(PLATFORM_IPADOS)" || exit 1;
+
+test-macos:
+	xcodebuild test \
+		-project $(PROJECT) \
+		-scheme $(TEST_SCHEME) \
+		-testPlan $(TEST_PLAN) \
+		-configuration $(CONFIG) \
+		-destination platform="$(PLATFORM_MACOS)" || exit 1;
+
+test-all: test-ios test-ipados test-macos
+
+.PHONY: test-ios test-ipados test-macos test-all
