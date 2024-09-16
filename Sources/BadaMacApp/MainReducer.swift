@@ -4,12 +4,10 @@ struct MainReducer: Reducer {
     enum Action: Sendable {
         case load
         case setIsLoaded(Bool)
-        case setTab(MainTab)
     }
 
     struct State: Sendable, Equatable {
         var isLoaded: Bool = false
-        var tab: MainTab = .home
     }
 
     func reduce(state: inout State, action: Action) -> AnyEffect<Action> {
@@ -25,9 +23,6 @@ struct MainReducer: Reducer {
             }
         case let .setIsLoaded(isLoaded):
             state.isLoaded = isLoaded
-            return .none
-        case let .setTab(tab):
-            state.tab = tab
             return .none
         }
     }

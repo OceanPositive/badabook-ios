@@ -10,6 +10,7 @@ let package = Package(
     ],
     products: [
         .library(name: "BadaApp", targets: ["BadaApp"]),
+        .library(name: "BadaMacApp", targets: ["BadaMacApp"]),
         .library(name: "BadaCore", targets: ["BadaCore"]),
         .library(name: "BadaData", targets: ["BadaData"]),
         .library(name: "BadaDomain", targets: ["BadaDomain"]),
@@ -30,6 +31,18 @@ let package = Package(
         .testTarget(
             name: "BadaAppTests",
             dependencies: ["BadaApp"]
+        ),
+        .target(
+            name: "BadaMacApp",
+            dependencies: [
+                "BadaCore",
+                "BadaDomain",
+                "BadaUI",
+            ]
+        ),
+        .testTarget(
+            name: "BadaMacAppTests",
+            dependencies: ["BadaMacApp"]
         ),
         .target(
             name: "BadaCore",
