@@ -1,4 +1,4 @@
-import BadaApp
+import BadaMacApp
 import BadaCore
 import BadaUI
 

@@ -15,7 +15,7 @@
 		C305F3B92C8452070046256D /* BadaUI in Frameworks */ = {isa = PBXBuildFile; productRef = C305F3B82C8452070046256D /* BadaUI */; };
 		C30EC7BF2C8482E300B46F13 /* BadaApp in Frameworks */ = {isa = PBXBuildFile; productRef = C30EC7BE2C8482E300B46F13 /* BadaApp */; };
 		C30EC7C12C8482E800B46F13 /* BadaApp in Frameworks */ = {isa = PBXBuildFile; productRef = C30EC7C02C8482E800B46F13 /* BadaApp */; };
-		C30EC7C32C8482EC00B46F13 /* BadaApp in Frameworks */ = {isa = PBXBuildFile; productRef = C30EC7C22C8482EC00B46F13 /* BadaApp */; };
+		C3A4F62E2C9862BD00708201 /* BadaMacApp in Frameworks */ = {isa = PBXBuildFile; productRef = C3A4F62D2C9862BD00708201 /* BadaMacApp */; };
 		C3DC6EB62B78B76000E1968B /* MacApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3DC6EB52B78B76000E1968B /* MacApp.swift */; };
 		C3DC6EBA2B78B76100E1968B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C3DC6EB92B78B76100E1968B /* Assets.xcassets */; };
 		C3DC6EDB2B78B8E800E1968B /* PhoneApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3DC6EDA2B78B8E800E1968B /* PhoneApp.swift */; };
@@ -38,6 +38,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		C3A4F6302C98633100708201 /* MacAppTests.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = MacAppTests.xctestplan; sourceTree = "<group>"; };
 		C3CAD57F2B78C8CA00C7344D /* AppTests.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = AppTests.xctestplan; sourceTree = "<group>"; };
 		C3D2A16C2B6E32340059EADC /* AppPackage */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = AppPackage; path = ..; sourceTree = "<group>"; };
 		C3DC6EB32B78B76000E1968B /* macOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = macOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -56,7 +57,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C30EC7C32C8482EC00B46F13 /* BadaApp in Frameworks */,
+				C3A4F62E2C9862BD00708201 /* BadaMacApp in Frameworks */,
 				C305F3B92C8452070046256D /* BadaUI in Frameworks */,
 				C305F3B72C8452070046256D /* BadaCore in Frameworks */,
 			);
@@ -99,6 +100,7 @@
 			isa = PBXGroup;
 			children = (
 				C3CAD57F2B78C8CA00C7344D /* AppTests.xctestplan */,
+				C3A4F6302C98633100708201 /* MacAppTests.xctestplan */,
 			);
 			path = TestPlans;
 			sourceTree = "<group>";
@@ -177,7 +179,7 @@
 			packageProductDependencies = (
 				C305F3B62C8452070046256D /* BadaCore */,
 				C305F3B82C8452070046256D /* BadaUI */,
-				C30EC7C22C8482EC00B46F13 /* BadaApp */,
+				C3A4F62D2C9862BD00708201 /* BadaMacApp */,
 			);
 			productName = macOS;
 			productReference = C3DC6EB32B78B76000E1968B /* macOS.app */;
@@ -732,9 +734,9 @@
 			isa = XCSwiftPackageProductDependency;
 			productName = BadaApp;
 		};
-		C30EC7C22C8482EC00B46F13 /* BadaApp */ = {
+		C3A4F62D2C9862BD00708201 /* BadaMacApp */ = {
 			isa = XCSwiftPackageProductDependency;
-			productName = BadaApp;
+			productName = BadaMacApp;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

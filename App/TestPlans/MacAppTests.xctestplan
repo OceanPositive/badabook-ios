@@ -1,0 +1,52 @@
+{
+  "configurations" : [
+    {
+      "id" : "B6F5DE55-97C1-454B-875E-7D37993CB8BD",
+      "name" : "Configuration 1",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+    "testTimeoutsEnabled" : true
+  },
+  "testTargets" : [
+    {
+      "target" : {
+        "containerPath" : "container:",
+        "identifier" : "BadaCoreTests",
+        "name" : "BadaCoreTests"
+      }
+    },
+    {
+      "target" : {
+        "containerPath" : "container:",
+        "identifier" : "BadaDomainTests",
+        "name" : "BadaDomainTests"
+      }
+    },
+    {
+      "target" : {
+        "containerPath" : "container:",
+        "identifier" : "BadaUITests",
+        "name" : "BadaUITests"
+      }
+    },
+    {
+      "target" : {
+        "containerPath" : "container:",
+        "identifier" : "BadaDataTests",
+        "name" : "BadaDataTests"
+      }
+    },
+    {
+      "target" : {
+        "containerPath" : "container:",
+        "identifier" : "BadaMacAppTests",
+        "name" : "BadaMacAppTests"
+      }
+    }
+  ],
+  "version" : 1
+}
