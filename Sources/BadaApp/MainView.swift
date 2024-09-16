@@ -10,8 +10,13 @@ public struct MainView: View {
     public init() { }
 
     public var body: some View {
-        Text("BadaBook")
-            .onAppear(perform: onAppear)
+        switch store.state.isLoaded {
+        case true:
+            HomeView()
+        case false:
+            SplashView()
+                .onAppear(perform: onAppear)
+        }
     }
 
     private func onAppear() {
