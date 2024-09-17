@@ -9,7 +9,7 @@ import BadaUI
 
 struct SplashView: View {
     var body: some View {
-        Text("BadaBook")
+        Text(L10n.App.title)
             .font(.title)
     }
 }

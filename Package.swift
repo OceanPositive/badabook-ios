@@ -4,6 +4,7 @@ import PackageDescription
 
 let package = Package(
     name: "AppPackage",
+    defaultLocalization: "en",
     platforms: [
         .iOS(.v17),
         .macOS(.v14),
@@ -69,7 +70,12 @@ let package = Package(
             name: "BadaDomainTests",
             dependencies: ["BadaDomain"]
         ),
-        .target(name: "BadaUI"),
+        .target(
+            name: "BadaUI",
+            resources: [
+                .process("Resources"),
+            ]
+        ),
         .testTarget(
             name: "BadaUITests",
             dependencies: ["BadaUI"]

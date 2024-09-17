@@ -44,19 +44,19 @@ private struct MainTabView: View {
             HomeView()
                 .tabItem {
                     Image(systemImage: .house)
-                    Text("Home")
+                    Text(L10n.MainTab.home)
                 }
                 .tag(MainTab.home)
             EquipmentView()
                 .tabItem {
                     Image(systemImage: .doorSlidingRightHandClosed)
-                    Text("Equipment")
+                    Text(L10n.MainTab.equipment)
                 }
                 .tag(MainTab.equipment)
             LogbookView()
                 .tabItem {
                     Image(systemImage: .bookPages)
-                    Text("Logbook")
+                    Text(L10n.MainTab.logbook)
                 }
                 .tag(MainTab.logbook)
         }
