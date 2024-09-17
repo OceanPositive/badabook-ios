@@ -11,6 +11,10 @@ package enum SystemImage: String {
     case house = "house"
     case doorSlidingRightHandClosed = "door.sliding.right.hand.closed"
     case bookPages = "book.pages"
+    case number = "number"
+    case personTextRectangle = "person.text.rectangle"
+    case stopwatch = "stopwatch"
+    case calendar = "calendar"
 }
 
 extension Image {
