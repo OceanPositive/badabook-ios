@@ -5,8 +5,9 @@
 //  Copyright (c) 2024 Seungyeop Yeom ( https://github.com/OceanPositive ).
 //
 
-import XCTest
 import OneWay
+import XCTest
+
 @testable import BadaMacApp
 
 final class AppReducerTests: XCTestCase {

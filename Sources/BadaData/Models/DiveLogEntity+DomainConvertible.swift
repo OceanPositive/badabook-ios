@@ -5,8 +5,8 @@
 //  Copyright (c) 2024 Seungyeop Yeom ( https://github.com/OceanPositive ).
 //
 
-import Foundation
 import BadaDomain
+import Foundation
 
 extension DiveLogEntity: DomainConvertible {
     var domain: DiveLog {

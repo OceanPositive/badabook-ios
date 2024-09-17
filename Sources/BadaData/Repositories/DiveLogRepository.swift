@@ -5,9 +5,9 @@
 //  Copyright (c) 2024 Seungyeop Yeom ( https://github.com/OceanPositive ).
 //
 
+import BadaDomain
 import Foundation
 import SwiftData
-import BadaDomain
 
 package struct DiveLogRepository: DiveLogRepositoryType {
     private let context: ModelContext

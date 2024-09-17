@@ -14,21 +14,21 @@ package struct DiveLog: Equatable {
     package let entryTime: Date
     /// Time of exit from the water
     package let exitTime: Date
-     /// Maximum depth (meters)
+    /// Maximum depth (meters)
     package let depth: Double
-     /// Dive duration (in seconds)
+    /// Dive duration (in seconds)
     package let duration: TimeInterval
-     /// Water temperature (Celsius)
+    /// Water temperature (Celsius)
     package let waterTemperature: Double?
-     /// Visibility (meters)
+    /// Visibility (meters)
     package let visibility: Double?
-     /// Air consumption (liters)
+    /// Air consumption (liters)
     package let airConsumption: Double?
-     /// Dive buddy's name
+    /// Dive buddy's name
     package let diveBuddy: String?
-     /// Type of dive (e.g., recreational, night dive)
+    /// Type of dive (e.g., recreational, night dive)
     package let diveType: String
-     /// Additional notes, optional
+    /// Additional notes, optional
     package let notes: String?
 
     package init(

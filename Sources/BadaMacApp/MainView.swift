@@ -14,7 +14,7 @@ public struct MainView: View {
         state: MainReducer.State()
     )
 
-    public init() { }
+    public init() {}
 
     public var body: some View {
         switch store.state.isLoaded {

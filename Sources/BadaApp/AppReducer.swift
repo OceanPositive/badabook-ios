@@ -18,10 +18,10 @@ public struct AppReducer: Reducer {
         var scenePhase: ScenePhase = .none
         var isLaunched: Bool = false
 
-        public init() { }
+        public init() {}
     }
 
-    public init() { }
+    public init() {}
 
     public func reduce(state: inout State, action: Action) -> AnyEffect<Action> {
         switch action {
