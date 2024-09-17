@@ -1,4 +1,4 @@
-# swift-app-package
+# BadaBook
 
 <a href="https://github.com/OceanPositive/badabook-ios/actions">
   <img alt="CI" src="https://github.com/OceanPositive/badabook-ios/workflows/CI/badge.svg">
@@ -36,4 +36,4 @@ git clone --depth 1 https://github.com/DevYeom/swift-app-package
 
 ## License
 
-This library is released under the MIT license. See [LICENSE](LICENSE) for details.
+This project is released under the Apache License, Version 2.0. See [LICENSE](LICENSE) for details.
