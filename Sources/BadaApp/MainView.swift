@@ -12,7 +12,12 @@ public struct MainView: View {
     public var body: some View {
         switch store.state.isLoaded {
         case true:
-            HomeView()
+            MainTabView(
+                tab: Binding<MainTab>(
+                    get: { store.state.tab },
+                    set: { store.send(.setTab($0)) }
+                )
+            )
         case false:
             SplashView()
                 .onAppear(perform: onAppear)
@@ -21,5 +26,32 @@ public struct MainView: View {
 
     private func onAppear() {
         store.send(.load)
+    }
+}
+
+private struct MainTabView: View {
+    var tab: Binding<MainTab>
+
+    var body: some View {
+        TabView(selection: tab) {
+            HomeView()
+                .tabItem {
+                    Image(systemImage: .house)
+                    Text("Home")
+                }
+                .tag(MainTab.home)
+            EquipmentView()
+                .tabItem {
+                    Image(systemImage: .doorSlidingRightHandClosed)
+                    Text("Equipment")
+                }
+                .tag(MainTab.equipment)
+            LogbookView()
+                .tabItem {
+                    Image(systemImage: .bookPages)
+                    Text("Logbook")
+                }
+                .tag(MainTab.logbook)
+        }
     }
 }
