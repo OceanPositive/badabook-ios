@@ -6,6 +6,7 @@
 //
 
 import XCTest
+
 @testable import BadaCore
 
 final class BadaCoreTests: XCTestCase {

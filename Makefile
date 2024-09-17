@@ -37,4 +37,14 @@ test-macos:
 
 test-all: test-ios test-ipados test-macos
 
-.PHONY: test-ios test-ipados test-macos test-all
+install:
+	@./Tools/install.sh
+
+lint: install
+# recursive
+	@./swift-format lint -r App Sources Tests
+# in place, recursive, parallel
+	@./swift-format format -irp App Sources Tests
+	@echo "swift-format completed."
+
+.PHONY: test-ios test-ipados test-macos test-all install lint

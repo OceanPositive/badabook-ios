@@ -1,5 +1,5 @@
-import BadaMacApp
 import BadaCore
+import BadaMacApp
 import BadaUI
 
 @main

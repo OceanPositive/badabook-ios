@@ -6,6 +6,7 @@
 //
 
 import XCTest
+
 @testable import BadaUI
 
 final class BadaUITests: XCTestCase {

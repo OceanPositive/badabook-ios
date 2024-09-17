@@ -5,8 +5,9 @@
 //  Copyright (c) 2024 Seungyeop Yeom ( https://github.com/OceanPositive ).
 //
 
-import XCTest
 import BadaDomain
+import XCTest
+
 @testable import BadaData
 
 final class DiveLogRepositoryTests: XCTestCase {
