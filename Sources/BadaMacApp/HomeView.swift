@@ -19,7 +19,7 @@ struct HomeView: View {
             ScrollView(.vertical) {
 
             }
-            .navigationTitle("Home")
+            .navigationTitle(L10n.Home.title)
         }
     }
 }

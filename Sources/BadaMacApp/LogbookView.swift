@@ -19,7 +19,7 @@ struct LogbookView: View {
             ScrollView(.vertical) {
 
             }
-            .navigationTitle("Logbook")
+            .navigationTitle(L10n.Logbook.title)
         }
     }
 }
