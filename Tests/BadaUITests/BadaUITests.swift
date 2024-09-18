@@ -5,12 +5,13 @@
 //  Copyright (c) 2024 Seungyeop Yeom ( https://github.com/OceanPositive ).
 //
 
-import XCTest
+import Testing
 
 @testable import BadaUI
 
-final class BadaUITests: XCTestCase {
-    func testExample() throws {
-        XCTAssertEqual(1 + 1, 2)
+struct BadaUITests {
+    @Test
+    func example() {
+        #expect(1 + 1 == 2)
     }
 }

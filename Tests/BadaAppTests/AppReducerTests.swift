@@ -7,89 +7,94 @@
 
 import BadaCore
 import BadaDomain
-import XCTest
+import Testing
 
 @testable import BadaApp
 
-final class AppReducerTests: XCTestCase {
-    var sut: Store<AppReducer>!
+struct AppReducerTests {
+    let sut = Store(
+        reducer: AppReducer(),
+        state: AppReducer.State()
+    )
 
-    override func setUp() {
-        sut = Store(
-            reducer: AppReducer(),
-            state: AppReducer.State()
-        )
-    }
-
-    func test_launch() async {
+    @Test
+    func launch() async {
         do {
             let scenePhase = await sut.state.scenePhase
             let isLaunched = await sut.state.isLaunched
-            XCTAssertEqual(scenePhase, .none)
-            XCTAssertEqual(isLaunched, false)
+            #expect(scenePhase == .none)
+            #expect(isLaunched == false)
         }
 
         await sut.send(.active)
+        await Task.megaYield()
 
         do {
             let scenePhase = await sut.state.scenePhase
             let isLaunched = await sut.state.isLaunched
-            XCTAssertEqual(scenePhase, .active)
-            XCTAssertEqual(isLaunched, true)
+            #expect(scenePhase == .active)
+            #expect(isLaunched == true)
         }
     }
 
-    func test_scenePhase() async {
+    @Test
+    func scenePhase() async {
         do {
             let scenePhase = await sut.state.scenePhase
-            XCTAssertEqual(scenePhase, .none)
+            #expect(scenePhase == .none)
         }
 
         await sut.send(.active)
+        await Task.megaYield()
 
         do {
             let scenePhase = await sut.state.scenePhase
-            XCTAssertEqual(scenePhase, .active)
+            #expect(scenePhase == .active)
         }
 
         await sut.send(.background)
+        await Task.megaYield()
 
         do {
             let scenePhase = await sut.state.scenePhase
-            XCTAssertEqual(scenePhase, .background)
+            #expect(scenePhase == .background)
         }
 
         await sut.send(.inactive)
+        await Task.megaYield()
 
         do {
             let scenePhase = await sut.state.scenePhase
-            XCTAssertEqual(scenePhase, .inactive)
+            #expect(scenePhase == .inactive)
         }
 
         await sut.send(.active)
+        await Task.megaYield()
 
         do {
             let scenePhase = await sut.state.scenePhase
-            XCTAssertEqual(scenePhase, .active)
+            #expect(scenePhase == .active)
         }
     }
 
-    func test_registerUseCases() async {
-//        UseCaseContainer.shared.reset()
-//
-//        do {
-//            let scenePhase = await sut.state.scenePhase
-//            XCTAssertEqual(scenePhase, .none)
-//        }
-//
-//        await sut.send(.active)
-//        await Task.megaYield()
-//
-//        let _ = UseCaseContainer.shared.resolve(GetDiveLogsUseCase.self)
-//        let _ = UseCaseContainer.shared.resolve(PostDiveLogUseCase.self)
-//        do {
-//            let scenePhase = await sut.state.scenePhase
-//            XCTAssertEqual(scenePhase, .active)
-//        }
+    @Test
+    func registerUseCases() async {
+        let container = UseCaseContainer()
+        await UseCaseContainer.$instance.withValue(container) {
+            do {
+                let scenePhase = await sut.state.scenePhase
+                #expect(scenePhase == .none)
+            }
+
+            await sut.send(.active)
+            await Task.megaYield()
+
+            let _ = UseCaseContainer.instance.resolve(GetDiveLogsUseCase.self)
+            let _ = UseCaseContainer.instance.resolve(PostDiveLogUseCase.self)
+            do {
+                let scenePhase = await sut.state.scenePhase
+                #expect(scenePhase == .active)
+            }
+        }
     }
 }

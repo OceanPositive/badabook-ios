@@ -5,15 +5,16 @@
 //  Copyright (c) 2024 Seungyeop Yeom ( https://github.com/OceanPositive ).
 //
 
+import BadaCore
 import BadaDomain
-import XCTest
+import Testing
 
 @testable import BadaData
 
-final class DiveLogRepositoryTests: XCTestCase {
-    var sut: DiveLogRepository!
+struct DiveLogRepositoryTests {
+    let sut: DiveLogRepository!
 
-    override func setUp() async throws {
+    init() async {
         sut = await DiveLogRepository(persistentStore: PersistentStore.mainTest)
     }
 
@@ -39,17 +40,17 @@ final class DiveLogRepositoryTests: XCTestCase {
 
         switch await sut.insert(diveLog: diveLog) {
         case .success:
-            XCTAssert(true)
+            break
         case let .failure(error):
-            XCTFail(error.localizedDescription)
+            Issue.record(error)
         }
 
         switch await sut.diveLogs() {
         case let .success(diveLogs):
-            XCTAssertEqual(diveLogs.count, 1)
-            XCTAssertEqual(diveLogs.first!, diveLog)
+            #expect(diveLogs.count == 1)
+            #expect(diveLogs.first == diveLog)
         case let .failure(error):
-            XCTFail(error.localizedDescription)
+            Issue.record(error)
         }
     }
 }

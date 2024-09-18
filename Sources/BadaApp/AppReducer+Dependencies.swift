@@ -28,6 +28,6 @@ extension AppReducer {
         _ type: T.Type = T.self,
         build: () -> T
     ) {
-        UseCaseContainer.shared.register(type, build: build)
+        UseCaseContainer.instance.register(type, build: build)
     }
 }
