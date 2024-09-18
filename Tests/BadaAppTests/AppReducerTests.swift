@@ -5,7 +5,8 @@
 //  Copyright (c) 2024 Seungyeop Yeom ( https://github.com/OceanPositive ).
 //
 
-import OneWay
+import BadaCore
+import BadaDomain
 import XCTest
 
 @testable import BadaApp
@@ -71,5 +72,24 @@ final class AppReducerTests: XCTestCase {
             let scenePhase = await sut.state.scenePhase
             XCTAssertEqual(scenePhase, .active)
         }
+    }
+
+    func test_registerUseCases() async {
+//        UseCaseContainer.shared.reset()
+//
+//        do {
+//            let scenePhase = await sut.state.scenePhase
+//            XCTAssertEqual(scenePhase, .none)
+//        }
+//
+//        await sut.send(.active)
+//        await Task.megaYield()
+//
+//        let _ = UseCaseContainer.shared.resolve(GetDiveLogsUseCase.self)
+//        let _ = UseCaseContainer.shared.resolve(PostDiveLogUseCase.self)
+//        do {
+//            let scenePhase = await sut.state.scenePhase
+//            XCTAssertEqual(scenePhase, .active)
+//        }
     }
 }

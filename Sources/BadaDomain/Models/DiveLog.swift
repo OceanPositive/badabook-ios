@@ -5,7 +5,7 @@
 //  Copyright (c) 2024 Seungyeop Yeom ( https://github.com/OceanPositive ).
 //
 
-import Foundation
+import BadaCore
 
 package struct DiveLog: Equatable {
     /// Dive location information

@@ -19,10 +19,17 @@ struct HomeView: View {
             ScrollView(.vertical) {
                 VStack(spacing: 16) {
                     HStack(spacing: 16) {
+                        let logCountValue =
+                            switch store.state.logCount {
+                            case let .some(logCount):
+                                "\(logCount)"
+                            case .none:
+                                nil as String?
+                            }
                         StatusView(
                             icon: .number,
                             title: "Logs",
-                            value: "100",
+                            value: logCountValue,
                             background: .tertiary
                         )
                         StatusView(
@@ -50,7 +57,12 @@ struct HomeView: View {
                 .padding(16)
             }
             .navigationTitle(L10n.Home.title)
+            .onAppear(perform: onAppear)
         }
+    }
+
+    private func onAppear() {
+        store.send(.initialize)
     }
 }
 
@@ -58,7 +70,7 @@ extension HomeView {
     private struct StatusView<Background>: View where Background: ShapeStyle {
         var icon: SystemImage
         var title: String
-        var value: String
+        var value: String?
         var background: Background
 
         var body: some View {
@@ -68,11 +80,15 @@ extension HomeView {
                     Text(title)
                     Spacer()
                 }
-                .font(.headline)
+                .font(.system(.headline, weight: .regular))
                 HStack(spacing: 0) {
                     Spacer()
-                    Text(value)
-                        .font(.system(.title3, design: .rounded))
+                    if let value {
+                        Text(value)
+                            .font(.system(.title3, design: .rounded, weight: .medium))
+                    } else {
+                        ProgressView()
+                    }
                 }
             }
             .padding(16)

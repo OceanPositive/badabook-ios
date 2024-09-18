@@ -5,14 +5,14 @@
 //  Copyright (c) 2024 Seungyeop Yeom ( https://github.com/OceanPositive ).
 //
 
+import BadaCore
 import BadaDomain
-import Foundation
 import SwiftData
 
 package struct DiveLogRepository: DiveLogRepositoryType {
     private let context: ModelContext
 
-    init(persistentStore: PersistentStore) {
+    package init(persistentStore: PersistentStore) {
         self.context = persistentStore.context
     }
 
