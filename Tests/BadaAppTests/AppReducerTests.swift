@@ -12,13 +12,13 @@ import Testing
 @testable import BadaApp
 
 struct AppReducerTests {
-    let sut = Store(
-        reducer: AppReducer(),
-        state: AppReducer.State()
-    )
-
     @Test
     func launch() async {
+        let sut = Store(
+            reducer: AppReducer(),
+            state: AppReducer.State()
+        )
+
         do {
             let scenePhase = await sut.state.scenePhase
             let isLaunched = await sut.state.isLaunched
@@ -39,6 +39,11 @@ struct AppReducerTests {
 
     @Test
     func scenePhase() async {
+        let sut = Store(
+            reducer: AppReducer(),
+            state: AppReducer.State()
+        )
+
         do {
             let scenePhase = await sut.state.scenePhase
             #expect(scenePhase == .none)
@@ -81,6 +86,11 @@ struct AppReducerTests {
     func registerUseCases() async {
         let container = UseCaseContainer()
         await UseCaseContainer.$instance.withValue(container) {
+            let sut = Store(
+                reducer: AppReducer(),
+                state: AppReducer.State()
+            )
+
             do {
                 let scenePhase = await sut.state.scenePhase
                 #expect(scenePhase == .none)

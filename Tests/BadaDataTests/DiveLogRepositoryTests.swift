@@ -18,7 +18,8 @@ struct DiveLogRepositoryTests {
         sut = await DiveLogRepository(persistentStore: PersistentStore.mainTest)
     }
 
-    func test_insert() async {
+    @Test
+    func insert() async {
         let diveLog = DiveLog(
             location: DiveLog.Location(
                 latitude: 1,
