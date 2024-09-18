@@ -15,13 +15,13 @@
 		C305F3B92C8452070046256D /* BadaUI in Frameworks */ = {isa = PBXBuildFile; productRef = C305F3B82C8452070046256D /* BadaUI */; };
 		C30EC7BF2C8482E300B46F13 /* BadaApp in Frameworks */ = {isa = PBXBuildFile; productRef = C30EC7BE2C8482E300B46F13 /* BadaApp */; };
 		C30EC7C12C8482E800B46F13 /* BadaApp in Frameworks */ = {isa = PBXBuildFile; productRef = C30EC7C02C8482E800B46F13 /* BadaApp */; };
-		C3A4F62E2C9862BD00708201 /* BadaMacApp in Frameworks */ = {isa = PBXBuildFile; productRef = C3A4F62D2C9862BD00708201 /* BadaMacApp */; };
 		C3DC6EB62B78B76000E1968B /* MacApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3DC6EB52B78B76000E1968B /* MacApp.swift */; };
 		C3DC6EBA2B78B76100E1968B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C3DC6EB92B78B76100E1968B /* Assets.xcassets */; };
 		C3DC6EDB2B78B8E800E1968B /* PhoneApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3DC6EDA2B78B8E800E1968B /* PhoneApp.swift */; };
 		C3DC6EDF2B78B8E900E1968B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C3DC6EDE2B78B8E900E1968B /* Assets.xcassets */; };
 		C3E08D322B78B9DF00659303 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C3E08D2D2B78B9DF00659303 /* Assets.xcassets */; };
 		C3E08D342B78B9DF00659303 /* PadApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3E08D302B78B9DF00659303 /* PadApp.swift */; };
+		C3F0C7EA2C9ABD350095F222 /* BadaApp in Frameworks */ = {isa = PBXBuildFile; productRef = C3F0C7E92C9ABD350095F222 /* BadaApp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -41,7 +41,6 @@
 		C303E0B52C99A71500A94738 /* iOS-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "iOS-Info.plist"; sourceTree = "<group>"; };
 		C303E0B62C99A75400A94738 /* iPadOS-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "iPadOS-Info.plist"; sourceTree = "<group>"; };
 		C303E0B72C99A75E00A94738 /* macOS-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "macOS-Info.plist"; sourceTree = "<group>"; };
-		C3A4F6302C98633100708201 /* MacAppTests.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = MacAppTests.xctestplan; sourceTree = "<group>"; };
 		C3CAD57F2B78C8CA00C7344D /* AppTests.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = AppTests.xctestplan; sourceTree = "<group>"; };
 		C3D2A16C2B6E32340059EADC /* AppPackage */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = AppPackage; path = ..; sourceTree = "<group>"; };
 		C3DC6EB32B78B76000E1968B /* macOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = macOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -61,7 +60,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C3A4F62E2C9862BD00708201 /* BadaMacApp in Frameworks */,
+				C3F0C7EA2C9ABD350095F222 /* BadaApp in Frameworks */,
 				C305F3B92C8452070046256D /* BadaUI in Frameworks */,
 				C305F3B72C8452070046256D /* BadaCore in Frameworks */,
 			);
@@ -104,7 +103,6 @@
 			isa = PBXGroup;
 			children = (
 				C3CAD57F2B78C8CA00C7344D /* AppTests.xctestplan */,
-				C3A4F6302C98633100708201 /* MacAppTests.xctestplan */,
 			);
 			path = TestPlans;
 			sourceTree = "<group>";
@@ -187,7 +185,7 @@
 			packageProductDependencies = (
 				C305F3B62C8452070046256D /* BadaCore */,
 				C305F3B82C8452070046256D /* BadaUI */,
-				C3A4F62D2C9862BD00708201 /* BadaMacApp */,
+				C3F0C7E92C9ABD350095F222 /* BadaApp */,
 			);
 			productName = macOS;
 			productReference = C3DC6EB32B78B76000E1968B /* macOS.app */;
@@ -748,9 +746,9 @@
 			isa = XCSwiftPackageProductDependency;
 			productName = BadaApp;
 		};
-		C3A4F62D2C9862BD00708201 /* BadaMacApp */ = {
+		C3F0C7E92C9ABD350095F222 /* BadaApp */ = {
 			isa = XCSwiftPackageProductDependency;
-			productName = BadaMacApp;
+			productName = BadaApp;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
