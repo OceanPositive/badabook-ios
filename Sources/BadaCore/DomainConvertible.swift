@@ -7,7 +7,7 @@
 
 import Foundation
 
-protocol DomainConvertible {
+package protocol DomainConvertible {
     associatedtype DomainType
 
     var domain: DomainType { get }

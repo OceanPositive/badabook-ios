@@ -5,12 +5,12 @@
 //  Copyright (c) 2024 Seungyeop Yeom ( https://github.com/OceanPositive ).
 //
 
+import BadaCore
 import BadaDomain
-import Foundation
 import SwiftData
 
 @Repository
-enum PersistentStore {
+package enum PersistentStore {
     case main
     case mainTest
 
@@ -45,7 +45,7 @@ extension PersistentStore {
                     schema: Schema([DiveLogEntity.self]),
                     isStoredInMemoryOnly: false,
                     allowsSave: true,
-                    groupContainer: ModelConfiguration.GroupContainer.identifier("com.enuf.badabook.badadata.main.group"),
+                    groupContainer: ModelConfiguration.GroupContainer.identifier("group.enuf.badabook.badadata.main"),
                     cloudKitDatabase: ModelConfiguration.CloudKitDatabase.automatic
                 )
             )

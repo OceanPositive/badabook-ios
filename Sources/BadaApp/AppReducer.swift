@@ -6,12 +6,15 @@
 //
 
 import BadaCore
+import BadaData
+import BadaDomain
 
 public struct AppReducer: Reducer {
     public enum Action: Sendable {
         case background
         case inactive
         case active
+        case registerUseCases
     }
 
     public struct State: Sendable, Equatable {
@@ -35,7 +38,11 @@ public struct AppReducer: Reducer {
             state.scenePhase = .active
             if !state.isLaunched {
                 state.isLaunched = true
+                return .just(.registerUseCases)
             }
+            return .none
+        case .registerUseCases:
+            registerUseCases()
             return .none
         }
     }

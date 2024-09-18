@@ -25,6 +25,7 @@ let package = Package(
             name: "BadaApp",
             dependencies: [
                 "BadaCore",
+                "BadaData",
                 "BadaDomain",
                 "BadaUI",
             ]
@@ -58,6 +59,7 @@ let package = Package(
         .target(
             name: "BadaData",
             dependencies: [
+                "BadaCore",
                 "BadaDomain",
             ]
         ),
@@ -65,7 +67,12 @@ let package = Package(
             name: "BadaDataTests",
             dependencies: ["BadaData"]
         ),
-        .target(name: "BadaDomain"),
+        .target(
+            name: "BadaDomain",
+            dependencies: [
+                "BadaCore",
+            ]
+        ),
         .testTarget(
             name: "BadaDomainTests",
             dependencies: ["BadaDomain"]
