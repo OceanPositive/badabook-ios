@@ -9,15 +9,16 @@ import BadaCore
 
 package protocol ExecutableUseCase: Sendable {}
 
-@propertyWrapper package struct UseCase<T: ExecutableUseCase> {
-    private let type: T.Type
+@propertyWrapper
+package struct UseCase<T: ExecutableUseCase> {
+    private let value: T
 
     package init() {
-        self.type = T.self
+        self.value = UseCaseContainer.instance.resolve(T.self)
     }
 
     package var wrappedValue: T {
-        get { UseCaseContainer.shared.resolve(type) }
+        get { value }
         set { assertionFailure("Assigning \(newValue) is unavailable") }
     }
 
@@ -28,10 +29,13 @@ package protocol ExecutableUseCase: Sendable {}
 }
 
 package final class UseCaseContainer: @unchecked Sendable {
-    package static let shared = UseCaseContainer()
+    @TaskLocal
+    package static var instance = UseCaseContainer()
 
     private let lock = NSLock()
     private var table: [UseCaseKey: any ExecutableUseCase] = [:]
+
+    package init() {}
 
     package func register<T: ExecutableUseCase>(
         _ type: T.Type = T.self,

@@ -7,40 +7,39 @@
 
 import BadaCore
 import BadaDomain
-import XCTest
+import Testing
 
 @testable import BadaApp
 
-final class HomeReducerTests: XCTestCase {
-    var sut: Store<HomeReducer>!
-
-    override func setUp() {
-        sut = Store(
-            reducer: HomeReducer(),
-            state: HomeReducer.State()
-        )
-        UseCaseContainer.shared.reset()
-        UseCaseContainer.shared.register {
+struct HomeReducerTests {
+    @Test
+    func initialize() async {
+        let container = UseCaseContainer()
+        container.register {
             GetDiveLogsUseCase { .success([]) }
         }
+        await UseCaseContainer.$instance.withValue(container) {
+            let sut = Store(
+                reducer: HomeReducer(),
+                state: HomeReducer.State()
+            )
+            do {
+                let logCount = await sut.state.logCount
+                #expect(logCount == nil)
+            }
+
+            await sut.send(.initialize)
+            await Task.megaYield()
+
+            do {
+                let logCount = await sut.state.logCount
+                #expect(logCount == 0)
+            }
+        }
     }
 
-    func test_initialize() async {
-        do {
-            let logCount = await sut.state.logCount
-            XCTAssertEqual(logCount, nil)
-        }
-
-        await sut.send(.initialize)
-        await Task.megaYield()
-
-        do {
-            let logCount = await sut.state.logCount
-            XCTAssertEqual(logCount, 0)
-        }
-    }
-
-    func test_getDiveLogs() async {
+    @Test
+    func getDiveLogs() async {
         let diveLog = DiveLog(
             location: DiveLog.Location(
                 latitude: 1,
@@ -59,27 +58,46 @@ final class HomeReducerTests: XCTestCase {
             diveType: "diveType1",
             notes: "notes1"
         )
-        UseCaseContainer.shared.register {
+        let container = UseCaseContainer()
+        container.register {
             GetDiveLogsUseCase { .success([diveLog, diveLog, diveLog]) }
         }
-
-        await sut.send(.getDiveLogs)
-        await Task.megaYield()
-        let logCount = await sut.state.logCount
-        XCTAssertEqual(logCount, 3)
+        await UseCaseContainer.$instance.withValue(container) {
+            let sut = Store(
+                reducer: HomeReducer(),
+                state: HomeReducer.State()
+            )
+            await sut.send(.getDiveLogs)
+            await Task.megaYield()
+            let logCount = await sut.state.logCount
+            #expect(logCount == 3)
+        }
     }
 
-    func test_setLogCount() async {
-        do {
-            await sut.send(.setLogCount(10))
-            let logCount = await sut.state.logCount
-            XCTAssertEqual(logCount, 10)
+    @Test
+    func setLogCount() async {
+        let container = UseCaseContainer()
+        container.register {
+            GetDiveLogsUseCase { .success([]) }
         }
+        await UseCaseContainer.$instance.withValue(container) {
+            let sut = Store(
+                reducer: HomeReducer(),
+                state: HomeReducer.State()
+            )
+            do {
+                await sut.send(.setLogCount(10))
+                await Task.megaYield()
+                let logCount = await sut.state.logCount
+                #expect(logCount == 10)
+            }
 
-        do {
-            await sut.send(.setLogCount(nil))
-            let logCount = await sut.state.logCount
-            XCTAssertEqual(logCount, nil)
+            do {
+                await sut.send(.setLogCount(nil))
+                await Task.megaYield()
+                let logCount = await sut.state.logCount
+                #expect(logCount == nil)
+            }
         }
     }
 }

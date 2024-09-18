@@ -5,12 +5,13 @@
 //  Copyright (c) 2024 Seungyeop Yeom ( https://github.com/OceanPositive ).
 //
 
-import XCTest
+import Testing
 
 @testable import BadaCore
 
-final class BadaCoreTests: XCTestCase {
-    func testExample() throws {
-        XCTAssertEqual(1 + 1, 2)
+struct BadaCoreTests {
+    @Test
+    func example() {
+        #expect(1 + 1 == 2)
     }
 }
