@@ -7,7 +7,7 @@
 
 import BadaCore
 import BadaDomain
-import Testing
+import BadaTesting
 
 @testable import BadaApp
 
@@ -23,18 +23,10 @@ struct HomeReducerTests {
                 reducer: HomeReducer(),
                 state: HomeReducer.State()
             )
-            do {
-                let logCount = await sut.state.logCount
-                #expect(logCount == nil)
-            }
+            await sut.expect(\.logCount, nil)
 
             await sut.send(.initialize)
-            await Task.megaYield()
-
-            do {
-                let logCount = await sut.state.logCount
-                #expect(logCount == 0)
-            }
+            await sut.expect(\.logCount, 0)
         }
     }
 
@@ -68,9 +60,7 @@ struct HomeReducerTests {
                 state: HomeReducer.State()
             )
             await sut.send(.getDiveLogs)
-            await Task.megaYield()
-            let logCount = await sut.state.logCount
-            #expect(logCount == 3)
+            await sut.expect(\.logCount, 3)
         }
     }
 
@@ -85,19 +75,11 @@ struct HomeReducerTests {
                 reducer: HomeReducer(),
                 state: HomeReducer.State()
             )
-            do {
-                await sut.send(.setLogCount(10))
-                await Task.megaYield()
-                let logCount = await sut.state.logCount
-                #expect(logCount == 10)
-            }
+            await sut.send(.setLogCount(10))
+            await sut.expect(\.logCount, 10)
 
-            do {
-                await sut.send(.setLogCount(nil))
-                await Task.megaYield()
-                let logCount = await sut.state.logCount
-                #expect(logCount == nil)
-            }
+            await sut.send(.setLogCount(nil))
+            await sut.expect(\.logCount, nil)
         }
     }
 }

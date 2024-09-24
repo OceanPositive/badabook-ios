@@ -7,7 +7,7 @@
 
 import BadaCore
 import BadaDomain
-import Testing
+import BadaTesting
 
 @testable import BadaData
 

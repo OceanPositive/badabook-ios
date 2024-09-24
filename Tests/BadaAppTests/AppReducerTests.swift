@@ -7,7 +7,7 @@
 
 import BadaCore
 import BadaDomain
-import Testing
+import BadaTesting
 
 @testable import BadaApp
 
@@ -18,23 +18,12 @@ struct AppReducerTests {
             reducer: AppReducer(),
             state: AppReducer.State()
         )
-
-        do {
-            let scenePhase = await sut.state.scenePhase
-            let isLaunched = await sut.state.isLaunched
-            #expect(scenePhase == .none)
-            #expect(isLaunched == false)
-        }
+        await sut.expect(\.scenePhase, .none)
+        await sut.expect(\.isLaunched, false)
 
         await sut.send(.active)
-        await Task.megaYield()
-
-        do {
-            let scenePhase = await sut.state.scenePhase
-            let isLaunched = await sut.state.isLaunched
-            #expect(scenePhase == .active)
-            #expect(isLaunched == true)
-        }
+        await sut.expect(\.scenePhase, .active)
+        await sut.expect(\.isLaunched, true)
     }
 
     @Test
@@ -43,43 +32,19 @@ struct AppReducerTests {
             reducer: AppReducer(),
             state: AppReducer.State()
         )
-
-        do {
-            let scenePhase = await sut.state.scenePhase
-            #expect(scenePhase == .none)
-        }
+        await sut.expect(\.scenePhase, .none)
 
         await sut.send(.active)
-        await Task.megaYield()
-
-        do {
-            let scenePhase = await sut.state.scenePhase
-            #expect(scenePhase == .active)
-        }
+        await sut.expect(\.scenePhase, .active)
 
         await sut.send(.background)
-        await Task.megaYield()
-
-        do {
-            let scenePhase = await sut.state.scenePhase
-            #expect(scenePhase == .background)
-        }
+        await sut.expect(\.scenePhase, .background)
 
         await sut.send(.inactive)
-        await Task.megaYield()
-
-        do {
-            let scenePhase = await sut.state.scenePhase
-            #expect(scenePhase == .inactive)
-        }
+        await sut.expect(\.scenePhase, .inactive)
 
         await sut.send(.active)
-        await Task.megaYield()
-
-        do {
-            let scenePhase = await sut.state.scenePhase
-            #expect(scenePhase == .active)
-        }
+        await sut.expect(\.scenePhase, .active)
     }
 
     @Test
@@ -90,21 +55,14 @@ struct AppReducerTests {
                 reducer: AppReducer(),
                 state: AppReducer.State()
             )
-
-            do {
-                let scenePhase = await sut.state.scenePhase
-                #expect(scenePhase == .none)
-            }
+            await sut.expect(\.scenePhase, .none)
 
             await sut.send(.active)
-            await Task.megaYield()
+            await sut.expect(\.scenePhase, .active)
 
+            /// `fatalError` must not occur
             let _ = UseCaseContainer.instance.resolve(GetDiveLogsUseCase.self)
             let _ = UseCaseContainer.instance.resolve(PostDiveLogUseCase.self)
-            do {
-                let scenePhase = await sut.state.scenePhase
-                #expect(scenePhase == .active)
-            }
         }
     }
 }

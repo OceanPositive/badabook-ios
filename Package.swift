@@ -31,7 +31,10 @@ let package = Package(
         ),
         .testTarget(
             name: "BadaAppTests",
-            dependencies: ["BadaApp"]
+            dependencies: [
+                "BadaApp",
+                "BadaTesting",
+            ]
         ),
         .target(
             name: "BadaCore",
@@ -41,7 +44,10 @@ let package = Package(
         ),
         .testTarget(
             name: "BadaCoreTests",
-            dependencies: ["BadaCore"]
+            dependencies: [
+                "BadaCore",
+                "BadaTesting",
+            ]
         ),
         .target(
             name: "BadaData",
@@ -52,7 +58,10 @@ let package = Package(
         ),
         .testTarget(
             name: "BadaDataTests",
-            dependencies: ["BadaData"]
+            dependencies: [
+                "BadaData",
+                "BadaTesting",
+            ]
         ),
         .target(
             name: "BadaDomain",
@@ -62,7 +71,10 @@ let package = Package(
         ),
         .testTarget(
             name: "BadaDomainTests",
-            dependencies: ["BadaDomain"]
+            dependencies: [
+                "BadaDomain",
+                "BadaTesting",
+            ]
         ),
         .target(
             name: "BadaUI",
@@ -72,7 +84,16 @@ let package = Package(
         ),
         .testTarget(
             name: "BadaUITests",
-            dependencies: ["BadaUI"]
+            dependencies: [
+                "BadaUI",
+                "BadaTesting",
+            ]
+        ),
+        .target(
+            name: "BadaTesting",
+            dependencies: [
+                .product(name: "OneWayTesting", package: "OneWay"),
+            ]
         ),
     ]
 )
