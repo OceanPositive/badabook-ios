@@ -1,4 +1,4 @@
-PLATFORM_IOS = iOS Simulator,name=iPhone 15
+PLATFORM_IOS = iOS Simulator,name=iPhone 16
 PLATFORM_IPADOS = iOS Simulator,name=iPad (10th generation)
 PLATFORM_MACOS = macOS
 
