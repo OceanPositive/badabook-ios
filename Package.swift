@@ -1,4 +1,4 @@
-// swift-tools-version: 5.10
+// swift-tools-version: 6.0
 
 import PackageDescription
 
@@ -6,8 +6,8 @@ let package = Package(
     name: "AppPackage",
     defaultLocalization: "en",
     platforms: [
-        .iOS(.v17),
-        .macOS(.v14),
+        .iOS(.v18),
+        .macOS(.v15),
     ],
     products: [
         .library(name: "BadaApp", targets: ["BadaApp"]),
@@ -17,7 +17,7 @@ let package = Package(
         .library(name: "BadaUI", targets: ["BadaUI"]),
     ],
     dependencies: [
-        .package(url: "https://github.com/DevYeom/OneWay.git", exact: "2.8.0"),
+        .package(url: "https://github.com/DevYeom/OneWay.git", exact: "2.8.1"),
     ],
     targets: [
         .target(
@@ -97,10 +97,3 @@ let package = Package(
         ),
     ]
 )
-
-for target in package.targets {
-    target.swiftSettings = target.swiftSettings ?? []
-    target.swiftSettings?.append(
-        .enableExperimentalFeature("StrictConcurrency")
-    )
-}
