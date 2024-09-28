@@ -41,24 +41,28 @@ private struct MainTabView: View {
 
     var body: some View {
         TabView(selection: tab) {
-            HomeView()
-                .tabItem {
-                    Image(systemImage: .house)
-                    Text(L10n.MainTab.home)
-                }
-                .tag(MainTab.home)
-            EquipmentView()
-                .tabItem {
-                    Image(systemImage: .doorSlidingRightHandClosed)
-                    Text(L10n.MainTab.equipment)
-                }
-                .tag(MainTab.equipment)
-            LogbookView()
-                .tabItem {
-                    Image(systemImage: .bookPages)
-                    Text(L10n.MainTab.logbook)
-                }
-                .tag(MainTab.logbook)
+            Tab(
+                L10n.MainTab.home,
+                systemImage: SystemImage.house.rawValue,
+                value: .home
+            ) {
+                HomeView()
+            }
+            Tab(
+                L10n.MainTab.equipment,
+                systemImage: SystemImage.doorSlidingRightHandClosed.rawValue,
+                value: .equipment
+            ) {
+                EquipmentView()
+            }
+            Tab(
+                L10n.MainTab.logbook,
+                systemImage: SystemImage.bookPages.rawValue,
+                value: .logbook
+            ) {
+                LogbookView()
+            }
         }
+        .tabViewStyle(.sidebarAdaptable)
     }
 }

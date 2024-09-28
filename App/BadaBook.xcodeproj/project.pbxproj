@@ -41,6 +41,8 @@
 		C303E0B52C99A71500A94738 /* iOS-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "iOS-Info.plist"; sourceTree = "<group>"; };
 		C303E0B62C99A75400A94738 /* iPadOS-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "iPadOS-Info.plist"; sourceTree = "<group>"; };
 		C303E0B72C99A75E00A94738 /* macOS-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "macOS-Info.plist"; sourceTree = "<group>"; };
+		C311CB562CA7FA8600D70C53 /* iPadOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = iPadOS.entitlements; sourceTree = "<group>"; };
+		C311CB572CA7FA9600D70C53 /* macOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = macOS.entitlements; sourceTree = "<group>"; };
 		C3CAD57F2B78C8CA00C7344D /* AppTests.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = AppTests.xctestplan; sourceTree = "<group>"; };
 		C3D2A16C2B6E32340059EADC /* AppPackage */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = AppPackage; path = ..; sourceTree = "<group>"; };
 		C3DC6EB32B78B76000E1968B /* macOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = macOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -146,6 +148,8 @@
 			children = (
 				C3D2A16C2B6E32340059EADC /* AppPackage */,
 				C3E3D4942C9A659C00684D72 /* iOS.entitlements */,
+				C311CB562CA7FA8600D70C53 /* iPadOS.entitlements */,
+				C311CB572CA7FA9600D70C53 /* macOS.entitlements */,
 				C303E0B52C99A71500A94738 /* iOS-Info.plist */,
 				C303E0B62C99A75400A94738 /* iPadOS-Info.plist */,
 				C303E0B72C99A75E00A94738 /* macOS-Info.plist */,
@@ -337,7 +341,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = "";
+				CODE_SIGN_ENTITLEMENTS = macOS.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
@@ -369,7 +373,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = "";
+				CODE_SIGN_ENTITLEMENTS = macOS.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
@@ -478,7 +482,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = "";
+				CODE_SIGN_ENTITLEMENTS = iPadOS.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "";
@@ -491,7 +495,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -515,7 +519,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = "";
+				CODE_SIGN_ENTITLEMENTS = iPadOS.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "";
@@ -528,7 +532,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
