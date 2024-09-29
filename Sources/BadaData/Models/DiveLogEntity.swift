@@ -11,6 +11,8 @@ import SwiftData
 
 @Model
 final class DiveLogEntity {
+    @Attribute(.unique)
+    var id: UUID
     var logNumber: Int
     var logDate: Date?
     var diveSite: DiveSite?
@@ -32,8 +34,11 @@ final class DiveLogEntity {
     var visibilityDistance: UnitValue.Distance?
     var companions: [Companion]
     var notes: String?
+    var insertDate: Date
+    var updateDate: Date
 
     init(
+        id: UUID,
         logNumber: Int,
         logDate: Date? = nil,
         diveSite: DiveSite? = nil,
@@ -54,8 +59,11 @@ final class DiveLogEntity {
         visibility: Visibility? = nil,
         visibilityDistance: UnitValue.Distance? = nil,
         companions: [Companion] = [],
-        notes: String? = nil
+        notes: String? = nil,
+        insertDate: Date,
+        updateDate: Date
     ) {
+        self.id = id
         self.logNumber = logNumber
         self.logDate = logDate
         self.diveSite = diveSite
@@ -77,12 +85,15 @@ final class DiveLogEntity {
         self.visibilityDistance = visibilityDistance
         self.companions = companions
         self.notes = notes
+        self.insertDate = insertDate
+        self.updateDate = updateDate
     }
 }
 
 extension DiveLogEntity: DomainConvertible {
     var domain: BadaDomain.DiveLog {
         BadaDomain.DiveLog(
+            id: id,
             logNumber: logNumber,
             logDate: logDate,
             diveSite: diveSite?.domain,
@@ -90,25 +101,28 @@ extension DiveLogEntity: DomainConvertible {
             entryTime: entryTime,
             exitTime: exitTime,
             surfaceInterval: surfaceInterval,
-            entryAir: entryAir?.domain,
-            exitAir: exitAir?.domain,
+            entryAir: entryAir,
+            exitAir: exitAir,
             gasType: gasType?.domain,
             equipment: equipment?.domain,
-            maximumDepth: maximumDepth?.domain,
-            averageDepth: averageDepth?.domain,
-            maximumWaterTemperature: maximumWaterTemperature?.domain,
-            minimumWaterTemperature: minimumWaterTemperature?.domain,
-            averageWaterTemperature: averageWaterTemperature?.domain,
+            maximumDepth: maximumDepth,
+            averageDepth: averageDepth,
+            maximumWaterTemperature: maximumWaterTemperature,
+            minimumWaterTemperature: minimumWaterTemperature,
+            averageWaterTemperature: averageWaterTemperature,
             weather: weather?.domain,
             visibility: visibility?.domain,
-            visibilityDistance: visibilityDistance?.domain,
+            visibilityDistance: visibilityDistance,
             companions: companions.map { $0.domain },
-            notes: notes
+            notes: notes,
+            insertDate: insertDate,
+            updateDate: updateDate
         )
     }
 
     convenience init(domain: BadaDomain.DiveLog) {
         self.init(
+            id: domain.id,
             logNumber: domain.logNumber,
             logDate: domain.logDate,
             diveSite: domain.diveSite.map { DiveSite(domain: $0) },
@@ -116,20 +130,53 @@ extension DiveLogEntity: DomainConvertible {
             entryTime: domain.entryTime,
             exitTime: domain.exitTime,
             surfaceInterval: domain.surfaceInterval,
-            entryAir: domain.entryAir.map { UnitValue.Pressure(domain: $0) },
-            exitAir: domain.exitAir.map { UnitValue.Pressure(domain: $0) },
+            entryAir: domain.entryAir,
+            exitAir: domain.exitAir,
             gasType: domain.gasType.map { DiveGasType(domain: $0) },
             equipment: domain.equipment.map { Equipment(domain: $0) },
-            maximumDepth: domain.maximumDepth.map { UnitValue.Distance(domain: $0) },
-            averageDepth: domain.averageDepth.map { UnitValue.Distance(domain: $0) },
-            maximumWaterTemperature: domain.maximumWaterTemperature.map { UnitValue.Temperature(domain: $0) },
-            minimumWaterTemperature: domain.minimumWaterTemperature.map { UnitValue.Temperature(domain: $0) },
-            averageWaterTemperature: domain.averageWaterTemperature.map { UnitValue.Temperature(domain: $0) },
+            maximumDepth: domain.maximumDepth,
+            averageDepth: domain.averageDepth,
+            maximumWaterTemperature: domain.maximumWaterTemperature,
+            minimumWaterTemperature: domain.minimumWaterTemperature,
+            averageWaterTemperature: domain.averageWaterTemperature,
             weather: domain.weather.map { Weather(domain: $0) },
             visibility: domain.visibility.map { Visibility(domain: $0) },
-            visibilityDistance: domain.visibilityDistance.map { UnitValue.Distance(domain: $0) },
+            visibilityDistance: domain.visibilityDistance,
             companions: domain.companions.map { Companion(domain: $0) },
-            notes: domain.notes
+            notes: domain.notes,
+            insertDate: domain.insertDate,
+            updateDate: domain.updateDate
+        )
+    }
+}
+
+extension DiveLogEntity {
+    convenience init(insertRequest: BadaDomain.DiveLogInsertRequest) {
+        self.init(
+            id: UUID(),
+            logNumber: insertRequest.logNumber,
+            logDate: insertRequest.logDate,
+            diveSite: insertRequest.diveSite.map { DiveSite(domain: $0) },
+            diveStyle: insertRequest.diveStyle.map { DiveStyle(domain: $0) },
+            entryTime: insertRequest.entryTime,
+            exitTime: insertRequest.exitTime,
+            surfaceInterval: insertRequest.surfaceInterval,
+            entryAir: insertRequest.entryAir,
+            exitAir: insertRequest.exitAir,
+            gasType: insertRequest.gasType.map { DiveGasType(domain: $0) },
+            equipment: insertRequest.equipment.map { Equipment(domain: $0) },
+            maximumDepth: insertRequest.maximumDepth,
+            averageDepth: insertRequest.averageDepth,
+            maximumWaterTemperature: insertRequest.maximumWaterTemperature,
+            minimumWaterTemperature: insertRequest.minimumWaterTemperature,
+            averageWaterTemperature: insertRequest.averageWaterTemperature,
+            weather: insertRequest.weather.map { Weather(domain: $0) },
+            visibility: insertRequest.visibility.map { Visibility(domain: $0) },
+            visibilityDistance: insertRequest.visibilityDistance,
+            companions: insertRequest.companions.map { Companion(domain: $0) },
+            notes: insertRequest.notes,
+            insertDate: Date.now,
+            updateDate: Date.now
         )
     }
 }

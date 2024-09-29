@@ -16,10 +16,17 @@ struct LogbookView: View {
 
     var body: some View {
         NavigationStack {
-            ScrollView(.vertical) {
-
+            List {
+                ForEach(store.state.items) { item in
+                    LogbookListRow(item: item)
+                }
             }
             .navigationTitle(L10n.Logbook.title)
+            .onAppear(perform: onAppear)
         }
+    }
+
+    private func onAppear() {
+        store.send(.load)
     }
 }

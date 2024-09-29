@@ -7,8 +7,7 @@
 
 import BadaCore
 
-package struct DiveLog: Equatable {
-    package let id: UUID
+package struct DiveLogInsertRequest: Equatable {
     package let logNumber: Int
     package let logDate: Date?
     package let diveSite: DiveSite?
@@ -30,11 +29,8 @@ package struct DiveLog: Equatable {
     package let visibilityDistance: UnitValue.Distance?
     package let companions: [Companion]
     package let notes: String?
-    package let insertDate: Date
-    package let updateDate: Date
 
     package init(
-        id: UUID = UUID(),
         logNumber: Int,
         logDate: Date? = nil,
         diveSite: DiveSite? = nil,
@@ -55,11 +51,8 @@ package struct DiveLog: Equatable {
         visibility: Visibility? = nil,
         visibilityDistance: UnitValue.Distance? = nil,
         companions: [Companion] = [],
-        notes: String? = nil,
-        insertDate: Date = Date(timeIntervalSince1970: 0),
-        updateDate: Date = Date(timeIntervalSince1970: 0)
+        notes: String? = nil
     ) {
-        self.id = id
         self.logNumber = logNumber
         self.logDate = logDate
         self.diveSite = diveSite
@@ -81,7 +74,33 @@ package struct DiveLog: Equatable {
         self.visibilityDistance = visibilityDistance
         self.companions = companions
         self.notes = notes
-        self.insertDate = insertDate
-        self.updateDate = updateDate
+    }
+}
+
+extension DiveLogInsertRequest {
+    package init(diveLog: DiveLog) {
+        self.init(
+            logNumber: diveLog.logNumber,
+            logDate: diveLog.logDate,
+            diveSite: diveLog.diveSite,
+            diveStyle: diveLog.diveStyle,
+            entryTime: diveLog.entryTime,
+            exitTime: diveLog.exitTime,
+            surfaceInterval: diveLog.surfaceInterval,
+            entryAir: diveLog.entryAir,
+            exitAir: diveLog.exitAir,
+            gasType: diveLog.gasType,
+            equipment: diveLog.equipment,
+            maximumDepth: diveLog.maximumDepth,
+            averageDepth: diveLog.averageDepth,
+            maximumWaterTemperature: diveLog.maximumWaterTemperature,
+            minimumWaterTemperature: diveLog.minimumWaterTemperature,
+            averageWaterTemperature: diveLog.averageWaterTemperature,
+            weather: diveLog.weather,
+            visibility: diveLog.visibility,
+            visibilityDistance: diveLog.visibilityDistance,
+            companions: diveLog.companions,
+            notes: diveLog.notes
+        )
     }
 }

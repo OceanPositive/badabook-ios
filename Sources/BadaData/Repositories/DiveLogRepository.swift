@@ -16,8 +16,8 @@ package struct DiveLogRepository: DiveLogRepositoryType {
         self.context = persistentStore.context
     }
 
-    package func insert(diveLog: DiveLog) -> Result<Void, DiveLogRepositoryError> {
-        let entity = DiveLogEntity(domain: diveLog)
+    package func insert(request: DiveLogInsertRequest) -> Result<Void, DiveLogRepositoryError> {
+        let entity = DiveLogEntity(insertRequest: request)
         context.insert(entity)
         do {
             try context.save()

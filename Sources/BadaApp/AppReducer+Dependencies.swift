@@ -17,9 +17,9 @@ extension AppReducer {
             }
         }
         register {
-            PostDiveLogUseCase { diveLog in
+            PostDiveLogUseCase { request in
                 let repository = await DiveLogRepository(persistentStore: .main)
-                return await repository.insert(diveLog: diveLog)
+                return await repository.insert(request: request)
             }
         }
     }

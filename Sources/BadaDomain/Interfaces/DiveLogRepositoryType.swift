@@ -9,7 +9,7 @@ import BadaCore
 
 @Repository
 package protocol DiveLogRepositoryType {
-    func insert(diveLog: DiveLog) -> Result<Void, DiveLogRepositoryError>
+    func insert(request: DiveLogInsertRequest) -> Result<Void, DiveLogRepositoryError>
     func diveLogs() -> Result<[DiveLog], DiveLogRepositoryError>
 }
 
