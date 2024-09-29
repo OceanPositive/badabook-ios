@@ -37,14 +37,14 @@ extension Equipment: DomainConvertible {
         BadaDomain.Equipment(
             suit: suit?.domain,
             bcd: bcd?.domain,
-            weight: weight?.domain
+            weight: weight
         )
     }
 
     init(domain: BadaDomain.Equipment) {
         self.suit = domain.suit.map { Suit(domain: $0) }
         self.bcd = domain.bcd.map { BCD(domain: $0) }
-        self.weight = domain.weight.map { UnitValue.Weight(domain: $0) }
+        self.weight = domain.weight
     }
 }
 

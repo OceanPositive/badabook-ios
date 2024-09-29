@@ -20,9 +20,9 @@ struct DiveLogRepositoryTests {
 
     @Test
     func insert() async {
-        let diveLog = DiveLog(logNumber: 0)
+        let request = DiveLogInsertRequest(logNumber: 0)
 
-        switch await sut.insert(diveLog: diveLog) {
+        switch await sut.insert(request: request) {
         case .success:
             break
         case let .failure(error):
@@ -32,7 +32,9 @@ struct DiveLogRepositoryTests {
         switch await sut.diveLogs() {
         case let .success(diveLogs):
             #expect(diveLogs.count == 1)
-            #expect(diveLogs.first == diveLog)
+            if let diveLog = diveLogs.first {
+                #expect(DiveLogInsertRequest(diveLog: diveLog) == request)
+            }
         case let .failure(error):
             Issue.record(error)
         }
