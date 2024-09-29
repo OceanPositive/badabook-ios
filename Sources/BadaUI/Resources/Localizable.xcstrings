@@ -52,6 +52,23 @@
         }
       }
     },
+    "LOGBOOK_ADD" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Add"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "추가"
+          }
+        }
+      }
+    },
     "LOGBOOK_TITLE" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -80,7 +97,7 @@
         },
         "ko" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "내 장비"
           }
         }
