@@ -32,27 +32,14 @@ struct HomeReducerTests {
 
     @Test
     func getDiveLogs() async {
-        let diveLog = DiveLog(
-            location: DiveLog.Location(
-                latitude: 1,
-                longitude: 2,
-                siteName: "siteName1",
-                country: "country1"
-            ),
-            entryTime: Date(timeIntervalSince1970: 100),
-            exitTime: Date(timeIntervalSince1970: 200),
-            depth: 10,
-            duration: 20,
-            waterTemperature: 30,
-            visibility: 40,
-            airConsumption: 50,
-            diveBuddy: "diveBuddy1",
-            diveType: "diveType1",
-            notes: "notes1"
-        )
+        let diveLogs: [DiveLog] = [
+            DiveLog(logNumber: 0),
+            DiveLog(logNumber: 1),
+            DiveLog(logNumber: 2),
+        ]
         let container = UseCaseContainer()
         container.register {
-            GetDiveLogsUseCase { .success([diveLog, diveLog, diveLog]) }
+            GetDiveLogsUseCase { .success(diveLogs) }
         }
         await UseCaseContainer.$instance.withValue(container) {
             let sut = Store(

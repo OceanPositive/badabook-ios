@@ -8,73 +8,71 @@
 import BadaCore
 
 package struct DiveLog: Equatable {
-    /// Dive location information
-    package let location: Location
-    /// Time of entry into the water
-    package let entryTime: Date
-    /// Time of exit from the water
-    package let exitTime: Date
-    /// Maximum depth (meters)
-    package let depth: Double
-    /// Dive duration (in seconds)
-    package let duration: TimeInterval
-    /// Water temperature (Celsius)
-    package let waterTemperature: Double?
-    /// Visibility (meters)
-    package let visibility: Double?
-    /// Air consumption (liters)
-    package let airConsumption: Double?
-    /// Dive buddy's name
-    package let diveBuddy: String?
-    /// Type of dive (e.g., recreational, night dive)
-    package let diveType: String
-    /// Additional notes, optional
+    package let logNumber: Int
+    package let logDate: Date?
+    package let diveSite: DiveSite?
+    package let diveStyle: DiveStyle?
+    package let entryTime: Date?
+    package let exitTime: Date?
+    package let surfaceInterval: Double?
+    package let entryAir: UnitValue.Pressure?
+    package let exitAir: UnitValue.Pressure?
+    package let gasType: DiveGasType?
+    package let equipment: Equipment?
+    package let maximumDepth: UnitValue.Distance?
+    package let averageDepth: UnitValue.Distance?
+    package let maximumWaterTemperature: UnitValue.Temperature?
+    package let minimumWaterTemperature: UnitValue.Temperature?
+    package let averageWaterTemperature: UnitValue.Temperature?
+    package let weather: Weather?
+    package let visibility: Visibility?
+    package let visibilityDistance: UnitValue.Distance?
+    package let companions: [Companion]
     package let notes: String?
 
     package init(
-        location: Location,
-        entryTime: Date,
-        exitTime: Date,
-        depth: Double,
-        duration: TimeInterval,
-        waterTemperature: Double?,
-        visibility: Double?,
-        airConsumption: Double?,
-        diveBuddy: String?,
-        diveType: String,
-        notes: String?
+        logNumber: Int,
+        logDate: Date? = nil,
+        diveSite: DiveSite? = nil,
+        diveStyle: DiveStyle? = nil,
+        entryTime: Date? = nil,
+        exitTime: Date? = nil,
+        surfaceInterval: Double? = nil,
+        entryAir: UnitValue.Pressure? = nil,
+        exitAir: UnitValue.Pressure? = nil,
+        gasType: DiveGasType? = nil,
+        equipment: Equipment? = nil,
+        maximumDepth: UnitValue.Distance? = nil,
+        averageDepth: UnitValue.Distance? = nil,
+        maximumWaterTemperature: UnitValue.Temperature? = nil,
+        minimumWaterTemperature: UnitValue.Temperature? = nil,
+        averageWaterTemperature: UnitValue.Temperature? = nil,
+        weather: Weather? = nil,
+        visibility: Visibility? = nil,
+        visibilityDistance: UnitValue.Distance? = nil,
+        companions: [Companion] = [],
+        notes: String? = nil
     ) {
-        self.location = location
+        self.logNumber = logNumber
+        self.logDate = logDate
+        self.diveSite = diveSite
+        self.diveStyle = diveStyle
         self.entryTime = entryTime
         self.exitTime = exitTime
-        self.depth = depth
-        self.duration = duration
-        self.waterTemperature = waterTemperature
+        self.surfaceInterval = surfaceInterval
+        self.entryAir = entryAir
+        self.exitAir = exitAir
+        self.gasType = gasType
+        self.equipment = equipment
+        self.maximumDepth = maximumDepth
+        self.averageDepth = averageDepth
+        self.maximumWaterTemperature = maximumWaterTemperature
+        self.minimumWaterTemperature = minimumWaterTemperature
+        self.averageWaterTemperature = averageWaterTemperature
+        self.weather = weather
         self.visibility = visibility
-        self.airConsumption = airConsumption
-        self.diveBuddy = diveBuddy
-        self.diveType = diveType
+        self.visibilityDistance = visibilityDistance
+        self.companions = companions
         self.notes = notes
-    }
-}
-
-extension DiveLog {
-    package struct Location: Equatable {
-        package let latitude: Double
-        package let longitude: Double
-        package let siteName: String
-        package let country: String
-
-        package init(
-            latitude: Double,
-            longitude: Double,
-            siteName: String,
-            country: String
-        ) {
-            self.latitude = latitude
-            self.longitude = longitude
-            self.siteName = siteName
-            self.country = country
-        }
     }
 }

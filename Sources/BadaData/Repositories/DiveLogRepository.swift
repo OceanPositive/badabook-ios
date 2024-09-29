@@ -23,7 +23,7 @@ package struct DiveLogRepository: DiveLogRepositoryType {
             try context.save()
             return .success(())
         } catch {
-            return .failure(.fetchFailed(error.localizedDescription))
+            return .failure(.insertFailed(error.localizedDescription))
         }
     }
 

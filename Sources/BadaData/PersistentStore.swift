@@ -45,7 +45,7 @@ extension PersistentStore {
                     schema: Schema([DiveLogEntity.self]),
                     isStoredInMemoryOnly: false,
                     allowsSave: true,
-                    groupContainer: ModelConfiguration.GroupContainer.identifier("group.enuf.badabook.badadata.main"),
+                    groupContainer: ModelConfiguration.GroupContainer.identifier("group.com.enuf.badabook.badadata.main"),
                     cloudKitDatabase: ModelConfiguration.CloudKitDatabase.automatic
                 )
             )
