@@ -10,10 +10,12 @@ import BadaCore
 struct LogbookReducer: Reducer {
     enum Action: Sendable {
         case load
+        case setIsAddSheetPresenting(Bool)
     }
 
     struct State: Sendable, Equatable {
         var items: [LogbookRowItem] = []
+        var isAddSheetPresenting: Bool = false
     }
 
     func reduce(state: inout State, action: Action) -> AnyEffect<Action> {
@@ -26,6 +28,9 @@ struct LogbookReducer: Reducer {
                 LogbookRowItem(id: UUID(), logNumber: 4, siteName: "Bada4"),
                 LogbookRowItem(id: UUID(), logNumber: 5, siteName: "Bada5"),
             ]
+            return .none
+        case let .setIsAddSheetPresenting(isAddSheetPresenting):
+            state.isAddSheetPresenting = isAddSheetPresenting
             return .none
         }
     }

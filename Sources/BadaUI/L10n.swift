@@ -17,6 +17,7 @@ package enum L10n {
     }
     package enum Logbook {
         package static let title = String(localized: "LOGBOOK_TITLE", bundle: .module)
+        package static let add = String(localized: "LOGBOOK_ADD", bundle: .module)
     }
     package enum MainTab {
         package static let equipment = String(localized: "MAIN_TAB_EQUIPMENT", bundle: .module)

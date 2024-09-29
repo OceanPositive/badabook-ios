@@ -15,6 +15,7 @@ package enum SystemImage: String {
     case personTextRectangle = "person.text.rectangle"
     case stopwatch = "stopwatch"
     case calendar = "calendar"
+    case plus = "plus"
 }
 
 extension Image {

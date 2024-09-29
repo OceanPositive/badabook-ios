@@ -22,11 +22,36 @@ struct LogbookView: View {
                 }
             }
             .navigationTitle(L10n.Logbook.title)
+            .toolbar {
+                ToolbarItem(placement: .primaryAction) {
+                    addButton
+                }
+            }
+            .sheet(
+                isPresented: Binding<Bool>(
+                    get: { store.state.isAddSheetPresenting },
+                    set: { store.send(.setIsAddSheetPresenting($0)) }
+                ),
+                content: { LogbookAddSheet() }
+            )
             .onAppear(perform: onAppear)
+        }
+    }
+
+    private var addButton: some View {
+        Button(
+            L10n.Logbook.add,
+            systemImage: SystemImage.plus.rawValue
+        ) {
+            tapAddButton()
         }
     }
 
     private func onAppear() {
         store.send(.load)
+    }
+
+    private func tapAddButton() {
+        store.send(.setIsAddSheetPresenting(true))
     }
 }
