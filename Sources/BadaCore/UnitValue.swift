@@ -35,3 +35,62 @@ package enum UnitValue {
         case fahrenheit(Double)
     }
 }
+
+extension UnitValue.Distance {
+    package var rawValue: Double {
+        switch self {
+        case let .km(value):
+            return value
+        case let .m(value):
+            return value
+        }
+    }
+}
+
+extension UnitValue.Pressure {
+    package var rawValue: Double {
+        switch self {
+        case let .bar(value):
+            return value
+        case let .psi(value):
+            return value
+        }
+    }
+}
+
+extension UnitValue.Weight {
+    package var rawValue: Double {
+        switch self {
+        case let .kg(value):
+            return value
+        case let .lb(value):
+            return value
+        }
+    }
+}
+
+extension UnitValue.Time {
+    package var rawValue: Double {
+        switch self {
+        case let .second(value):
+            return value
+        case let .minute(value):
+            return value
+        case let .hour(value):
+            return value
+        case let .day(value):
+            return value
+        }
+    }
+}
+
+extension UnitValue.Temperature {
+    package var rawValue: Double {
+        switch self {
+        case let .celsius(value):
+            return value
+        case let .fahrenheit(value):
+            return value
+        }
+    }
+}
