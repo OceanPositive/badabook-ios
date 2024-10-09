@@ -17,7 +17,7 @@ let package = Package(
         .library(name: "BadaUI", targets: ["BadaUI"]),
     ],
     dependencies: [
-        .package(url: "https://github.com/DevYeom/OneWay.git", exact: "2.8.1"),
+        .package(url: "https://github.com/DevYeom/OneWay.git", exact: "2.9.0"),
     ],
     targets: [
         .target(
