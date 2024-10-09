@@ -14,7 +14,7 @@ package struct DiveLogInsertRequest: Equatable {
     package let diveStyle: DiveStyle?
     package let entryTime: Date?
     package let exitTime: Date?
-    package let surfaceInterval: Double?
+    package let surfaceInterval: UnitValue.Time?
     package let entryAir: UnitValue.Pressure?
     package let exitAir: UnitValue.Pressure?
     package let gasType: DiveGasType?
@@ -37,7 +37,7 @@ package struct DiveLogInsertRequest: Equatable {
         diveStyle: DiveStyle? = nil,
         entryTime: Date? = nil,
         exitTime: Date? = nil,
-        surfaceInterval: Double? = nil,
+        surfaceInterval: UnitValue.Time? = nil,
         entryAir: UnitValue.Pressure? = nil,
         exitAir: UnitValue.Pressure? = nil,
         gasType: DiveGasType? = nil,

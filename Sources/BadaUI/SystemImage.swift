@@ -16,6 +16,8 @@ package enum SystemImage: String {
     case stopwatch = "stopwatch"
     case calendar = "calendar"
     case plus = "plus"
+    case chevronUp = "chevron.up"
+    case chevronDown = "chevron.down"
 }
 
 extension Image {

@@ -19,7 +19,7 @@ final class DiveLogEntity {
     var diveStyle: DiveStyle?
     var entryTime: Date?
     var exitTime: Date?
-    var surfaceInterval: Double?
+    var surfaceInterval: UnitValue.Time?
     var entryAir: UnitValue.Pressure?
     var exitAir: UnitValue.Pressure?
     var gasType: DiveGasType?
@@ -45,7 +45,7 @@ final class DiveLogEntity {
         diveStyle: DiveStyle? = nil,
         entryTime: Date? = nil,
         exitTime: Date? = nil,
-        surfaceInterval: Double? = nil,
+        surfaceInterval: UnitValue.Time? = nil,
         entryAir: UnitValue.Pressure? = nil,
         exitAir: UnitValue.Pressure? = nil,
         gasType: DiveGasType? = nil,
