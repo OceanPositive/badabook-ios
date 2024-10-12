@@ -26,12 +26,14 @@ final class DiveLogEntity {
     var equipment: Equipment?
     var maximumDepth: UnitValue.Distance?
     var averageDepth: UnitValue.Distance?
-    var maximumWaterTemperature: UnitValue.Temperature?
-    var minimumWaterTemperature: UnitValue.Temperature?
-    var averageWaterTemperature: UnitValue.Temperature?
+    var airTemperature: UnitValue.Temperature?
+    var surfaceTemperature: UnitValue.Temperature?
+    var bottomTemperature: UnitValue.Temperature?
     var weather: Weather?
+    var surge: Surge?
     var visibility: Visibility?
     var visibilityDistance: UnitValue.Distance?
+    var feeling: Feeling?
     var companions: [Companion]
     var notes: String?
     var insertDate: Date
@@ -52,12 +54,14 @@ final class DiveLogEntity {
         equipment: Equipment? = nil,
         maximumDepth: UnitValue.Distance? = nil,
         averageDepth: UnitValue.Distance? = nil,
-        maximumWaterTemperature: UnitValue.Temperature? = nil,
-        minimumWaterTemperature: UnitValue.Temperature? = nil,
-        averageWaterTemperature: UnitValue.Temperature? = nil,
+        airTemperature: UnitValue.Temperature? = nil,
+        surfaceTemperature: UnitValue.Temperature? = nil,
+        bottomTemperature: UnitValue.Temperature? = nil,
         weather: Weather? = nil,
+        surge: Surge? = nil,
         visibility: Visibility? = nil,
         visibilityDistance: UnitValue.Distance? = nil,
+        feeling: Feeling? = nil,
         companions: [Companion] = [],
         notes: String? = nil,
         insertDate: Date,
@@ -77,12 +81,14 @@ final class DiveLogEntity {
         self.equipment = equipment
         self.maximumDepth = maximumDepth
         self.averageDepth = averageDepth
-        self.maximumWaterTemperature = maximumWaterTemperature
-        self.minimumWaterTemperature = minimumWaterTemperature
-        self.averageWaterTemperature = averageWaterTemperature
+        self.airTemperature = airTemperature
+        self.surfaceTemperature = surfaceTemperature
+        self.bottomTemperature = bottomTemperature
         self.weather = weather
+        self.surge = surge
         self.visibility = visibility
         self.visibilityDistance = visibilityDistance
+        self.feeling = feeling
         self.companions = companions
         self.notes = notes
         self.insertDate = insertDate
@@ -107,12 +113,14 @@ extension DiveLogEntity: DomainConvertible {
             equipment: equipment?.domain,
             maximumDepth: maximumDepth,
             averageDepth: averageDepth,
-            maximumWaterTemperature: maximumWaterTemperature,
-            minimumWaterTemperature: minimumWaterTemperature,
-            averageWaterTemperature: averageWaterTemperature,
+            airTemperature: airTemperature,
+            surfaceTemperature: surfaceTemperature,
+            bottomTemperature: bottomTemperature,
             weather: weather?.domain,
+            surge: surge?.domain,
             visibility: visibility?.domain,
             visibilityDistance: visibilityDistance,
+            feeling: feeling?.domain,
             companions: companions.map { $0.domain },
             notes: notes,
             insertDate: insertDate,
@@ -136,12 +144,14 @@ extension DiveLogEntity: DomainConvertible {
             equipment: domain.equipment.map { Equipment(domain: $0) },
             maximumDepth: domain.maximumDepth,
             averageDepth: domain.averageDepth,
-            maximumWaterTemperature: domain.maximumWaterTemperature,
-            minimumWaterTemperature: domain.minimumWaterTemperature,
-            averageWaterTemperature: domain.averageWaterTemperature,
+            airTemperature: domain.airTemperature,
+            surfaceTemperature: domain.surfaceTemperature,
+            bottomTemperature: domain.bottomTemperature,
             weather: domain.weather.map { Weather(domain: $0) },
+            surge: domain.surge.map { Surge(domain: $0) },
             visibility: domain.visibility.map { Visibility(domain: $0) },
             visibilityDistance: domain.visibilityDistance,
+            feeling: domain.feeling.map { Feeling(domain: $0) },
             companions: domain.companions.map { Companion(domain: $0) },
             notes: domain.notes,
             insertDate: domain.insertDate,
@@ -167,12 +177,14 @@ extension DiveLogEntity {
             equipment: insertRequest.equipment.map { Equipment(domain: $0) },
             maximumDepth: insertRequest.maximumDepth,
             averageDepth: insertRequest.averageDepth,
-            maximumWaterTemperature: insertRequest.maximumWaterTemperature,
-            minimumWaterTemperature: insertRequest.minimumWaterTemperature,
-            averageWaterTemperature: insertRequest.averageWaterTemperature,
+            airTemperature: insertRequest.airTemperature,
+            surfaceTemperature: insertRequest.surfaceTemperature,
+            bottomTemperature: insertRequest.bottomTemperature,
             weather: insertRequest.weather.map { Weather(domain: $0) },
+            surge: insertRequest.surge.map { Surge(domain: $0) },
             visibility: insertRequest.visibility.map { Visibility(domain: $0) },
             visibilityDistance: insertRequest.visibilityDistance,
+            feeling: insertRequest.feeling.map { Feeling(domain: $0) },
             companions: insertRequest.companions.map { Companion(domain: $0) },
             notes: insertRequest.notes,
             insertDate: Date.now,

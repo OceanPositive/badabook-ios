@@ -9,17 +9,20 @@ import BadaCore
 
 package struct DiveSite: Equatable {
     package let coordinate: Coordinate?
-    package let siteName: String
     package let country: String
+    package let siteName: String
+    package let diveCenter: String?
 
     package init(
         coordinate: Coordinate? = nil,
+        country: String,
         siteName: String,
-        country: String
+        diveCenter: String?
     ) {
         self.coordinate = coordinate
-        self.siteName = siteName
         self.country = country
+        self.siteName = siteName
+        self.diveCenter = diveCenter
     }
 
     package struct Coordinate: Equatable {

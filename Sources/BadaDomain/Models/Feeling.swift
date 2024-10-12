@@ -5,10 +5,9 @@
 //  Copyright (c) 2024 Seungyeop Yeom ( https://github.com/OceanPositive ).
 //
 
-import BadaCore
-
-package enum Visibility {
-    case high
+package enum Feeling {
+    case amazing
+    case good
     case average
-    case low
+    case poor
 }

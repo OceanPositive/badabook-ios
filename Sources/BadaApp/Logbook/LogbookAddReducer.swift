@@ -15,14 +15,15 @@ struct LogbookAddReducer: Reducer {
         case setDiveStyle(DiveStyle)
         case setEntryTime(Date)
         case setExitTime(Date)
+        case setBottomTime(Double?)
         case setSurfaceInterval(Double?)
         case setEntryAir(Double?)
         case setExitAir(Double?)
         case setMaximumDepth(Double?)
         case setAverageDepth(Double?)
-        case setMaximumWaterTemperature(Double?)
-        case setMinimumWaterTemperature(Double?)
-        case setAverageWaterTemperature(Double?)
+        case setAirTemperature(Double?)
+        case setSurfaceTemperature(Double?)
+        case setBottomTemperature(Double?)
         case setNotes(String)
     }
 
@@ -32,14 +33,15 @@ struct LogbookAddReducer: Reducer {
         var diveStyle: DiveStyle = .boat
         var entryTime: Date = Date(timeIntervalSince1970: 0)
         var exitTime: Date = Date(timeIntervalSince1970: 0)
+        var bottomTime: UnitValue.Time?
         var surfaceInterval: UnitValue.Time?
         var entryAir: UnitValue.Pressure?
         var exitAir: UnitValue.Pressure?
         var maximumDepth: UnitValue.Distance?
         var averageDepth: UnitValue.Distance?
-        var maximumWaterTemperature: UnitValue.Temperature?
-        var minimumWaterTemperature: UnitValue.Temperature?
-        var averageWaterTemperature: UnitValue.Temperature?
+        var airTemperature: UnitValue.Temperature?
+        var surfaceTemperature: UnitValue.Temperature?
+        var bottomTemperature: UnitValue.Temperature?
         var notes: String = ""
     }
 
@@ -59,6 +61,13 @@ struct LogbookAddReducer: Reducer {
             return .none
         case let .setExitTime(exitTime):
             state.exitTime = exitTime
+            return .none
+        case let .setBottomTime(bottomTime):
+            if let bottomTime {
+                state.bottomTime = .minute(bottomTime)
+            } else {
+                state.bottomTime = nil
+            }
             return .none
         case let .setSurfaceInterval(surfaceInterval):
             if let surfaceInterval {
@@ -95,25 +104,25 @@ struct LogbookAddReducer: Reducer {
                 state.averageDepth = nil
             }
             return .none
-        case let .setMaximumWaterTemperature(maximumWaterTemperature):
-            if let maximumWaterTemperature {
-                state.maximumWaterTemperature = .celsius(maximumWaterTemperature)
+        case let .setAirTemperature(airTemperature):
+            if let airTemperature {
+                state.airTemperature = .celsius(airTemperature)
             } else {
-                state.maximumWaterTemperature = nil
+                state.airTemperature = nil
             }
             return .none
-        case let .setMinimumWaterTemperature(minimumWaterTemperature):
-            if let minimumWaterTemperature {
-                state.minimumWaterTemperature = .celsius(minimumWaterTemperature)
+        case let .setSurfaceTemperature(surfaceTemperature):
+            if let surfaceTemperature {
+                state.surfaceTemperature = .celsius(surfaceTemperature)
             } else {
-                state.minimumWaterTemperature = nil
+                state.surfaceTemperature = nil
             }
             return .none
-        case let .setAverageWaterTemperature(averageWaterTemperature):
-            if let averageWaterTemperature {
-                state.averageWaterTemperature = .celsius(averageWaterTemperature)
+        case let .setBottomTemperature(bottomTemperature):
+            if let bottomTemperature {
+                state.bottomTemperature = .celsius(bottomTemperature)
             } else {
-                state.averageWaterTemperature = nil
+                state.bottomTemperature = nil
             }
             return .none
         case let .setNotes(notes):

@@ -16,6 +16,7 @@ struct LogbookAddSheet: View {
         reducer: LogbookAddReducer(),
         state: LogbookAddReducer.State()
     )
+    @State private var notes: String = ""
 
     var body: some View {
         NavigationStack {
@@ -34,7 +35,10 @@ struct LogbookAddSheet: View {
                         selection: store.binding(\.logDate, send: { .setLogDate($0) }),
                         displayedComponents: .date
                     )
-                    Picker("Dive style", selection: .constant(DiveStyle.boat)) {
+                    Picker(
+                        "Dive style",
+                        selection: store.binding(\.diveStyle, send: { .setDiveStyle($0) })
+                    ) {
                         ForEach(DiveStyle.allCases, id: \.self) { diveStyle in
                             Text(diveStyle.description).tag(diveStyle)
                         }
@@ -51,6 +55,16 @@ struct LogbookAddSheet: View {
                         selection: store.binding(\.exitTime, send: { .setExitTime($0) }),
                         displayedComponents: .hourAndMinute
                     )
+                    LabeledTextField(
+                        value: Binding(
+                            get: { store.state.bottomTime?.rawValue },
+                            set: { store.send(.setBottomTime($0)) }),
+                        format: .number,
+                        prompt: "minute",
+                        label: "Bottom time",
+                        keyboardType: .decimalPad
+                    )
+                    .focused($focusedField, equals: .bottomTime)
                     LabeledTextField(
                         value: Binding(
                             get: { store.state.surfaceInterval?.rawValue },
@@ -106,47 +120,55 @@ struct LogbookAddSheet: View {
                     )
                     .focused($focusedField, equals: .averageDepth)
                 }
-                Section(header: Text("Water Temperature")) {
+                Section(header: Text("Temperature")) {
                     LabeledTextField(
                         value: Binding(
-                            get: { store.state.maximumWaterTemperature?.rawValue },
-                            set: { store.send(.setMaximumWaterTemperature($0)) }),
+                            get: { store.state.airTemperature?.rawValue },
+                            set: { store.send(.setAirTemperature($0)) }),
                         format: .number,
                         prompt: "℃",
-                        label: "Maximum",
+                        label: "Air",
                         keyboardType: .numberPad
                     )
                     .focused($focusedField, equals: .maximumWaterTemperature)
                     LabeledTextField(
                         value: Binding(
-                            get: { store.state.minimumWaterTemperature?.rawValue },
-                            set: { store.send(.setMinimumWaterTemperature($0)) }),
+                            get: { store.state.surfaceTemperature?.rawValue },
+                            set: { store.send(.setSurfaceTemperature($0)) }),
                         format: .number,
                         prompt: "℃",
-                        label: "Minimum",
+                        label: "Surface",
                         keyboardType: .numberPad
                     )
                     .focused($focusedField, equals: .minimumWaterTemperature)
                     LabeledTextField(
                         value: Binding(
-                            get: { store.state.averageWaterTemperature?.rawValue },
-                            set: { store.send(.setAverageWaterTemperature($0)) }),
+                            get: { store.state.bottomTemperature?.rawValue },
+                            set: { store.send(.setBottomTemperature($0)) }),
                         format: .number,
                         prompt: "℃",
-                        label: "Average",
+                        label: "Bottom",
                         keyboardType: .numberPad
                     )
                     .focused($focusedField, equals: .averageWaterTemperature)
                 }
                 Section(header: Text("Notes")) {
-                    TextEditor(text: store.binding(\.notes, send: { .setNotes($0) }))
-                        .font(.body)
-                        .lineSpacing(4)
-                        .frame(height: 100)
-                        .autocorrectionDisabled()
-                        #if os(iOS)
-                        .textInputAutocapitalization(.never)
-                        #endif
+                    TextEditor(
+                        text: Binding(
+                            get: { notes },
+                            set: {
+                                notes = $0
+                                store.send(.setNotes($0))
+                            }
+                        )
+                    )
+                    .font(.body)
+                    .lineSpacing(4)
+                    .frame(height: 100)
+                    .autocorrectionDisabled()
+                    #if os(iOS)
+                    .textInputAutocapitalization(.never)
+                    #endif
                 }
             }
             .navigationTitle("New log")
@@ -259,6 +281,7 @@ extension DiveStyle {
 extension LogbookAddSheet {
     private enum Field: Int, CaseIterable {
         case logNumber = 0
+        case bottomTime
         case surfaceInterval
         case entryAir
         case exitAir
