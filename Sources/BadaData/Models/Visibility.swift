@@ -9,31 +9,31 @@ import BadaCore
 import BadaDomain
 
 enum Visibility: Codable {
-    case good
-    case fair
-    case bad
+    case high
+    case average
+    case low
 }
 
 extension Visibility: DomainConvertible {
     var domain: BadaDomain.Visibility {
         switch self {
-        case .good:
-            return .good
-        case .fair:
-            return .fair
-        case .bad:
-            return .bad
+        case .high:
+            return .high
+        case .average:
+            return .average
+        case .low:
+            return .low
         }
     }
 
     init(domain: BadaDomain.Visibility) {
         switch domain {
-        case .good:
-            self = .good
-        case .fair:
-            self = .fair
-        case .bad:
-            self = .bad
+        case .high:
+            self = .high
+        case .average:
+            self = .average
+        case .low:
+            self = .low
         }
     }
 }

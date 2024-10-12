@@ -7,8 +7,8 @@
 
 import BadaCore
 
-package enum Visibility {
-    case high
-    case average
-    case low
+package enum Surge {
+    case light
+    case medium
+    case strong
 }

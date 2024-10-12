@@ -11,6 +11,7 @@ package enum Weather {
     case sunny
     case partlyCloudy
     case cloudy
+    case windy
     case rainy
     case snowy
 }

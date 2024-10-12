@@ -21,12 +21,14 @@ package struct DiveLogInsertRequest: Equatable {
     package let equipment: Equipment?
     package let maximumDepth: UnitValue.Distance?
     package let averageDepth: UnitValue.Distance?
-    package let maximumWaterTemperature: UnitValue.Temperature?
-    package let minimumWaterTemperature: UnitValue.Temperature?
-    package let averageWaterTemperature: UnitValue.Temperature?
+    package let airTemperature: UnitValue.Temperature?
+    package let surfaceTemperature: UnitValue.Temperature?
+    package let bottomTemperature: UnitValue.Temperature?
     package let weather: Weather?
+    package let surge: Surge?
     package let visibility: Visibility?
     package let visibilityDistance: UnitValue.Distance?
+    package let feeling: Feeling?
     package let companions: [Companion]
     package let notes: String?
 
@@ -44,12 +46,14 @@ package struct DiveLogInsertRequest: Equatable {
         equipment: Equipment? = nil,
         maximumDepth: UnitValue.Distance? = nil,
         averageDepth: UnitValue.Distance? = nil,
-        maximumWaterTemperature: UnitValue.Temperature? = nil,
-        minimumWaterTemperature: UnitValue.Temperature? = nil,
-        averageWaterTemperature: UnitValue.Temperature? = nil,
+        airTemperature: UnitValue.Temperature? = nil,
+        surfaceTemperature: UnitValue.Temperature? = nil,
+        bottomTemperature: UnitValue.Temperature? = nil,
         weather: Weather? = nil,
+        surge: Surge? = nil,
         visibility: Visibility? = nil,
         visibilityDistance: UnitValue.Distance? = nil,
+        feeling: Feeling? = nil,
         companions: [Companion] = [],
         notes: String? = nil
     ) {
@@ -66,12 +70,14 @@ package struct DiveLogInsertRequest: Equatable {
         self.equipment = equipment
         self.maximumDepth = maximumDepth
         self.averageDepth = averageDepth
-        self.maximumWaterTemperature = maximumWaterTemperature
-        self.minimumWaterTemperature = minimumWaterTemperature
-        self.averageWaterTemperature = averageWaterTemperature
+        self.airTemperature = airTemperature
+        self.surfaceTemperature = surfaceTemperature
+        self.bottomTemperature = bottomTemperature
         self.weather = weather
+        self.surge = surge
         self.visibility = visibility
         self.visibilityDistance = visibilityDistance
+        self.feeling = feeling
         self.companions = companions
         self.notes = notes
     }
@@ -93,12 +99,14 @@ extension DiveLogInsertRequest {
             equipment: diveLog.equipment,
             maximumDepth: diveLog.maximumDepth,
             averageDepth: diveLog.averageDepth,
-            maximumWaterTemperature: diveLog.maximumWaterTemperature,
-            minimumWaterTemperature: diveLog.minimumWaterTemperature,
-            averageWaterTemperature: diveLog.averageWaterTemperature,
+            airTemperature: diveLog.airTemperature,
+            surfaceTemperature: diveLog.surfaceTemperature,
+            bottomTemperature: diveLog.bottomTemperature,
             weather: diveLog.weather,
+            surge: diveLog.surge,
             visibility: diveLog.visibility,
             visibilityDistance: diveLog.visibilityDistance,
+            feeling: diveLog.feeling,
             companions: diveLog.companions,
             notes: diveLog.notes
         )

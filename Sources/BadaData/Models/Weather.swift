@@ -12,6 +12,7 @@ enum Weather: Codable {
     case sunny
     case partlyCloudy
     case cloudy
+    case windy
     case rainy
     case snowy
 }
@@ -25,6 +26,8 @@ extension Weather: DomainConvertible {
             return .partlyCloudy
         case .cloudy:
             return .cloudy
+        case .windy:
+            return .windy
         case .rainy:
             return .rainy
         case .snowy:
@@ -40,6 +43,8 @@ extension Weather: DomainConvertible {
             self = .partlyCloudy
         case .cloudy:
             self = .cloudy
+        case .windy:
+            self = .windy
         case .rainy:
             self = .rainy
         case .snowy:

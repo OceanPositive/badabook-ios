@@ -22,12 +22,14 @@ package struct DiveLog: Equatable {
     package let equipment: Equipment?
     package let maximumDepth: UnitValue.Distance?
     package let averageDepth: UnitValue.Distance?
-    package let maximumWaterTemperature: UnitValue.Temperature?
-    package let minimumWaterTemperature: UnitValue.Temperature?
-    package let averageWaterTemperature: UnitValue.Temperature?
+    package let airTemperature: UnitValue.Temperature?
+    package let surfaceTemperature: UnitValue.Temperature?
+    package let bottomTemperature: UnitValue.Temperature?
     package let weather: Weather?
+    package let surge: Surge?
     package let visibility: Visibility?
     package let visibilityDistance: UnitValue.Distance?
+    package let feeling: Feeling?
     package let companions: [Companion]
     package let notes: String?
     package let insertDate: Date
@@ -48,12 +50,14 @@ package struct DiveLog: Equatable {
         equipment: Equipment? = nil,
         maximumDepth: UnitValue.Distance? = nil,
         averageDepth: UnitValue.Distance? = nil,
-        maximumWaterTemperature: UnitValue.Temperature? = nil,
-        minimumWaterTemperature: UnitValue.Temperature? = nil,
-        averageWaterTemperature: UnitValue.Temperature? = nil,
+        airTemperature: UnitValue.Temperature? = nil,
+        surfaceTemperature: UnitValue.Temperature? = nil,
+        bottomTemperature: UnitValue.Temperature? = nil,
         weather: Weather? = nil,
+        surge: Surge? = nil,
         visibility: Visibility? = nil,
         visibilityDistance: UnitValue.Distance? = nil,
+        feeling: Feeling? = nil,
         companions: [Companion] = [],
         notes: String? = nil,
         insertDate: Date = Date(timeIntervalSince1970: 0),
@@ -73,12 +77,14 @@ package struct DiveLog: Equatable {
         self.equipment = equipment
         self.maximumDepth = maximumDepth
         self.averageDepth = averageDepth
-        self.maximumWaterTemperature = maximumWaterTemperature
-        self.minimumWaterTemperature = minimumWaterTemperature
-        self.averageWaterTemperature = averageWaterTemperature
+        self.airTemperature = airTemperature
+        self.surfaceTemperature = surfaceTemperature
+        self.bottomTemperature = bottomTemperature
+        self.surge = surge
         self.weather = weather
         self.visibility = visibility
         self.visibilityDistance = visibilityDistance
+        self.feeling = feeling
         self.companions = companions
         self.notes = notes
         self.insertDate = insertDate

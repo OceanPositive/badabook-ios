@@ -10,8 +10,9 @@ import BadaDomain
 
 struct DiveSite: Codable {
     let coordinate: Coordinate?
-    let siteName: String
     let country: String
+    let siteName: String
+    let diveCenter: String?
 
     struct Coordinate: Codable {
         let latitude: Double
@@ -28,8 +29,9 @@ extension DiveSite: DomainConvertible {
                     longitude: $0.longitude
                 )
             },
+            country: country,
             siteName: siteName,
-            country: country
+            diveCenter: diveCenter
         )
     }
 
@@ -40,7 +42,8 @@ extension DiveSite: DomainConvertible {
                 longitude: $0.longitude
             )
         }
-        self.siteName = domain.siteName
         self.country = domain.country
+        self.siteName = domain.siteName
+        self.diveCenter = domain.diveCenter
     }
 }
