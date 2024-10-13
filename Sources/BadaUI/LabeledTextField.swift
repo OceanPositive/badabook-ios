@@ -61,7 +61,7 @@ extension LabeledTextField {
         case `default` = 0
         case asciiCapable = 1
         case numbersAndPunctuation = 2
-        case URL = 3
+        case url = 3
         case numberPad = 4
         case phonePad = 5
         case namePhonePad = 6
@@ -77,7 +77,7 @@ extension LabeledTextField {
                 case .default: return .default
                 case .asciiCapable: return .asciiCapable
                 case .numbersAndPunctuation: return .numbersAndPunctuation
-                case .URL: return .URL
+                case .url: return .URL
                 case .numberPad: return .numberPad
                 case .phonePad: return .phonePad
                 case .namePhonePad: return .namePhonePad

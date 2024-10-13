@@ -9,8 +9,6 @@ import BadaCore
 import BadaDomain
 
 struct HomeReducer: Reducer {
-    @UseCase private var getDiveLogsUseCase: GetDiveLogsUseCase
-
     enum Action: Sendable {
         case initialize
         case getDiveLogs
@@ -20,6 +18,8 @@ struct HomeReducer: Reducer {
     struct State: Sendable, Equatable {
         var logCount: Int?
     }
+
+    @UseCase private var getDiveLogsUseCase: GetDiveLogsUseCase
 
     func reduce(state: inout State, action: Action) -> AnyEffect<Action> {
         switch action {

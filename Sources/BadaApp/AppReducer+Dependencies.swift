@@ -22,6 +22,12 @@ extension AppReducer {
                 return await repository.insert(request: request)
             }
         }
+        register {
+            GetLocalSearchResultsUseCase { searchText in
+                let repository = LocalSearchRepository()
+                return await repository.search(text: searchText)
+            }
+        }
     }
 
     private func register<T: ExecutableUseCase>(
