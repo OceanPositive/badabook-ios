@@ -24,6 +24,8 @@ struct LogbookAddReducer: Reducer {
         case setAirTemperature(Double?)
         case setSurfaceTemperature(Double?)
         case setBottomTemperature(Double?)
+        case setWeather(Weather)
+        case setFeeling(Feeling)
         case setNotes(String)
     }
 
@@ -42,6 +44,8 @@ struct LogbookAddReducer: Reducer {
         var airTemperature: UnitValue.Temperature?
         var surfaceTemperature: UnitValue.Temperature?
         var bottomTemperature: UnitValue.Temperature?
+        var weather: Weather = .sunny
+        var feeling: Feeling = .good
         var notes: String = ""
     }
 
@@ -58,13 +62,18 @@ struct LogbookAddReducer: Reducer {
             return .none
         case let .setEntryTime(entryTime):
             state.entryTime = entryTime
+            let interval = state.exitTime.timeIntervalSince(entryTime) / 60
+            state.bottomTime = .minute(interval)
             return .none
         case let .setExitTime(exitTime):
             state.exitTime = exitTime
+            let interval = exitTime.timeIntervalSince(state.entryTime) / 60
+            state.bottomTime = .minute(interval)
             return .none
         case let .setBottomTime(bottomTime):
             if let bottomTime {
                 state.bottomTime = .minute(bottomTime)
+                state.exitTime = state.entryTime.addingTimeInterval(bottomTime * 60)
             } else {
                 state.bottomTime = nil
             }
@@ -124,6 +133,12 @@ struct LogbookAddReducer: Reducer {
             } else {
                 state.bottomTemperature = nil
             }
+            return .none
+        case let .setWeather(weather):
+            state.weather = weather
+            return .none
+        case let .setFeeling(feeling):
+            state.feeling = feeling
             return .none
         case let .setNotes(notes):
             state.notes = notes
