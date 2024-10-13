@@ -34,7 +34,17 @@ where Format: ParseableFormatStyle, Format.FormatOutput == String {
 
     package var body: some View {
         #if os(iOS)
-        LabeledContent(label) {
+            LabeledContent(label) {
+                TextField(
+                    value: value,
+                    format: format,
+                    prompt: Text(prompt),
+                    label: { Text(label) }
+                )
+                .multilineTextAlignment(textAlignment)
+                .keyboardType(keyboardType.uiKeyboardType)
+            }
+        #else
             TextField(
                 value: value,
                 format: format,
@@ -42,16 +52,6 @@ where Format: ParseableFormatStyle, Format.FormatOutput == String {
                 label: { Text(label) }
             )
             .multilineTextAlignment(textAlignment)
-            .keyboardType(keyboardType.uiKeyboardType)
-        }
-        #else
-        TextField(
-            value: value,
-            format: format,
-            prompt: Text(prompt),
-            label: { Text(label) }
-        )
-        .multilineTextAlignment(textAlignment)
         #endif
     }
 }
@@ -72,22 +72,22 @@ extension LabeledTextField {
         case asciiCapableNumberPad = 11
 
         #if os(iOS)
-        var uiKeyboardType: UIKeyboardType {
-            switch self {
-            case .default: return .default
-            case .asciiCapable: return .asciiCapable
-            case .numbersAndPunctuation: return .numbersAndPunctuation
-            case .URL: return .URL
-            case .numberPad: return .numberPad
-            case .phonePad: return .phonePad
-            case .namePhonePad: return .namePhonePad
-            case .emailAddress: return .emailAddress
-            case .decimalPad: return .decimalPad
-            case .twitter: return .twitter
-            case .webSearch: return .webSearch
-            case .asciiCapableNumberPad: return .asciiCapableNumberPad
+            var uiKeyboardType: UIKeyboardType {
+                switch self {
+                case .default: return .default
+                case .asciiCapable: return .asciiCapable
+                case .numbersAndPunctuation: return .numbersAndPunctuation
+                case .URL: return .URL
+                case .numberPad: return .numberPad
+                case .phonePad: return .phonePad
+                case .namePhonePad: return .namePhonePad
+                case .emailAddress: return .emailAddress
+                case .decimalPad: return .decimalPad
+                case .twitter: return .twitter
+                case .webSearch: return .webSearch
+                case .asciiCapableNumberPad: return .asciiCapableNumberPad
+                }
             }
-        }
         #endif
     }
 }

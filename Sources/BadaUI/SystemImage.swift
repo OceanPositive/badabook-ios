@@ -18,6 +18,12 @@ package enum SystemImage: String {
     case plus = "plus"
     case chevronUp = "chevron.up"
     case chevronDown = "chevron.down"
+    case sunMax = "sun.max"
+    case cloud = "cloud"
+    case cloudSun = "cloud.sun"
+    case wind = "wind"
+    case cloudRain = "cloud.rain"
+    case cloudSnow = "cloud.snow"
 }
 
 extension Image {

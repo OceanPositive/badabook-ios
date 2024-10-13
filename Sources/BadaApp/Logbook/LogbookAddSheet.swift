@@ -6,8 +6,8 @@
 //
 
 import BadaCore
-import BadaUI
 import BadaDomain
+import BadaUI
 
 struct LogbookAddSheet: View {
     @Environment(\.dismiss) private var dismiss
@@ -152,6 +152,29 @@ struct LogbookAddSheet: View {
                     )
                     .focused($focusedField, equals: .averageWaterTemperature)
                 }
+                Section {
+                    Picker(
+                        "Weather",
+                        selection: store.binding(\.weather, send: { .setWeather($0) })
+                    ) {
+                        ForEach(Weather.allCases, id: \.self) { weather in
+                            Label(
+                                weather.description,
+                                systemImage: weather.icon.rawValue
+                            )
+                            .tag(weather)
+                        }
+                    }
+                    Picker(
+                        "Feeling",
+                        selection: store.binding(\.feeling, send: { .setFeeling($0) })
+                    ) {
+                        ForEach(Feeling.allCases, id: \.self) { feeling in
+                            Text(feeling.description)
+                                .tag(feeling)
+                        }
+                    }
+                }
                 Section(header: Text("Notes")) {
                     TextEditor(
                         text: Binding(
@@ -167,13 +190,13 @@ struct LogbookAddSheet: View {
                     .frame(height: 100)
                     .autocorrectionDisabled()
                     #if os(iOS)
-                    .textInputAutocapitalization(.never)
+                        .textInputAutocapitalization(.never)
                     #endif
                 }
             }
             .navigationTitle("New log")
             #if os(iOS)
-            .navigationBarTitleDisplayMode(.inline)
+                .navigationBarTitleDisplayMode(.inline)
             #endif
             .toolbar {
                 ToolbarItem(placement: .confirmationAction) {
@@ -192,7 +215,7 @@ struct LogbookAddSheet: View {
                 }
             }
             #if os(macOS)
-            .padding()
+                .padding()
             #endif
         }
     }
@@ -212,6 +235,7 @@ struct LogbookAddSheet: View {
     private var doneButton: some View {
         Button(action: tapDoneButton) {
             Text("Done")
+                .fontWeight(.medium)
         }
     }
 
@@ -250,6 +274,33 @@ struct LogbookAddSheet: View {
     }
 }
 
+extension LogbookAddSheet {
+    private enum Field: Int, CaseIterable {
+        case logNumber = 0
+        case bottomTime
+        case surfaceInterval
+        case entryAir
+        case exitAir
+        case maximumDepth
+        case averageDepth
+        case maximumWaterTemperature
+        case minimumWaterTemperature
+        case averageWaterTemperature
+
+        var previous: Field? {
+            guard let currentIndex = Field.allCases.firstIndex(of: self) else { return nil }
+            guard currentIndex > 0 else { return nil }
+            return Field.allCases[currentIndex - 1]
+        }
+
+        var next: Field? {
+            guard let currentIndex = Field.allCases.firstIndex(of: self) else { return nil }
+            guard currentIndex < Field.allCases.count - 1 else { return nil }
+            return Field.allCases[currentIndex + 1]
+        }
+    }
+}
+
 extension DiveStyle {
     fileprivate static var allCases: [DiveStyle] {
         [
@@ -278,29 +329,57 @@ extension DiveStyle {
     }
 }
 
-extension LogbookAddSheet {
-    private enum Field: Int, CaseIterable {
-        case logNumber = 0
-        case bottomTime
-        case surfaceInterval
-        case entryAir
-        case exitAir
-        case maximumDepth
-        case averageDepth
-        case maximumWaterTemperature
-        case minimumWaterTemperature
-        case averageWaterTemperature
+extension Weather {
+    fileprivate static var allCases: [Weather] {
+        [
+            .sunny,
+            .partlyCloudy,
+            .cloudy,
+            .windy,
+            .rainy,
+            .snowy,
+        ]
+    }
 
-        var previous: Field? {
-            guard let currentIndex = Field.allCases.firstIndex(of: self) else { return nil }
-            guard currentIndex > 0 else { return nil }
-            return Field.allCases[currentIndex - 1]
+    fileprivate var description: String {
+        switch self {
+        case .sunny: return "Sunny"
+        case .partlyCloudy: return "Partly Cloudy"
+        case .cloudy: return "Cloudy"
+        case .windy: return "Windy"
+        case .rainy: return "Rainy"
+        case .snowy: return "Snowy"
         }
+    }
 
-        var next: Field? {
-            guard let currentIndex = Field.allCases.firstIndex(of: self) else { return nil }
-            guard currentIndex < Field.allCases.count - 1 else { return nil }
-            return Field.allCases[currentIndex + 1]
+    fileprivate var icon: SystemImage {
+        switch self {
+        case .sunny: return .sunMax
+        case .partlyCloudy: return .cloudSun
+        case .cloudy: return .cloud
+        case .windy: return .wind
+        case .rainy: return .cloudRain
+        case .snowy: return .cloudSnow
+        }
+    }
+}
+
+extension Feeling {
+    fileprivate static var allCases: [Feeling] {
+        [
+            .amazing,
+            .good,
+            .average,
+            .poor,
+        ]
+    }
+
+    fileprivate var description: String {
+        switch self {
+        case .amazing: return "😍 Amazing"
+        case .good: return "😆 Good"
+        case .average: return "😐 Average"
+        case .poor: return "😥 Poor"
         }
     }
 }
