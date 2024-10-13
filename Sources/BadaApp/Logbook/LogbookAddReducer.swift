@@ -27,6 +27,7 @@ struct LogbookAddReducer: Reducer {
         case setWeather(Weather)
         case setFeeling(Feeling)
         case setNotes(String)
+        case setIsDiveSiteSearchSheetPresenting(Bool)
     }
 
     struct State: Sendable, Equatable {
@@ -47,6 +48,7 @@ struct LogbookAddReducer: Reducer {
         var weather: Weather = .sunny
         var feeling: Feeling = .good
         var notes: String = ""
+        var isDiveSiteSearchSheetPresenting: Bool = false
     }
 
     func reduce(state: inout State, action: Action) -> AnyEffect<Action> {
@@ -142,6 +144,9 @@ struct LogbookAddReducer: Reducer {
             return .none
         case let .setNotes(notes):
             state.notes = notes
+            return .none
+        case let .setIsDiveSiteSearchSheetPresenting(isDiveSiteSearchSheetPresenting):
+            state.isDiveSiteSearchSheetPresenting = isDiveSiteSearchSheetPresenting
             return .none
         }
     }

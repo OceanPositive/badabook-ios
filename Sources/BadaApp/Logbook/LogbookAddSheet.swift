@@ -35,6 +35,13 @@ struct LogbookAddSheet: View {
                         selection: store.binding(\.logDate, send: { .setLogDate($0) }),
                         displayedComponents: .date
                     )
+                    LabeledContent("Dive site") {
+                        Text("Bohol")
+                    }
+                    .contentShape(Rectangle())
+                    .onTapGesture {
+                        store.send(.setIsDiveSiteSearchSheetPresenting(true))
+                    }
                     Picker(
                         "Dive style",
                         selection: store.binding(\.diveStyle, send: { .setDiveStyle($0) })
@@ -214,6 +221,13 @@ struct LogbookAddSheet: View {
                     }
                 }
             }
+            .sheet(
+                isPresented: Binding<Bool>(
+                    get: { store.state.isDiveSiteSearchSheetPresenting },
+                    set: { store.send(.setIsDiveSiteSearchSheetPresenting($0)) }
+                ),
+                content: { LogbookDiveSiteSearchSheet() }
+            )
             #if os(macOS)
                 .padding()
             #endif
