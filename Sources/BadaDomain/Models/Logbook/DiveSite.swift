@@ -8,21 +8,18 @@
 import BadaCore
 
 package struct DiveSite: Equatable {
+    package let title: String
+    package let subtitle: String
     package let coordinate: Coordinate?
-    package let country: String
-    package let siteName: String
-    package let diveCenter: String?
 
     package init(
-        coordinate: Coordinate? = nil,
-        country: String,
-        siteName: String,
-        diveCenter: String?
+        title: String,
+        subtitle: String,
+        coordinate: Coordinate? = nil
     ) {
+        self.title = title
+        self.subtitle = subtitle
         self.coordinate = coordinate
-        self.country = country
-        self.siteName = siteName
-        self.diveCenter = diveCenter
     }
 
     package struct Coordinate: Equatable {

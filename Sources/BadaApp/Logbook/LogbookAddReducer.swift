@@ -12,6 +12,8 @@ struct LogbookAddReducer: Reducer {
     enum Action: Sendable {
         case setLogNumber(Int?)
         case setLogDate(Date)
+        case setDiveSite(LocalSearchResult)
+        case setDiveCenter(String)
         case setDiveStyle(DiveStyle)
         case setEntryTime(Date)
         case setExitTime(Date)
@@ -33,6 +35,8 @@ struct LogbookAddReducer: Reducer {
     struct State: Sendable, Equatable {
         var logNumber: Int?
         var logDate: Date = Date(timeIntervalSince1970: 0)
+        var diveSite: DiveSite?
+        var diveCenter: String = ""
         var diveStyle: DiveStyle = .boat
         var entryTime: Date = Date(timeIntervalSince1970: 0)
         var exitTime: Date = Date(timeIntervalSince1970: 0)
@@ -58,6 +62,26 @@ struct LogbookAddReducer: Reducer {
             return .none
         case let .setLogDate(logDate):
             state.logDate = logDate
+            return .none
+        case let .setDiveSite(searchResult):
+            if let coordinate = searchResult.coordinate {
+                state.diveSite = DiveSite(
+                    title: searchResult.title,
+                    subtitle: searchResult.subtitle,
+                    coordinate: DiveSite.Coordinate(
+                        latitude: coordinate.latitude,
+                        longitude: coordinate.longitude
+                    )
+                )
+            } else {
+                state.diveSite = DiveSite(
+                    title: searchResult.title,
+                    subtitle: searchResult.subtitle
+                )
+            }
+            return .none
+        case let .setDiveCenter(diveCenter):
+            state.diveCenter = diveCenter
             return .none
         case let .setDiveStyle(diveStyle):
             state.diveStyle = diveStyle

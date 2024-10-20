@@ -7,15 +7,18 @@
 
 import SwiftUI
 
-package struct LabeledTextField: View {
+package struct LabeledFormattedTextField<Format>: View
+where Format: ParseableFormatStyle, Format.FormatOutput == String {
     private let label: String
-    private let value: Binding<String>
+    private let value: Binding<Format.FormatInput?>
+    private let format: Format
     private let prompt: String
     private let keyboardType: KeyboardType
     private let textAlignment: TextAlignment
 
     package init(
-        value: Binding<String>,
+        value: Binding<Format.FormatInput?>,
+        format: Format,
         prompt: String,
         label: String,
         keyboardType: KeyboardType,
@@ -23,6 +26,7 @@ package struct LabeledTextField: View {
     ) {
         self.label = label
         self.value = value
+        self.format = format
         self.prompt = prompt
         self.keyboardType = keyboardType
         self.textAlignment = textAlignment
@@ -32,7 +36,8 @@ package struct LabeledTextField: View {
         #if os(iOS)
             LabeledContent(label) {
                 TextField(
-                    text: value,
+                    value: value,
+                    format: format,
                     prompt: Text(prompt),
                     label: { Text(label) }
                 )
@@ -41,7 +46,8 @@ package struct LabeledTextField: View {
             }
         #else
             TextField(
-                text: value,
+                value: value,
+                format: format,
                 prompt: Text(prompt),
                 label: { Text(label) }
             )

@@ -22,7 +22,7 @@ struct LogbookAddSheet: View {
         NavigationStack {
             Form {
                 Section {
-                    LabeledTextField(
+                    LabeledFormattedTextField(
                         value: store.binding(\.logNumber, send: { .setLogNumber($0) }),
                         format: .number,
                         prompt: "123",
@@ -36,12 +36,20 @@ struct LogbookAddSheet: View {
                         displayedComponents: .date
                     )
                     LabeledContent("Dive site") {
-                        Text("Bohol")
+                        Text(store.state.diveSite?.title ?? "search")
+                            .foregroundStyle(store.state.diveSite == nil ? .tertiary : .secondary)
                     }
                     .contentShape(Rectangle())
                     .onTapGesture {
                         store.send(.setIsDiveSiteSearchSheetPresenting(true))
                     }
+                    LabeledTextField(
+                        value: store.binding(\.diveCenter, send: { .setDiveCenter($0) }),
+                        prompt: "name",
+                        label: "Dive center",
+                        keyboardType: .default
+                    )
+                    .focused($focusedField, equals: .diveCenter)
                     Picker(
                         "Dive style",
                         selection: store.binding(\.diveStyle, send: { .setDiveStyle($0) })
@@ -62,7 +70,7 @@ struct LogbookAddSheet: View {
                         selection: store.binding(\.exitTime, send: { .setExitTime($0) }),
                         displayedComponents: .hourAndMinute
                     )
-                    LabeledTextField(
+                    LabeledFormattedTextField(
                         value: Binding(
                             get: { store.state.bottomTime?.rawValue },
                             set: { store.send(.setBottomTime($0)) }),
@@ -72,7 +80,7 @@ struct LogbookAddSheet: View {
                         keyboardType: .decimalPad
                     )
                     .focused($focusedField, equals: .bottomTime)
-                    LabeledTextField(
+                    LabeledFormattedTextField(
                         value: Binding(
                             get: { store.state.surfaceInterval?.rawValue },
                             set: { store.send(.setSurfaceInterval($0)) }),
@@ -84,7 +92,7 @@ struct LogbookAddSheet: View {
                     .focused($focusedField, equals: .surfaceInterval)
                 }
                 Section(header: Text("Air pressure")) {
-                    LabeledTextField(
+                    LabeledFormattedTextField(
                         value: Binding(
                             get: { store.state.entryAir?.rawValue },
                             set: { store.send(.setEntryAir($0)) }),
@@ -94,7 +102,7 @@ struct LogbookAddSheet: View {
                         keyboardType: .numberPad
                     )
                     .focused($focusedField, equals: .entryAir)
-                    LabeledTextField(
+                    LabeledFormattedTextField(
                         value: Binding(
                             get: { store.state.exitAir?.rawValue },
                             set: { store.send(.setExitAir($0)) }),
@@ -106,7 +114,7 @@ struct LogbookAddSheet: View {
                     .focused($focusedField, equals: .exitAir)
                 }
                 Section(header: Text("Depth")) {
-                    LabeledTextField(
+                    LabeledFormattedTextField(
                         value: Binding(
                             get: { store.state.maximumDepth?.rawValue },
                             set: { store.send(.setMaximumDepth($0)) }),
@@ -116,7 +124,7 @@ struct LogbookAddSheet: View {
                         keyboardType: .numberPad
                     )
                     .focused($focusedField, equals: .maximumDepth)
-                    LabeledTextField(
+                    LabeledFormattedTextField(
                         value: Binding(
                             get: { store.state.averageDepth?.rawValue },
                             set: { store.send(.setAverageDepth($0)) }),
@@ -128,7 +136,7 @@ struct LogbookAddSheet: View {
                     .focused($focusedField, equals: .averageDepth)
                 }
                 Section(header: Text("Temperature")) {
-                    LabeledTextField(
+                    LabeledFormattedTextField(
                         value: Binding(
                             get: { store.state.airTemperature?.rawValue },
                             set: { store.send(.setAirTemperature($0)) }),
@@ -138,7 +146,7 @@ struct LogbookAddSheet: View {
                         keyboardType: .numberPad
                     )
                     .focused($focusedField, equals: .maximumWaterTemperature)
-                    LabeledTextField(
+                    LabeledFormattedTextField(
                         value: Binding(
                             get: { store.state.surfaceTemperature?.rawValue },
                             set: { store.send(.setSurfaceTemperature($0)) }),
@@ -148,7 +156,7 @@ struct LogbookAddSheet: View {
                         keyboardType: .numberPad
                     )
                     .focused($focusedField, equals: .minimumWaterTemperature)
-                    LabeledTextField(
+                    LabeledFormattedTextField(
                         value: Binding(
                             get: { store.state.bottomTemperature?.rawValue },
                             set: { store.send(.setBottomTemperature($0)) }),
@@ -226,7 +234,7 @@ struct LogbookAddSheet: View {
                     get: { store.state.isDiveSiteSearchSheetPresenting },
                     set: { store.send(.setIsDiveSiteSearchSheetPresenting($0)) }
                 ),
-                content: { LogbookDiveSiteSearchSheet() }
+                content: { LogbookDiveSiteSearchSheet(action: selectDiveSite) }
             )
             #if os(macOS)
                 .padding()
@@ -275,6 +283,10 @@ struct LogbookAddSheet: View {
         dismiss()
     }
 
+    private func selectDiveSite(_ searchResult: LocalSearchResult) {
+        store.send(.setDiveSite(searchResult))
+    }
+
     private func tapDoneButton() {
         focusedField = nil
     }
@@ -291,6 +303,7 @@ struct LogbookAddSheet: View {
 extension LogbookAddSheet {
     private enum Field: Int, CaseIterable {
         case logNumber = 0
+        case diveCenter
         case bottomTime
         case surfaceInterval
         case entryAir
