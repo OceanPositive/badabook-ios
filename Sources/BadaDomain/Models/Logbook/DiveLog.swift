@@ -12,6 +12,7 @@ package struct DiveLog: Equatable {
     package let logNumber: Int
     package let logDate: Date?
     package let diveSite: DiveSite?
+    package let diveCenter: String?
     package let diveStyle: DiveStyle?
     package let entryTime: Date?
     package let exitTime: Date?
@@ -40,6 +41,7 @@ package struct DiveLog: Equatable {
         logNumber: Int,
         logDate: Date? = nil,
         diveSite: DiveSite? = nil,
+        diveCenter: String? = nil,
         diveStyle: DiveStyle? = nil,
         entryTime: Date? = nil,
         exitTime: Date? = nil,
@@ -67,6 +69,7 @@ package struct DiveLog: Equatable {
         self.logNumber = logNumber
         self.logDate = logDate
         self.diveSite = diveSite
+        self.diveCenter = diveCenter
         self.diveStyle = diveStyle
         self.entryTime = entryTime
         self.exitTime = exitTime

@@ -8,5 +8,13 @@
 import BadaCore
 
 package protocol LocalSearchRepositoryType {
-    func search(text: String) async -> [LocalSearchResult]
+    func search(text: String) async -> [LocalSearchCompletion]
+    func search(for result: LocalSearchCompletion) async throws(LocalSearchRepositoryError) -> LocalSearchResult
+}
+
+package enum LocalSearchRepositoryError: Error {
+    case searchFailed(String)
+    case searchCompletionNotFound
+    case mapItemNotFound
+    case invalidSearchCompletion
 }

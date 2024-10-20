@@ -16,6 +16,7 @@ final class DiveLogEntity {
     var logNumber: Int
     var logDate: Date?
     var diveSite: DiveSite?
+    var diveCenter: String?
     var diveStyle: DiveStyle?
     var entryTime: Date?
     var exitTime: Date?
@@ -44,6 +45,7 @@ final class DiveLogEntity {
         logNumber: Int,
         logDate: Date? = nil,
         diveSite: DiveSite? = nil,
+        diveCenter: String? = nil,
         diveStyle: DiveStyle? = nil,
         entryTime: Date? = nil,
         exitTime: Date? = nil,
@@ -71,6 +73,7 @@ final class DiveLogEntity {
         self.logNumber = logNumber
         self.logDate = logDate
         self.diveSite = diveSite
+        self.diveCenter = diveCenter
         self.diveStyle = diveStyle
         self.entryTime = entryTime
         self.exitTime = exitTime
@@ -103,6 +106,7 @@ extension DiveLogEntity: DomainConvertible {
             logNumber: logNumber,
             logDate: logDate,
             diveSite: diveSite?.domain,
+            diveCenter: diveCenter,
             diveStyle: diveStyle?.domain,
             entryTime: entryTime,
             exitTime: exitTime,
@@ -134,6 +138,7 @@ extension DiveLogEntity: DomainConvertible {
             logNumber: domain.logNumber,
             logDate: domain.logDate,
             diveSite: domain.diveSite.map { DiveSite(domain: $0) },
+            diveCenter: domain.diveCenter,
             diveStyle: domain.diveStyle.map { DiveStyle(domain: $0) },
             entryTime: domain.entryTime,
             exitTime: domain.exitTime,

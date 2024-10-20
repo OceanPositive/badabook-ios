@@ -5,10 +5,10 @@
 //  Copyright (c) 2024 Seungyeop Yeom ( https://github.com/OceanPositive ).
 //
 
-import BadaCore
+import Foundation
 
-struct LocalSearchResultItem: Hashable {
-    let id = UUID()
-    let title: String
-    let subtitle: String
+extension Error {
+    package var description: String {
+        "\(localizedDescription): \(self)"
+    }
 }

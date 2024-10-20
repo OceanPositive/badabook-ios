@@ -35,6 +35,36 @@ struct LogbookAddReducerTests {
     }
 
     @Test
+    func setDiveSite() async {
+        let sut = Store(
+            reducer: LogbookAddReducer(),
+            state: LogbookAddReducer.State()
+        )
+        await sut.expect(\.diveSite, nil)
+        let searchResult = LocalSearchResult(
+            title: "Hello",
+            subtitle: "World",
+            coordinate: LocalSearchResult.Coordinate(latitude: 12, longitude: 13)
+        )
+        await sut.send(.setDiveSite(searchResult))
+        await sut.expect(\.diveSite?.title, searchResult.title)
+        await sut.expect(\.diveSite?.subtitle, searchResult.subtitle)
+        await sut.expect(\.diveSite?.coordinate?.latitude, searchResult.coordinate?.latitude)
+        await sut.expect(\.diveSite?.coordinate?.longitude, searchResult.coordinate?.longitude)
+    }
+
+    @Test
+    func setDiveCenter() async {
+        let sut = Store(
+            reducer: LogbookAddReducer(),
+            state: LogbookAddReducer.State()
+        )
+        await sut.expect(\.diveCenter, "")
+        await sut.send(.setDiveCenter("Hello World"))
+        await sut.expect(\.diveCenter, "Hello World")
+    }
+
+    @Test
     func setDiveStyle() async {
         let sut = Store(
             reducer: LogbookAddReducer(),

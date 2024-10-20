@@ -5,16 +5,18 @@
 //  Copyright (c) 2024 Seungyeop Yeom ( https://github.com/OceanPositive ).
 //
 
-package struct GetLocalSearchResultsUseCase: ExecutableUseCase {
-    private let get: @Sendable (String) async -> [LocalSearchResult]
+import BadaCore
+
+package struct GetLocalSearchCompletionsUseCase: ExecutableUseCase {
+    private let get: @Sendable (String) async -> [LocalSearchCompletion]
 
     package init(
-        _ get: @Sendable @escaping (String) async -> [LocalSearchResult]
+        _ get: @Sendable @escaping (String) async -> [LocalSearchCompletion]
     ) {
         self.get = get
     }
 
-    package func execute(searchText: String) async -> [LocalSearchResult] {
+    package func execute(for searchText: String) async -> [LocalSearchCompletion] {
         await get(searchText)
     }
 }

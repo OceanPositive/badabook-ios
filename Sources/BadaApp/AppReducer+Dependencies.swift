@@ -23,9 +23,15 @@ extension AppReducer {
             }
         }
         register {
-            GetLocalSearchResultsUseCase { searchText in
+            GetLocalSearchCompletionsUseCase { searchText in
                 let repository = LocalSearchRepository()
                 return await repository.search(text: searchText)
+            }
+        }
+        register {
+            GetLocalSearchResultUseCase { searchCompletion throws(LocalSearchRepositoryError) in
+                let repository = LocalSearchRepository()
+                return try await repository.search(for: searchCompletion)
             }
         }
     }

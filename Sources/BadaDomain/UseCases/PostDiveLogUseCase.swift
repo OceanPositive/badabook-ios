@@ -16,7 +16,7 @@ package struct PostDiveLogUseCase: ExecutableUseCase {
         self.post = post
     }
 
-    package func execute(request: DiveLogInsertRequest) async -> Result<Void, DiveLogRepositoryError> {
+    package func execute(for request: DiveLogInsertRequest) async -> Result<Void, DiveLogRepositoryError> {
         await post(request)
     }
 }
