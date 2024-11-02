@@ -60,7 +60,7 @@ private struct MainTabView: View {
                 systemImage: SystemImage.bookPages.rawValue,
                 value: .logbook
             ) {
-                LogbookView()
+                LogbookListView()
             }
         }
         .tabViewStyle(.sidebarAdaptable)
