@@ -209,6 +209,9 @@ struct LogbookAddSheet: View {
                     #endif
                 }
             }
+            #if os(macOS)
+                .padding()
+            #endif
             .navigationTitle("New log")
             #if os(iOS)
                 .navigationBarTitleDisplayMode(.inline)
@@ -236,9 +239,7 @@ struct LogbookAddSheet: View {
                 ),
                 content: { LogbookDiveSiteSearchSheet(action: selectDiveSite) }
             )
-            #if os(macOS)
-                .padding()
-            #endif
+            .onChange(of: store.state.shouldDismiss, shouldDismissChanged)
         }
     }
 
@@ -246,6 +247,7 @@ struct LogbookAddSheet: View {
         Button(action: tapSaveButton) {
             Text("Save")
         }
+        .disabled(store.state.saveButtonDisabled)
     }
 
     private var cancelButton: some View {
@@ -275,12 +277,17 @@ struct LogbookAddSheet: View {
         .disabled(focusedField?.next == nil)
     }
 
-    private func tapSaveButton() {
+    private func shouldDismissChanged() {
+        guard store.state.shouldDismiss else { return }
+        dismiss()
+    }
 
+    private func tapSaveButton() {
+        store.send(.save)
     }
 
     private func tapCancelButton() {
-        dismiss()
+        store.send(.setShouldDismiss(true))
     }
 
     private func selectDiveSite(_ searchResult: LocalSearchResult) {

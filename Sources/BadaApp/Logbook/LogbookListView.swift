@@ -38,6 +38,7 @@ struct LogbookListView: View {
                 ),
                 content: { LogbookAddSheet() }
             )
+            .onChange(of: store.state.isAddSheetPresenting, isAddSheetPresentingChanged)
             .onAppear(perform: onAppear)
         }
     }
@@ -48,6 +49,12 @@ struct LogbookListView: View {
             systemImage: SystemImage.plus.rawValue
         ) {
             tapAddButton()
+        }
+    }
+
+    private func isAddSheetPresentingChanged(oldValue: Bool, newValue: Bool) {
+        if oldValue && !newValue {
+            store.send(.load)
         }
     }
 
