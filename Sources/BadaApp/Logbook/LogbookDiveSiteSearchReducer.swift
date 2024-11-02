@@ -11,8 +11,8 @@ import BadaDomain
 struct LogbookDiveSiteSearchReducer: Reducer {
     enum Action: Sendable {
         case search(for: LocalSearchCompletion)
-        case setSearchResult(LocalSearchResult?)
         case setSearchText(String)
+        case setSearchResult(LocalSearchResult?)
         case setSearchCompletions([LocalSearchCompletion])
         case setIsSearching(Bool)
     }
@@ -36,22 +36,18 @@ struct LogbookDiveSiteSearchReducer: Reducer {
         case let .search(searchCompletion):
             return .concat(
                 .just(.setIsSearching(true)),
-                .single { await executeGetLocalSearchResultUseCase(for: searchCompletion) },
+                .single { await executeGetLocalSearchResult(for: searchCompletion) },
                 .just(.setIsSearching(false))
             )
+        case let .setSearchText(text):
+            state.searchText = text
+            return .single { await executeGetLocalSearchCompletions(for: text) }
+                .debounce(id: DebounceID.searchText, for: .milliseconds(500))
         case let .setSearchResult(searchResult):
             state.searchResult = searchResult
             return .none
-        case let .setSearchText(searchText):
-            state.searchText = searchText
-            return .single {
-                let searchCompletions = await getLocalSearchCompletionsUseCase.execute(for: searchText)
-                    .sorted { $0.title < $1.title }
-                return .setSearchCompletions(searchCompletions)
-            }
-            .debounce(id: DebounceID.searchText, for: .milliseconds(500))
         case let .setSearchCompletions(searchCompletions):
-            if searchCompletions.isEmpty {
+            if searchCompletions.isEmpty && !state.searchText.isEmpty {
                 let manualCompletion = LocalSearchCompletion(
                     title: state.searchText,
                     subtitle: "No matching results",
@@ -68,7 +64,13 @@ struct LogbookDiveSiteSearchReducer: Reducer {
         }
     }
 
-    private func executeGetLocalSearchResultUseCase(for searchCompletion: LocalSearchCompletion) async -> Action {
+    private func executeGetLocalSearchCompletions(for searchText: String) async -> Action {
+        let searchCompletions = await getLocalSearchCompletionsUseCase.execute(for: searchText)
+            .sorted { $0.title < $1.title }
+        return .setSearchCompletions(searchCompletions)
+    }
+
+    private func executeGetLocalSearchResult(for searchCompletion: LocalSearchCompletion) async -> Action {
         do {
             let searchResult = try await getLocalSearchResultUseCase.execute(for: searchCompletion)
             return .setSearchResult(searchResult)
