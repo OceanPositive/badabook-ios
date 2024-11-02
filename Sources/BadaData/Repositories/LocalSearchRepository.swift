@@ -21,6 +21,7 @@ package final class LocalSearchRepository: NSObject, LocalSearchRepositoryType {
 
     @MainActor
     package func search(text: String) async -> [LocalSearchCompletion] {
+        guard !text.isEmpty else { return [] }
         return await withCheckedContinuation { continuation in
             searchContinuation = continuation
             completer.queryFragment = text
