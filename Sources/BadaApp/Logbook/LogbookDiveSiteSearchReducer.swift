@@ -47,7 +47,11 @@ struct LogbookDiveSiteSearchReducer: Reducer {
             state.searchResult = searchResult
             return .none
         case let .setSearchCompletions(searchCompletions):
-            if searchCompletions.isEmpty && !state.searchText.isEmpty {
+            guard !state.searchText.isEmpty else {
+                state.searchCompletions = []
+                return .none
+            }
+            if searchCompletions.isEmpty {
                 let manualCompletion = LocalSearchCompletion(
                     title: state.searchText,
                     subtitle: "No matching results",
@@ -55,7 +59,12 @@ struct LogbookDiveSiteSearchReducer: Reducer {
                 )
                 state.searchCompletions = [manualCompletion]
             } else {
-                state.searchCompletions = searchCompletions
+                let manualCompletion = LocalSearchCompletion(
+                    title: state.searchText,
+                    subtitle: "",
+                    rawValue: nil
+                )
+                state.searchCompletions = [manualCompletion] + searchCompletions
             }
             return .none
         case let .setIsSearching(isSearching):

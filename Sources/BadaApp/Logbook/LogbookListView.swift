@@ -8,17 +8,21 @@
 import BadaCore
 import BadaUI
 
-struct LogbookView: View {
+struct LogbookListView: View {
     @StateObject private var store = ViewStore(
-        reducer: LogbookReducer(),
-        state: LogbookReducer.State()
+        reducer: LogbookListReducer(),
+        state: LogbookListReducer.State()
     )
 
     var body: some View {
         NavigationStack {
             List {
                 ForEach(store.state.items) { item in
-                    LogbookListRow(item: item)
+                    Button(action: { tapRowItem(item) }) {
+                        LogbookListRow(item: item)
+                            .contentShape(Rectangle())
+                    }
+                    .buttonStyle(.plain)
                 }
             }
             .navigationTitle(L10n.Logbook.title)
@@ -53,5 +57,9 @@ struct LogbookView: View {
 
     private func tapAddButton() {
         store.send(.setIsAddSheetPresenting(true))
+    }
+
+    private func tapRowItem(_ item: LogbookListRowItem) {
+        // TODO: WIP
     }
 }
