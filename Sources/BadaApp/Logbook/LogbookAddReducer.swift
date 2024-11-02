@@ -10,6 +10,8 @@ import BadaDomain
 
 struct LogbookAddReducer: Reducer {
     enum Action: Sendable {
+        case save
+        case none
         case setLogNumber(Int?)
         case setLogDate(Date)
         case setDiveSite(LocalSearchResult)
@@ -30,6 +32,7 @@ struct LogbookAddReducer: Reducer {
         case setFeeling(Feeling)
         case setNotes(String)
         case setIsDiveSiteSearchSheetPresenting(Bool)
+        case setShouldDismiss(Bool)
     }
 
     struct State: Sendable, Equatable {
@@ -53,10 +56,19 @@ struct LogbookAddReducer: Reducer {
         var feeling: Feeling = .good
         var notes: String = ""
         var isDiveSiteSearchSheetPresenting: Bool = false
+        var shouldDismiss: Bool = false
     }
+
+    @UseCase private var postDiveLogsUseCase: PostDiveLogUseCase
 
     func reduce(state: inout State, action: Action) -> AnyEffect<Action> {
         switch action {
+        case .save:
+            return .single { [state] in
+                await executePostDiveLogUseCase(state: state)
+            }
+        case .none:
+            return .none
         case let .setLogNumber(logNumber):
             state.logNumber = logNumber
             return .none
@@ -172,6 +184,51 @@ struct LogbookAddReducer: Reducer {
         case let .setIsDiveSiteSearchSheetPresenting(isDiveSiteSearchSheetPresenting):
             state.isDiveSiteSearchSheetPresenting = isDiveSiteSearchSheetPresenting
             return .none
+        case let .setShouldDismiss(shouldDismiss):
+            state.shouldDismiss = shouldDismiss
+            return .none
         }
+    }
+
+    private func executePostDiveLogUseCase(state: State) async -> Action {
+        guard let logNumber = state.logNumber else { return .none }
+        let request = DiveLogInsertRequest(
+            logNumber: logNumber,
+            logDate: state.logDate,
+            diveSite: state.diveSite,
+            diveStyle: state.diveStyle,
+            entryTime: state.entryTime,
+            exitTime: state.exitTime,
+            surfaceInterval: state.surfaceInterval,
+            entryAir: state.entryAir,
+            exitAir: state.exitAir,
+            gasType: nil,
+            equipment: nil,
+            maximumDepth: state.maximumDepth,
+            averageDepth: state.averageDepth,
+            airTemperature: state.airTemperature,
+            surfaceTemperature: state.surfaceTemperature,
+            bottomTemperature: state.bottomTemperature,
+            weather: state.weather,
+            surge: nil,
+            visibility: nil,
+            visibilityDistance: nil,
+            feeling: state.feeling,
+            companions: [],
+            notes: state.notes
+        )
+        let result = await postDiveLogsUseCase.execute(for: request)
+        switch result {
+        case .success:
+            return .setShouldDismiss(true)
+        case .failure:
+            return .none
+        }
+    }
+}
+
+extension LogbookAddReducer.State {
+    var saveButtonDisabled: Bool {
+        logNumber == nil
     }
 }

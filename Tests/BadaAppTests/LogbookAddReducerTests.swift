@@ -12,6 +12,12 @@ import BadaTesting
 @testable import BadaApp
 
 struct LogbookAddReducerTests {
+    init() {
+        UseCaseContainer.instance.register {
+            PostDiveLogUseCase { _ in .success(()) }
+        }
+    }
+
     @Test
     func setLogNumber() async {
         let sut = Store(
