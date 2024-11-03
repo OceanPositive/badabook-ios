@@ -6,6 +6,7 @@
 //
 
 import BadaCore
+import BadaDomain
 import BadaUI
 
 struct LogbookListRow: View {
@@ -29,7 +30,8 @@ struct LogbookListRow: View {
             }
             HStack(spacing: 0) {
                 if let leadingSecondaryText = item.leadingSecondaryText,
-                   let leadingSecondaryImage = item.leadingSecondaryImage {
+                    let leadingSecondaryImage = item.leadingSecondaryImage
+                {
                     HStack(spacing: 2) {
                         Image(systemImage: leadingSecondaryImage)
                             .font(.caption)
@@ -50,7 +52,7 @@ struct LogbookListRow: View {
 }
 
 struct LogbookListRowItem: Identifiable, Equatable {
-    let id: UUID
+    let id: LogID
     let leadingPrimaryText: String
     let leadingSecondaryImage: SystemImage?
     let leadingSecondaryText: String?
@@ -62,7 +64,7 @@ struct LogbookListRowItem: Identifiable, Equatable {
 #Preview(traits: .sizeThatFitsLayout) {
     LogbookListRow(
         item: LogbookListRowItem(
-            id: UUID(),
+            id: LogID(),
             leadingPrimaryText: "#12",
             leadingSecondaryImage: .location,
             leadingSecondaryText: "Doljo beach",

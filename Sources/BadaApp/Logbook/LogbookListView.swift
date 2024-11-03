@@ -9,13 +9,18 @@ import BadaCore
 import BadaUI
 
 struct LogbookListView: View {
+    @ObservedObject private var navigationStore = NavigationStore.shared
     @StateObject private var store = ViewStore(
         reducer: LogbookListReducer(),
         state: LogbookListReducer.State()
     )
 
     var body: some View {
-        NavigationStack {
+        NavigationStack(
+            path: navigationStore.binding(
+                \.logbookPaths,
+                send: { .setLogbookPaths($0) })
+        ) {
             List {
                 ForEach(store.state.items) { item in
                     Button(action: { tapRowItem(item) }) {
@@ -26,16 +31,19 @@ struct LogbookListView: View {
                 }
             }
             .navigationTitle(L10n.Logbook.title)
+            .navigationDestination(for: NavigationState.LogbookPath.self) { path in
+                switch path {
+                case let .logDetail(id):
+                    LogbookDetailView(id: id)
+                }
+            }
             .toolbar {
                 ToolbarItem(placement: .primaryAction) {
                     addButton
                 }
             }
             .sheet(
-                isPresented: Binding<Bool>(
-                    get: { store.state.isAddSheetPresenting },
-                    set: { store.send(.setIsAddSheetPresenting($0)) }
-                ),
+                isPresented: store.binding(\.isAddSheetPresenting, send: { .setIsAddSheetPresenting($0) }),
                 content: { LogbookAddSheet() }
             )
             .onChange(of: store.state.isAddSheetPresenting, isAddSheetPresentingChanged)
@@ -67,6 +75,6 @@ struct LogbookListView: View {
     }
 
     private func tapRowItem(_ item: LogbookListRowItem) {
-        // TODO: WIP
+        navigationStore.send(.logDetail(id: item.id))
     }
 }
