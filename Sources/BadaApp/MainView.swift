@@ -9,6 +9,7 @@ import BadaCore
 import BadaUI
 
 public struct MainView: View {
+    @ObservedObject private var navigationStore = NavigationStore.shared
     @StateObject private var store = ViewStore(
         reducer: MainReducer(),
         state: MainReducer.State()
@@ -20,10 +21,7 @@ public struct MainView: View {
         switch store.state.isLoaded {
         case true:
             MainTabView(
-                tab: Binding<MainTab>(
-                    get: { store.state.tab },
-                    set: { store.send(.setTab($0)) }
-                )
+                mainTab: navigationStore.binding(\.mainTab, send: { .setMainTab($0) })
             )
         case false:
             SplashView()
@@ -37,10 +35,10 @@ public struct MainView: View {
 }
 
 private struct MainTabView: View {
-    var tab: Binding<MainTab>
+    var mainTab: Binding<NavigationState.MainTab>
 
     var body: some View {
-        TabView(selection: tab) {
+        TabView(selection: mainTab) {
             Tab(
                 L10n.MainTab.home,
                 systemImage: SystemImage.house.rawValue,

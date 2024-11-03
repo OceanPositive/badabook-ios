@@ -20,10 +20,13 @@ enum NavigationStore {
 
 struct NavigationReducer: Reducer {
     enum Action: Sendable {
+        case setMainTab(State.MainTab)
         case setHomePaths([State.HomePath])
         case setEquipmentPaths([State.EquipmentPath])
         case setLogbookPaths([State.LogbookPath])
-        case logDetail(id: LogID)
+        case home(Home)
+        case equipment(Equipment)
+        case logbook(Logbook)
     }
 
     struct State: Sendable, Equatable {
@@ -35,6 +38,10 @@ struct NavigationReducer: Reducer {
 
     func reduce(state: inout State, action: Action) -> AnyEffect<Action> {
         switch action {
+        case let .setMainTab(mainTab):
+            // FIXME: Update NavigationAuthority bound path tried to update multiple times per frame.
+            state.mainTab = mainTab
+            return .none
         case let .setHomePaths(paths):
             state.homePaths = paths
             return .none
@@ -44,14 +51,39 @@ struct NavigationReducer: Reducer {
         case let .setLogbookPaths(paths):
             state.logbookPaths = paths
             return .none
-        case let .logDetail(id):
-            state.logbookPaths = [.logDetail(id: id)]
+        case let .home(home):
             return .none
+        case let .equipment(equipment):
+            return .none
+        case let .logbook(logbook):
+            switch logbook {
+            case let .detail(id):
+                state.logbookPaths = [.logDetail(id: id)]
+                return .none
+            }
         }
     }
 }
 
+extension NavigationReducer.Action {
+    enum Home {
+    }
+
+    enum Equipment {
+    }
+
+    enum Logbook {
+        case detail(id: LogID)
+    }
+}
+
 extension NavigationReducer.State {
+    enum MainTab {
+        case home
+        case equipment
+        case logbook
+    }
+
     enum HomePath: Hashable {
     }
 

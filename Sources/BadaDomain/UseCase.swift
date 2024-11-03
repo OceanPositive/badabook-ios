@@ -50,6 +50,8 @@ package final class UseCaseContainer: @unchecked Sendable {
     package func resolve<T: ExecutableUseCase>(
         _ type: T.Type = T.self
     ) -> T {
+        lock.lock()
+        defer { lock.unlock() }
         let key = UseCaseKey(type: type)
         guard let useCase = table[key] as? T else {
             fatalError("\(type) was not registered")
