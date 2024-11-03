@@ -8,7 +8,7 @@
 import BadaCore
 
 package struct DiveLog: Equatable {
-    package let id: UUID
+    package let id: LogID
     package let logNumber: Int
     package let logDate: Date?
     package let diveSite: DiveSite?
@@ -37,7 +37,7 @@ package struct DiveLog: Equatable {
     package let updateDate: Date
 
     package init(
-        id: UUID = UUID(),
+        id: LogID = LogID(),
         logNumber: Int,
         logDate: Date? = nil,
         diveSite: DiveSite? = nil,
