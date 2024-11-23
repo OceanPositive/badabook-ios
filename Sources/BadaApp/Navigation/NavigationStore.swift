@@ -8,9 +8,10 @@
 import BadaCore
 import BadaDomain
 
+typealias NavigationStore = ViewStore<NavigationReducer>
 typealias NavigationState = NavigationReducer.State
 
-enum NavigationStore {
+extension NavigationStore {
     @MainActor
     static let shared = ViewStore(
         reducer: NavigationReducer(),
