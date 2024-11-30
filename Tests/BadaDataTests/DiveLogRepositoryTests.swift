@@ -20,8 +20,10 @@ struct DiveLogRepositoryTests {
 
     @Test
     func insert() async {
-        let request = DiveLogInsertRequest(logNumber: 0)
-
+        let request = DiveLogInsertRequest(
+            logNumber: 0,
+            logDate: Date(timeIntervalSince1970: 0)
+        )
         switch await sut.insert(request: request) {
         case .success:
             break

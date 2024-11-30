@@ -36,4 +36,21 @@ package struct DiveLogRepository: DiveLogRepositoryType {
             return .failure(.fetchFailed(error.localizedDescription))
         }
     }
+
+    package func diveLog(id: DiveLogID) -> Result<DiveLog, DiveLogRepositoryError> {
+        var descriptor = FetchDescriptor<DiveLogEntity>()
+        descriptor.predicate = #Predicate { diveLog in
+            diveLog.id == id
+        }
+        do {
+            let diveLogs = try context.fetch(descriptor)
+            if let diveLog = diveLogs.first {
+                return .success(diveLog.domain)
+            } else {
+                return .failure(.noResult)
+            }
+        } catch {
+            return .failure(.fetchFailed(error.localizedDescription))
+        }
+    }
 }

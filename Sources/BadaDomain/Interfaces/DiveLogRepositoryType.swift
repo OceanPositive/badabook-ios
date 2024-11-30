@@ -14,6 +14,7 @@ package protocol DiveLogRepositoryType {
 }
 
 package enum DiveLogRepositoryError: Error {
-    case fetchFailed(String)
     case insertFailed(String)
+    case fetchFailed(String)
+    case noResult
 }

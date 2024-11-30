@@ -74,7 +74,7 @@ extension NavigationReducer.Action {
     }
 
     enum Logbook {
-        case detail(id: LogID)
+        case detail(id: DiveLogID)
     }
 }
 
@@ -92,6 +92,6 @@ extension NavigationReducer.State {
     }
 
     enum LogbookPath: Hashable {
-        case logDetail(id: LogID)
+        case logDetail(id: DiveLogID)
     }
 }

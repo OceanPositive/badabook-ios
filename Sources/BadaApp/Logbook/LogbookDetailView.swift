@@ -10,9 +10,9 @@ import BadaDomain
 import BadaUI
 
 struct LogbookDetailView: View {
-    let id: LogID
+    let id: DiveLogID
 
-    init(id: LogID) {
+    init(id: DiveLogID) {
         self.id = id
     }
 
@@ -242,7 +242,9 @@ struct LogbookDetailView: View {
             ),
             content: { LogbookDiveSiteSearchSheet(action: selectDiveSite) }
         )
+        .onAppear(perform: onAppear)
         .onChange(of: store.state.shouldDismiss, shouldDismissChanged)
+        .onChange(of: store.state.notesInitialized, notesInitializedChanged)
     }
 
     private var saveButton: some View {
@@ -273,9 +275,18 @@ struct LogbookDetailView: View {
         .disabled(focusedField?.next == nil)
     }
 
+    private func onAppear() {
+        store.send(.load(id))
+    }
+
     private func shouldDismissChanged() {
         guard store.state.shouldDismiss else { return }
         dismiss()
+    }
+
+    private func notesInitializedChanged() {
+        guard store.state.notesInitialized else { return }
+        notes = store.state.notes
     }
 
     private func tapSaveButton() {
@@ -283,7 +294,7 @@ struct LogbookDetailView: View {
     }
 
     private func selectDiveSite(_ searchResult: LocalSearchResult) {
-        store.send(.setDiveSite(searchResult))
+        store.send(.setDiveSiteSearchResult(searchResult))
     }
 
     private func tapDoneButton() {
