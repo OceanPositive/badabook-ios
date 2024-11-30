@@ -17,6 +17,12 @@ extension AppReducer {
             }
         }
         register {
+            GetDiveLogUseCase { id in
+                let repository = await DiveLogRepository(persistentStore: .main)
+                return await repository.diveLog(id: id)
+            }
+        }
+        register {
             PostDiveLogUseCase { request in
                 let repository = await DiveLogRepository(persistentStore: .main)
                 return await repository.insert(request: request)

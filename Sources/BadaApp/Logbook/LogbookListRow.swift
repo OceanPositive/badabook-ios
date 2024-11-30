@@ -52,7 +52,7 @@ struct LogbookListRow: View {
 }
 
 struct LogbookListRowItem: Identifiable, Equatable {
-    let id: LogID
+    let id: DiveLogID
     let leadingPrimaryText: String
     let leadingSecondaryImage: SystemImage?
     let leadingSecondaryText: String?
@@ -64,7 +64,7 @@ struct LogbookListRowItem: Identifiable, Equatable {
 #Preview(traits: .sizeThatFitsLayout) {
     LogbookListRow(
         item: LogbookListRowItem(
-            id: LogID(),
+            id: DiveLogID(),
             leadingPrimaryText: "#12",
             leadingSecondaryImage: .location,
             leadingSecondaryText: "Doljo beach",

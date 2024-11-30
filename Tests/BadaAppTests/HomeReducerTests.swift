@@ -33,9 +33,9 @@ struct HomeReducerTests {
     @Test
     func getDiveLogs() async {
         let diveLogs: [DiveLog] = [
-            DiveLog(logNumber: 0),
-            DiveLog(logNumber: 1),
-            DiveLog(logNumber: 2),
+            DiveLog(logNumber: 0, logDate: Date(timeIntervalSince1970: 0)),
+            DiveLog(logNumber: 1, logDate: Date(timeIntervalSince1970: 0)),
+            DiveLog(logNumber: 2, logDate: Date(timeIntervalSince1970: 0)),
         ]
         let container = UseCaseContainer()
         container.register {

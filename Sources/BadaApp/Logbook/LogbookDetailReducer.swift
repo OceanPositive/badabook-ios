@@ -10,11 +10,14 @@ import BadaDomain
 
 struct LogbookDetailReducer: Reducer {
     enum Action: Sendable {
+        case load(DiveLogID)
         case save
         case none
+        case setDiveLog(DiveLog)
         case setLogNumber(Int?)
         case setLogDate(Date)
-        case setDiveSite(LocalSearchResult)
+        case setDiveSite(DiveSite?)
+        case setDiveSiteSearchResult(LocalSearchResult)
         case setDiveCenter(String)
         case setDiveStyle(DiveStyle)
         case setEntryTime(Date)
@@ -31,6 +34,7 @@ struct LogbookDetailReducer: Reducer {
         case setWeather(Weather)
         case setFeeling(Feeling)
         case setNotes(String)
+        case setNotesInitialized
         case setIsDiveSiteSearchSheetPresenting(Bool)
         case setShouldDismiss(Bool)
     }
@@ -56,26 +60,37 @@ struct LogbookDetailReducer: Reducer {
         var feeling: Feeling = .good
         var notes: String = ""
         var isDiveSiteSearchSheetPresenting: Bool = false
+        var notesInitialized: Bool = false
         var shouldDismiss: Bool = false
     }
 
+    @UseCase private var getDiveLogUseCase: GetDiveLogUseCase
     @UseCase private var postDiveLogsUseCase: PostDiveLogUseCase
 
     func reduce(state: inout State, action: Action) -> AnyEffect<Action> {
         switch action {
+        case let .load(diveLogID):
+            return .single {
+                await executeGetDiveLogUseCase(id: diveLogID)
+            }
         case .save:
             return .single { [state] in
                 await executePostDiveLogUseCase(state: state)
             }
         case .none:
             return .none
+        case let .setDiveLog(diveLog):
+            return setDiveLog(diveLog)
         case let .setLogNumber(logNumber):
             state.logNumber = logNumber
             return .none
         case let .setLogDate(logDate):
             state.logDate = logDate
             return .none
-        case let .setDiveSite(searchResult):
+        case let .setDiveSite(diveSite):
+            state.diveSite = diveSite
+            return .none
+        case let .setDiveSiteSearchResult(searchResult):
             if let coordinate = searchResult.coordinate {
                 state.diveSite = DiveSite(
                     title: searchResult.title,
@@ -181,11 +196,62 @@ struct LogbookDetailReducer: Reducer {
         case let .setNotes(notes):
             state.notes = notes
             return .none
+        case .setNotesInitialized:
+            state.notesInitialized = true
+            return .none
         case let .setIsDiveSiteSearchSheetPresenting(isDiveSiteSearchSheetPresenting):
             state.isDiveSiteSearchSheetPresenting = isDiveSiteSearchSheetPresenting
             return .none
         case let .setShouldDismiss(shouldDismiss):
             state.shouldDismiss = shouldDismiss
+            return .none
+        }
+    }
+
+    private func setDiveLog(_ diveLog: DiveLog) -> AnyEffect<Action> {
+        AnyEffect.merge {
+            AnyEffect.just(.setLogNumber(diveLog.logNumber))
+            AnyEffect.just(.setLogDate(diveLog.logDate))
+            AnyEffect.just(.setDiveSite(diveLog.diveSite))
+            if let diveCenter = diveLog.diveCenter {
+                AnyEffect.just(.setDiveCenter(diveCenter))
+            }
+            if let diveStyle = diveLog.diveStyle {
+                AnyEffect.just(.setDiveStyle(diveStyle))
+            }
+            if let entryTime = diveLog.entryTime {
+                AnyEffect.just(.setEntryTime(entryTime))
+            }
+            if let exitTime = diveLog.exitTime {
+                AnyEffect.just(.setExitTime(exitTime))
+            }
+            AnyEffect.just(.setSurfaceInterval(diveLog.surfaceInterval?.rawValue))
+            AnyEffect.just(.setEntryAir(diveLog.entryAir?.rawValue))
+            AnyEffect.just(.setExitAir(diveLog.exitAir?.rawValue))
+            AnyEffect.just(.setMaximumDepth(diveLog.maximumDepth?.rawValue))
+            AnyEffect.just(.setAverageDepth(diveLog.averageDepth?.rawValue))
+            AnyEffect.just(.setAirTemperature(diveLog.airTemperature?.rawValue))
+            AnyEffect.just(.setSurfaceTemperature(diveLog.surfaceTemperature?.rawValue))
+            AnyEffect.just(.setBottomTemperature(diveLog.bottomTemperature?.rawValue))
+            if let weather = diveLog.weather {
+                AnyEffect.just(.setWeather(weather))
+            }
+            if let feeling = diveLog.feeling {
+                AnyEffect.just(.setFeeling(feeling))
+            }
+            if let notes = diveLog.notes {
+                AnyEffect.just(.setNotes(notes))
+                AnyEffect.just(.setNotesInitialized)
+            }
+        }
+    }
+
+    private func executeGetDiveLogUseCase(id: DiveLogID) async -> Action {
+        let result = await getDiveLogUseCase.execute(id: id)
+        switch result {
+        case let .success(diveLog):
+            return .setDiveLog(diveLog)
+        case .failure:
             return .none
         }
     }

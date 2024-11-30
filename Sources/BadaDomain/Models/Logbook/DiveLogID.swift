@@ -7,4 +7,4 @@
 
 import Foundation
 
-package typealias LogID = UUID
+package typealias DiveLogID = UUID
