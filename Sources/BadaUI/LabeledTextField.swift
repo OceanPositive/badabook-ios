@@ -38,6 +38,8 @@ package struct LabeledTextField: View {
                 )
                 .multilineTextAlignment(textAlignment)
                 .keyboardType(keyboardType.uiKeyboardType)
+                .autocorrectionDisabled()
+                .textInputAutocapitalization(.never)
             }
         #else
             TextField(
@@ -46,6 +48,7 @@ package struct LabeledTextField: View {
                 label: { Text(label) }
             )
             .multilineTextAlignment(textAlignment)
+            .autocorrectionDisabled()
         #endif
     }
 }

@@ -172,6 +172,7 @@ extension DiveLogEntity {
             logNumber: insertRequest.logNumber,
             logDate: insertRequest.logDate,
             diveSite: insertRequest.diveSite.map { DiveSite(domain: $0) },
+            diveCenter: insertRequest.diveCenter,
             diveStyle: insertRequest.diveStyle.map { DiveStyle(domain: $0) },
             entryTime: insertRequest.entryTime,
             exitTime: insertRequest.exitTime,
@@ -195,5 +196,34 @@ extension DiveLogEntity {
             insertDate: Date.now,
             updateDate: Date.now
         )
+    }
+
+    func update(with request: DiveLogUpdateRequest) {
+        logNumber = request.logNumber
+        logDate = request.logDate
+        diveSite = request.diveSite.map { DiveSite(domain: $0) }
+        diveCenter = request.diveCenter
+        diveStyle = request.diveStyle.map { DiveStyle(domain: $0) }
+        entryTime = request.entryTime
+        exitTime = request.exitTime
+        surfaceInterval = request.surfaceInterval
+        entryAir = request.entryAir
+        exitAir = request.exitAir
+        gasType = request.gasType.map { DiveGasType(domain: $0) }
+        equipment = request.equipment.map { Equipment(domain: $0) }
+        maximumDepth = request.maximumDepth
+        averageDepth = request.averageDepth
+        airTemperature = request.airTemperature
+        surfaceTemperature = request.surfaceTemperature
+        bottomTemperature = request.bottomTemperature
+        weather = request.weather.map { Weather(domain: $0) }
+        surge = request.surge.map { Surge(domain: $0) }
+        visibility = request.visibility.map { Visibility(domain: $0) }
+        visibilityDistance = request.visibilityDistance
+        feeling = request.feeling.map { Feeling(domain: $0) }
+        companions = request.companions.map { Companion(domain: $0) }
+        notes = request.notes
+        insertDate = request.insertDate
+        updateDate = Date.now
     }
 }

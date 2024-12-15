@@ -196,6 +196,7 @@ struct LogbookAddReducer: Reducer {
             logNumber: logNumber,
             logDate: state.logDate,
             diveSite: state.diveSite,
+            diveCenter: state.diveCenter,
             diveStyle: state.diveStyle,
             entryTime: state.entryTime,
             exitTime: state.exitTime,

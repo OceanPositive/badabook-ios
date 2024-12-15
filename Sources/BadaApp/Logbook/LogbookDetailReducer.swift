@@ -40,6 +40,7 @@ struct LogbookDetailReducer: Reducer {
     }
 
     struct State: Sendable, Equatable {
+        var origin: DiveLog?
         var logNumber: Int?
         var logDate: Date = Date(timeIntervalSince1970: 0)
         var diveSite: DiveSite?
@@ -65,7 +66,7 @@ struct LogbookDetailReducer: Reducer {
     }
 
     @UseCase private var getDiveLogUseCase: GetDiveLogUseCase
-    @UseCase private var postDiveLogsUseCase: PostDiveLogUseCase
+    @UseCase private var putDiveLogUseCase: PutDiveLogUseCase
 
     func reduce(state: inout State, action: Action) -> AnyEffect<Action> {
         switch action {
@@ -75,11 +76,12 @@ struct LogbookDetailReducer: Reducer {
             }
         case .save:
             return .single { [state] in
-                await executePostDiveLogUseCase(state: state)
+                await executePutDiveLogUseCase(state: state)
             }
         case .none:
             return .none
         case let .setDiveLog(diveLog):
+            state.origin = diveLog
             return setDiveLog(diveLog)
         case let .setLogNumber(logNumber):
             state.logNumber = logNumber
@@ -240,8 +242,10 @@ struct LogbookDetailReducer: Reducer {
                 AnyEffect.just(.setFeeling(feeling))
             }
             if let notes = diveLog.notes {
-                AnyEffect.just(.setNotes(notes))
-                AnyEffect.just(.setNotesInitialized)
+                AnyEffect.concat {
+                    AnyEffect.just(.setNotes(notes))
+                    AnyEffect.just(.setNotesInitialized)
+                }
             }
         }
     }
@@ -256,12 +260,15 @@ struct LogbookDetailReducer: Reducer {
         }
     }
 
-    private func executePostDiveLogUseCase(state: State) async -> Action {
+    private func executePutDiveLogUseCase(state: State) async -> Action {
+        guard let diveLog = state.origin else { return .none }
         guard let logNumber = state.logNumber else { return .none }
-        let request = DiveLogInsertRequest(
+        let request = DiveLogUpdateRequest(
+            id: diveLog.id,
             logNumber: logNumber,
             logDate: state.logDate,
             diveSite: state.diveSite,
+            diveCenter: state.diveCenter,
             diveStyle: state.diveStyle,
             entryTime: state.entryTime,
             exitTime: state.exitTime,
@@ -281,9 +288,10 @@ struct LogbookDetailReducer: Reducer {
             visibilityDistance: nil,
             feeling: state.feeling,
             companions: [],
-            notes: state.notes
+            notes: state.notes,
+            insertDate: diveLog.insertDate
         )
-        let result = await postDiveLogsUseCase.execute(for: request)
+        let result = await putDiveLogUseCase.execute(for: request)
         switch result {
         case .success:
             return .setShouldDismiss(true)

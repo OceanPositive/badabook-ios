@@ -7,7 +7,8 @@
 
 import BadaCore
 
-package struct DiveLogInsertRequest: Equatable {
+package struct DiveLogUpdateRequest: Equatable {
+    package let id: DiveLogID
     package let logNumber: Int
     package let logDate: Date
     package let diveSite: DiveSite?
@@ -32,8 +33,10 @@ package struct DiveLogInsertRequest: Equatable {
     package let feeling: Feeling?
     package let companions: [Companion]
     package let notes: String?
+    package let insertDate: Date
 
     package init(
+        id: DiveLogID,
         logNumber: Int,
         logDate: Date,
         diveSite: DiveSite?,
@@ -57,8 +60,10 @@ package struct DiveLogInsertRequest: Equatable {
         visibilityDistance: UnitValue.Distance?,
         feeling: Feeling?,
         companions: [Companion],
-        notes: String?
+        notes: String?,
+        insertDate: Date
     ) {
+        self.id = id
         self.logNumber = logNumber
         self.logDate = logDate
         self.diveSite = diveSite
@@ -83,5 +88,6 @@ package struct DiveLogInsertRequest: Equatable {
         self.feeling = feeling
         self.companions = companions
         self.notes = notes
+        self.insertDate = insertDate
     }
 }

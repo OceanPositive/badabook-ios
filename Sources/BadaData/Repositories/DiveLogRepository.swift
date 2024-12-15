@@ -27,6 +27,26 @@ package struct DiveLogRepository: DiveLogRepositoryType {
         }
     }
 
+    package func update(request: DiveLogUpdateRequest) -> Result<Void, DiveLogRepositoryError> {
+        var descriptor = FetchDescriptor<DiveLogEntity>()
+        let id = request.id
+        descriptor.predicate = #Predicate { diveLog in
+            diveLog.id == id
+        }
+        do {
+            let diveLogs = try context.fetch(descriptor)
+            if let diveLog = diveLogs.first {
+                diveLog.update(with: request)
+                try context.save()
+                return .success(())
+            } else {
+                return .failure(.noResult)
+            }
+        } catch {
+            return .failure(.updateFailed(error.localizedDescription))
+        }
+    }
+
     package func diveLogs() -> Result<[DiveLog], DiveLogRepositoryError> {
         let descriptor = FetchDescriptor<DiveLogEntity>()
         do {
