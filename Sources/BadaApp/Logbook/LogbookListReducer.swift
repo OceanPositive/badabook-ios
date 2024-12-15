@@ -69,7 +69,7 @@ struct LogbookListReducer: Reducer {
     private func formattedTotalTime(_ entryTime: Date?, _ exitTime: Date?) -> String? {
         guard let entryTime else { return nil }
         guard let exitTime else { return nil }
-        let interval = exitTime.timeIntervalSince(entryTime)
+        let interval = exitTime.timeIntervalSince(entryTime) / 60.0
         return "\(interval.formatted(.number.precision(.fractionLength(0))))min"
     }
 

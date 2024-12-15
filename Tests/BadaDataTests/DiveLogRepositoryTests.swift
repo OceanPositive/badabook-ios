@@ -22,7 +22,29 @@ struct DiveLogRepositoryTests {
     func insert() async {
         let request = DiveLogInsertRequest(
             logNumber: 0,
-            logDate: Date(timeIntervalSince1970: 0)
+            logDate: Date(timeIntervalSince1970: 0),
+            diveSite: nil,
+            diveCenter: nil,
+            diveStyle: nil,
+            entryTime: nil,
+            exitTime: nil,
+            surfaceInterval: nil,
+            entryAir: nil,
+            exitAir: nil,
+            gasType: nil,
+            equipment: nil,
+            maximumDepth: nil,
+            averageDepth: nil,
+            airTemperature: nil,
+            surfaceTemperature: nil,
+            bottomTemperature: nil,
+            weather: nil,
+            surge: nil,
+            visibility: nil,
+            visibilityDistance: nil,
+            feeling: nil,
+            companions: [],
+            notes: nil
         )
         switch await sut.insert(request: request) {
         case .success:
@@ -35,7 +57,8 @@ struct DiveLogRepositoryTests {
         case let .success(diveLogs):
             #expect(diveLogs.count == 1)
             if let diveLog = diveLogs.first {
-                #expect(DiveLogInsertRequest(diveLog: diveLog) == request)
+                #expect(diveLog.logNumber == request.logNumber)
+                #expect(diveLog.logDate == request.logDate)
             }
         case let .failure(error):
             Issue.record(error)

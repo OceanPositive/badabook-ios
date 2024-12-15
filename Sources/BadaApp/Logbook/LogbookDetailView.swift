@@ -178,8 +178,9 @@ struct LogbookDetailView: View {
                     selection: store.binding(\.weather, send: { .setWeather($0) })
                 ) {
                     ForEach(Weather.allCases, id: \.self) { weather in
+                        let spacing = " "
                         Label(
-                            weather.description,
+                            spacing + weather.description,
                             systemImage: weather.icon.rawValue
                         )
                         .tag(weather)
