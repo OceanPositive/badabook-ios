@@ -12,7 +12,7 @@ import SwiftData
 @Model
 final class DiveLogEntity {
     @Attribute(.unique)
-    var id: DiveLogID
+    var identifier: DiveLogID
     var logNumber: Int
     var logDate: Date
     var diveSite: DiveSite?
@@ -41,7 +41,7 @@ final class DiveLogEntity {
     var updateDate: Date
 
     init(
-        id: DiveLogID,
+        identifier: DiveLogID,
         logNumber: Int,
         logDate: Date,
         diveSite: DiveSite? = nil,
@@ -69,7 +69,7 @@ final class DiveLogEntity {
         insertDate: Date,
         updateDate: Date
     ) {
-        self.id = id
+        self.identifier = identifier
         self.logNumber = logNumber
         self.logDate = logDate
         self.diveSite = diveSite
@@ -102,7 +102,7 @@ final class DiveLogEntity {
 extension DiveLogEntity: DomainConvertible {
     var domain: BadaDomain.DiveLog {
         BadaDomain.DiveLog(
-            id: id,
+            identifier: identifier,
             logNumber: logNumber,
             logDate: logDate,
             diveSite: diveSite?.domain,
@@ -134,7 +134,7 @@ extension DiveLogEntity: DomainConvertible {
 
     convenience init(domain: BadaDomain.DiveLog) {
         self.init(
-            id: domain.id,
+            identifier: domain.identifier,
             logNumber: domain.logNumber,
             logDate: domain.logDate,
             diveSite: domain.diveSite.map { DiveSite(domain: $0) },
@@ -168,7 +168,7 @@ extension DiveLogEntity: DomainConvertible {
 extension DiveLogEntity {
     convenience init(insertRequest: BadaDomain.DiveLogInsertRequest) {
         self.init(
-            id: DiveLogID(),
+            identifier: DiveLogID(),
             logNumber: insertRequest.logNumber,
             logDate: insertRequest.logDate,
             diveSite: insertRequest.diveSite.map { DiveSite(domain: $0) },
