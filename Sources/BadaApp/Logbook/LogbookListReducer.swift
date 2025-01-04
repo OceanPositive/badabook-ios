@@ -41,7 +41,7 @@ struct LogbookListReducer: Reducer {
         case let .success(diveLogs):
             let items = diveLogs.map { diveLog in
                 LogbookListRowItem(
-                    id: diveLog.id,
+                    id: diveLog.identifier,
                     leadingPrimaryText: "#\(diveLog.logNumber)",
                     leadingSecondaryImage: .location,
                     leadingSecondaryText: diveLog.diveSite?.title,

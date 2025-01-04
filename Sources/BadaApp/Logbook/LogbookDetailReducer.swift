@@ -264,7 +264,7 @@ struct LogbookDetailReducer: Reducer {
         guard let diveLog = state.origin else { return .none }
         guard let logNumber = state.logNumber else { return .none }
         let request = DiveLogUpdateRequest(
-            id: diveLog.id,
+            identifier: diveLog.identifier,
             logNumber: logNumber,
             logDate: state.logDate,
             diveSite: state.diveSite,

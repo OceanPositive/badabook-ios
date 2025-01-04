@@ -17,9 +17,9 @@ extension AppReducer {
             }
         }
         register {
-            GetDiveLogUseCase { id in
+            GetDiveLogUseCase { identifier in
                 let repository = await DiveLogRepository(persistentStore: .main)
-                return await repository.diveLog(id: id)
+                return await repository.diveLog(identifier: identifier)
             }
         }
         register {

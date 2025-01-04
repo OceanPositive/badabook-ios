@@ -29,9 +29,9 @@ package struct DiveLogRepository: DiveLogRepositoryType {
 
     package func update(request: DiveLogUpdateRequest) -> Result<Void, DiveLogRepositoryError> {
         var descriptor = FetchDescriptor<DiveLogEntity>()
-        let id = request.id
+        let identifier = request.identifier
         descriptor.predicate = #Predicate { diveLog in
-            diveLog.id == id
+            diveLog.identifier == identifier
         }
         do {
             let diveLogs = try context.fetch(descriptor)
@@ -57,10 +57,10 @@ package struct DiveLogRepository: DiveLogRepositoryType {
         }
     }
 
-    package func diveLog(id: DiveLogID) -> Result<DiveLog, DiveLogRepositoryError> {
+    package func diveLog(identifier: DiveLogID) -> Result<DiveLog, DiveLogRepositoryError> {
         var descriptor = FetchDescriptor<DiveLogEntity>()
         descriptor.predicate = #Predicate { diveLog in
-            diveLog.id == id
+            diveLog.identifier == identifier
         }
         do {
             let diveLogs = try context.fetch(descriptor)
