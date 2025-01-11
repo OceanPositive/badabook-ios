@@ -46,13 +46,16 @@ private struct MainTabView: View {
             ) {
                 HomeView()
             }
-            Tab(
-                L10n.MainTab.equipment,
-                systemImage: SystemImage.doorSlidingRightHandClosed.rawValue,
-                value: .equipment
-            ) {
-                EquipmentView()
-            }
+            // - TODO: Under development
+            #if DEBUG
+                Tab(
+                    L10n.MainTab.equipment,
+                    systemImage: SystemImage.doorSlidingRightHandClosed.rawValue,
+                    value: .equipment
+                ) {
+                    EquipmentView()
+                }
+            #endif
             Tab(
                 L10n.MainTab.logbook,
                 systemImage: SystemImage.bookPages.rawValue,
