@@ -11,6 +11,7 @@ import BadaTesting
 
 @testable import BadaApp
 
+@Suite
 struct AppReducerTests {
     @Test
     func launch() async {
