@@ -9,6 +9,7 @@ import BadaTesting
 
 @testable import BadaDomain
 
+@Suite
 struct BadaDomainTests {
     @Test
     func example() {

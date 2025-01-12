@@ -11,6 +11,7 @@ import BadaTesting
 
 @testable import BadaApp
 
+@Suite
 struct HomeReducerTests {
     @Test
     func initialize() async {
