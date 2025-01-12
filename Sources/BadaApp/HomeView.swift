@@ -17,45 +17,51 @@ struct HomeView: View {
     var body: some View {
         NavigationStack {
             ScrollView(.vertical) {
-                VStack(spacing: 16) {
-                    HStack(spacing: 16) {
-                        let logCountValue =
-                            switch store.state.logCount {
-                            case let .some(logCount):
-                                "\(logCount)"
-                            case .none:
-                                nil as String?
-                            }
-                        StatusView(
-                            icon: .number,
-                            title: "Logs",
-                            value: logCountValue,
-                            background: .tertiary
-                        )
-                        StatusView(
-                            icon: .personTextRectangle,
+                VStack(alignment: .leading, spacing: 16) {
+                    SectionHeader(title: "Bio")
+                    VStack(spacing: 16) {
+                        InfoRow(
                             title: "License",
-                            value: "Open water",
-                            background: .cyan
+                            value: "Open water"
+                        )
+                        Divider()
+                        InfoRow(
+                            title: "Experience",
+                            value: "1 yr 3 mos"
                         )
                     }
-                    HStack(spacing: 16) {
-                        StatusView(
-                            icon: .stopwatch,
-                            title: "Total time",
-                            value: "323h 40m",
-                            background: .orange
+                    .padding(16)
+                    .background(.background.quaternary)
+                    .clipShape(.rect(cornerRadius: 8))
+                    SectionHeader(title: "Summary")
+                    VStack(spacing: 16) {
+                        InfoRow(
+                            title: "Logs",
+                            value: "123"
                         )
-                        StatusView(
-                            icon: .calendar,
+                        Divider()
+                        InfoRow(
+                            title: "Dive sites",
+                            value: "6"
+                        )
+                        Divider()
+                        InfoRow(
+                            title: "Total dive time",
+                            value: "323h 40m"
+                        )
+                        Divider()
+                        InfoRow(
                             title: "Last dive",
-                            value: "30d ago",
-                            background: .mint
+                            value: "30d ago"
                         )
                     }
+                    .padding(16)
+                    .background(.background.quaternary)
+                    .clipShape(.rect(cornerRadius: 8))
                 }
                 .padding(16)
             }
+            .background(.background.secondary)
             .navigationTitle(L10n.Home.title)
             .onAppear(perform: onAppear)
         }
@@ -67,34 +73,32 @@ struct HomeView: View {
 }
 
 extension HomeView {
-    private struct StatusView<Background>: View where Background: ShapeStyle {
-        var icon: SystemImage
-        var title: String
-        var value: String?
-        var background: Background
+    private struct SectionHeader: View {
+        let title: String
 
         var body: some View {
-            VStack(spacing: 16) {
-                HStack(spacing: 4) {
-                    Image(systemImage: icon)
-                    Text(title)
-                    Spacer()
-                }
-                .font(.system(.headline, weight: .regular))
-                HStack(spacing: 0) {
-                    Spacer()
-                    if let value {
-                        Text(value)
-                            .font(.system(.title3, design: .rounded, weight: .medium))
-                    } else {
-                        ProgressView()
-                    }
-                }
-            }
-            .padding(16)
-            .background {
-                RoundedRectangle(cornerRadius: 16)
-                    .foregroundStyle(background)
+            Text(title)
+                .font(.title2)
+                .fontWeight(.bold)
+                .foregroundStyle(.foreground)
+        }
+    }
+
+    private struct InfoRow: View {
+        let title: String
+        let value: String
+
+        var body: some View {
+            HStack(spacing: 0) {
+                Text(title)
+                    .font(.body)
+                    .fontWeight(.regular)
+                    .foregroundStyle(.primary)
+                Spacer()
+                Text(value)
+                    .font(.body)
+                    .fontWeight(.regular)
+                    .foregroundStyle(.secondary)
             }
         }
     }

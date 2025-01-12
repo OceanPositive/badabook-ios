@@ -19,6 +19,7 @@ struct EquipmentView: View {
             ScrollView(.vertical) {
 
             }
+            .background(.background.secondary)
             .navigationTitle(L10n.Equipment.title)
         }
     }
