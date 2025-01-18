@@ -14,7 +14,7 @@ import BadaTesting
 @Suite
 struct HomeReducerTests {
     @Test
-    func initialize() async {
+    func load() async {
         let container = UseCaseContainer()
         container.register {
             GetDiveLogsUseCase { .success([]) }
@@ -26,7 +26,7 @@ struct HomeReducerTests {
             )
             await sut.expect(\.logCount, nil)
 
-            await sut.send(.initialize)
+            await sut.send(.load)
             await sut.expect(\.logCount, 0)
         }
     }

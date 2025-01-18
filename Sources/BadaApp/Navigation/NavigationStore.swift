@@ -58,6 +58,9 @@ struct NavigationReducer: Reducer {
             case .root:
                 state.homePaths = []
                 return .none
+            case .profile:
+                state.homePaths = [.profile]
+                return .none
             }
         case let .equipment(equipment):
             state.mainTab = .equipment
@@ -83,6 +86,7 @@ struct NavigationReducer: Reducer {
 extension NavigationReducer.Action {
     enum Home {
         case root
+        case profile
     }
 
     enum Equipment {
@@ -103,6 +107,7 @@ extension NavigationReducer.State {
     }
 
     enum HomePath: Hashable {
+        case profile
     }
 
     enum EquipmentPath: Hashable {

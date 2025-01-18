@@ -19,12 +19,12 @@ struct HomeView: View {
         NavigationStack(
             path: navigationStore.binding(
                 \.homePaths,
-                 send: { .setHomePaths($0) })
+                send: { .setHomePaths($0) })
         ) {
             ScrollView(.vertical) {
                 VStack(spacing: 16) {
-                    SectionHeader(title: "Bio") {
-                        // TODO: Move to the bio edit page
+                    SectionHeader(title: "Profile") {
+                        navigationStore.send(.home(.profile))
                     }
                     VStack(spacing: 16) {
                         InfoRow(
@@ -73,13 +73,17 @@ struct HomeView: View {
             .background(.background.secondary)
             .navigationTitle(L10n.Home.title)
             .navigationDestination(for: NavigationState.HomePath.self) { path in
+                switch path {
+                case .profile:
+                    ProfileView()
+                }
             }
             .onAppear(perform: onAppear)
         }
     }
 
     private func onAppear() {
-        store.send(.initialize)
+        store.send(.load)
     }
 }
 
