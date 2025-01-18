@@ -9,18 +9,25 @@ import BadaCore
 import BadaUI
 
 struct EquipmentView: View {
+    @ObservedObject private var navigationStore = NavigationStore.shared
     @StateObject private var store = ViewStore(
         reducer: EquipmentReducer(),
         state: EquipmentReducer.State()
     )
 
     var body: some View {
-        NavigationStack {
+        NavigationStack(
+            path: navigationStore.binding(
+                \.equipmentPaths,
+                 send: { .setEquipmentPaths($0) })
+        ) {
             ScrollView(.vertical) {
 
             }
             .background(.background.secondary)
             .navigationTitle(L10n.Equipment.title)
+            .navigationDestination(for: NavigationState.EquipmentPath.self) { path in
+            }
         }
     }
 }

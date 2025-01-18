@@ -53,11 +53,25 @@ struct NavigationReducer: Reducer {
             state.logbookPaths = paths
             return .none
         case let .home(home):
-            return .none
+            state.mainTab = .home
+            switch home {
+            case .root:
+                state.homePaths = []
+                return .none
+            }
         case let .equipment(equipment):
-            return .none
+            state.mainTab = .equipment
+            switch equipment {
+            case .root:
+                state.equipmentPaths = []
+                return .none
+            }
         case let .logbook(logbook):
+            state.mainTab = .logbook
             switch logbook {
+            case .root:
+                state.logbookPaths = []
+                return .none
             case let .detail(id):
                 state.logbookPaths = [.logDetail(id: id)]
                 return .none
@@ -68,12 +82,15 @@ struct NavigationReducer: Reducer {
 
 extension NavigationReducer.Action {
     enum Home {
+        case root
     }
 
     enum Equipment {
+        case root
     }
 
     enum Logbook {
+        case root
         case detail(id: DiveLogID)
     }
 }
