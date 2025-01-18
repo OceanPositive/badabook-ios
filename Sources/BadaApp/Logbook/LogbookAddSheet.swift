@@ -237,7 +237,7 @@ struct LogbookAddSheet: View {
                 ),
                 content: { LogbookDiveSiteSearchSheet(action: selectDiveSite) }
             )
-            .onChange(of: store.state.shouldDismiss, shouldDismissChanged)
+            .onChange(of: store.state.shouldDismiss, onShouldDismissChange)
         }
     }
 
@@ -275,7 +275,7 @@ struct LogbookAddSheet: View {
         .disabled(focusedField?.next == nil)
     }
 
-    private func shouldDismissChanged() {
+    private func onShouldDismissChange() {
         guard store.state.shouldDismiss else { return }
         dismiss()
     }

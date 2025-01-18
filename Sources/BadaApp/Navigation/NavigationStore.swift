@@ -40,7 +40,6 @@ struct NavigationReducer: Reducer {
     func reduce(state: inout State, action: Action) -> AnyEffect<Action> {
         switch action {
         case let .setMainTab(mainTab):
-            // FIXME: Update NavigationAuthority bound path tried to update multiple times per frame.
             state.mainTab = mainTab
             return .none
         case let .setHomePaths(paths):

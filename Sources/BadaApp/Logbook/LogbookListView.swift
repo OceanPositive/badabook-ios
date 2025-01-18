@@ -46,7 +46,7 @@ struct LogbookListView: View {
                 isPresented: store.binding(\.isAddSheetPresenting, send: { .setIsAddSheetPresenting($0) }),
                 content: { LogbookAddSheet() }
             )
-            .onChange(of: store.state.isAddSheetPresenting, isAddSheetPresentingChanged)
+            .onChange(of: store.state.isAddSheetPresenting, onIsAddSheetPresentingChange)
             .onAppear(perform: onAppear)
         }
     }
@@ -60,7 +60,7 @@ struct LogbookListView: View {
         }
     }
 
-    private func isAddSheetPresentingChanged(oldValue: Bool, newValue: Bool) {
+    private func onIsAddSheetPresentingChange(oldValue: Bool, newValue: Bool) {
         if oldValue && !newValue {
             store.send(.load)
         }
