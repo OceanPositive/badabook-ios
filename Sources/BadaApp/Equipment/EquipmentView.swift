@@ -19,7 +19,7 @@ struct EquipmentView: View {
         NavigationStack(
             path: navigationStore.binding(
                 \.equipmentPaths,
-                 send: { .setEquipmentPaths($0) })
+                send: { .setEquipmentPaths($0) })
         ) {
             ScrollView(.vertical) {
 

@@ -10,7 +10,7 @@ import BadaDomain
 
 struct HomeReducer: Reducer {
     enum Action: Sendable {
-        case initialize
+        case load
         case getDiveLogs
         case setLogCount(Int?)
     }
@@ -23,7 +23,7 @@ struct HomeReducer: Reducer {
 
     func reduce(state: inout State, action: Action) -> AnyEffect<Action> {
         switch action {
-        case .initialize:
+        case .load:
             return .merge {
                 .just(.getDiveLogs)
             }
