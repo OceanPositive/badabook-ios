@@ -55,7 +55,7 @@ struct LogbookDiveSiteSearchSheet: View {
                         .controlSize(.large)
                 }
             }
-            .onChange(of: store.state.searchResult, searchResultChanged)
+            .onChange(of: store.state.searchResult, onSearchResultChange)
         }
     }
 
@@ -65,7 +65,7 @@ struct LogbookDiveSiteSearchSheet: View {
         }
     }
 
-    private func searchResultChanged() {
+    private func onSearchResultChange() {
         guard let searchResult = store.state.searchResult else { return }
         action(searchResult)
         dismiss()

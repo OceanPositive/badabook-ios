@@ -227,13 +227,11 @@ struct LogbookDetailView: View {
             ToolbarItem(placement: .confirmationAction) {
                 saveButton
             }
-            ToolbarItem(placement: .keyboard) {
-                HStack(spacing: 0) {
-                    previousFieldButton
-                    nextFieldButton
-                    Spacer()
-                    doneButton
-                }
+            ToolbarItemGroup(placement: .keyboard) {
+                previousFieldButton
+                nextFieldButton
+                Spacer()
+                doneButton
             }
         }
         .sheet(
@@ -244,8 +242,8 @@ struct LogbookDetailView: View {
             content: { LogbookDiveSiteSearchSheet(action: selectDiveSite) }
         )
         .onAppear(perform: onAppear)
-        .onChange(of: store.state.shouldDismiss, shouldDismissChanged)
-        .onChange(of: store.state.notesInitialized, notesInitializedChanged)
+        .onChange(of: store.state.shouldDismiss, onShouldDismissChange)
+        .onChange(of: store.state.notesInitialized, onNotesInitializedChange)
     }
 
     private var saveButton: some View {
@@ -280,12 +278,12 @@ struct LogbookDetailView: View {
         store.send(.load(id))
     }
 
-    private func shouldDismissChanged() {
+    private func onShouldDismissChange() {
         guard store.state.shouldDismiss else { return }
         dismiss()
     }
 
-    private func notesInitializedChanged() {
+    private func onNotesInitializedChange() {
         guard store.state.notesInitialized else { return }
         notes = store.state.notes
     }

@@ -14,15 +14,16 @@ public struct MainView: View {
         reducer: MainReducer(),
         state: MainReducer.State()
     )
+    @State private var mainTab: NavigationState.MainTab = .home
 
     public init() {}
 
     public var body: some View {
         switch store.state.isLoaded {
         case true:
-            MainTabView(
-                mainTab: navigationStore.binding(\.mainTab, send: { .setMainTab($0) })
-            )
+            MainTabView(mainTab: $mainTab)
+                .onChange(of: mainTab, onMainTabChange)
+                .onChange(of: navigationStore.state.mainTab, onNavigationStoreMainTabChange)
         case false:
             SplashView()
                 .onAppear(perform: onAppear)
@@ -31,6 +32,20 @@ public struct MainView: View {
 
     private func onAppear() {
         store.send(.load)
+    }
+
+    private func onMainTabChange() {
+        /// Fixes the "Update NavigationAuthority bound path tried to update multiple times per
+        /// frame" warning
+        Task { @MainActor in
+            try await Task.sleep(nanoseconds: NSEC_PER_SEC / 60)
+            navigationStore.send(.setMainTab(mainTab))
+        }
+    }
+
+    private func onNavigationStoreMainTabChange() {
+        guard mainTab != navigationStore.state.mainTab else { return }
+        mainTab = navigationStore.state.mainTab
     }
 }
 

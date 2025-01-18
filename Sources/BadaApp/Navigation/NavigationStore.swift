@@ -40,7 +40,6 @@ struct NavigationReducer: Reducer {
     func reduce(state: inout State, action: Action) -> AnyEffect<Action> {
         switch action {
         case let .setMainTab(mainTab):
-            // FIXME: Update NavigationAuthority bound path tried to update multiple times per frame.
             state.mainTab = mainTab
             return .none
         case let .setHomePaths(paths):
@@ -75,7 +74,7 @@ struct NavigationReducer: Reducer {
             case .root:
                 state.logbookPaths = []
                 return .none
-            case let .detail(id):
+            case let .logDetail(id):
                 state.logbookPaths = [.logDetail(id: id)]
                 return .none
             }
@@ -95,7 +94,7 @@ extension NavigationReducer.Action {
 
     enum Logbook {
         case root
-        case detail(id: DiveLogID)
+        case logDetail(id: DiveLogID)
     }
 }
 
