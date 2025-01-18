@@ -227,13 +227,11 @@ struct LogbookDetailView: View {
             ToolbarItem(placement: .confirmationAction) {
                 saveButton
             }
-            ToolbarItem(placement: .keyboard) {
-                HStack(spacing: 0) {
-                    previousFieldButton
-                    nextFieldButton
-                    Spacer()
-                    doneButton
-                }
+            ToolbarItemGroup(placement: .keyboard) {
+                previousFieldButton
+                nextFieldButton
+                Spacer()
+                doneButton
             }
         }
         .sheet(

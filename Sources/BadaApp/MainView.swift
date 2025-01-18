@@ -21,7 +21,10 @@ public struct MainView: View {
         switch store.state.isLoaded {
         case true:
             MainTabView(
-                mainTab: navigationStore.binding(\.mainTab, send: { .setMainTab($0) })
+                mainTab: navigationStore.binding(
+                    \.mainTab,
+                     send: { .setMainTab($0) }
+                )
             )
         case false:
             SplashView()

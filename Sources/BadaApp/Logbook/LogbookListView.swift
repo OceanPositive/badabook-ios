@@ -75,6 +75,6 @@ struct LogbookListView: View {
     }
 
     private func tapRowItem(_ item: LogbookListRowItem) {
-        navigationStore.send(.logbook(.detail(id: item.id)))
+        navigationStore.send(.logbook(.logDetail(id: item.id)))
     }
 }
