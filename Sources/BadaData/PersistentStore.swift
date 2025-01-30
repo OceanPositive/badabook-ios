@@ -39,10 +39,14 @@ extension PersistentStore {
         do {
             let container = try ModelContainer(
                 for: DiveLogEntity.self,
+                CertificationEntity.self,
                 migrationPlan: PersistentStoreMigrationPlan.self,
                 configurations: ModelConfiguration(
                     "com.enuf.badabook.badadata.main",
-                    schema: Schema([DiveLogEntity.self]),
+                    schema: Schema([
+                        DiveLogEntity.self,
+                        CertificationEntity.self,
+                    ]),
                     isStoredInMemoryOnly: false,
                     allowsSave: true,
                     groupContainer: ModelConfiguration.GroupContainer.identifier("group.com.enuf.badabook.badadata.main"),
@@ -65,10 +69,14 @@ extension PersistentStore {
         do {
             let container = try ModelContainer(
                 for: DiveLogEntity.self,
+                CertificationEntity.self,
                 migrationPlan: PersistentStoreMigrationPlan.self,
                 configurations: ModelConfiguration(
                     "com.enuf.badabook.badadata.main-test",
-                    schema: Schema([DiveLogEntity.self]),
+                    schema: Schema([
+                        DiveLogEntity.self,
+                        CertificationEntity.self,
+                    ]),
                     isStoredInMemoryOnly: true,
                     allowsSave: true,
                     groupContainer: .none,
@@ -99,7 +107,10 @@ enum PersistentStoreMigrationPlan: SchemaMigrationPlan {
 
 enum PersistentStoreSchemaV1: VersionedSchema {
     static var models: [any PersistentModel.Type] {
-        [DiveLogEntity.self]
+        [
+            DiveLogEntity.self,
+            CertificationEntity.self,
+        ]
     }
 
     static var versionIdentifier: Schema.Version {

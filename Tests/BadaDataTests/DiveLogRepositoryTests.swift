@@ -59,6 +59,8 @@ struct DiveLogRepositoryTests {
             if let diveLog = diveLogs.first(where: { $0.logNumber == request.logNumber }) {
                 #expect(diveLog.logDate == request.logDate)
                 #expect(diveLog.notes == nil)
+            } else {
+                Issue.record("No diveLog found.")
             }
         case let .failure(error):
             Issue.record(error)
@@ -107,6 +109,8 @@ struct DiveLogRepositoryTests {
                 #expect(diveLog.logDate == Date(timeIntervalSince1970: 12))
                 #expect(diveLog.notes == nil)
                 mock = diveLog
+            } else {
+                Issue.record("No diveLog found.")
             }
         case let .failure(error):
             Issue.record(error)
@@ -156,6 +160,8 @@ struct DiveLogRepositoryTests {
             if let diveLog = diveLogs.first(where: { $0.logNumber == insertRequest.logNumber }) {
                 #expect(diveLog.logDate == Date(timeIntervalSince1970: 13))
                 #expect(diveLog.notes == "notes")
+            } else {
+                Issue.record("No diveLog found.")
             }
         case let .failure(error):
             Issue.record(error)
@@ -204,6 +210,8 @@ struct DiveLogRepositoryTests {
                 #expect(diveLog.logDate == Date(timeIntervalSince1970: 12))
                 #expect(diveLog.notes == "notes")
                 mock = diveLog
+            } else {
+                Issue.record("No diveLog found.")
             }
         case let .failure(error):
             Issue.record(error)
