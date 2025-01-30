@@ -54,7 +54,7 @@ struct DiveLogRepositoryTests {
             Issue.record(error)
         }
 
-        switch await sut.diveLogs() {
+        switch await sut.fetchAll() {
         case let .success(diveLogs):
             if let diveLog = diveLogs.first(where: { $0.logNumber == request.logNumber }) {
                 #expect(diveLog.logDate == request.logDate)
@@ -103,7 +103,7 @@ struct DiveLogRepositoryTests {
         }
 
         var mock: DiveLog?
-        switch await sut.diveLogs() {
+        switch await sut.fetchAll() {
         case let .success(diveLogs):
             if let diveLog = diveLogs.first(where: { $0.logNumber == insertRequest.logNumber }) {
                 #expect(diveLog.logDate == Date(timeIntervalSince1970: 12))
@@ -155,7 +155,7 @@ struct DiveLogRepositoryTests {
             Issue.record(error)
         }
 
-        switch await sut.diveLogs() {
+        switch await sut.fetchAll() {
         case let .success(diveLogs):
             if let diveLog = diveLogs.first(where: { $0.logNumber == insertRequest.logNumber }) {
                 #expect(diveLog.logDate == Date(timeIntervalSince1970: 13))
@@ -204,7 +204,7 @@ struct DiveLogRepositoryTests {
         }
 
         var mock: DiveLog?
-        switch await sut.diveLogs() {
+        switch await sut.fetchAll() {
         case let .success(diveLogs):
             if let diveLog = diveLogs.first(where: { $0.logNumber == insertRequest.logNumber }) {
                 #expect(diveLog.logDate == Date(timeIntervalSince1970: 12))
@@ -221,7 +221,7 @@ struct DiveLogRepositoryTests {
             return
         }
 
-        switch await sut.diveLog(identifier: mock.identifier) {
+        switch await sut.fetch(by: mock.identifier) {
         case let .success(diveLog):
             #expect(diveLog.logNumber == insertRequest.logNumber)
             #expect(diveLog.logDate == insertRequest.logDate)
