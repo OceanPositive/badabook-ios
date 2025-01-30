@@ -11,6 +11,8 @@ import BadaCore
 package protocol CertificationRepositoryType {
     func insert(request: CertificationInsertRequest) -> Result<Void, CertificationRepositoryError>
     func fetchAll() -> Result<[Certification], CertificationRepositoryError>
+    func fetch(by identifier: CertificationID) -> Result<Certification, CertificationRepositoryError>
+    func update(request: CertificationUpdateRequest) -> Result<Void, CertificationRepositoryError>
 }
 
 package enum CertificationRepositoryError: Error {

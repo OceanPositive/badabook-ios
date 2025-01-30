@@ -144,7 +144,7 @@ struct CertificationRepositoryTests {
             return
         }
 
-        switch await sut.fetch(identifier: mock.identifier) {
+        switch await sut.fetch(by: mock.identifier) {
         case let .success(certification):
             #expect(certification.agency == insertRequest.agency)
             #expect(certification.level == insertRequest.level)

@@ -27,6 +27,33 @@ package struct DiveLogRepository: DiveLogRepositoryType {
         }
     }
 
+    package func fetchAll() -> Result<[DiveLog], DiveLogRepositoryError> {
+        let descriptor = FetchDescriptor<DiveLogEntity>()
+        do {
+            let diveLogs = try context.fetch(descriptor)
+            return .success(diveLogs.map(\.domain))
+        } catch {
+            return .failure(.fetchFailed(error.localizedDescription))
+        }
+    }
+
+    package func fetch(by identifier: DiveLogID) -> Result<DiveLog, DiveLogRepositoryError> {
+        var descriptor = FetchDescriptor<DiveLogEntity>()
+        descriptor.predicate = #Predicate { diveLog in
+            diveLog.identifier == identifier
+        }
+        do {
+            let diveLogs = try context.fetch(descriptor)
+            if let diveLog = diveLogs.first {
+                return .success(diveLog.domain)
+            } else {
+                return .failure(.noResult)
+            }
+        } catch {
+            return .failure(.fetchFailed(error.localizedDescription))
+        }
+    }
+
     package func update(request: DiveLogUpdateRequest) -> Result<Void, DiveLogRepositoryError> {
         var descriptor = FetchDescriptor<DiveLogEntity>()
         let identifier = request.identifier
@@ -44,33 +71,6 @@ package struct DiveLogRepository: DiveLogRepositoryType {
             }
         } catch {
             return .failure(.updateFailed(error.localizedDescription))
-        }
-    }
-
-    package func diveLogs() -> Result<[DiveLog], DiveLogRepositoryError> {
-        let descriptor = FetchDescriptor<DiveLogEntity>()
-        do {
-            let diveLogs = try context.fetch(descriptor)
-            return .success(diveLogs.map(\.domain))
-        } catch {
-            return .failure(.fetchFailed(error.localizedDescription))
-        }
-    }
-
-    package func diveLog(identifier: DiveLogID) -> Result<DiveLog, DiveLogRepositoryError> {
-        var descriptor = FetchDescriptor<DiveLogEntity>()
-        descriptor.predicate = #Predicate { diveLog in
-            diveLog.identifier == identifier
-        }
-        do {
-            let diveLogs = try context.fetch(descriptor)
-            if let diveLog = diveLogs.first {
-                return .success(diveLog.domain)
-            } else {
-                return .failure(.noResult)
-            }
-        } catch {
-            return .failure(.fetchFailed(error.localizedDescription))
         }
     }
 }

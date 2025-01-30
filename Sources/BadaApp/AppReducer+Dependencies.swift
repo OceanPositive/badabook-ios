@@ -13,13 +13,13 @@ extension AppReducer {
         register {
             GetDiveLogsUseCase {
                 let repository = await DiveLogRepository(persistentStore: .main)
-                return await repository.diveLogs()
+                return await repository.fetchAll()
             }
         }
         register {
             GetDiveLogUseCase { identifier in
                 let repository = await DiveLogRepository(persistentStore: .main)
-                return await repository.diveLog(identifier: identifier)
+                return await repository.fetch(by: identifier)
             }
         }
         register {
