@@ -28,7 +28,7 @@ struct HomeView: View {
                     }
                     VStack(spacing: 16) {
                         InfoRow(
-                            title: "License",
+                            title: "Certification",
                             value: "Open water"
                         )
                         Divider()
