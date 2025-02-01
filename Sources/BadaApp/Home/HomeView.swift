@@ -22,10 +22,12 @@ struct HomeView: View {
                 send: { .setHomePaths($0) })
         ) {
             ScrollView(.vertical) {
-                VStack(spacing: 16) {
+                VStack(spacing: 0) {
                     SectionHeader(title: "Profile") {
                         navigationStore.send(.home(.profile))
                     }
+                    Spacer()
+                        .frame(height: 16)
                     VStack(spacing: 16) {
                         InfoRow(
                             title: "Certification",
@@ -40,9 +42,13 @@ struct HomeView: View {
                     .padding(16)
                     .background(.background.quaternary)
                     .clipShape(.rect(cornerRadius: 8))
+                    Spacer()
+                        .frame(height: 24)
                     SectionHeader(title: "Summary") {
                         navigationStore.send(.logbook(.root))
                     }
+                    Spacer()
+                        .frame(height: 16)
                     VStack(spacing: 16) {
                         InfoRow(
                             title: "Logs",

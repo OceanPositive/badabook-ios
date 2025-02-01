@@ -6,6 +6,7 @@
 //
 
 import BadaCore
+import BadaDomain
 import BadaUI
 
 struct ProfileView: View {
@@ -16,7 +17,35 @@ struct ProfileView: View {
 
     var body: some View {
         Form {
-
+            Section {
+                LabeledTextField(
+                    value: store.binding(\.firstName, send: { .setFirstName($0) }),
+                    prompt: "Not Set",
+                    label: "First Name",
+                    keyboardType: .default
+                )
+                LabeledTextField(
+                    value: store.binding(\.lastName, send: { .setLastName($0) }),
+                    prompt: "Not Set",
+                    label: "Last Name",
+                    keyboardType: .default
+                )
+                DatePicker(
+                    "Date of Birth",
+                    selection: store.binding(\.dateOfBirth, send: { .setDateOfBirth($0) }),
+                    displayedComponents: .date
+                )
+            }
+            Section(header: Text("Certifications")) {
+                ForEach(store.state.certifications, id: \.identifier) { certification in
+                    CertificationRow(certification: certification)
+                }
+                Button(
+                    "New Certification",
+                    systemImage: SystemImage.plus.rawValue,
+                    action: addCertification
+                )
+            }
         }
         #if os(macOS)
             .padding()
@@ -34,7 +63,7 @@ struct ProfileView: View {
     }
 
     private var saveButton: some View {
-        Button(action: tapSaveButton) {
+        Button(action: save) {
             Text("Save")
         }
     }
@@ -43,8 +72,77 @@ struct ProfileView: View {
         store.send(.load)
     }
 
-    private func tapSaveButton() {
+    private func save() {
         store.send(.save)
+    }
+
+    private func addCertification() {
+
+    }
+}
+
+extension ProfileView {
+    private struct CertificationRow: View {
+        var certification: Certification
+
+        var body: some View {
+            VStack(alignment: .trailing, spacing: 0) {
+                HStack(spacing: 8) {
+                    Circle()
+                        .frame(width: 24, height: 24)
+                    Text(agencyText(certification.agency))
+                        .font(.body)
+                        .foregroundStyle(.primary)
+                    Spacer()
+                }
+                Spacer()
+                    .frame(height: 16)
+                Text(levelText(certification.level))
+                    .font(.body)
+                    .foregroundStyle(.primary)
+                Spacer()
+                    .frame(height: 8)
+                Text(certification.date.formatted(date: .long, time: .omitted))
+                    .font(.footnote)
+                    .foregroundStyle(.secondary)
+            }
+        }
+
+        private func agencyText(_ agency: CertificationAgency) -> String {
+            switch agency {
+            case .padi:
+                "PADI"
+            case .naui:
+                "NAUI"
+            case .scubapro:
+                "SCUBA PRO"
+            case .sdi:
+                "SDI"
+            case .tdi:
+                "TDI"
+            case .ssi:
+                "SSI"
+            case let .other(name):
+                name
+            }
+        }
+
+        private func levelText(_ level: CertificationLevel) -> String {
+            switch level {
+            case .openWater:
+                "Open water"
+            case .advancedOpenWater:
+                "Advanced open water"
+            case .rescueDiver:
+                "Rescue diver"
+            case .diveMaster:
+                "Dive master"
+            case .instructor:
+                "Instructor"
+            case .instructorTrainer:
+                "Instructor trainer"
+            }
+        }
     }
 }
 
