@@ -242,34 +242,44 @@ struct LogbookAddSheet: View {
     }
 
     private var saveButton: some View {
-        Button(action: tapSaveButton) {
+        Button {
+            store.send(.save)
+        } label: {
             Text("Save")
         }
         .disabled(store.state.saveButtonDisabled)
     }
 
     private var cancelButton: some View {
-        Button(action: tapCancelButton) {
+        Button {
+            store.send(.setShouldDismiss(true))
+        } label: {
             Text("Cancel")
         }
     }
 
     private var doneButton: some View {
-        Button(action: tapDoneButton) {
+        Button {
+            focusedField = nil
+        } label: {
             Text("Done")
                 .fontWeight(.medium)
         }
     }
 
     private var previousFieldButton: some View {
-        Button(action: tapPreviousFieldButton) {
+        Button {
+            focusedField = focusedField?.previous
+        } label: {
             Image(systemImage: .chevronUp)
         }
         .disabled(focusedField?.previous == nil)
     }
 
     private var nextFieldButton: some View {
-        Button(action: tapNextFieldButton) {
+        Button {
+            focusedField = focusedField?.next
+        } label: {
             Image(systemImage: .chevronDown)
         }
         .disabled(focusedField?.next == nil)
@@ -280,28 +290,8 @@ struct LogbookAddSheet: View {
         dismiss()
     }
 
-    private func tapSaveButton() {
-        store.send(.save)
-    }
-
-    private func tapCancelButton() {
-        store.send(.setShouldDismiss(true))
-    }
-
     private func selectDiveSite(_ searchResult: LocalSearchResult) {
         store.send(.setDiveSite(searchResult))
-    }
-
-    private func tapDoneButton() {
-        focusedField = nil
-    }
-
-    private func tapNextFieldButton() {
-        focusedField = focusedField?.next
-    }
-
-    private func tapPreviousFieldButton() {
-        focusedField = focusedField?.previous
     }
 }
 

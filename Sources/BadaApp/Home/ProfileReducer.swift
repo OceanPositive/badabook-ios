@@ -12,16 +12,16 @@ struct ProfileReducer: Reducer {
     enum Action: Sendable {
         case load
         case save
-        case setFirstName(String)
-        case setLastName(String)
+        case setName(String)
         case setDateOfBirth(Date)
+        case setIsCertificationAddSheetPresenting(Bool)
     }
 
     struct State: Sendable, Equatable {
-        var firstName: String = ""
-        var lastName: String = ""
+        var name: String = ""
         var dateOfBirth: Date = Date(timeIntervalSince1970: 0)
         var certifications: [Certification] = []
+        var isCertificationAddSheetPresenting: Bool = false
     }
 
     func reduce(state: inout State, action: Action) -> AnyEffect<Action> {
@@ -30,14 +30,14 @@ struct ProfileReducer: Reducer {
             return .none
         case .save:
             return .none
-        case let .setFirstName(firstName):
-            state.firstName = firstName
-            return .none
-        case let .setLastName(lastName):
-            state.lastName = lastName
+        case let .setName(name):
+            state.name = name
             return .none
         case let .setDateOfBirth(dateOfBirth):
             state.dateOfBirth = dateOfBirth
+            return .none
+        case let .setIsCertificationAddSheetPresenting(isCertificationAddSheetPresenting):
+            state.isCertificationAddSheetPresenting = isCertificationAddSheetPresenting
             return .none
         }
     }

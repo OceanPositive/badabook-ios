@@ -21,7 +21,9 @@ struct LogbookDiveSiteSearchSheet: View {
     var body: some View {
         NavigationStack {
             List(Array(store.state.searchCompletions.enumerated()), id: \.offset) { index, searchCompletion in
-                Button(action: { tapItem(searchCompletion) }) {
+                Button {
+                    store.send(.search(for: searchCompletion))
+                } label: {
                     VStack(alignment: .leading) {
                         Text(searchCompletion.title)
                             .font(.headline)
@@ -60,7 +62,9 @@ struct LogbookDiveSiteSearchSheet: View {
     }
 
     private var cancelButton: some View {
-        Button(action: tapCancelButton) {
+        Button {
+            dismiss()
+        } label: {
             Text("Cancel")
         }
     }
@@ -68,14 +72,6 @@ struct LogbookDiveSiteSearchSheet: View {
     private func onSearchResultChange() {
         guard let searchResult = store.state.searchResult else { return }
         action(searchResult)
-        dismiss()
-    }
-
-    private func tapItem(_ item: LocalSearchCompletion) {
-        store.send(.search(for: item))
-    }
-
-    private func tapCancelButton() {
         dismiss()
     }
 }

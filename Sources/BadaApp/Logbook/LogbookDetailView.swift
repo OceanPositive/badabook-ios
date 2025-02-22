@@ -241,41 +241,45 @@ struct LogbookDetailView: View {
             ),
             content: { LogbookDiveSiteSearchSheet(action: selectDiveSite) }
         )
-        .onAppear(perform: onAppear)
+        .onAppear { store.send(.load(id)) }
         .onChange(of: store.state.shouldDismiss, onShouldDismissChange)
         .onChange(of: store.state.notesInitialized, onNotesInitializedChange)
     }
 
     private var saveButton: some View {
-        Button(action: tapSaveButton) {
+        Button {
+            store.send(.save)
+        } label: {
             Text("Save")
         }
         .disabled(store.state.saveButtonDisabled)
     }
 
     private var doneButton: some View {
-        Button(action: tapDoneButton) {
+        Button {
+            focusedField = nil
+        } label: {
             Text("Done")
                 .fontWeight(.medium)
         }
     }
 
     private var previousFieldButton: some View {
-        Button(action: tapPreviousFieldButton) {
+        Button {
+            focusedField = focusedField?.previous
+        } label: {
             Image(systemImage: .chevronUp)
         }
         .disabled(focusedField?.previous == nil)
     }
 
     private var nextFieldButton: some View {
-        Button(action: tapNextFieldButton) {
+        Button {
+            focusedField = focusedField?.next
+        } label: {
             Image(systemImage: .chevronDown)
         }
         .disabled(focusedField?.next == nil)
-    }
-
-    private func onAppear() {
-        store.send(.load(id))
     }
 
     private func onShouldDismissChange() {
@@ -288,24 +292,8 @@ struct LogbookDetailView: View {
         notes = store.state.notes
     }
 
-    private func tapSaveButton() {
-        store.send(.save)
-    }
-
     private func selectDiveSite(_ searchResult: LocalSearchResult) {
         store.send(.setDiveSiteSearchResult(searchResult))
-    }
-
-    private func tapDoneButton() {
-        focusedField = nil
-    }
-
-    private func tapNextFieldButton() {
-        focusedField = focusedField?.next
-    }
-
-    private func tapPreviousFieldButton() {
-        focusedField = focusedField?.previous
     }
 }
 

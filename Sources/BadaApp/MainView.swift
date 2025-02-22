@@ -26,12 +26,8 @@ public struct MainView: View {
                 .onChange(of: navigationStore.state.mainTab, onNavigationStoreMainTabChange)
         case false:
             SplashView()
-                .onAppear(perform: onAppear)
+                .onAppear { store.send(.load) }
         }
-    }
-
-    private func onAppear() {
-        store.send(.load)
     }
 
     private func onMainTabChange() {

@@ -84,12 +84,8 @@ struct HomeView: View {
                     ProfileView()
                 }
             }
-            .onAppear(perform: onAppear)
+            .onAppear { store.send(.load) }
         }
-    }
-
-    private func onAppear() {
-        store.send(.load)
     }
 }
 

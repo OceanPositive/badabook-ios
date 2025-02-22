@@ -19,15 +19,9 @@ struct ProfileView: View {
         Form {
             Section {
                 LabeledTextField(
-                    value: store.binding(\.firstName, send: { .setFirstName($0) }),
+                    value: store.binding(\.name, send: { .setName($0) }),
                     prompt: "Not Set",
-                    label: "First Name",
-                    keyboardType: .default
-                )
-                LabeledTextField(
-                    value: store.binding(\.lastName, send: { .setLastName($0) }),
-                    prompt: "Not Set",
-                    label: "Last Name",
+                    label: "Name",
                     keyboardType: .default
                 )
                 DatePicker(
@@ -42,9 +36,10 @@ struct ProfileView: View {
                 }
                 Button(
                     "New Certification",
-                    systemImage: SystemImage.plus.rawValue,
-                    action: addCertification
-                )
+                    systemImage: SystemImage.plus.rawValue
+                ) {
+                    store.send(.setIsCertificationAddSheetPresenting(true))
+                }
             }
         }
         #if os(macOS)
@@ -59,25 +54,19 @@ struct ProfileView: View {
                 saveButton
             }
         }
-        .onAppear(perform: onAppear)
+        .sheet(
+            isPresented: store.binding(\.isCertificationAddSheetPresenting, send: { .setIsCertificationAddSheetPresenting($0) }),
+            content: { CertificationAddSheet() }
+        )
+        .onAppear { store.send(.load) }
     }
 
     private var saveButton: some View {
-        Button(action: save) {
+        Button {
+            store.send(.save)
+        } label: {
             Text("Save")
         }
-    }
-
-    private func onAppear() {
-        store.send(.load)
-    }
-
-    private func save() {
-        store.send(.save)
-    }
-
-    private func addCertification() {
-
     }
 }
 

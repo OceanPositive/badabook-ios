@@ -23,7 +23,9 @@ struct LogbookListView: View {
         ) {
             List {
                 ForEach(store.state.items) { item in
-                    Button(action: { tapRowItem(item) }) {
+                    Button {
+                        navigationStore.send(.logbook(.logDetail(id: item.id)))
+                    } label: {
                         LogbookListRow(item: item)
                             .contentShape(Rectangle())
                     }
@@ -47,7 +49,7 @@ struct LogbookListView: View {
                 content: { LogbookAddSheet() }
             )
             .onChange(of: store.state.isAddSheetPresenting, onIsAddSheetPresentingChange)
-            .onAppear(perform: onAppear)
+            .onAppear { store.send(.load) }
         }
     }
 
@@ -56,7 +58,7 @@ struct LogbookListView: View {
             L10n.Logbook.add,
             systemImage: SystemImage.plus.rawValue
         ) {
-            tapAddButton()
+            store.send(.setIsAddSheetPresenting(true))
         }
     }
 
@@ -64,17 +66,5 @@ struct LogbookListView: View {
         if oldValue && !newValue {
             store.send(.load)
         }
-    }
-
-    private func onAppear() {
-        store.send(.load)
-    }
-
-    private func tapAddButton() {
-        store.send(.setIsAddSheetPresenting(true))
-    }
-
-    private func tapRowItem(_ item: LogbookListRowItem) {
-        navigationStore.send(.logbook(.logDetail(id: item.id)))
     }
 }
