@@ -20,7 +20,9 @@ package final class LocalSearchRepository: NSObject, LocalSearchRepositoryType {
     }
 
     @MainActor
-    package func search(text: String) async -> [LocalSearchCompletion] {
+    package func search(
+        text: String
+    ) async -> [LocalSearchCompletion] {
         guard !text.isEmpty else { return [] }
         return await withCheckedContinuation { continuation in
             searchContinuation = continuation
@@ -28,7 +30,9 @@ package final class LocalSearchRepository: NSObject, LocalSearchRepositoryType {
         }
     }
 
-    package func search(for searchCompletion: LocalSearchCompletion) async throws(LocalSearchRepositoryError) -> LocalSearchResult {
+    package func search(
+        for searchCompletion: LocalSearchCompletion
+    ) async throws(LocalSearchRepositoryError) -> LocalSearchResult {
         guard let searchCompletion = searchCompletion.rawValue else {
             throw LocalSearchRepositoryError.invalidSearchCompletion
         }
@@ -62,7 +66,9 @@ package final class LocalSearchRepository: NSObject, LocalSearchRepositoryType {
 }
 
 extension LocalSearchRepository: MKLocalSearchCompleterDelegate {
-    package func completerDidUpdateResults(_ completer: MKLocalSearchCompleter) {
+    package func completerDidUpdateResults(
+        _ completer: MKLocalSearchCompleter
+    ) {
         let searchResults = completer.results.map { result in
             LocalSearchCompletion(
                 title: result.title,
@@ -74,7 +80,10 @@ extension LocalSearchRepository: MKLocalSearchCompleterDelegate {
         searchContinuation = nil
     }
 
-    package func completer(_ completer: MKLocalSearchCompleter, didFailWithError error: any Error) {
+    package func completer(
+        _ completer: MKLocalSearchCompleter,
+        didFailWithError error: any Error
+    ) {
         searchContinuation?.resume(returning: [])
         searchContinuation = nil
     }

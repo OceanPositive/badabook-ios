@@ -49,6 +49,50 @@ struct CertificationRepositoryTests {
     }
 
     @Test
+    func fetch() async {
+        let insertRequest = CertificationInsertRequest(
+            agency: .padi,
+            level: .openWater,
+            number: "\(#line)",
+            date: Date(timeIntervalSince1970: 12)
+        )
+        switch await sut.insert(request: insertRequest) {
+        case .success:
+            break
+        case let .failure(error):
+            Issue.record(error)
+        }
+
+        var mock: Certification?
+        switch await sut.fetchAll() {
+        case let .success(certifications):
+            if let certification = certifications.first(where: { $0.number == insertRequest.number }) {
+                #expect(certification.agency == insertRequest.agency)
+                #expect(certification.level == insertRequest.level)
+                #expect(certification.date == insertRequest.date)
+                mock = certification
+            } else {
+                Issue.record("No certification found.")
+            }
+        case let .failure(error):
+            Issue.record(error)
+        }
+        guard let mock else {
+            Issue.record("No certification found.")
+            return
+        }
+
+        switch await sut.fetch(for: mock.identifier) {
+        case let .success(certification):
+            #expect(certification.agency == insertRequest.agency)
+            #expect(certification.level == insertRequest.level)
+            #expect(certification.date == insertRequest.date)
+        case let .failure(error):
+            Issue.record(error)
+        }
+    }
+
+    @Test
     func update() async {
         let insertRequest = CertificationInsertRequest(
             agency: .padi,
@@ -111,46 +155,47 @@ struct CertificationRepositoryTests {
     }
 
     @Test
-    func fetch() async {
-        let insertRequest = CertificationInsertRequest(
+    func delete() async {
+        let request = CertificationInsertRequest(
             agency: .padi,
             level: .openWater,
             number: "\(#line)",
             date: Date(timeIntervalSince1970: 12)
         )
-        switch await sut.insert(request: insertRequest) {
+        switch await sut.insert(request: request) {
         case .success:
             break
         case let .failure(error):
             Issue.record(error)
         }
 
-        var mock: Certification?
+        let identifier: CertificationID?
         switch await sut.fetchAll() {
         case let .success(certifications):
-            if let certification = certifications.first(where: { $0.number == insertRequest.number }) {
-                #expect(certification.agency == insertRequest.agency)
-                #expect(certification.level == insertRequest.level)
-                #expect(certification.date == insertRequest.date)
-                mock = certification
+            if let certification = certifications.first(where: { $0.number == request.number }) {
+                identifier = certification.identifier
             } else {
                 Issue.record("No certification found.")
+                identifier = nil
             }
         case let .failure(error):
             Issue.record(error)
-        }
-        guard let mock else {
-            Issue.record("No certification found.")
-            return
+            identifier = nil
         }
 
-        switch await sut.fetch(by: mock.identifier) {
-        case let .success(certification):
-            #expect(certification.agency == insertRequest.agency)
-            #expect(certification.level == insertRequest.level)
-            #expect(certification.date == insertRequest.date)
+        guard let identifier else { return }
+        switch await sut.delete(for: identifier) {
+        case .success:
+            break
         case let .failure(error):
             Issue.record(error)
+        }
+
+        switch await sut.fetch(for: identifier) {
+        case let .success(certification):
+            Issue.record("Not deleted yet.")
+        case let .failure(error):
+            #expect(error == .noResult)
         }
     }
 }

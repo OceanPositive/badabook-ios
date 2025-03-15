@@ -15,7 +15,7 @@ package protocol DiveLogRepositoryType {
     func update(request: DiveLogUpdateRequest) -> Result<Void, DiveLogRepositoryError>
 }
 
-package enum DiveLogRepositoryError: Error {
+package enum DiveLogRepositoryError: Error, Equatable {
     case insertFailed(String)
     case fetchFailed(String)
     case updateFailed(String)
