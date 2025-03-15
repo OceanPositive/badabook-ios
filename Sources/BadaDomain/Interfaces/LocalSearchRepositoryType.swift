@@ -12,7 +12,7 @@ package protocol LocalSearchRepositoryType {
     func search(for result: LocalSearchCompletion) async throws(LocalSearchRepositoryError) -> LocalSearchResult
 }
 
-package enum LocalSearchRepositoryError: Error {
+package enum LocalSearchRepositoryError: Error, Equatable {
     case searchFailed(String)
     case searchCompletionNotFound
     case mapItemNotFound

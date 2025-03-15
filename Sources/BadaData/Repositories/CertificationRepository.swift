@@ -16,12 +16,14 @@ package struct CertificationRepository: CertificationRepositoryType {
         self.context = persistentStore.context
     }
 
-    package func insert(request: CertificationInsertRequest) -> Result<Void, CertificationRepositoryError> {
+    package func insert(
+        request: CertificationInsertRequest
+    ) -> Result<Void, CertificationRepositoryError> {
         let entity = CertificationEntity(insertRequest: request)
         context.insert(entity)
         do {
             try context.save()
-            return .success(())
+            return .success(Void())
         } catch {
             return .failure(.insertFailed(error.localizedDescription))
         }
@@ -37,7 +39,9 @@ package struct CertificationRepository: CertificationRepositoryType {
         }
     }
 
-    package func fetch(by identifier: CertificationID) -> Result<Certification, CertificationRepositoryError> {
+    package func fetch(
+        for identifier: CertificationID
+    ) -> Result<Certification, CertificationRepositoryError> {
         var descriptor = FetchDescriptor<CertificationEntity>()
         descriptor.predicate = #Predicate { certification in
             certification.identifier == identifier
@@ -54,7 +58,9 @@ package struct CertificationRepository: CertificationRepositoryType {
         }
     }
 
-    package func update(request: CertificationUpdateRequest) -> Result<Void, CertificationRepositoryError> {
+    package func update(
+        request: CertificationUpdateRequest
+    ) -> Result<Void, CertificationRepositoryError> {
         var descriptor = FetchDescriptor<CertificationEntity>()
         let identifier = request.identifier
         descriptor.predicate = #Predicate { certification in
@@ -65,10 +71,27 @@ package struct CertificationRepository: CertificationRepositoryType {
             if let certification = certifications.first {
                 certification.update(with: request)
                 try context.save()
-                return .success(())
+                return .success(Void())
             } else {
                 return .failure(.noResult)
             }
+        } catch {
+            return .failure(.updateFailed(error.localizedDescription))
+        }
+    }
+
+    package func delete(
+        for identifier: CertificationID
+    ) -> Result<Void, CertificationRepositoryError> {
+        do {
+            try context.delete(
+                model: CertificationEntity.self,
+                where: #Predicate { certification in
+                    certification.identifier == identifier
+                },
+                includeSubclasses: false
+            )
+            return .success(Void())
         } catch {
             return .failure(.updateFailed(error.localizedDescription))
         }

@@ -15,7 +15,7 @@ import BadaTesting
 struct LogbookAddReducerTests {
     init() {
         UseCaseContainer.instance.register {
-            PostDiveLogUseCase { _ in .success(()) }
+            PostDiveLogUseCase { _ in .success(Void()) }
         }
     }
 

@@ -16,12 +16,14 @@ package struct DiveLogRepository: DiveLogRepositoryType {
         self.context = persistentStore.context
     }
 
-    package func insert(request: DiveLogInsertRequest) -> Result<Void, DiveLogRepositoryError> {
+    package func insert(
+        request: DiveLogInsertRequest
+    ) -> Result<Void, DiveLogRepositoryError> {
         let entity = DiveLogEntity(insertRequest: request)
         context.insert(entity)
         do {
             try context.save()
-            return .success(())
+            return .success(Void())
         } catch {
             return .failure(.insertFailed(error.localizedDescription))
         }
@@ -37,7 +39,9 @@ package struct DiveLogRepository: DiveLogRepositoryType {
         }
     }
 
-    package func fetch(by identifier: DiveLogID) -> Result<DiveLog, DiveLogRepositoryError> {
+    package func fetch(
+        by identifier: DiveLogID
+    ) -> Result<DiveLog, DiveLogRepositoryError> {
         var descriptor = FetchDescriptor<DiveLogEntity>()
         descriptor.predicate = #Predicate { diveLog in
             diveLog.identifier == identifier
@@ -54,7 +58,9 @@ package struct DiveLogRepository: DiveLogRepositoryType {
         }
     }
 
-    package func update(request: DiveLogUpdateRequest) -> Result<Void, DiveLogRepositoryError> {
+    package func update(
+        request: DiveLogUpdateRequest
+    ) -> Result<Void, DiveLogRepositoryError> {
         var descriptor = FetchDescriptor<DiveLogEntity>()
         let identifier = request.identifier
         descriptor.predicate = #Predicate { diveLog in
@@ -65,7 +71,7 @@ package struct DiveLogRepository: DiveLogRepositoryType {
             if let diveLog = diveLogs.first {
                 diveLog.update(with: request)
                 try context.save()
-                return .success(())
+                return .success(Void())
             } else {
                 return .failure(.noResult)
             }
