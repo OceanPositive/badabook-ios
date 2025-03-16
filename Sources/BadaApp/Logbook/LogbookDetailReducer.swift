@@ -12,7 +12,7 @@ struct LogbookDetailReducer: Reducer {
     enum Action: Sendable {
         case load(DiveLogID)
         case save
-        case none
+        case dismiss
         case setDiveLog(DiveLog)
         case setLogNumber(Int?)
         case setLogDate(Date)
@@ -36,7 +36,7 @@ struct LogbookDetailReducer: Reducer {
         case setNotes(String)
         case setNotesInitialized
         case setIsDiveSiteSearchSheetPresenting(Bool)
-        case setShouldDismiss(Bool)
+        case none
     }
 
     struct State: Sendable, Equatable {
@@ -78,7 +78,8 @@ struct LogbookDetailReducer: Reducer {
             return .single { [state] in
                 await executePutDiveLogUseCase(state: state)
             }
-        case .none:
+        case .dismiss:
+            state.shouldDismiss = true
             return .none
         case let .setDiveLog(diveLog):
             state.origin = diveLog
@@ -204,8 +205,7 @@ struct LogbookDetailReducer: Reducer {
         case let .setIsDiveSiteSearchSheetPresenting(isDiveSiteSearchSheetPresenting):
             state.isDiveSiteSearchSheetPresenting = isDiveSiteSearchSheetPresenting
             return .none
-        case let .setShouldDismiss(shouldDismiss):
-            state.shouldDismiss = shouldDismiss
+        case .none:
             return .none
         }
     }
@@ -294,7 +294,7 @@ struct LogbookDetailReducer: Reducer {
         let result = await putDiveLogUseCase.execute(for: request)
         switch result {
         case .success:
-            return .setShouldDismiss(true)
+            return .dismiss
         case .failure:
             return .none
         }

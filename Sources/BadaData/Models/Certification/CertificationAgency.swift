@@ -15,7 +15,6 @@ enum CertificationAgency: Codable {
     case sdi
     case tdi
     case ssi
-    case other(name: String)
 }
 
 extension CertificationAgency: DomainConvertible {
@@ -33,8 +32,6 @@ extension CertificationAgency: DomainConvertible {
             return .tdi
         case .ssi:
             return .ssi
-        case let .other(name):
-            return .other(name: name)
         }
     }
 
@@ -52,8 +49,6 @@ extension CertificationAgency: DomainConvertible {
             self = .tdi
         case .ssi:
             self = .ssi
-        case let .other(name):
-            self = .other(name: name)
         }
     }
 }

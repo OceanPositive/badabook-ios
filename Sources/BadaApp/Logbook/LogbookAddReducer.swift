@@ -11,7 +11,7 @@ import BadaDomain
 struct LogbookAddReducer: Reducer {
     enum Action: Sendable {
         case save
-        case none
+        case dismiss
         case setLogNumber(Int?)
         case setLogDate(Date)
         case setDiveSite(LocalSearchResult)
@@ -32,7 +32,7 @@ struct LogbookAddReducer: Reducer {
         case setFeeling(Feeling)
         case setNotes(String)
         case setIsDiveSiteSearchSheetPresenting(Bool)
-        case setShouldDismiss(Bool)
+        case none
     }
 
     struct State: Sendable, Equatable {
@@ -67,7 +67,8 @@ struct LogbookAddReducer: Reducer {
             return .single { [state] in
                 await executePostDiveLogUseCase(state: state)
             }
-        case .none:
+        case .dismiss:
+            state.shouldDismiss = true
             return .none
         case let .setLogNumber(logNumber):
             state.logNumber = logNumber
@@ -184,8 +185,7 @@ struct LogbookAddReducer: Reducer {
         case let .setIsDiveSiteSearchSheetPresenting(isDiveSiteSearchSheetPresenting):
             state.isDiveSiteSearchSheetPresenting = isDiveSiteSearchSheetPresenting
             return .none
-        case let .setShouldDismiss(shouldDismiss):
-            state.shouldDismiss = shouldDismiss
+        case .none:
             return .none
         }
     }
@@ -221,7 +221,7 @@ struct LogbookAddReducer: Reducer {
         let result = await postDiveLogsUseCase.execute(for: request)
         switch result {
         case .success:
-            return .setShouldDismiss(true)
+            return .dismiss
         case .failure:
             return .none
         }
