@@ -34,11 +34,14 @@ struct ProfileView: View {
                 ForEach(store.state.certifications, id: \.identifier) { certification in
                     CertificationRow(certification: certification)
                 }
-                Button(
-                    "New Certification",
-                    systemImage: SystemImage.plus.rawValue
-                ) {
+                Button {
                     store.send(.setIsCertificationAddSheetPresenting(true))
+                } label: {
+                    HStack {
+                        Image(systemName: SystemImage.plus.rawValue)
+                        Text("New Certification")
+                    }
+                    .font(.body)
                 }
             }
         }
