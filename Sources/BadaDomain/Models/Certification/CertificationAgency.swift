@@ -20,5 +20,4 @@ package enum CertificationAgency: Equatable {
     case tdi
     /// Scuba Schools International.
     case ssi
-    case other(name: String)
 }

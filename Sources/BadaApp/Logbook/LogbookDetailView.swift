@@ -60,7 +60,8 @@ struct LogbookDetailView: View {
                     selection: store.binding(\.diveStyle, send: { .setDiveStyle($0) })
                 ) {
                     ForEach(DiveStyle.allCases, id: \.self) { diveStyle in
-                        Text(diveStyle.description).tag(diveStyle)
+                        Text(diveStyle.description)
+                            .tag(diveStyle)
                     }
                 }
             }

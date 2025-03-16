@@ -252,7 +252,7 @@ struct LogbookAddSheet: View {
 
     private var cancelButton: some View {
         Button {
-            store.send(.setShouldDismiss(true))
+            store.send(.dismiss)
         } label: {
             Text("Cancel")
         }

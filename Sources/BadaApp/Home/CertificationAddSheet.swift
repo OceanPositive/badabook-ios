@@ -18,8 +18,38 @@ struct CertificationAddSheet: View {
 
     var body: some View {
         NavigationStack {
-            VStack {
-                Text("CertificationAddSheet")
+            Form {
+                Section {
+                    Picker(
+                        "Agency",
+                        selection: store.binding(\.agency, send: { .setAgency($0) })
+                    ) {
+                        ForEach(CertificationAgency.allCases, id: \.self) { agency in
+                            Text(agency.description)
+                                .tag(agency)
+                        }
+                    }
+                    Picker(
+                        "Level",
+                        selection: store.binding(\.level, send: { .setLevel($0) })
+                    ) {
+                        ForEach(CertificationLevel.allCases, id: \.self) { level in
+                            Text(level.description)
+                                .tag(level)
+                        }
+                    }
+                    DatePicker(
+                        "Cert. Date",
+                        selection: store.binding(\.date, send: { .setDate($0) }),
+                        displayedComponents: .date
+                    )
+                    LabeledTextField(
+                        value: store.binding(\.number, send: { .setNumber($0) }),
+                        prompt: "",
+                        label: "Cert. No.",
+                        keyboardType: .default
+                    )
+                }
             }
             #if os(macOS)
                 .padding()
@@ -36,6 +66,7 @@ struct CertificationAddSheet: View {
                     cancelButton
                 }
             }
+            .onChange(of: store.state.shouldDismiss, onShouldDismissChange)
         }
     }
 
@@ -53,5 +84,10 @@ struct CertificationAddSheet: View {
         } label: {
             Text("Add")
         }
+    }
+
+    private func onShouldDismissChange() {
+        guard store.state.shouldDismiss else { return }
+        dismiss()
     }
 }

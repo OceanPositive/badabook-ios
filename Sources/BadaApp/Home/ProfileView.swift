@@ -111,8 +111,6 @@ extension ProfileView {
                 "TDI"
             case .ssi:
                 "SSI"
-            case let .other(name):
-                name
             }
         }
 
