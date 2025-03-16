@@ -46,6 +46,30 @@ extension AppReducer {
                 return try await repository.search(for: searchCompletion)
             }
         }
+        register {
+            GetCertificationsUseCase {
+                let repository = await CertificationRepository(persistentStore: .main)
+                return await repository.fetchAll()
+            }
+        }
+        register {
+            GetCertificationUseCase { identifier in
+                let repository = await CertificationRepository(persistentStore: .main)
+                return await repository.fetch(for: identifier)
+            }
+        }
+        register {
+            PostCertificationUseCase { request in
+                let repository = await CertificationRepository(persistentStore: .main)
+                return await repository.insert(request: request)
+            }
+        }
+        register {
+            PutCertificationUseCase { request in
+                let repository = await CertificationRepository(persistentStore: .main)
+                return await repository.update(request: request)
+            }
+        }
     }
 
     private func register<T: ExecutableUseCase>(
