@@ -70,6 +70,12 @@ extension AppReducer {
                 return await repository.update(request: request)
             }
         }
+        register {
+            DeleteCertificationUseCase { identifier in
+                let repository = await CertificationRepository(persistentStore: .main)
+                return await repository.delete(for: identifier)
+            }
+        }
     }
 
     private func register<T: ExecutableUseCase>(
