@@ -62,6 +62,7 @@ struct ProfileView: View {
             content: { CertificationAddSheet() }
         )
         .onAppear { store.send(.load) }
+        .onChange(of: store.state.isCertificationAddSheetPresenting, onIsCertificationAddSheetPresentingChange)
     }
 
     private var saveButton: some View {
@@ -70,6 +71,11 @@ struct ProfileView: View {
         } label: {
             Text("Save")
         }
+    }
+
+    private func onIsCertificationAddSheetPresentingChange(oldValue: Bool, newValue: Bool) {
+        guard !newValue else { return }
+        store.send(.load)
     }
 }
 

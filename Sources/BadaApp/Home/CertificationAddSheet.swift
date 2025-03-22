@@ -45,8 +45,8 @@ struct CertificationAddSheet: View {
                     )
                     LabeledTextField(
                         value: store.binding(\.number, send: { .setNumber($0) }),
-                        prompt: "",
-                        label: "Cert. No.",
+                        prompt: "Certification number",
+                        label: "No.",
                         keyboardType: .default
                     )
                 }
@@ -80,7 +80,7 @@ struct CertificationAddSheet: View {
 
     private var addButton: some View {
         Button {
-
+            store.send(.add)
         } label: {
             Text("Add")
         }

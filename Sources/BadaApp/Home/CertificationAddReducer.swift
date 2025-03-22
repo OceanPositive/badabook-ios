@@ -35,8 +35,11 @@ struct CertificationAddReducer: Reducer {
         case .load:
             return .none
         case .add:
-            return .single { [state] in
-                await executePostCertificationUseCase(state: state)
+            return .concat {
+                AnyEffect.single { [state] in
+                    await executePostCertificationUseCase(state: state)
+                }
+                AnyEffect.just(.dismiss)
             }
         case .dismiss:
             state.shouldDismiss = true
