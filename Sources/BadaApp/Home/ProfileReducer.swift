@@ -17,6 +17,7 @@ struct ProfileReducer: Reducer {
         case setDateOfBirth(Date)
         case setCertifications([Certification])
         case setIsCertificationAddSheetPresenting(Bool)
+        case setSheet(State.Sheet?)
         case none
     }
 
@@ -25,6 +26,12 @@ struct ProfileReducer: Reducer {
         var dateOfBirth: Date = Date(timeIntervalSince1970: 0)
         var certifications: [Certification] = []
         var isCertificationAddSheetPresenting: Bool = false
+        var sheet: Sheet?
+        enum Sheet: Identifiable, Hashable {
+            var id: Self { self }
+            case certificationAdd
+            case certificationEdit(identifier: CertificationID)
+        }
     }
 
     @UseCase private var getCertificationsUseCase: GetCertificationsUseCase
@@ -54,6 +61,9 @@ struct ProfileReducer: Reducer {
             return .none
         case let .setIsCertificationAddSheetPresenting(isCertificationAddSheetPresenting):
             state.isCertificationAddSheetPresenting = isCertificationAddSheetPresenting
+            return .none
+        case let .setSheet(sheet):
+            state.sheet = sheet
             return .none
         case .none:
             return .none

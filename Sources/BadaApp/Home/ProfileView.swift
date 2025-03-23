@@ -14,6 +14,7 @@ struct ProfileView: View {
         reducer: ProfileReducer(),
         state: ProfileReducer.State()
     )
+    private typealias State = ProfileReducer.State
 
     var body: some View {
         List {
@@ -35,7 +36,8 @@ struct ProfileView: View {
                     CertificationRow(certification: certification)
                         .contentShape(Rectangle())
                         .onTapGesture {
-                            tapCertificationAction(certification)
+                            let identifier = certification.identifier
+                            store.send(.setSheet(.certificationEdit(identifier: identifier)))
                         }
                         #if os(iOS)
                             .swipeActions(
@@ -51,7 +53,7 @@ struct ProfileView: View {
                         #endif
                 }
                 Button {
-                    store.send(.setIsCertificationAddSheetPresenting(true))
+                    store.send(.setSheet(.certificationAdd))
                 } label: {
                     HStack {
                         Image(systemName: SystemImage.plus.rawValue)
@@ -73,12 +75,16 @@ struct ProfileView: View {
                 saveButton
             }
         }
-        .sheet(
-            isPresented: store.binding(\.isCertificationAddSheetPresenting, send: { .setIsCertificationAddSheetPresenting($0) }),
-            content: { CertificationAddSheet() }
-        )
+        .sheet(item: store.binding(\.sheet, send: { .setSheet($0) })) { sheet in
+            switch sheet {
+            case .certificationAdd:
+                CertificationAddSheet()
+            case let .certificationEdit(identifier):
+                CertificationEditSheet(identifier: identifier)
+            }
+        }
         .onAppear { store.send(.load) }
-        .onChange(of: store.state.isCertificationAddSheetPresenting, onIsCertificationAddSheetPresentingChange)
+        .onChange(of: store.state.sheet, onSheetChange)
     }
 
     private var saveButton: some View {
@@ -89,13 +95,9 @@ struct ProfileView: View {
         }
     }
 
-    private func onIsCertificationAddSheetPresentingChange(oldValue: Bool, newValue: Bool) {
-        guard !newValue else { return }
+    private func onSheetChange(oldValue: State.Sheet?, newValue: State.Sheet?) {
+        guard oldValue != nil && newValue == nil else { return }
         store.send(.load)
-    }
-
-    private func tapCertificationAction(_ certification: Certification) {
-        // TODO: WIP
     }
 }
 
