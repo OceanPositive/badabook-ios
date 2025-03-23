@@ -16,7 +16,7 @@ struct ProfileView: View {
     )
 
     var body: some View {
-        Form {
+        List {
             Section {
                 LabeledTextField(
                     value: store.binding(\.name, send: { .setName($0) }),
@@ -33,6 +33,22 @@ struct ProfileView: View {
             Section(header: Text("Certifications")) {
                 ForEach(store.state.certifications, id: \.identifier) { certification in
                     CertificationRow(certification: certification)
+                        .contentShape(Rectangle())
+                        .onTapGesture {
+                            tapCertificationAction(certification)
+                        }
+                        #if os(iOS)
+                            .swipeActions(
+                                edge: .trailing,
+                                allowsFullSwipe: false
+                            ) {
+                                Button(role: .destructive) {
+                                    store.send(.delete(certification))
+                                } label: {
+                                    Image(systemImage: .trash)
+                                }
+                            }
+                        #endif
                 }
                 Button {
                     store.send(.setIsCertificationAddSheetPresenting(true))
@@ -77,11 +93,15 @@ struct ProfileView: View {
         guard !newValue else { return }
         store.send(.load)
     }
+
+    private func tapCertificationAction(_ certification: Certification) {
+        // TODO: WIP
+    }
 }
 
 extension ProfileView {
     private struct CertificationRow: View {
-        var certification: Certification
+        let certification: Certification
 
         var body: some View {
             VStack(alignment: .trailing, spacing: 0) {

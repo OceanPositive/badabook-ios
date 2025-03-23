@@ -12,10 +12,12 @@ struct ProfileReducer: Reducer {
     enum Action: Sendable {
         case load
         case save
+        case delete(Certification)
         case setName(String)
         case setDateOfBirth(Date)
         case setCertifications([Certification])
         case setIsCertificationAddSheetPresenting(Bool)
+        case none
     }
 
     struct State: Sendable, Equatable {
@@ -26,6 +28,7 @@ struct ProfileReducer: Reducer {
     }
 
     @UseCase private var getCertificationsUseCase: GetCertificationsUseCase
+    @UseCase private var deleteCertificationUseCase: DeleteCertificationUseCase
 
     func reduce(state: inout State, action: Action) -> AnyEffect<Action> {
         switch action {
@@ -33,6 +36,13 @@ struct ProfileReducer: Reducer {
             return .single { await executeGetCertificationsUseCase() }
         case .save:
             return .none
+        case let .delete(certification):
+            return .single { [state] in
+                await executeDeleteCertificationUseCase(
+                    state: state,
+                    with: certification.identifier
+                )
+            }
         case let .setName(name):
             state.name = name
             return .none
@@ -45,6 +55,8 @@ struct ProfileReducer: Reducer {
         case let .setIsCertificationAddSheetPresenting(isCertificationAddSheetPresenting):
             state.isCertificationAddSheetPresenting = isCertificationAddSheetPresenting
             return .none
+        case .none:
+            return .none
         }
     }
 
@@ -56,6 +68,22 @@ struct ProfileReducer: Reducer {
             return .setCertifications(sorted)
         case .failure:
             return .setCertifications([])
+        }
+    }
+
+    private func executeDeleteCertificationUseCase(
+        state: State,
+        with identifier: CertificationID
+    ) async -> Action {
+        let result = await deleteCertificationUseCase.execute(id: identifier)
+        switch result {
+        case .success:
+            let certifications = state.certifications
+                .filter { $0.identifier != identifier }
+                .sorted(by: { $0.date > $1.date })
+            return .setCertifications(certifications)
+        case .failure:
+            return .load
         }
     }
 }

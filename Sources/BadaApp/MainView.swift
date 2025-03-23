@@ -46,7 +46,7 @@ public struct MainView: View {
 }
 
 private struct MainTabView: View {
-    var mainTab: Binding<NavigationState.MainTab>
+    let mainTab: Binding<NavigationState.MainTab>
 
     var body: some View {
         TabView(selection: mainTab) {

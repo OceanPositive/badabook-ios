@@ -26,6 +26,7 @@ package enum SystemImage: String {
     case cloudRain = "cloud.rain"
     case cloudSnow = "cloud.snow"
     case location = "location"
+    case trash = "trash"
 }
 
 extension Image {
