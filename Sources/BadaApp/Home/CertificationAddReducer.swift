@@ -10,7 +10,6 @@ import BadaDomain
 
 struct CertificationAddReducer: Reducer {
     enum Action: Sendable {
-        case load
         case add
         case dismiss
         case setAgency(CertificationAgency)
@@ -32,8 +31,6 @@ struct CertificationAddReducer: Reducer {
 
     func reduce(state: inout State, action: Action) -> AnyEffect<Action> {
         switch action {
-        case .load:
-            return .none
         case .add:
             return .concat {
                 AnyEffect.single { [state] in
