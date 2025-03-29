@@ -63,26 +63,27 @@ struct CertificationRepositoryTests {
             Issue.record(error)
         }
 
-        var mock: Certification?
+        var spy: Certification?
         switch await sut.fetchAll() {
         case let .success(certifications):
             if let certification = certifications.first(where: { $0.number == insertRequest.number }) {
                 #expect(certification.agency == insertRequest.agency)
                 #expect(certification.level == insertRequest.level)
                 #expect(certification.date == insertRequest.date)
-                mock = certification
+                spy = certification
             } else {
                 Issue.record("No certification found.")
             }
         case let .failure(error):
             Issue.record(error)
         }
-        guard let mock else {
+
+        guard let spy else {
             Issue.record("No certification found.")
             return
         }
 
-        switch await sut.fetch(for: mock.identifier) {
+        switch await sut.fetch(for: spy.identifier) {
         case let .success(certification):
             #expect(certification.agency == insertRequest.agency)
             #expect(certification.level == insertRequest.level)
@@ -107,27 +108,28 @@ struct CertificationRepositoryTests {
             Issue.record(error)
         }
 
-        var mock: Certification?
+        var spy: Certification?
         switch await sut.fetchAll() {
         case let .success(certifications):
             if let certification = certifications.first(where: { $0.number == insertRequest.number }) {
                 #expect(certification.agency == insertRequest.agency)
                 #expect(certification.level == insertRequest.level)
                 #expect(certification.date == insertRequest.date)
-                mock = certification
+                spy = certification
             } else {
                 Issue.record("No certification found.")
             }
         case let .failure(error):
             Issue.record(error)
         }
-        guard let mock else {
+
+        guard let spy else {
             Issue.record("No certification found.")
             return
         }
 
         let updateRequest = CertificationUpdateRequest(
-            identifier: mock.identifier,
+            identifier: spy.identifier,
             agency: .scubapro,
             level: .advancedOpenWater,
             number: "\(#line)",
