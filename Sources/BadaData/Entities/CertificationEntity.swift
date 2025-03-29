@@ -40,7 +40,8 @@ extension CertificationEntity: DomainConvertible {
             agency: agency.domain,
             level: level.domain,
             number: number,
-            date: date)
+            date: date
+        )
     }
 
     convenience init(domain: BadaDomain.Certification) {
@@ -65,10 +66,10 @@ extension CertificationEntity {
         )
     }
 
-    func update(with request: CertificationUpdateRequest) {
-        agency = CertificationAgency(domain: request.agency)
-        level = CertificationLevel(domain: request.level)
-        number = request.number
-        date = request.date
+    func update(with updateRequest: CertificationUpdateRequest) {
+        agency = CertificationAgency(domain: updateRequest.agency)
+        level = CertificationLevel(domain: updateRequest.level)
+        number = updateRequest.number
+        date = updateRequest.date
     }
 }

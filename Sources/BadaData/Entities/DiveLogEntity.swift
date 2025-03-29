@@ -198,32 +198,32 @@ extension DiveLogEntity {
         )
     }
 
-    func update(with request: DiveLogUpdateRequest) {
-        logNumber = request.logNumber
-        logDate = request.logDate
-        diveSite = request.diveSite.map { DiveSite(domain: $0) }
-        diveCenter = request.diveCenter
-        diveStyle = request.diveStyle.map { DiveStyle(domain: $0) }
-        entryTime = request.entryTime
-        exitTime = request.exitTime
-        surfaceInterval = request.surfaceInterval
-        entryAir = request.entryAir
-        exitAir = request.exitAir
-        gasType = request.gasType.map { DiveGasType(domain: $0) }
-        equipment = request.equipment.map { Equipment(domain: $0) }
-        maximumDepth = request.maximumDepth
-        averageDepth = request.averageDepth
-        airTemperature = request.airTemperature
-        surfaceTemperature = request.surfaceTemperature
-        bottomTemperature = request.bottomTemperature
-        weather = request.weather.map { Weather(domain: $0) }
-        surge = request.surge.map { Surge(domain: $0) }
-        visibility = request.visibility.map { Visibility(domain: $0) }
-        visibilityDistance = request.visibilityDistance
-        feeling = request.feeling.map { Feeling(domain: $0) }
-        companions = request.companions.map { Companion(domain: $0) }
-        notes = request.notes
-        insertDate = request.insertDate
+    func update(with updateRequest: DiveLogUpdateRequest) {
+        logNumber = updateRequest.logNumber
+        logDate = updateRequest.logDate
+        diveSite = updateRequest.diveSite.map { DiveSite(domain: $0) }
+        diveCenter = updateRequest.diveCenter
+        diveStyle = updateRequest.diveStyle.map { DiveStyle(domain: $0) }
+        entryTime = updateRequest.entryTime
+        exitTime = updateRequest.exitTime
+        surfaceInterval = updateRequest.surfaceInterval
+        entryAir = updateRequest.entryAir
+        exitAir = updateRequest.exitAir
+        gasType = updateRequest.gasType.map { DiveGasType(domain: $0) }
+        equipment = updateRequest.equipment.map { Equipment(domain: $0) }
+        maximumDepth = updateRequest.maximumDepth
+        averageDepth = updateRequest.averageDepth
+        airTemperature = updateRequest.airTemperature
+        surfaceTemperature = updateRequest.surfaceTemperature
+        bottomTemperature = updateRequest.bottomTemperature
+        weather = updateRequest.weather.map { Weather(domain: $0) }
+        surge = updateRequest.surge.map { Surge(domain: $0) }
+        visibility = updateRequest.visibility.map { Visibility(domain: $0) }
+        visibilityDistance = updateRequest.visibilityDistance
+        feeling = updateRequest.feeling.map { Feeling(domain: $0) }
+        companions = updateRequest.companions.map { Companion(domain: $0) }
+        notes = updateRequest.notes
+        insertDate = updateRequest.insertDate
         updateDate = Date.now
     }
 }
