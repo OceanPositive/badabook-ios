@@ -13,11 +13,13 @@ package protocol DiveLogRepositoryType {
     func fetchAll() -> Result<[DiveLog], DiveLogRepositoryError>
     func fetch(by identifier: DiveLogID) -> Result<DiveLog, DiveLogRepositoryError>
     func update(request: DiveLogUpdateRequest) -> Result<Void, DiveLogRepositoryError>
+    func delete(for identifier: DiveLogID) -> Result<Void, DiveLogRepositoryError>
 }
 
 package enum DiveLogRepositoryError: Error, Equatable {
     case insertFailed(String)
     case fetchFailed(String)
     case updateFailed(String)
+    case deleteFailed(String)
     case noResult
 }

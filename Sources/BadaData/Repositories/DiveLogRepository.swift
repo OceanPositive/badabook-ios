@@ -79,4 +79,19 @@ package struct DiveLogRepository: DiveLogRepositoryType {
             return .failure(.updateFailed(error.localizedDescription))
         }
     }
+
+    package func delete(for identifier: DiveLogID) -> Result<Void, DiveLogRepositoryError> {
+        do {
+            try context.delete(
+                model: DiveLogEntity.self,
+                where: #Predicate { diveLog in
+                    diveLog.identifier == identifier
+                },
+                includeSubclasses: false
+            )
+            return .success(Void())
+        } catch {
+            return .failure(.deleteFailed(error.localizedDescription))
+        }
+    }
 }

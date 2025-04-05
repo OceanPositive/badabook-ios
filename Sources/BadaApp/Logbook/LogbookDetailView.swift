@@ -215,6 +215,15 @@ struct LogbookDetailView: View {
                     .textInputAutocapitalization(.never)
                 #endif
             }
+            Button(role: .destructive) {
+                store.send(.delete)
+            } label: {
+                HStack {
+                    Spacer()
+                    Text("Delete")
+                    Spacer()
+                }
+            }
         }
         #if os(macOS)
             .padding()

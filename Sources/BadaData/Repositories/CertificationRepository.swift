@@ -93,7 +93,7 @@ package struct CertificationRepository: CertificationRepositoryType {
             )
             return .success(Void())
         } catch {
-            return .failure(.updateFailed(error.localizedDescription))
+            return .failure(.deleteFailed(error.localizedDescription))
         }
     }
 }
