@@ -15,34 +15,32 @@ struct LogbookListRow: View {
     var body: some View {
         VStack(spacing: 8) {
             HStack(spacing: 0) {
-                Text(item.leadingPrimaryText)
+                Text(item.logNumberText)
                     .font(.headline)
                     .foregroundStyle(.primary)
                 Spacer()
                 VStack(alignment: .trailing, spacing: 2) {
-                    Text(item.trailingPrimaryText ?? "")
+                    Text(item.maximumDepthText ?? "")
                         .font(.callout)
                         .foregroundStyle(.primary)
-                    Text(item.trailingSecondaryText ?? "")
+                    Text(item.totalTimeText ?? "")
                         .font(.callout)
                         .foregroundStyle(.primary)
                 }
             }
             HStack(spacing: 0) {
-                if let leadingSecondaryText = item.leadingSecondaryText,
-                    let leadingSecondaryImage = item.leadingSecondaryImage
-                {
+                if let diveSiteText = item.diveSiteText {
                     HStack(spacing: 2) {
-                        Image(systemImage: leadingSecondaryImage)
+                        Image(systemImage: .location)
                             .font(.caption)
                             .foregroundStyle(.secondary)
-                        Text(leadingSecondaryText)
+                        Text(diveSiteText)
                             .font(.footnote)
                             .foregroundStyle(.secondary)
                     }
                 }
                 Spacer()
-                Text(item.trailingTertiarytext ?? "")
+                Text(item.logDateText ?? "")
                     .font(.footnote)
                     .foregroundStyle(.secondary)
             }
@@ -52,25 +50,26 @@ struct LogbookListRow: View {
 }
 
 struct LogbookListRowItem: Identifiable, Equatable {
-    let id: DiveLogID
-    let leadingPrimaryText: String
-    let leadingSecondaryImage: SystemImage?
-    let leadingSecondaryText: String?
-    let trailingPrimaryText: String?
-    let trailingSecondaryText: String?
-    let trailingTertiarytext: String?
+    var id: DiveLogID { identifier }
+    let identifier: DiveLogID
+    let logNumber: Int
+    let logNumberText: String
+    let diveSiteText: String?
+    let maximumDepthText: String?
+    let totalTimeText: String?
+    let logDateText: String?
 }
 
 #Preview(traits: .sizeThatFitsLayout) {
     LogbookListRow(
         item: LogbookListRowItem(
-            id: DiveLogID(),
-            leadingPrimaryText: "#12",
-            leadingSecondaryImage: .location,
-            leadingSecondaryText: "Doljo beach",
-            trailingPrimaryText: "24m",
-            trailingSecondaryText: "32min",
-            trailingTertiarytext: "Oct 31, 2024"
+            identifier: DiveLogID(),
+            logNumber: 12,
+            logNumberText: "#12",
+            diveSiteText: "Doljo beach",
+            maximumDepthText: "24m",
+            totalTimeText: "32min",
+            logDateText: "Oct 31, 2024"
         )
     )
 }

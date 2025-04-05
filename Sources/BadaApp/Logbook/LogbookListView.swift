@@ -30,6 +30,18 @@ struct LogbookListView: View {
                             .contentShape(Rectangle())
                     }
                     .buttonStyle(.plain)
+                    #if os(iOS)
+                        .swipeActions(
+                            edge: .trailing,
+                            allowsFullSwipe: false
+                        ) {
+                            Button(role: .destructive) {
+                                store.send(.delete(item))
+                            } label: {
+                                Image(systemImage: .trash)
+                            }
+                        }
+                    #endif
                 }
             }
             .navigationTitle(L10n.Logbook.title)

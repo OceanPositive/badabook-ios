@@ -20,5 +20,6 @@ package enum CertificationRepositoryError: Error, Equatable {
     case insertFailed(String)
     case fetchFailed(String)
     case updateFailed(String)
+    case deleteFailed(String)
     case noResult
 }

@@ -12,6 +12,7 @@ struct LogbookDetailReducer: Reducer {
     enum Action: Sendable {
         case load(DiveLogID)
         case save
+        case delete
         case dismiss
         case setDiveLog(DiveLog)
         case setLogNumber(Int?)
@@ -67,6 +68,7 @@ struct LogbookDetailReducer: Reducer {
 
     @UseCase private var getDiveLogUseCase: GetDiveLogUseCase
     @UseCase private var putDiveLogUseCase: PutDiveLogUseCase
+    @UseCase private var deleteDiveLogUseCase: DeleteDiveLogUseCase
 
     func reduce(state: inout State, action: Action) -> AnyEffect<Action> {
         switch action {
@@ -77,6 +79,13 @@ struct LogbookDetailReducer: Reducer {
         case .save:
             return .single { [state] in
                 await executePutDiveLogUseCase(state: state)
+            }
+        case .delete:
+            return .concat {
+                AnyEffect.single { [state] in
+                    await executeDeleteDiveLogUseCase(state: state)
+                }
+                AnyEffect.just(.dismiss)
             }
         case .dismiss:
             state.shouldDismiss = true
@@ -292,6 +301,17 @@ struct LogbookDetailReducer: Reducer {
             insertDate: diveLog.insertDate
         )
         let result = await putDiveLogUseCase.execute(for: request)
+        switch result {
+        case .success:
+            return .dismiss
+        case .failure:
+            return .none
+        }
+    }
+
+    private func executeDeleteDiveLogUseCase(state: State) async -> Action {
+        guard let identifier = state.origin?.identifier else { return .none }
+        let result = await deleteDiveLogUseCase.execute(id: identifier)
         switch result {
         case .success:
             return .dismiss

@@ -11,6 +11,7 @@ import BadaDomain
 struct LogbookListReducer: Reducer {
     enum Action: Sendable {
         case load
+        case delete(LogbookListRowItem)
         case setItems([LogbookListRowItem])
         case setIsAddSheetPresenting(Bool)
     }
@@ -21,11 +22,19 @@ struct LogbookListReducer: Reducer {
     }
 
     @UseCase private var getDiveLogsUseCase: GetDiveLogsUseCase
+    @UseCase private var deleteDiveLogUseCase: DeleteDiveLogUseCase
 
     func reduce(state: inout State, action: Action) -> AnyEffect<Action> {
         switch action {
         case .load:
             return .single { await executeGetDiveLogsUseCase() }
+        case let .delete(item):
+            return .single { [state] in
+                await executeDeleteDiveLogUseCase(
+                    state: state,
+                    with: item.id
+                )
+            }
         case let .setItems(items):
             state.items = items
             return .none
@@ -41,18 +50,34 @@ struct LogbookListReducer: Reducer {
         case let .success(diveLogs):
             let items = diveLogs.map { diveLog in
                 LogbookListRowItem(
-                    id: diveLog.identifier,
-                    leadingPrimaryText: "#\(diveLog.logNumber)",
-                    leadingSecondaryImage: .location,
-                    leadingSecondaryText: diveLog.diveSite?.title,
-                    trailingPrimaryText: formatted(depth: diveLog.maximumDepth),
-                    trailingSecondaryText: formattedTotalTime(diveLog.entryTime, diveLog.exitTime),
-                    trailingTertiarytext: formatted(date: diveLog.logDate)
+                    identifier: diveLog.identifier,
+                    logNumber: diveLog.logNumber,
+                    logNumberText: "#\(diveLog.logNumber)",
+                    diveSiteText: diveLog.diveSite?.title,
+                    maximumDepthText: formatted(depth: diveLog.maximumDepth),
+                    totalTimeText: formattedTotalTime(diveLog.entryTime, diveLog.exitTime),
+                    logDateText: formatted(date: diveLog.logDate)
                 )
-            }
+            }.sorted { $0.logNumber > $1.logNumber }
             return .setItems(items)
         case .failure:
             return .setItems([])
+        }
+    }
+
+    private func executeDeleteDiveLogUseCase(
+        state: State,
+        with identifier: DiveLogID
+    ) async -> Action {
+        let result = await deleteDiveLogUseCase.execute(id: identifier)
+        switch result {
+        case .success:
+            let items = state.items
+                .filter { $0.identifier != identifier }
+                .sorted { $0.logNumber > $1.logNumber }
+            return .setItems(items)
+        case .failure:
+            return .load
         }
     }
 
