@@ -22,7 +22,6 @@ struct EquipmentView: View {
                 send: { .setEquipmentPaths($0) })
         ) {
             ScrollView(.vertical) {
-
             }
             .background(.background.secondary)
             .navigationTitle(L10n.Equipment.title)

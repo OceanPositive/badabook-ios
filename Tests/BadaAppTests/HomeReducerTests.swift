@@ -24,10 +24,10 @@ struct HomeReducerTests {
                 reducer: HomeReducer(),
                 state: HomeReducer.State()
             )
-            await sut.expect(\.logCount, nil)
+            await sut.expect(\.totalDiveLogCountText, "-")
 
             await sut.send(.load)
-            await sut.expect(\.logCount, 0)
+            await sut.expect(\.totalDiveLogCountText, "0")
         }
     }
 
@@ -48,26 +48,7 @@ struct HomeReducerTests {
                 state: HomeReducer.State()
             )
             await sut.send(.getDiveLogs)
-            await sut.expect(\.logCount, 3)
-        }
-    }
-
-    @Test
-    func setLogCount() async {
-        let container = UseCaseContainer()
-        container.register {
-            GetDiveLogsUseCase { .success([]) }
-        }
-        await UseCaseContainer.$instance.withValue(container) {
-            let sut = Store(
-                reducer: HomeReducer(),
-                state: HomeReducer.State()
-            )
-            await sut.send(.setLogCount(10))
-            await sut.expect(\.logCount, 10)
-
-            await sut.send(.setLogCount(nil))
-            await sut.expect(\.logCount, nil)
+            await sut.expect(\.totalDiveLogCountText, "3")
         }
     }
 }
