@@ -21,7 +21,7 @@ ROOT_DIR=$SCRIPT_DIR/..
 cd $ROOT_DIR
 
 if ! [ -f "./swift-format" ] ; then
-    SWIFT_FORMAT_VERSION=600.0.0
+    SWIFT_FORMAT_VERSION=601.0.0
     __verbose "Downloading swift-format..."
     arch=$(uname -m)
     if [ "$arch" = "arm64" ]; then

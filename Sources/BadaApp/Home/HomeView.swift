@@ -52,22 +52,22 @@ struct HomeView: View {
                     VStack(spacing: 16) {
                         InfoRow(
                             title: "Logs",
-                            value: "123"
+                            value: store.state.totalDiveLogCountText
                         )
                         Divider()
                         InfoRow(
                             title: "Dive sites",
-                            value: "6"
+                            value: store.state.totalDiveSiteCountText
                         )
                         Divider()
                         InfoRow(
                             title: "Total dive time",
-                            value: "323h 40m"
+                            value: store.state.totalDiveTimeText
                         )
                         Divider()
                         InfoRow(
                             title: "Last dive",
-                            value: "30d ago"
+                            value: store.state.daysSinceLastDiveDateText
                         )
                     }
                     .padding(16)
