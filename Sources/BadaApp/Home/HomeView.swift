@@ -31,12 +31,12 @@ struct HomeView: View {
                     VStack(spacing: 16) {
                         InfoRow(
                             title: "Certification",
-                            value: "Open water"
+                            value: store.state.primaryCertificationText
                         )
                         Divider()
                         InfoRow(
                             title: "Experience",
-                            value: "1 yr 3 mos"
+                            value: store.state.totalExperienceText
                         )
                     }
                     .padding(16)

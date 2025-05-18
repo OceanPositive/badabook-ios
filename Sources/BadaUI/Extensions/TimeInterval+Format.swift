@@ -8,10 +8,17 @@
 import Foundation
 
 extension TimeInterval {
+    package func formattedExperience() -> String {
+        let formatter = DateComponentsFormatter()
+        formatter.allowedUnits = [.year, .month, .day]
+        formatter.unitsStyle = .abbreviated
+        return formatter.string(from: self) ?? "-"
+    }
+
     package func formattedDiveTime() -> String {
         let formatter = DateComponentsFormatter()
         formatter.allowedUnits = [.hour, .minute]
-        formatter.unitsStyle = .brief
+        formatter.unitsStyle = .abbreviated
         return formatter.string(from: self) ?? "-"
     }
 }
