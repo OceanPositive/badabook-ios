@@ -19,6 +19,9 @@ struct HomeReducerTests {
         container.register {
             GetDiveLogsUseCase { .success([]) }
         }
+        container.register {
+            GetCertificationsUseCase { .success([]) }
+        }
         await UseCaseContainer.$instance.withValue(container) {
             let sut = Store(
                 reducer: HomeReducer(),
@@ -41,6 +44,9 @@ struct HomeReducerTests {
         let container = UseCaseContainer()
         container.register {
             GetDiveLogsUseCase { .success(diveLogs) }
+        }
+        container.register {
+            GetCertificationsUseCase { .success([]) }
         }
         await UseCaseContainer.$instance.withValue(container) {
             let sut = Store(
