@@ -10,15 +10,15 @@ import BadaCore
 package struct UserUpdateRequest: Equatable {
     package let identifier: UserID
     package let name: String
-    package let birthDate: Date
+    package let dateOfBirth: Date
 
     package init(
         identifier: UserID,
         name: String,
-        birthDate: Date
+        dateOfBirth: Date
     ) {
         self.identifier = identifier
         self.name = name
-        self.birthDate = birthDate
+        self.dateOfBirth = dateOfBirth
     }
 }

@@ -9,13 +9,13 @@ import BadaCore
 
 package struct UserInsertRequest: Equatable {
     package let name: String
-    package let birthDate: Date
+    package let dateOfBirth: Date
 
     package init(
         name: String,
-        birthDate: Date
+        dateOfBirth: Date
     ) {
         self.name = name
-        self.birthDate = birthDate
+        self.dateOfBirth = dateOfBirth
     }
 }

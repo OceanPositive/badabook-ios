@@ -53,6 +53,24 @@ extension AppReducer {
             }
         }
         register {
+            GetUserUseCase {
+                let repository = await UserRepository(persistentStore: .main)
+                return await repository.fetch()
+            }
+        }
+        register {
+            PostUserUseCase { request in
+                let repository = await UserRepository(persistentStore: .main)
+                return await repository.insert(request: request)
+            }
+        }
+        register {
+            PutUserUseCase { request in
+                let repository = await UserRepository(persistentStore: .main)
+                return await repository.update(request: request)
+            }
+        }
+        register {
             GetCertificationsUseCase {
                 let repository = await CertificationRepository(persistentStore: .main)
                 return await repository.fetchAll()

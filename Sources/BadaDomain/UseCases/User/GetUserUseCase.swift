@@ -8,15 +8,15 @@
 import BadaCore
 
 package struct GetUserUseCase: ExecutableUseCase {
-    private let get: @Sendable (UserID) async -> Result<User, UserRepositoryError>
+    private let get: @Sendable () async -> Result<User, UserRepositoryError>
 
     package init(
-        _ get: @Sendable @escaping (UserID) async -> Result<User, UserRepositoryError>
+        _ get: @Sendable @escaping () async -> Result<User, UserRepositoryError>
     ) {
         self.get = get
     }
 
-    package func execute(id: UserID) async -> Result<User, UserRepositoryError> {
-        await get(id)
+    package func execute() async -> Result<User, UserRepositoryError> {
+        await get()
     }
 }

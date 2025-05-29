@@ -10,8 +10,7 @@ import BadaCore
 @Repository
 package protocol UserRepositoryType {
     func insert(request: UserInsertRequest) -> Result<Void, UserRepositoryError>
-    func fetchAll() -> Result<[User], UserRepositoryError>
-    func fetch(for identifier: UserID) -> Result<User, UserRepositoryError>
+    func fetch() -> Result<User, UserRepositoryError>
     func update(request: UserUpdateRequest) -> Result<Void, UserRepositoryError>
 }
 
