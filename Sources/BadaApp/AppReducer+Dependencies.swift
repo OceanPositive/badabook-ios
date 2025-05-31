@@ -29,6 +29,12 @@ extension AppReducer {
             }
         }
         register {
+            PostMockDiveLogsUseCase { requests in
+                let repository = await DiveLogRepository(persistentStore: .main)
+                return await repository.insertBatch(requests: requests)
+            }
+        }
+        register {
             PutDiveLogUseCase { request in
                 let repository = await DiveLogRepository(persistentStore: .main)
                 return await repository.update(request: request)

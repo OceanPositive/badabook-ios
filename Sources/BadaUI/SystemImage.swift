@@ -27,6 +27,7 @@ package enum SystemImage: String {
     case cloudSnow = "cloud.snow"
     case location = "location"
     case trash = "trash"
+    case plusSquareOnSquare = "plus.square.on.square"
 }
 
 extension Image {

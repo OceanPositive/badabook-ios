@@ -29,6 +29,23 @@ package struct DiveLogRepository: DiveLogRepositoryType {
         }
     }
 
+    package func insertBatch(
+        requests: [DiveLogInsertRequest]
+    ) -> Result<Void, DiveLogRepositoryError> {
+        do {
+            try context.transaction {
+                for request in requests {
+                    let entity = DiveLogEntity(insertRequest: request)
+                    context.insert(entity)
+                }
+                try context.save()
+            }
+            return .success(Void())
+        } catch {
+            return .failure(.insertBatchFailed(error.localizedDescription))
+        }
+    }
+
     package func fetchAll() -> Result<[DiveLog], DiveLogRepositoryError> {
         let descriptor = FetchDescriptor<DiveLogEntity>()
         do {
