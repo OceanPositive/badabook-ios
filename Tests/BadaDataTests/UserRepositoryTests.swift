@@ -20,74 +20,10 @@ struct UserRepositoryTests {
     }
 
     @Test
-    func insert() async {
-        let request = UserInsertRequest(
-            name: "\(#line)",
-            birthDate: Date(timeIntervalSince1970: #line)
-        )
-        switch await sut.insert(request: request) {
-        case .success:
-            break
-        case let .failure(error):
-            Issue.record(error)
-        }
-
-        switch await sut.fetchAll() {
-        case let .success(users):
-            if let user = users.first(where: { $0.name == request.name }) {
-                #expect(user.birthDate == request.birthDate)
-            } else {
-                Issue.record("No user found.")
-            }
-        case let .failure(error):
-            Issue.record(error)
-        }
-    }
-
-    @Test
-    func fetch() async {
-        let request = UserInsertRequest(
-            name: "\(#line)",
-            birthDate: Date(timeIntervalSince1970: #line)
-        )
-        switch await sut.insert(request: request) {
-        case .success:
-            break
-        case let .failure(error):
-            Issue.record(error)
-        }
-
-        var spy: User?
-        switch await sut.fetchAll() {
-        case let .success(users):
-            if let user = users.first(where: { $0.name == request.name }) {
-                #expect(user.birthDate == request.birthDate)
-                spy = user
-            } else {
-                Issue.record("No user found.")
-            }
-        case let .failure(error):
-            Issue.record(error)
-        }
-
-        guard let spy else {
-            Issue.record("No user found.")
-            return
-        }
-
-        switch await sut.fetch(for: spy.identifier) {
-        case let .success(user):
-            #expect(user.birthDate == request.birthDate)
-        case let .failure(error):
-            Issue.record(error)
-        }
-    }
-
-    @Test
-    func update() async {
+    func insertAndUpdate() async {
         let insertRequest = UserInsertRequest(
             name: "\(#line)",
-            birthDate: Date(timeIntervalSince1970: #line)
+            dateOfBirth: Date(timeIntervalSince1970: #line)
         )
         switch await sut.insert(request: insertRequest) {
         case .success:
@@ -97,14 +33,11 @@ struct UserRepositoryTests {
         }
 
         var spy: User?
-        switch await sut.fetchAll() {
-        case let .success(users):
-            if let user = users.first(where: { $0.name == insertRequest.name }) {
-                #expect(user.birthDate == insertRequest.birthDate)
-                spy = user
-            } else {
-                Issue.record("No user found.")
-            }
+        switch await sut.fetch() {
+        case let .success(user):
+            #expect(user.name == insertRequest.name)
+            #expect(user.dateOfBirth == insertRequest.dateOfBirth)
+            spy = user
         case let .failure(error):
             Issue.record(error)
         }
@@ -117,7 +50,7 @@ struct UserRepositoryTests {
         let updateRequest = UserUpdateRequest(
             identifier: spy.identifier,
             name: "\(#line)",
-            birthDate: Date(timeIntervalSince1970: #line)
+            dateOfBirth: Date(timeIntervalSince1970: #line)
         )
         switch await sut.update(request: updateRequest) {
         case .success:
@@ -126,13 +59,10 @@ struct UserRepositoryTests {
             Issue.record(error)
         }
 
-        switch await sut.fetchAll() {
-        case let .success(users):
-            if let user = users.first(where: { $0.name == updateRequest.name }) {
-                #expect(user.birthDate == updateRequest.birthDate)
-            } else {
-                Issue.record("No user found.")
-            }
+        switch await sut.fetch() {
+        case let .success(user):
+            #expect(user.name == updateRequest.name)
+            #expect(user.dateOfBirth == updateRequest.dateOfBirth)
         case let .failure(error):
             Issue.record(error)
         }

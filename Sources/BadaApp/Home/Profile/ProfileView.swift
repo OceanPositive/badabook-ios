@@ -10,6 +10,7 @@ import BadaDomain
 import BadaUI
 
 struct ProfileView: View {
+    @Environment(\.dismiss) private var dismiss
     @StateObject private var store = ViewStore(
         reducer: ProfileReducer(),
         state: ProfileReducer.State()
@@ -85,6 +86,7 @@ struct ProfileView: View {
         }
         .onAppear { store.send(.load) }
         .onChange(of: store.state.sheet, onSheetChange)
+        .onChange(of: store.state.shouldDismiss, onShouldDismissChange)
     }
 
     private var saveButton: some View {
@@ -98,6 +100,11 @@ struct ProfileView: View {
     private func onSheetChange(oldValue: State.Sheet?, newValue: State.Sheet?) {
         guard oldValue != nil && newValue == nil else { return }
         store.send(.load)
+    }
+
+    private func onShouldDismissChange() {
+        guard store.state.shouldDismiss else { return }
+        dismiss()
     }
 }
 

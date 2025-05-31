@@ -14,16 +14,22 @@ final class UserEntity {
     @Attribute(.unique)
     var identifier: UserID
     var name: String
-    var birthDate: Date
+    var dateOfBirth: Date
+    var insertDate: Date
+    var updateDate: Date
 
     init(
         identifier: UserID,
         name: String,
-        birthDate: Date
+        dateOfBirth: Date,
+        insertDate: Date,
+        updateDate: Date
     ) {
         self.identifier = identifier
         self.name = name
-        self.birthDate = birthDate
+        self.dateOfBirth = dateOfBirth
+        self.insertDate = insertDate
+        self.updateDate = updateDate
     }
 }
 
@@ -32,7 +38,9 @@ extension UserEntity: DomainConvertible {
         BadaDomain.User(
             identifier: identifier,
             name: name,
-            birthDate: birthDate
+            dateOfBirth: dateOfBirth,
+            insertDate: insertDate,
+            updateDate: updateDate
         )
     }
 
@@ -40,7 +48,9 @@ extension UserEntity: DomainConvertible {
         self.init(
             identifier: domain.identifier,
             name: domain.name,
-            birthDate: domain.birthDate
+            dateOfBirth: domain.dateOfBirth,
+            insertDate: domain.insertDate,
+            updateDate: domain.updateDate
         )
     }
 }
@@ -50,12 +60,15 @@ extension UserEntity {
         self.init(
             identifier: UserID(),
             name: insertRequest.name,
-            birthDate: insertRequest.birthDate
+            dateOfBirth: insertRequest.dateOfBirth,
+            insertDate: Date(),
+            updateDate: Date()
         )
     }
 
     func update(with updateRequest: UserUpdateRequest) {
         name = updateRequest.name
-        birthDate = updateRequest.birthDate
+        dateOfBirth = updateRequest.dateOfBirth
+        updateDate = Date()
     }
 }

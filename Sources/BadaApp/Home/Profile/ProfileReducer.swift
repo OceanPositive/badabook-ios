@@ -13,6 +13,8 @@ struct ProfileReducer: Reducer {
         case load
         case save
         case delete(Certification)
+        case dismiss
+        case setUser(User)
         case setName(String)
         case setDateOfBirth(Date)
         case setCertifications([Certification])
@@ -22,6 +24,7 @@ struct ProfileReducer: Reducer {
     }
 
     struct State: Sendable, Equatable {
+        var user: User?
         var name: String = ""
         var dateOfBirth: Date = Date(timeIntervalSince1970: 0)
         var certifications: [Certification] = []
@@ -32,23 +35,48 @@ struct ProfileReducer: Reducer {
             case certificationAdd
             case certificationEdit(identifier: CertificationID)
         }
+        var shouldDismiss = false
     }
 
+    @UseCase private var getUserUseCase: GetUserUseCase
+    @UseCase private var postUserUseCase: PostUserUseCase
+    @UseCase private var putUserUseCase: PutUserUseCase
     @UseCase private var getCertificationsUseCase: GetCertificationsUseCase
     @UseCase private var deleteCertificationUseCase: DeleteCertificationUseCase
 
     func reduce(state: inout State, action: Action) -> AnyEffect<Action> {
         switch action {
         case .load:
-            return .single { await executeGetCertificationsUseCase() }
+            return .merge {
+                AnyEffect.single { await executeGetCertificationsUseCase() }
+                AnyEffect.single { await executeGetUserUseCase() }
+            }
         case .save:
-            return .none
+            return .single { [state] in
+                if let identifier = state.user?.identifier {
+                    await executePutUserUseCase(
+                        identifier: identifier,
+                        state: state
+                    )
+                } else {
+                    await executePostUserUseCase(state: state)
+                }
+            }
         case let .delete(certification):
             return .single { [state] in
                 await executeDeleteCertificationUseCase(
                     state: state,
                     with: certification.identifier
                 )
+            }
+        case .dismiss:
+            state.shouldDismiss = true
+            return .none
+        case let .setUser(user):
+            state.user = user
+            return .merge {
+                AnyEffect.just(.setName(user.name))
+                AnyEffect.just(.setDateOfBirth(user.dateOfBirth))
             }
         case let .setName(name):
             state.name = name
@@ -66,6 +94,48 @@ struct ProfileReducer: Reducer {
             state.sheet = sheet
             return .none
         case .none:
+            return .none
+        }
+    }
+
+    private func executeGetUserUseCase() async -> Action {
+        let result = await getUserUseCase.execute()
+        switch result {
+        case let .success(user):
+            return .setUser(user)
+        case .failure:
+            return .none
+        }
+    }
+
+    private func executePostUserUseCase(state: State) async -> Action {
+        let request = UserInsertRequest(
+            name: state.name,
+            dateOfBirth: state.dateOfBirth
+        )
+        let result = await postUserUseCase.execute(for: request)
+        switch result {
+        case .success:
+            return .dismiss
+        case .failure:
+            return .none
+        }
+    }
+
+    private func executePutUserUseCase(
+        identifier: UserID,
+        state: State
+    ) async -> Action {
+        let request = UserUpdateRequest(
+            identifier: identifier,
+            name: state.name,
+            dateOfBirth: state.dateOfBirth
+        )
+        let result = await putUserUseCase.execute(for: request)
+        switch result {
+        case .success:
+            return .dismiss
+        case .failure:
             return .none
         }
     }

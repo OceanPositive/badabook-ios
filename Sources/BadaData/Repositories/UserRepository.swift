@@ -29,23 +29,8 @@ package struct UserRepository: UserRepositoryType {
         }
     }
 
-    package func fetchAll() -> Result<[User], UserRepositoryError> {
-        let descriptor = FetchDescriptor<UserEntity>()
-        do {
-            let users = try context.fetch(descriptor)
-            return .success(users.map(\.domain))
-        } catch {
-            return .failure(.fetchFailed(error.localizedDescription))
-        }
-    }
-
-    package func fetch(
-        for identifier: UserID
-    ) -> Result<User, UserRepositoryError> {
+    package func fetch() -> Result<User, UserRepositoryError> {
         var descriptor = FetchDescriptor<UserEntity>()
-        descriptor.predicate = #Predicate { user in
-            user.identifier == identifier
-        }
         do {
             let users = try context.fetch(descriptor)
             if let user = users.first {
