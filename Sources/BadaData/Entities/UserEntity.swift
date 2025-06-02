@@ -61,14 +61,14 @@ extension UserEntity {
             identifier: UserID(),
             name: insertRequest.name,
             dateOfBirth: insertRequest.dateOfBirth,
-            insertDate: Date(),
-            updateDate: Date()
+            insertDate: Date.now,
+            updateDate: Date.now
         )
     }
 
     func update(with updateRequest: UserUpdateRequest) {
         name = updateRequest.name
         dateOfBirth = updateRequest.dateOfBirth
-        updateDate = Date()
+        updateDate = Date.now
     }
 }

@@ -55,6 +55,11 @@ struct LogbookListView: View {
                 ToolbarItem(placement: .primaryAction) {
                     addButton
                 }
+                #if DEBUG
+                    ToolbarItem(placement: .secondaryAction) {
+                        addMockDataButton
+                    }
+                #endif
             }
             .sheet(
                 isPresented: store.binding(\.isAddSheetPresenting, send: { .setIsAddSheetPresenting($0) }),
@@ -79,4 +84,15 @@ struct LogbookListView: View {
             store.send(.load)
         }
     }
+
+    #if DEBUG
+        private var addMockDataButton: some View {
+            Button(
+                L10n.Logbook.add,
+                systemImage: SystemImage.plusSquareOnSquare.rawValue
+            ) {
+                store.send(.addMockData)
+            }
+        }
+    #endif
 }
