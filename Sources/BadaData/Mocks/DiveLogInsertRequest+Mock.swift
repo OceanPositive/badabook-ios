@@ -16,10 +16,7 @@ extension DiveLogInsertRequest {
             diveSite: DiveSite(
                 title: "Site \(Int.random(in: 1...50))",
                 subtitle: "Country \(Int.random(in: 1...10))",
-                coordinate: DiveSite.Coordinate(
-                    latitude: Double.random(in: 0...1),
-                    longitude: Double.random(in: 0...1)
-                )
+                coordinate: .none
             ).domain,
             diveCenter: ["Aqua Dive", "Blue Ocean", "Deep Sea Club"].randomElement(),
             diveStyle: [DiveStyle.boat, DiveStyle.beach, DiveStyle.night].randomElement()?.domain,
