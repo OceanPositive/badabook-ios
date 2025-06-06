@@ -11,7 +11,7 @@ import BadaDomain
 struct DiveSite: Codable {
     let title: String
     let subtitle: String
-    let coordinate: Coordinate?
+    let coordinate: SafeCodableOptional<Coordinate>
 
     struct Coordinate: Codable {
         let latitude: Double
@@ -24,7 +24,7 @@ extension DiveSite: DomainConvertible {
         BadaDomain.DiveSite(
             title: title,
             subtitle: subtitle,
-            coordinate: coordinate.map {
+            coordinate: coordinate.optional.map {
                 BadaDomain.DiveSite.Coordinate(
                     latitude: $0.latitude,
                     longitude: $0.longitude
@@ -41,6 +41,6 @@ extension DiveSite: DomainConvertible {
                 latitude: $0.latitude,
                 longitude: $0.longitude
             )
-        }
+        }.safeCodableOptional
     }
 }
