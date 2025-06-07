@@ -1,4 +1,4 @@
-# BadaBook
+# Badabook
 
 <a href="https://github.com/OceanPositive/badabook-ios/actions">
   <img alt="CI" src="https://github.com/OceanPositive/badabook-ios/workflows/CI/badge.svg">

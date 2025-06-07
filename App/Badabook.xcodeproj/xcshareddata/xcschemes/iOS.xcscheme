@@ -14,10 +14,10 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "C3DC6EB22B78B76000E1968B"
-               BuildableName = "macOS.app"
-               BlueprintName = "macOS"
-               ReferencedContainer = "container:BadaBook.xcodeproj">
+               BlueprintIdentifier = "C3DC6ED72B78B8E800E1968B"
+               BuildableName = "iOS.app"
+               BlueprintName = "iOS"
+               ReferencedContainer = "container:Badabook.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -43,10 +43,10 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "C3DC6EB22B78B76000E1968B"
-            BuildableName = "macOS.app"
-            BlueprintName = "macOS"
-            ReferencedContainer = "container:BadaBook.xcodeproj">
+            BlueprintIdentifier = "C3DC6ED72B78B8E800E1968B"
+            BuildableName = "iOS.app"
+            BlueprintName = "iOS"
+            ReferencedContainer = "container:Badabook.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <EnvironmentVariables>
@@ -67,10 +67,10 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "C3DC6EB22B78B76000E1968B"
-            BuildableName = "macOS.app"
-            BlueprintName = "macOS"
-            ReferencedContainer = "container:BadaBook.xcodeproj">
+            BlueprintIdentifier = "C3DC6ED72B78B8E800E1968B"
+            BuildableName = "iOS.app"
+            BlueprintName = "iOS"
+            ReferencedContainer = "container:Badabook.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>
