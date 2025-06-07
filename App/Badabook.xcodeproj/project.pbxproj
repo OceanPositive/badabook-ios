@@ -15,6 +15,9 @@
 		C305F3B92C8452070046256D /* BadaUI in Frameworks */ = {isa = PBXBuildFile; productRef = C305F3B82C8452070046256D /* BadaUI */; };
 		C30EC7BF2C8482E300B46F13 /* BadaApp in Frameworks */ = {isa = PBXBuildFile; productRef = C30EC7BE2C8482E300B46F13 /* BadaApp */; };
 		C30EC7C12C8482E800B46F13 /* BadaApp in Frameworks */ = {isa = PBXBuildFile; productRef = C30EC7C02C8482E800B46F13 /* BadaApp */; };
+		C364E2BE2DF4303800E18A5E /* InfoPlist.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = C364E2BD2DF4303800E18A5E /* InfoPlist.xcstrings */; };
+		C364E2BF2DF4303800E18A5E /* InfoPlist.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = C364E2BD2DF4303800E18A5E /* InfoPlist.xcstrings */; };
+		C364E2C02DF4303800E18A5E /* InfoPlist.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = C364E2BD2DF4303800E18A5E /* InfoPlist.xcstrings */; };
 		C3DC6EB62B78B76000E1968B /* MacApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3DC6EB52B78B76000E1968B /* MacApp.swift */; };
 		C3DC6EBA2B78B76100E1968B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C3DC6EB92B78B76100E1968B /* Assets.xcassets */; };
 		C3DC6EDB2B78B8E800E1968B /* PhoneApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3DC6EDA2B78B8E800E1968B /* PhoneApp.swift */; };
@@ -43,15 +46,16 @@
 		C303E0B72C99A75E00A94738 /* macOS-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "macOS-Info.plist"; sourceTree = "<group>"; };
 		C311CB562CA7FA8600D70C53 /* iPadOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = iPadOS.entitlements; sourceTree = "<group>"; };
 		C311CB572CA7FA9600D70C53 /* macOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = macOS.entitlements; sourceTree = "<group>"; };
+		C364E2BD2DF4303800E18A5E /* InfoPlist.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = InfoPlist.xcstrings; sourceTree = "<group>"; };
 		C3CAD57F2B78C8CA00C7344D /* AppTests.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = AppTests.xctestplan; sourceTree = "<group>"; };
 		C3D2A16C2B6E32340059EADC /* AppPackage */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = AppPackage; path = ..; sourceTree = "<group>"; };
-		C3DC6EB32B78B76000E1968B /* macOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = macOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		C3DC6EB32B78B76000E1968B /* Badabook.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Badabook.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C3DC6EB52B78B76000E1968B /* MacApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MacApp.swift; sourceTree = "<group>"; };
 		C3DC6EB92B78B76100E1968B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		C3DC6ED82B78B8E800E1968B /* iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		C3DC6ED82B78B8E800E1968B /* Badabook.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Badabook.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C3DC6EDA2B78B8E800E1968B /* PhoneApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneApp.swift; sourceTree = "<group>"; };
 		C3DC6EDE2B78B8E900E1968B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		C3DC6EEA2B78B9A200E1968B /* iPadOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iPadOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		C3DC6EEA2B78B9A200E1968B /* Badabook.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Badabook.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C3E08D2D2B78B9DF00659303 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C3E08D302B78B9DF00659303 /* PadApp.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PadApp.swift; sourceTree = "<group>"; };
 		C3E3D4942C9A659C00684D72 /* iOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = iOS.entitlements; sourceTree = "<group>"; };
@@ -146,6 +150,7 @@
 		C3F0AC432B2EE3A900D2165B = {
 			isa = PBXGroup;
 			children = (
+				C364E2BD2DF4303800E18A5E /* InfoPlist.xcstrings */,
 				C3D2A16C2B6E32340059EADC /* AppPackage */,
 				C3E3D4942C9A659C00684D72 /* iOS.entitlements */,
 				C311CB562CA7FA8600D70C53 /* iPadOS.entitlements */,
@@ -163,9 +168,9 @@
 		C3F0AC4D2B2EE3A900D2165B /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				C3DC6EB32B78B76000E1968B /* macOS.app */,
-				C3DC6ED82B78B8E800E1968B /* iOS.app */,
-				C3DC6EEA2B78B9A200E1968B /* iPadOS.app */,
+				C3DC6EB32B78B76000E1968B /* Badabook.app */,
+				C3DC6ED82B78B8E800E1968B /* Badabook.app */,
+				C3DC6EEA2B78B9A200E1968B /* Badabook.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -192,7 +197,7 @@
 				C3F0C7E92C9ABD350095F222 /* BadaApp */,
 			);
 			productName = macOS;
-			productReference = C3DC6EB32B78B76000E1968B /* macOS.app */;
+			productReference = C3DC6EB32B78B76000E1968B /* Badabook.app */;
 			productType = "com.apple.product-type.application";
 		};
 		C3DC6ED72B78B8E800E1968B /* iOS */ = {
@@ -215,7 +220,7 @@
 				C30EC7BE2C8482E300B46F13 /* BadaApp */,
 			);
 			productName = iOS;
-			productReference = C3DC6ED82B78B8E800E1968B /* iOS.app */;
+			productReference = C3DC6ED82B78B8E800E1968B /* Badabook.app */;
 			productType = "com.apple.product-type.application";
 		};
 		C3DC6EE92B78B9A200E1968B /* iPadOS */ = {
@@ -237,7 +242,7 @@
 				C30EC7C02C8482E800B46F13 /* BadaApp */,
 			);
 			productName = iPadOS;
-			productReference = C3DC6EEA2B78B9A200E1968B /* iPadOS.app */;
+			productReference = C3DC6EEA2B78B9A200E1968B /* Badabook.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -261,13 +266,14 @@
 					};
 				};
 			};
-			buildConfigurationList = C3F0AC472B2EE3A900D2165B /* Build configuration list for PBXProject "BadaBook" */;
+			buildConfigurationList = C3F0AC472B2EE3A900D2165B /* Build configuration list for PBXProject "Badabook" */;
 			compatibilityVersion = "Xcode 14.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
 				Base,
+				ko,
 			);
 			mainGroup = C3F0AC432B2EE3A900D2165B;
 			productRefGroup = C3F0AC4D2B2EE3A900D2165B /* Products */;
@@ -286,6 +292,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C364E2C02DF4303800E18A5E /* InfoPlist.xcstrings in Resources */,
 				C3DC6EBA2B78B76100E1968B /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -294,6 +301,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C364E2BE2DF4303800E18A5E /* InfoPlist.xcstrings in Resources */,
 				C3DC6EDF2B78B8E900E1968B /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -302,6 +310,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C364E2BF2DF4303800E18A5E /* InfoPlist.xcstrings in Resources */,
 				C3E08D322B78B9DF00659303 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -352,7 +361,8 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "macOS-Info.plist";
-				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INFOPLIST_KEY_CFBundleDisplayName = Badabook;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright © 2025 ENUF Co., Ltd. All rights reserved.";
 				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -361,7 +371,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 15.0;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.enuf.badabook.macOS;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = Badabook;
 				SDKROOT = macosx;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 6.0;
@@ -384,7 +394,8 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "macOS-Info.plist";
-				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INFOPLIST_KEY_CFBundleDisplayName = Badabook;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright © 2025 ENUF Co., Ltd. All rights reserved.";
 				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -393,7 +404,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 15.0;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.enuf.badabook.macOS;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = Badabook;
 				SDKROOT = macosx;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 6.0;
@@ -414,6 +425,8 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "iOS-Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = Badabook;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright © 2025 ENUF Co., Ltd. All rights reserved.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -426,7 +439,7 @@
 				);
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.enuf.badabook.iOS;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = Badabook;
 				SDKROOT = iphoneos;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
@@ -452,6 +465,8 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "iOS-Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = Badabook;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright © 2025 ENUF Co., Ltd. All rights reserved.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -464,7 +479,7 @@
 				);
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.enuf.badabook.iOS;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = Badabook;
 				SDKROOT = iphoneos;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
@@ -490,6 +505,8 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "iPadOS-Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = Badabook;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright © 2025 ENUF Co., Ltd. All rights reserved.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -502,7 +519,7 @@
 				);
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.enuf.badabook.iPadOS;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = Badabook;
 				SDKROOT = iphoneos;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
@@ -527,6 +544,8 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "iPadOS-Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = Badabook;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright © 2025 ENUF Co., Ltd. All rights reserved.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -539,7 +558,7 @@
 				);
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.enuf.badabook.iPadOS;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = Badabook;
 				SDKROOT = iphoneos;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
@@ -612,6 +631,7 @@
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 6.0;
 				TVOS_DEPLOYMENT_TARGET = 15.0;
@@ -673,6 +693,7 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 6.0;
 				TVOS_DEPLOYMENT_TARGET = 15.0;
 				WATCHOS_DEPLOYMENT_TARGET = 8.0;
@@ -710,7 +731,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		C3F0AC472B2EE3A900D2165B /* Build configuration list for PBXProject "BadaBook" */ = {
+		C3F0AC472B2EE3A900D2165B /* Build configuration list for PBXProject "Badabook" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				C3F0AC722B2EE3AA00D2165B /* Debug */,

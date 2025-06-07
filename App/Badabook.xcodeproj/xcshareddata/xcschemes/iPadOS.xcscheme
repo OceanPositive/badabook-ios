@@ -17,7 +17,7 @@
                BlueprintIdentifier = "C3DC6EE92B78B9A200E1968B"
                BuildableName = "iPadOS.app"
                BlueprintName = "iPadOS"
-               ReferencedContainer = "container:BadaBook.xcodeproj">
+               ReferencedContainer = "container:Badabook.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -46,7 +46,7 @@
             BlueprintIdentifier = "C3DC6EE92B78B9A200E1968B"
             BuildableName = "iPadOS.app"
             BlueprintName = "iPadOS"
-            ReferencedContainer = "container:BadaBook.xcodeproj">
+            ReferencedContainer = "container:Badabook.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <EnvironmentVariables>
@@ -70,7 +70,7 @@
             BlueprintIdentifier = "C3DC6EE92B78B9A200E1968B"
             BuildableName = "iPadOS.app"
             BlueprintName = "iPadOS"
-            ReferencedContainer = "container:BadaBook.xcodeproj">
+            ReferencedContainer = "container:Badabook.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>
