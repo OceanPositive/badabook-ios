@@ -18,7 +18,7 @@ package enum SafeCodableOptional<Wrapped: Codable>: Codable {
 }
 
 extension SafeCodableOptional {
-    package var optional: Optional<Wrapped> {
+    package var optional: Wrapped? {
         switch self {
         case let .some(value):
             return .some(value)

@@ -36,11 +36,13 @@ extension DiveSite: DomainConvertible {
     init(domain: BadaDomain.DiveSite) {
         self.title = domain.title
         self.subtitle = domain.subtitle
-        self.coordinate = domain.coordinate.map {
-            DiveSite.Coordinate(
-                latitude: $0.latitude,
-                longitude: $0.longitude
-            )
-        }.safeCodableOptional
+        self.coordinate =
+            domain.coordinate.map {
+                DiveSite.Coordinate(
+                    latitude: $0.latitude,
+                    longitude: $0.longitude
+                )
+            }
+            .safeCodableOptional
     }
 }
