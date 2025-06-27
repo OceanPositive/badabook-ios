@@ -44,6 +44,7 @@ struct LogbookListView: View {
                     #endif
                 }
             }
+            .listStyle(.automatic)
             .navigationTitle(L10n.Logbook.title)
             .navigationDestination(for: NavigationState.LogbookPath.self) { path in
                 switch path {
