@@ -23,7 +23,7 @@ struct EquipmentView: View {
         ) {
             ScrollView(.vertical) {
             }
-            .background(.background.secondary)
+            .background(BackgroundStyle.background)
             .navigationTitle(L10n.Equipment.title)
             .navigationDestination(for: NavigationState.EquipmentPath.self) { path in
             }
