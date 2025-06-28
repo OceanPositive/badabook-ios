@@ -28,6 +28,7 @@ package enum SystemImage: String {
     case location = "location"
     case trash = "trash"
     case plusSquareOnSquare = "plus.square.on.square"
+    case minusSquare = "minus.square"
 }
 
 extension Image {

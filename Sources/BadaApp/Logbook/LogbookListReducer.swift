@@ -13,6 +13,7 @@ struct LogbookListReducer: Reducer {
         case load
         case delete(LogbookListRowItem)
         case addMockData
+        case removeMockData
         case setItems([LogbookListRowItem])
         case setIsAddSheetPresenting(Bool)
         case none
@@ -26,6 +27,7 @@ struct LogbookListReducer: Reducer {
     @UseCase private var getDiveLogsUseCase: GetDiveLogsUseCase
     @UseCase private var deleteDiveLogUseCase: DeleteDiveLogUseCase
     @UseCase private var postMockDiveLogsUseCase: PostMockDiveLogsUseCase
+    @UseCase private var deleteMockDiveLogsUseCase: DeleteMockDiveLogsUseCase
 
     func reduce(state: inout State, action: Action) -> AnyEffect<Action> {
         switch action {
@@ -40,6 +42,8 @@ struct LogbookListReducer: Reducer {
             }
         case .addMockData:
             return .single { await executePostMockDiveLogsUseCase() }
+        case .removeMockData:
+            return .single { await executeDeleteMockDiveLogsUseCase() }
         case let .setItems(items):
             state.items = items
             return .none
@@ -94,6 +98,16 @@ struct LogbookListReducer: Reducer {
             requests.append(DiveLogInsertRequest.mock)
         }
         let result = await postMockDiveLogsUseCase.execute(for: requests)
+        switch result {
+        case .success:
+            return .none
+        case .failure:
+            return .none
+        }
+    }
+
+    private func executeDeleteMockDiveLogsUseCase() async -> Action {
+        let result = await deleteMockDiveLogsUseCase.execute()
         switch result {
         case .success:
             return .none

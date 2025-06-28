@@ -60,6 +60,9 @@ struct LogbookListView: View {
                     ToolbarItem(placement: .secondaryAction) {
                         addMockDataButton
                     }
+                    ToolbarItem(placement: .secondaryAction) {
+                        removeMockDataButton
+                    }
                 #endif
             }
             .sheet(
@@ -93,6 +96,14 @@ struct LogbookListView: View {
                 systemImage: SystemImage.plusSquareOnSquare.rawValue
             ) {
                 store.send(.addMockData)
+            }
+        }
+        private var removeMockDataButton: some View {
+            Button(
+                "Remove",
+                systemImage: SystemImage.minusSquare.rawValue
+            ) {
+                store.send(.removeMockData)
             }
         }
     #endif

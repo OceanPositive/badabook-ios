@@ -111,4 +111,13 @@ package struct DiveLogRepository: DiveLogRepositoryType {
             return .failure(.deleteFailed(error.localizedDescription))
         }
     }
+
+    package func deleteAll() -> Result<Void, DiveLogRepositoryError> {
+        do {
+            try context.delete(model: DiveLogEntity.self)
+            return .success(Void())
+        } catch {
+            return .failure(.deleteFailed(error.localizedDescription))
+        }
+    }
 }
