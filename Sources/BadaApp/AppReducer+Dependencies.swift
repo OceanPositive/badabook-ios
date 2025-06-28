@@ -47,6 +47,12 @@ extension AppReducer {
             }
         }
         register {
+            DeleteMockDiveLogsUseCase {
+                let repository = await DiveLogRepository(persistentStore: .main)
+                return await repository.deleteAll()
+            }
+        }
+        register {
             GetLocalSearchCompletionsUseCase { searchText in
                 let repository = LocalSearchRepository()
                 return await repository.search(text: searchText)
