@@ -30,7 +30,7 @@ package struct UserRepository: UserRepositoryType {
     }
 
     package func fetch() -> Result<User, UserRepositoryError> {
-        var descriptor = FetchDescriptor<UserEntity>()
+        let descriptor = FetchDescriptor<UserEntity>()
         do {
             let users = try context.fetch(descriptor)
             if let user = users.first {

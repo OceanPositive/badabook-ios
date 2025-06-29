@@ -114,13 +114,17 @@ extension ProfileView {
 
         var body: some View {
             VStack(alignment: .trailing, spacing: 0) {
-                HStack(spacing: 8) {
-                    Circle()
-                        .frame(width: 24, height: 24)
+                HStack(spacing: 0) {
                     Text(agencyText(certification.agency))
-                        .font(.body)
+                        .font(.headline)
                         .foregroundStyle(.primary)
                     Spacer()
+                    Image(imageResource(certification.agency))
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .shadow(color: .secondary, radius: 1, x: 0, y: 0)
+                        .frame(height: 24)
+                        .padding(.vertical, 8)
                 }
                 Spacer()
                     .frame(height: 16)
@@ -149,6 +153,23 @@ extension ProfileView {
                 "TDI"
             case .ssi:
                 "SSI"
+            }
+        }
+
+        private func imageResource(_ agency: CertificationAgency) -> ImageResource {
+            switch agency {
+            case .padi:
+                ImageResource.padiLogo
+            case .naui:
+                ImageResource.nauiLogo
+            case .scubapro:
+                ImageResource.scubaproLogo
+            case .sdi:
+                ImageResource.sdiLogo
+            case .tdi:
+                ImageResource.tdiLogo
+            case .ssi:
+                ImageResource.ssiLogo
             }
         }
 
