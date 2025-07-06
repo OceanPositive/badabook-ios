@@ -40,12 +40,7 @@ struct HomeView: View {
                         )
                     }
                     .padding(16)
-                    #if os(macOS)
-                        .background(BackgroundStyle.background.secondary)
-                    #endif
-                    #if os(iOS)
-                        .background(Color(.secondarySystemGroupedBackground))
-                    #endif
+                    .background(Color(.secondarySystemGroupedBackground))
                     .clipShape(.rect(cornerRadius: 8))
                     Spacer()
                         .frame(height: 24)
@@ -76,22 +71,12 @@ struct HomeView: View {
                         )
                     }
                     .padding(16)
-                    #if os(macOS)
-                        .background(BackgroundStyle.background.secondary)
-                    #endif
-                    #if os(iOS)
-                        .background(Color(.secondarySystemGroupedBackground))
-                    #endif
+                    .background(Color(.secondarySystemGroupedBackground))
                     .clipShape(.rect(cornerRadius: 8))
                 }
                 .padding(16)
             }
-            #if os(macOS)
-                .background(BackgroundStyle.background)
-            #endif
-            #if os(iOS)
-                .background(Color(.systemGroupedBackground))
-            #endif
+            .background(Color(.systemGroupedBackground))
             .navigationTitle(L10n.Home.title)
             .navigationDestination(for: NavigationState.HomePath.self) { path in
                 switch path {

@@ -37,14 +37,6 @@ struct LogbookDiveSiteSearchSheet: View {
                 }
             }
             .navigationTitle("Dive site")
-            #if os(macOS)
-                .toolbar {
-                    ToolbarItem(placement: .cancellationAction) {
-                        cancelButton
-                    }
-                }
-                .frame(idealWidth: 400, idealHeight: 600)
-            #endif
             .searchable(
                 text: store.binding(\.searchText, send: { .setSearchText($0) }),
                 prompt: Text("Search")

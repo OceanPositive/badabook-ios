@@ -64,13 +64,8 @@ struct ProfileView: View {
                 }
             }
         }
-        #if os(macOS)
-            .padding()
-        #endif
         .navigationTitle("Profile")
-        #if os(iOS)
-            .navigationBarTitleDisplayMode(.inline)
-        #endif
+        .navigationBarTitleDisplayMode(.inline)
         .toolbar {
             ToolbarItem(placement: .confirmationAction) {
                 saveButton

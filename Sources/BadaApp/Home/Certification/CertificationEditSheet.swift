@@ -66,13 +66,8 @@ struct CertificationEditSheet: View {
                     }
                 }
             }
-            #if os(macOS)
-                .padding()
-            #endif
             .navigationTitle("Certification")
-            #if os(iOS)
-                .navigationBarTitleDisplayMode(.inline)
-            #endif
+            .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .confirmationAction) {
                     saveButton

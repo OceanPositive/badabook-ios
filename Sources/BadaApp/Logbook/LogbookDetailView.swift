@@ -225,13 +225,8 @@ struct LogbookDetailView: View {
                 }
             }
         }
-        #if os(macOS)
-            .padding()
-        #endif
         .navigationTitle("Log")
-        #if os(iOS)
-            .navigationBarTitleDisplayMode(.inline)
-        #endif
+        .navigationBarTitleDisplayMode(.inline)
         .toolbar {
             // FIXME: Invalid frame dimension (negative or non-finite).
             ToolbarItem(placement: .confirmationAction) {
