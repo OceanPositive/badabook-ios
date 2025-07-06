@@ -51,13 +51,8 @@ struct CertificationAddSheet: View {
                     )
                 }
             }
-            #if os(macOS)
-                .padding()
-            #endif
             .navigationTitle("New Certification")
-            #if os(iOS)
-                .navigationBarTitleDisplayMode(.inline)
-            #endif
+            .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .confirmationAction) {
                     addButton

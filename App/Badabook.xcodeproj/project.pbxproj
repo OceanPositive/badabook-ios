@@ -11,20 +11,14 @@
 		C305F3B12C8451F90046256D /* BadaUI in Frameworks */ = {isa = PBXBuildFile; productRef = C305F3B02C8451F90046256D /* BadaUI */; };
 		C305F3B32C8452000046256D /* BadaCore in Frameworks */ = {isa = PBXBuildFile; productRef = C305F3B22C8452000046256D /* BadaCore */; };
 		C305F3B52C8452000046256D /* BadaUI in Frameworks */ = {isa = PBXBuildFile; productRef = C305F3B42C8452000046256D /* BadaUI */; };
-		C305F3B72C8452070046256D /* BadaCore in Frameworks */ = {isa = PBXBuildFile; productRef = C305F3B62C8452070046256D /* BadaCore */; };
-		C305F3B92C8452070046256D /* BadaUI in Frameworks */ = {isa = PBXBuildFile; productRef = C305F3B82C8452070046256D /* BadaUI */; };
 		C30EC7BF2C8482E300B46F13 /* BadaApp in Frameworks */ = {isa = PBXBuildFile; productRef = C30EC7BE2C8482E300B46F13 /* BadaApp */; };
 		C30EC7C12C8482E800B46F13 /* BadaApp in Frameworks */ = {isa = PBXBuildFile; productRef = C30EC7C02C8482E800B46F13 /* BadaApp */; };
 		C364E2BE2DF4303800E18A5E /* InfoPlist.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = C364E2BD2DF4303800E18A5E /* InfoPlist.xcstrings */; };
 		C364E2BF2DF4303800E18A5E /* InfoPlist.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = C364E2BD2DF4303800E18A5E /* InfoPlist.xcstrings */; };
-		C364E2C02DF4303800E18A5E /* InfoPlist.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = C364E2BD2DF4303800E18A5E /* InfoPlist.xcstrings */; };
-		C3DC6EB62B78B76000E1968B /* MacApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3DC6EB52B78B76000E1968B /* MacApp.swift */; };
-		C3DC6EBA2B78B76100E1968B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C3DC6EB92B78B76100E1968B /* Assets.xcassets */; };
 		C3DC6EDB2B78B8E800E1968B /* PhoneApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3DC6EDA2B78B8E800E1968B /* PhoneApp.swift */; };
 		C3DC6EDF2B78B8E900E1968B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C3DC6EDE2B78B8E900E1968B /* Assets.xcassets */; };
 		C3E08D322B78B9DF00659303 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C3E08D2D2B78B9DF00659303 /* Assets.xcassets */; };
 		C3E08D342B78B9DF00659303 /* PadApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3E08D302B78B9DF00659303 /* PadApp.swift */; };
-		C3F0C7EA2C9ABD350095F222 /* BadaApp in Frameworks */ = {isa = PBXBuildFile; productRef = C3F0C7E92C9ABD350095F222 /* BadaApp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -43,15 +37,10 @@
 /* Begin PBXFileReference section */
 		C303E0B52C99A71500A94738 /* iOS-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "iOS-Info.plist"; sourceTree = "<group>"; };
 		C303E0B62C99A75400A94738 /* iPadOS-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "iPadOS-Info.plist"; sourceTree = "<group>"; };
-		C303E0B72C99A75E00A94738 /* macOS-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "macOS-Info.plist"; sourceTree = "<group>"; };
 		C311CB562CA7FA8600D70C53 /* iPadOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = iPadOS.entitlements; sourceTree = "<group>"; };
-		C311CB572CA7FA9600D70C53 /* macOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = macOS.entitlements; sourceTree = "<group>"; };
 		C364E2BD2DF4303800E18A5E /* InfoPlist.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = InfoPlist.xcstrings; sourceTree = "<group>"; };
 		C3CAD57F2B78C8CA00C7344D /* AppTests.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = AppTests.xctestplan; sourceTree = "<group>"; };
 		C3D2A16C2B6E32340059EADC /* AppPackage */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = AppPackage; path = ..; sourceTree = "<group>"; };
-		C3DC6EB32B78B76000E1968B /* Badabook.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Badabook.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		C3DC6EB52B78B76000E1968B /* MacApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MacApp.swift; sourceTree = "<group>"; };
-		C3DC6EB92B78B76100E1968B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C3DC6ED82B78B8E800E1968B /* Badabook.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Badabook.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C3DC6EDA2B78B8E800E1968B /* PhoneApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneApp.swift; sourceTree = "<group>"; };
 		C3DC6EDE2B78B8E900E1968B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -62,16 +51,6 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		C3DC6EB02B78B76000E1968B /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				C3F0C7EA2C9ABD350095F222 /* BadaApp in Frameworks */,
-				C305F3B92C8452070046256D /* BadaUI in Frameworks */,
-				C305F3B72C8452070046256D /* BadaCore in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		C3DC6ED52B78B8E800E1968B /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -100,7 +79,6 @@
 			children = (
 				C3DC6ED92B78B8E800E1968B /* iOS */,
 				C3E08D2C2B78B9DF00659303 /* iPadOS */,
-				C3DC6EB42B78B76000E1968B /* macOS */,
 			);
 			path = Platforms;
 			sourceTree = "<group>";
@@ -118,15 +96,6 @@
 			children = (
 			);
 			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		C3DC6EB42B78B76000E1968B /* macOS */ = {
-			isa = PBXGroup;
-			children = (
-				C3DC6EB52B78B76000E1968B /* MacApp.swift */,
-				C3DC6EB92B78B76100E1968B /* Assets.xcassets */,
-			);
-			path = macOS;
 			sourceTree = "<group>";
 		};
 		C3DC6ED92B78B8E800E1968B /* iOS */ = {
@@ -154,10 +123,8 @@
 				C3D2A16C2B6E32340059EADC /* AppPackage */,
 				C3E3D4942C9A659C00684D72 /* iOS.entitlements */,
 				C311CB562CA7FA8600D70C53 /* iPadOS.entitlements */,
-				C311CB572CA7FA9600D70C53 /* macOS.entitlements */,
 				C303E0B52C99A71500A94738 /* iOS-Info.plist */,
 				C303E0B62C99A75400A94738 /* iPadOS-Info.plist */,
-				C303E0B72C99A75E00A94738 /* macOS-Info.plist */,
 				C3D2A16D2B6E32BD0059EADC /* Frameworks */,
 				C3100B852B396A0600CD640B /* Platforms */,
 				C3F0AC4D2B2EE3A900D2165B /* Products */,
@@ -168,7 +135,6 @@
 		C3F0AC4D2B2EE3A900D2165B /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				C3DC6EB32B78B76000E1968B /* Badabook.app */,
 				C3DC6ED82B78B8E800E1968B /* Badabook.app */,
 				C3DC6EEA2B78B9A200E1968B /* Badabook.app */,
 			);
@@ -178,28 +144,6 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		C3DC6EB22B78B76000E1968B /* macOS */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = C3DC6EC12B78B76100E1968B /* Build configuration list for PBXNativeTarget "macOS" */;
-			buildPhases = (
-				C3DC6EAF2B78B76000E1968B /* Sources */,
-				C3DC6EB02B78B76000E1968B /* Frameworks */,
-				C3DC6EB12B78B76000E1968B /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = macOS;
-			packageProductDependencies = (
-				C305F3B62C8452070046256D /* BadaCore */,
-				C305F3B82C8452070046256D /* BadaUI */,
-				C3F0C7E92C9ABD350095F222 /* BadaApp */,
-			);
-			productName = macOS;
-			productReference = C3DC6EB32B78B76000E1968B /* Badabook.app */;
-			productType = "com.apple.product-type.application";
-		};
 		C3DC6ED72B78B8E800E1968B /* iOS */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = C3DC6EE32B78B8E900E1968B /* Build configuration list for PBXNativeTarget "iOS" */;
@@ -255,9 +199,6 @@
 				LastSwiftUpdateCheck = 1520;
 				LastUpgradeCheck = 1520;
 				TargetAttributes = {
-					C3DC6EB22B78B76000E1968B = {
-						CreatedOnToolsVersion = 15.2;
-					};
 					C3DC6ED72B78B8E800E1968B = {
 						CreatedOnToolsVersion = 15.2;
 					};
@@ -282,21 +223,11 @@
 			targets = (
 				C3DC6ED72B78B8E800E1968B /* iOS */,
 				C3DC6EE92B78B9A200E1968B /* iPadOS */,
-				C3DC6EB22B78B76000E1968B /* macOS */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		C3DC6EB12B78B76000E1968B /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				C364E2C02DF4303800E18A5E /* InfoPlist.xcstrings in Resources */,
-				C3DC6EBA2B78B76100E1968B /* Assets.xcassets in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		C3DC6ED62B78B8E800E1968B /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -318,14 +249,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		C3DC6EAF2B78B76000E1968B /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				C3DC6EB62B78B76000E1968B /* MacApp.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		C3DC6ED42B78B8E800E1968B /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -345,72 +268,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin XCBuildConfiguration section */
-		C3DC6EBF2B78B76100E1968B /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = macOS.entitlements;
-				CODE_SIGN_STYLE = Automatic;
-				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 1;
-				DEAD_CODE_STRIPPING = YES;
-				DEVELOPMENT_ASSET_PATHS = "";
-				DEVELOPMENT_TEAM = T42V7M748Y;
-				ENABLE_HARDENED_RUNTIME = YES;
-				ENABLE_PREVIEWS = YES;
-				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "macOS-Info.plist";
-				INFOPLIST_KEY_CFBundleDisplayName = Badabook;
-				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright © 2025 ENUF Co., Ltd. All rights reserved.";
-				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/../Frameworks",
-				);
-				MACOSX_DEPLOYMENT_TARGET = 15.0;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.enuf.badabook.macOS;
-				PRODUCT_NAME = Badabook;
-				SDKROOT = macosx;
-				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_VERSION = 6.0;
-			};
-			name = Debug;
-		};
-		C3DC6EC02B78B76100E1968B /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = macOS.entitlements;
-				CODE_SIGN_STYLE = Automatic;
-				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 1;
-				DEAD_CODE_STRIPPING = YES;
-				DEVELOPMENT_ASSET_PATHS = "";
-				DEVELOPMENT_TEAM = T42V7M748Y;
-				ENABLE_HARDENED_RUNTIME = YES;
-				ENABLE_PREVIEWS = YES;
-				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "macOS-Info.plist";
-				INFOPLIST_KEY_CFBundleDisplayName = Badabook;
-				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright © 2025 ENUF Co., Ltd. All rights reserved.";
-				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/../Frameworks",
-				);
-				MACOSX_DEPLOYMENT_TARGET = 15.0;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.enuf.badabook.macOS;
-				PRODUCT_NAME = Badabook;
-				SDKROOT = macosx;
-				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_VERSION = 6.0;
-			};
-			name = Release;
-		};
 		C3DC6EE42B78B8E900E1968B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -626,17 +483,14 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
-				MACOSX_DEPLOYMENT_TARGET = 14.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
+				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos";
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 6.0;
-				TVOS_DEPLOYMENT_TARGET = 15.0;
-				WATCHOS_DEPLOYMENT_TARGET = 8.0;
-				XROS_DEPLOYMENT_TARGET = 1.0;
 			};
 			name = Debug;
 		};
@@ -689,30 +543,18 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
-				MACOSX_DEPLOYMENT_TARGET = 14.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
+				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos";
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 6.0;
-				TVOS_DEPLOYMENT_TARGET = 15.0;
-				WATCHOS_DEPLOYMENT_TARGET = 8.0;
-				XROS_DEPLOYMENT_TARGET = 1.0;
 			};
 			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		C3DC6EC12B78B76100E1968B /* Build configuration list for PBXNativeTarget "macOS" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				C3DC6EBF2B78B76100E1968B /* Debug */,
-				C3DC6EC02B78B76100E1968B /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
 		C3DC6EE32B78B8E900E1968B /* Build configuration list for PBXNativeTarget "iOS" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -759,23 +601,11 @@
 			isa = XCSwiftPackageProductDependency;
 			productName = BadaUI;
 		};
-		C305F3B62C8452070046256D /* BadaCore */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = BadaCore;
-		};
-		C305F3B82C8452070046256D /* BadaUI */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = BadaUI;
-		};
 		C30EC7BE2C8482E300B46F13 /* BadaApp */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = BadaApp;
 		};
 		C30EC7C02C8482E800B46F13 /* BadaApp */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = BadaApp;
-		};
-		C3F0C7E92C9ABD350095F222 /* BadaApp */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = BadaApp;
 		};

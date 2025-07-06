@@ -209,13 +209,8 @@ struct LogbookAddSheet: View {
                     #endif
                 }
             }
-            #if os(macOS)
-                .padding()
-            #endif
             .navigationTitle("New log")
-            #if os(iOS)
-                .navigationBarTitleDisplayMode(.inline)
-            #endif
+            .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .confirmationAction) {
                     saveButton
