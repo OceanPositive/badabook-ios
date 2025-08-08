@@ -10,11 +10,14 @@ import BadaDomain
 
 struct LogbookAddReducer: Reducer {
     enum Action: Sendable {
+        case load
         case save
         case dismiss
+        case setLastDiveLog(DiveLog)
         case setLogNumber(Int?)
         case setLogDate(Date)
-        case setDiveSite(LocalSearchResult)
+        case setDiveSite(DiveSite?)
+        case setDiveSiteBySearching(LocalSearchResult)
         case setDiveCenter(String)
         case setDiveStyle(DiveStyle)
         case setEntryTime(Date)
@@ -32,12 +35,13 @@ struct LogbookAddReducer: Reducer {
         case setFeeling(Feeling)
         case setNotes(String)
         case setIsDiveSiteSearchSheetPresenting(Bool)
+        case setIsLoading(Bool)
         case none
     }
 
     struct State: Sendable, Equatable {
         var logNumber: Int?
-        var logDate: Date = Date(timeIntervalSince1970: 0)
+        var logDate: Date = Date.now
         var diveSite: DiveSite?
         var diveCenter: String = ""
         var diveStyle: DiveStyle = .boat
@@ -55,14 +59,24 @@ struct LogbookAddReducer: Reducer {
         var weather: Weather = .sunny
         var feeling: Feeling = .good
         var notes: String = ""
+        var isLoading: Bool = false
         var isDiveSiteSearchSheetPresenting: Bool = false
         var shouldDismiss: Bool = false
     }
 
+    @UseCase private var getLastDiveLogUseCase: GetLastDiveLogUseCase
     @UseCase private var postDiveLogsUseCase: PostDiveLogUseCase
 
     func reduce(state: inout State, action: Action) -> AnyEffect<Action> {
         switch action {
+        case .load:
+            return .concat {
+                AnyEffect.just(.setIsLoading(true))
+                AnyEffect.single {
+                    await executeGetLastDiveLogUseCase()
+                }
+                AnyEffect.just(.setIsLoading(false))
+            }
         case .save:
             return .single { [state] in
                 await executePostDiveLogUseCase(state: state)
@@ -70,13 +84,31 @@ struct LogbookAddReducer: Reducer {
         case .dismiss:
             state.shouldDismiss = true
             return .none
+        case let .setLastDiveLog(diveLog):
+            return .merge {
+                AnyEffect.just(.setLogNumber(diveLog.logNumber + 1))
+                AnyEffect.just(.setLogDate(diveLog.logDate))
+                AnyEffect.just(.setDiveSite(diveLog.diveSite))
+                if let diveCenter = diveLog.diveCenter {
+                    AnyEffect.just(.setDiveCenter(diveCenter))
+                }
+                if let diveStyle = diveLog.diveStyle {
+                    AnyEffect.just(.setDiveStyle(diveStyle))
+                }
+                if let entryAir = diveLog.entryAir {
+                    AnyEffect.just(.setEntryAir(entryAir.rawValue))
+                }
+            }
         case let .setLogNumber(logNumber):
             state.logNumber = logNumber
             return .none
         case let .setLogDate(logDate):
             state.logDate = logDate
             return .none
-        case let .setDiveSite(searchResult):
+        case let .setDiveSite(diveSite):
+            state.diveSite = diveSite
+            return .none
+        case let .setDiveSiteBySearching(searchResult):
             if let coordinate = searchResult.coordinate {
                 state.diveSite = DiveSite(
                     title: searchResult.title,
@@ -185,7 +217,20 @@ struct LogbookAddReducer: Reducer {
         case let .setIsDiveSiteSearchSheetPresenting(isDiveSiteSearchSheetPresenting):
             state.isDiveSiteSearchSheetPresenting = isDiveSiteSearchSheetPresenting
             return .none
+        case let .setIsLoading(isLoading):
+            state.isLoading = isLoading
+            return .none
         case .none:
+            return .none
+        }
+    }
+
+    private func executeGetLastDiveLogUseCase() async -> Action {
+        let result = await getLastDiveLogUseCase.execute()
+        switch result {
+        case let .success(diveLog):
+            return .setLastDiveLog(diveLog)
+        case .failure:
             return .none
         }
     }

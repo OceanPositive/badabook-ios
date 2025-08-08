@@ -75,6 +75,22 @@ package struct DiveLogRepository: DiveLogRepositoryType {
         }
     }
 
+    package func fetchLast() -> Result<DiveLog, DiveLogRepositoryError> {
+        var descriptor = FetchDescriptor<DiveLogEntity>()
+        descriptor.sortBy = [SortDescriptor(\.insertDate, order: .reverse)]
+        descriptor.fetchLimit = 1
+        do {
+            let diveLogs = try context.fetch(descriptor)
+            if let diveLog = diveLogs.first {
+                return .success(diveLog.domain)
+            } else {
+                return .failure(.noResult)
+            }
+        } catch {
+            return .failure(.fetchFailed(error.localizedDescription))
+        }
+    }
+
     package func update(
         request: DiveLogUpdateRequest
     ) -> Result<Void, DiveLogRepositoryError> {

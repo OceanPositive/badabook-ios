@@ -82,6 +82,19 @@ extension UnitValue.Time {
             return value
         }
     }
+
+    package var timeInterval: TimeInterval {
+        switch self {
+        case let .second(value):
+            return value
+        case let .minute(value):
+            return value * 60
+        case let .hour(value):
+            return value * 60 * 60
+        case let .day(value):
+            return value * 60 * 60 * 24
+        }
+    }
 }
 
 extension UnitValue.Temperature {

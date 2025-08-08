@@ -12,6 +12,7 @@ package protocol DiveLogRepositoryType {
     func insert(request: DiveLogInsertRequest) -> Result<Void, DiveLogRepositoryError>
     func fetchAll() -> Result<[DiveLog], DiveLogRepositoryError>
     func fetch(by identifier: DiveLogID) -> Result<DiveLog, DiveLogRepositoryError>
+    func fetchLast() -> Result<DiveLog, DiveLogRepositoryError>
     func update(request: DiveLogUpdateRequest) -> Result<Void, DiveLogRepositoryError>
     func delete(for identifier: DiveLogID) -> Result<Void, DiveLogRepositoryError>
 }

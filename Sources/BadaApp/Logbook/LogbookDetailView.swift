@@ -97,28 +97,6 @@ struct LogbookDetailView: View {
                 )
                 .focused($focusedField, equals: .surfaceInterval)
             }
-            Section(header: Text("Air pressure")) {
-                LabeledFormattedTextField(
-                    value: Binding(
-                        get: { store.state.entryAir?.rawValue },
-                        set: { store.send(.setEntryAir($0)) }),
-                    format: .number,
-                    prompt: "bar",
-                    label: "Entry",
-                    keyboardType: .numberPad
-                )
-                .focused($focusedField, equals: .entryAir)
-                LabeledFormattedTextField(
-                    value: Binding(
-                        get: { store.state.exitAir?.rawValue },
-                        set: { store.send(.setExitAir($0)) }),
-                    format: .number,
-                    prompt: "bar",
-                    label: "Exit",
-                    keyboardType: .numberPad
-                )
-                .focused($focusedField, equals: .exitAir)
-            }
             Section(header: Text("Depth")) {
                 LabeledFormattedTextField(
                     value: Binding(
@@ -141,17 +119,29 @@ struct LogbookDetailView: View {
                 )
                 .focused($focusedField, equals: .averageDepth)
             }
-            Section(header: Text("Temperature")) {
+            Section(header: Text("Air pressure")) {
                 LabeledFormattedTextField(
                     value: Binding(
-                        get: { store.state.airTemperature?.rawValue },
-                        set: { store.send(.setAirTemperature($0)) }),
+                        get: { store.state.entryAir?.rawValue },
+                        set: { store.send(.setEntryAir($0)) }),
                     format: .number,
-                    prompt: "℃",
-                    label: "Air",
+                    prompt: "bar",
+                    label: "Entry",
                     keyboardType: .numberPad
                 )
-                .focused($focusedField, equals: .maximumWaterTemperature)
+                .focused($focusedField, equals: .entryAir)
+                LabeledFormattedTextField(
+                    value: Binding(
+                        get: { store.state.exitAir?.rawValue },
+                        set: { store.send(.setExitAir($0)) }),
+                    format: .number,
+                    prompt: "bar",
+                    label: "Exit",
+                    keyboardType: .numberPad
+                )
+                .focused($focusedField, equals: .exitAir)
+            }
+            Section(header: Text("Temperature")) {
                 LabeledFormattedTextField(
                     value: Binding(
                         get: { store.state.surfaceTemperature?.rawValue },

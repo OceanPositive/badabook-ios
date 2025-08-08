@@ -91,28 +91,6 @@ struct LogbookAddSheet: View {
                     )
                     .focused($focusedField, equals: .surfaceInterval)
                 }
-                Section(header: Text("Air pressure")) {
-                    LabeledFormattedTextField(
-                        value: Binding(
-                            get: { store.state.entryAir?.rawValue },
-                            set: { store.send(.setEntryAir($0)) }),
-                        format: .number,
-                        prompt: "bar",
-                        label: "Entry",
-                        keyboardType: .numberPad
-                    )
-                    .focused($focusedField, equals: .entryAir)
-                    LabeledFormattedTextField(
-                        value: Binding(
-                            get: { store.state.exitAir?.rawValue },
-                            set: { store.send(.setExitAir($0)) }),
-                        format: .number,
-                        prompt: "bar",
-                        label: "Exit",
-                        keyboardType: .numberPad
-                    )
-                    .focused($focusedField, equals: .exitAir)
-                }
                 Section(header: Text("Depth")) {
                     LabeledFormattedTextField(
                         value: Binding(
@@ -135,17 +113,29 @@ struct LogbookAddSheet: View {
                     )
                     .focused($focusedField, equals: .averageDepth)
                 }
-                Section(header: Text("Temperature")) {
+                Section(header: Text("Air pressure")) {
                     LabeledFormattedTextField(
                         value: Binding(
-                            get: { store.state.airTemperature?.rawValue },
-                            set: { store.send(.setAirTemperature($0)) }),
+                            get: { store.state.entryAir?.rawValue },
+                            set: { store.send(.setEntryAir($0)) }),
                         format: .number,
-                        prompt: "℃",
-                        label: "Air",
+                        prompt: "bar",
+                        label: "Entry",
                         keyboardType: .numberPad
                     )
-                    .focused($focusedField, equals: .maximumWaterTemperature)
+                    .focused($focusedField, equals: .entryAir)
+                    LabeledFormattedTextField(
+                        value: Binding(
+                            get: { store.state.exitAir?.rawValue },
+                            set: { store.send(.setExitAir($0)) }),
+                        format: .number,
+                        prompt: "bar",
+                        label: "Exit",
+                        keyboardType: .numberPad
+                    )
+                    .focused($focusedField, equals: .exitAir)
+                }
+                Section(header: Text("Temperature")) {
                     LabeledFormattedTextField(
                         value: Binding(
                             get: { store.state.surfaceTemperature?.rawValue },
@@ -225,6 +215,12 @@ struct LogbookAddSheet: View {
                     doneButton
                 }
             }
+            .overlay {
+                if store.state.isLoading {
+                    ProgressView()
+                        .controlSize(.large)
+                }
+            }
             .sheet(
                 isPresented: Binding<Bool>(
                     get: { store.state.isDiveSiteSearchSheetPresenting },
@@ -232,6 +228,7 @@ struct LogbookAddSheet: View {
                 ),
                 content: { LogbookDiveSiteSearchSheet(action: selectDiveSite) }
             )
+            .onAppear { store.send(.load) }
             .onChange(of: store.state.shouldDismiss, onShouldDismissChange)
         }
     }
@@ -286,7 +283,7 @@ struct LogbookAddSheet: View {
     }
 
     private func selectDiveSite(_ searchResult: LocalSearchResult) {
-        store.send(.setDiveSite(searchResult))
+        store.send(.setDiveSiteBySearching(searchResult))
     }
 }
 
