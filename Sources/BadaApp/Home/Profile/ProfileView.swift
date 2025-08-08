@@ -22,17 +22,17 @@ struct ProfileView: View {
             Section {
                 LabeledTextField(
                     value: store.binding(\.name, send: { .setName($0) }),
-                    prompt: "Not Set",
-                    label: "Name",
+                    prompt: L10n.Profile.notSet,
+                    label: L10n.Profile.name,
                     keyboardType: .default
                 )
                 DatePicker(
-                    "Date of Birth",
+                    L10n.Profile.dateOfBirth,
                     selection: store.binding(\.dateOfBirth, send: { .setDateOfBirth($0) }),
                     displayedComponents: .date
                 )
             }
-            Section(header: Text("Certifications")) {
+            Section(header: Text(L10n.Profile.certifications)) {
                 ForEach(store.state.certifications, id: \.identifier) { certification in
                     CertificationRow(certification: certification)
                         .contentShape(Rectangle())
@@ -40,31 +40,29 @@ struct ProfileView: View {
                             let identifier = certification.identifier
                             store.send(.setSheet(.certificationEdit(identifier: identifier)))
                         }
-                        #if os(iOS)
-                            .swipeActions(
-                                edge: .trailing,
-                                allowsFullSwipe: false
-                            ) {
-                                Button(role: .destructive) {
-                                    store.send(.delete(certification))
-                                } label: {
-                                    Image(systemImage: .trash)
-                                }
+                        .swipeActions(
+                            edge: .trailing,
+                            allowsFullSwipe: false
+                        ) {
+                            Button(role: .destructive) {
+                                store.send(.delete(certification))
+                            } label: {
+                                Image(systemImage: .trash)
                             }
-                        #endif
+                        }
                 }
                 Button {
                     store.send(.setSheet(.certificationAdd))
                 } label: {
                     HStack {
                         Image(systemName: SystemImage.plus.rawValue)
-                        Text("New Certification")
+                        Text(L10n.Profile.newCertification)
                     }
                     .font(.body)
                 }
             }
         }
-        .navigationTitle("Profile")
+        .navigationTitle(L10n.Profile.title)
         .navigationBarTitleDisplayMode(.inline)
         .toolbar {
             ToolbarItem(placement: .confirmationAction) {
@@ -88,7 +86,7 @@ struct ProfileView: View {
         Button {
             store.send(.save)
         } label: {
-            Text("Save")
+            Text(L10n.Common.save)
         }
     }
 
