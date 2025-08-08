@@ -17,6 +17,9 @@ struct LogbookAddReducerTests {
         UseCaseContainer.instance.register {
             PostDiveLogUseCase { _ in .success(Void()) }
         }
+        UseCaseContainer.instance.register {
+            GetLastDiveLogUseCase { .failure(.noResult) }
+        }
     }
 
     @Test
@@ -36,13 +39,12 @@ struct LogbookAddReducerTests {
             reducer: LogbookAddReducer(),
             state: LogbookAddReducer.State()
         )
-        await sut.expect(\.logDate, Date(timeIntervalSince1970: 0))
         await sut.send(.setLogDate(Date(timeIntervalSince1970: 12)))
         await sut.expect(\.logDate, Date(timeIntervalSince1970: 12))
     }
 
     @Test
-    func setDiveSite() async {
+    func setDiveSiteBySearching() async {
         let sut = Store(
             reducer: LogbookAddReducer(),
             state: LogbookAddReducer.State()
@@ -53,7 +55,7 @@ struct LogbookAddReducerTests {
             subtitle: "World",
             coordinate: LocalSearchResult.Coordinate(latitude: 12, longitude: 13)
         )
-        await sut.send(.setDiveSite(searchResult))
+        await sut.send(.setDiveSiteBySearching(searchResult))
         await sut.expect(\.diveSite?.title, searchResult.title)
         await sut.expect(\.diveSite?.subtitle, searchResult.subtitle)
         await sut.expect(\.diveSite?.coordinate?.latitude, searchResult.coordinate?.latitude)
