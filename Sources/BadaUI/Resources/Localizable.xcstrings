@@ -1,7 +1,7 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
-    "APP_TITLE" : {
+    "APP.TITLE" : {
       "extractionState" : "manual",
       "localizations" : {
         "en" : {
@@ -18,7 +18,58 @@
         }
       }
     },
-    "COMMON_SAVE" : {
+    "COMMON.CANCEL" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cancel"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "취소"
+          }
+        }
+      }
+    },
+    "COMMON.DELETE" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Delete"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "삭제"
+          }
+        }
+      }
+    },
+    "COMMON.DONE" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Done"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "완료"
+          }
+        }
+      }
+    },
+    "COMMON.SAVE" : {
       "extractionState" : "manual",
       "localizations" : {
         "en" : {
@@ -35,7 +86,7 @@
         }
       }
     },
-    "EQUIPMENT_TITLE" : {
+    "EQUIPMENT.TITLE" : {
       "extractionState" : "manual",
       "localizations" : {
         "en" : {
@@ -52,7 +103,7 @@
         }
       }
     },
-    "HOME_PROFILE_CERTIFICATION" : {
+    "HOME.PROFILE_CERTIFICATION" : {
       "extractionState" : "manual",
       "localizations" : {
         "en" : {
@@ -69,7 +120,7 @@
         }
       }
     },
-    "HOME_PROFILE_EXPERIENCE" : {
+    "HOME.PROFILE_EXPERIENCE" : {
       "extractionState" : "manual",
       "localizations" : {
         "en" : {
@@ -86,7 +137,7 @@
         }
       }
     },
-    "HOME_PROFILE_SECTION" : {
+    "HOME.PROFILE_SECTION" : {
       "extractionState" : "manual",
       "localizations" : {
         "en" : {
@@ -103,7 +154,7 @@
         }
       }
     },
-    "HOME_SUMMARY_DIVE_SITES" : {
+    "HOME.SUMMARY_DIVE_SITES" : {
       "extractionState" : "manual",
       "localizations" : {
         "en" : {
@@ -120,7 +171,7 @@
         }
       }
     },
-    "HOME_SUMMARY_LAST_DIVE" : {
+    "HOME.SUMMARY_LAST_DIVE" : {
       "extractionState" : "manual",
       "localizations" : {
         "en" : {
@@ -137,7 +188,7 @@
         }
       }
     },
-    "HOME_SUMMARY_LOGS" : {
+    "HOME.SUMMARY_LOGS" : {
       "extractionState" : "manual",
       "localizations" : {
         "en" : {
@@ -154,7 +205,7 @@
         }
       }
     },
-    "HOME_SUMMARY_SECTION" : {
+    "HOME.SUMMARY_SECTION" : {
       "extractionState" : "manual",
       "localizations" : {
         "en" : {
@@ -171,7 +222,7 @@
         }
       }
     },
-    "HOME_SUMMARY_TOTAL_DIVE_TIME" : {
+    "HOME.SUMMARY_TOTAL_DIVE_TIME" : {
       "extractionState" : "manual",
       "localizations" : {
         "en" : {
@@ -188,7 +239,7 @@
         }
       }
     },
-    "HOME_TITLE" : {
+    "HOME.TITLE" : {
       "extractionState" : "manual",
       "localizations" : {
         "en" : {
@@ -205,7 +256,7 @@
         }
       }
     },
-    "LOGBOOK_ADD" : {
+    "LOGBOOK.ADD" : {
       "extractionState" : "manual",
       "localizations" : {
         "en" : {
@@ -222,7 +273,500 @@
         }
       }
     },
-    "LOGBOOK_TITLE" : {
+    "LOGBOOK.ADD_TITLE" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "New Log"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "새 로그"
+          }
+        }
+      }
+    },
+    "LOGBOOK.AIR_PRESSURE" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "AIR PRESSURE"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "공기 압력"
+          }
+        }
+      }
+    },
+    "LOGBOOK.AVERAGE" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Average"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "평균"
+          }
+        }
+      }
+    },
+    "LOGBOOK.BOTTOM" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bottom"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "수심 하부"
+          }
+        }
+      }
+    },
+    "LOGBOOK.BOTTOM_TIME" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bottom time"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "수심 하부 시간"
+          }
+        }
+      }
+    },
+    "LOGBOOK.DEPTH" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "DEPTH"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "수심"
+          }
+        }
+      }
+    },
+    "LOGBOOK.DETAIL_TITLE" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Log"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "로그"
+          }
+        }
+      }
+    },
+    "LOGBOOK.DIVE_CENTER" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dive center"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "다이브 센터"
+          }
+        }
+      }
+    },
+    "LOGBOOK.DIVE_SITE" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dive site"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "다이브 사이트"
+          }
+        }
+      }
+    },
+    "LOGBOOK.DIVE_SITE_SEARCH.SEARCH" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Search"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "검색"
+          }
+        }
+      }
+    },
+    "LOGBOOK.DIVE_SITE_SEARCH.TITLE" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dive Site"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "다이브 사이트"
+          }
+        }
+      }
+    },
+    "LOGBOOK.DIVE_STYLE" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dive style"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "다이브 방식"
+          }
+        }
+      }
+    },
+    "LOGBOOK.ENTRY" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Entry"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "입수"
+          }
+        }
+      }
+    },
+    "LOGBOOK.ENTRY_TIME" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Entry time"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "입수 시간"
+          }
+        }
+      }
+    },
+    "LOGBOOK.EXIT" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Exit"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "출수"
+          }
+        }
+      }
+    },
+    "LOGBOOK.EXIT_TIME" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Exit time"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "출수 시간"
+          }
+        }
+      }
+    },
+    "LOGBOOK.FEELING" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Feeling"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "컨디션"
+          }
+        }
+      }
+    },
+    "LOGBOOK.LOG_DATE" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Log date"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "로그 날짜"
+          }
+        }
+      }
+    },
+    "LOGBOOK.LOG_NUMBER" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Log number"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "로그 번호"
+          }
+        }
+      }
+    },
+    "LOGBOOK.MAXIMUM" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Maximum"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "최대"
+          }
+        }
+      }
+    },
+    "LOGBOOK.NOTES" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "NOTES"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "비고"
+          }
+        }
+      }
+    },
+    "LOGBOOK.PLACEHOLDER.BAR" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "bar"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "bar"
+          }
+        }
+      }
+    },
+    "LOGBOOK.PLACEHOLDER.METER" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "m"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "m"
+          }
+        }
+      }
+    },
+    "LOGBOOK.PLACEHOLDER.MINUTE" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "minute"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "분"
+          }
+        }
+      }
+    },
+    "LOGBOOK.PLACEHOLDER.NAME" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "name"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "이름"
+          }
+        }
+      }
+    },
+    "LOGBOOK.PLACEHOLDER.SEARCH" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Search"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "검색"
+          }
+        }
+      }
+    },
+    "LOGBOOK.SURFACE" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Surface"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "수면"
+          }
+        }
+      }
+    },
+    "LOGBOOK.SURFACE_INTERVAL" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Surface interval"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "수면 휴식 시간"
+          }
+        }
+      }
+    },
+    "LOGBOOK.TEMPERATURE" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "TEMPERATURE"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "온도"
+          }
+        }
+      }
+    },
+    "LOGBOOK.TITLE" : {
       "extractionState" : "manual",
       "localizations" : {
         "en" : {
@@ -239,7 +783,24 @@
         }
       }
     },
-    "MAIN_TAB_EQUIPMENT" : {
+    "LOGBOOK.WEATHER" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Weather"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "날씨"
+          }
+        }
+      }
+    },
+    "MAIN_TAB.EQUIPMENT" : {
       "extractionState" : "manual",
       "localizations" : {
         "en" : {
@@ -256,7 +817,7 @@
         }
       }
     },
-    "MAIN_TAB_HOME" : {
+    "MAIN_TAB.HOME" : {
       "extractionState" : "manual",
       "localizations" : {
         "en" : {
@@ -273,7 +834,7 @@
         }
       }
     },
-    "MAIN_TAB_LOGBOOK" : {
+    "MAIN_TAB.LOGBOOK" : {
       "extractionState" : "manual",
       "localizations" : {
         "en" : {
@@ -290,7 +851,7 @@
         }
       }
     },
-    "PROFILE_CERTIFICATIONS" : {
+    "PROFILE.CERTIFICATIONS" : {
       "extractionState" : "manual",
       "localizations" : {
         "en" : {
@@ -307,7 +868,7 @@
         }
       }
     },
-    "PROFILE_DATE_OF_BIRTH" : {
+    "PROFILE.DATE_OF_BIRTH" : {
       "extractionState" : "manual",
       "localizations" : {
         "en" : {
@@ -324,7 +885,7 @@
         }
       }
     },
-    "PROFILE_NAME" : {
+    "PROFILE.NAME" : {
       "extractionState" : "manual",
       "localizations" : {
         "en" : {
@@ -341,7 +902,7 @@
         }
       }
     },
-    "PROFILE_NEW_CERTIFICATION" : {
+    "PROFILE.NEW_CERTIFICATION" : {
       "extractionState" : "manual",
       "localizations" : {
         "en" : {
@@ -358,7 +919,7 @@
         }
       }
     },
-    "PROFILE_NOT_SET" : {
+    "PROFILE.NOT_SET" : {
       "extractionState" : "manual",
       "localizations" : {
         "en" : {
@@ -375,7 +936,7 @@
         }
       }
     },
-    "PROFILE_TITLE" : {
+    "PROFILE.TITLE" : {
       "extractionState" : "manual",
       "localizations" : {
         "en" : {

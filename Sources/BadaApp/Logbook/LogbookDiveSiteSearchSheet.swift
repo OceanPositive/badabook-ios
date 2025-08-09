@@ -36,10 +36,10 @@ struct LogbookDiveSiteSearchSheet: View {
                     }
                 }
             }
-            .navigationTitle("Dive site")
+            .navigationTitle(L10n.Logbook.DiveSiteSearch.title)
             .searchable(
                 text: store.binding(\.searchText, send: { .setSearchText($0) }),
-                prompt: Text("Search")
+                prompt: Text(L10n.Logbook.DiveSiteSearch.search)
             )
             .disabled(store.state.isSearching)
             .overlay {
@@ -57,7 +57,7 @@ struct LogbookDiveSiteSearchSheet: View {
         Button {
             dismiss()
         } label: {
-            Text("Cancel")
+            Text(L10n.Common.cancel)
         }
     }
 
