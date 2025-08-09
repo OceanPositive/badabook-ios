@@ -23,19 +23,19 @@ struct HomeView: View {
         ) {
             ScrollView(.vertical) {
                 VStack(spacing: 0) {
-                    SectionHeader(title: "Profile") {
+                    SectionHeader(title: L10n.Home.profileSection) {
                         navigationStore.send(.home(.profile))
                     }
                     Spacer()
                         .frame(height: 16)
                     VStack(spacing: 16) {
                         InfoRow(
-                            title: "Certification",
+                            title: L10n.Home.profileCertification,
                             value: store.state.primaryCertificationText
                         )
                         Divider()
                         InfoRow(
-                            title: "Experience",
+                            title: L10n.Home.profileExperience,
                             value: store.state.totalExperienceText
                         )
                     }
@@ -44,29 +44,29 @@ struct HomeView: View {
                     .clipShape(.rect(cornerRadius: 8))
                     Spacer()
                         .frame(height: 24)
-                    SectionHeader(title: "Summary") {
+                    SectionHeader(title: L10n.Home.summarySection) {
                         navigationStore.send(.logbook(.root))
                     }
                     Spacer()
                         .frame(height: 16)
                     VStack(spacing: 16) {
                         InfoRow(
-                            title: "Logs",
+                            title: L10n.Home.summaryLogs,
                             value: store.state.totalDiveLogCountText
                         )
                         Divider()
                         InfoRow(
-                            title: "Dive sites",
+                            title: L10n.Home.summaryDiveSites,
                             value: store.state.totalDiveSiteCountText
                         )
                         Divider()
                         InfoRow(
-                            title: "Total dive time",
+                            title: L10n.Home.summaryTotalDiveTime,
                             value: store.state.totalDiveTimeText
                         )
                         Divider()
                         InfoRow(
-                            title: "Last dive",
+                            title: L10n.Home.summaryLastDive,
                             value: store.state.daysSinceLastDiveDateText
                         )
                     }
