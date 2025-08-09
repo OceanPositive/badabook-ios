@@ -94,5 +94,17 @@ let package = Package(
                 .product(name: "OneWayTesting", package: "OneWay"),
             ]
         ),
+        .plugin(
+            name: "GenerateL10nPlugin",
+            capability: .command(
+                intent: .custom(
+                    verb: "l10n",
+                    description: "Generate L10n.swift from Localizable.xcstrings"
+                ),
+                permissions: [
+                    .writeToPackageDirectory(reason: "Generate localization constants")
+                ]
+            )
+        ),
     ]
 )

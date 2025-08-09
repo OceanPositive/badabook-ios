@@ -31,17 +31,17 @@ struct LogbookDetailView: View {
                     value: store.binding(\.logNumber, send: { .setLogNumber($0) }),
                     format: .number,
                     prompt: "123",
-                    label: "Log number",
+                    label: L10n.Logbook.logNumber,
                     keyboardType: .numberPad
                 )
                 .focused($focusedField, equals: .logNumber)
                 DatePicker(
-                    "Log date",
+                    L10n.Logbook.logDate,
                     selection: store.binding(\.logDate, send: { .setLogDate($0) }),
                     displayedComponents: .date
                 )
-                LabeledContent("Dive site") {
-                    Text(store.state.diveSite?.title ?? "search")
+                LabeledContent(L10n.Logbook.diveSite) {
+                    Text(store.state.diveSite?.title ?? L10n.Logbook.Placeholder.search)
                         .foregroundStyle(store.state.diveSite == nil ? .tertiary : .secondary)
                 }
                 .contentShape(Rectangle())
@@ -50,13 +50,13 @@ struct LogbookDetailView: View {
                 }
                 LabeledTextField(
                     value: store.binding(\.diveCenter, send: { .setDiveCenter($0) }),
-                    prompt: "name",
-                    label: "Dive center",
+                    prompt: L10n.Logbook.Placeholder.name,
+                    label: L10n.Logbook.diveCenter,
                     keyboardType: .default
                 )
                 .focused($focusedField, equals: .diveCenter)
                 Picker(
-                    "Dive style",
+                    L10n.Logbook.diveStyle,
                     selection: store.binding(\.diveStyle, send: { .setDiveStyle($0) })
                 ) {
                     ForEach(DiveStyle.allCases, id: \.self) { diveStyle in
@@ -67,12 +67,12 @@ struct LogbookDetailView: View {
             }
             Section {
                 DatePicker(
-                    "Entry time",
+                    L10n.Logbook.entryTime,
                     selection: store.binding(\.entryTime, send: { .setEntryTime($0) }),
                     displayedComponents: .hourAndMinute
                 )
                 DatePicker(
-                    "Exit time",
+                    L10n.Logbook.exitTime,
                     selection: store.binding(\.exitTime, send: { .setExitTime($0) }),
                     displayedComponents: .hourAndMinute
                 )
@@ -81,8 +81,8 @@ struct LogbookDetailView: View {
                         get: { store.state.bottomTime?.rawValue },
                         set: { store.send(.setBottomTime($0)) }),
                     format: .number,
-                    prompt: "minute",
-                    label: "Bottom time",
+                    prompt: L10n.Logbook.Placeholder.minute,
+                    label: L10n.Logbook.bottomTime,
                     keyboardType: .decimalPad
                 )
                 .focused($focusedField, equals: .bottomTime)
@@ -91,20 +91,20 @@ struct LogbookDetailView: View {
                         get: { store.state.surfaceInterval?.rawValue },
                         set: { store.send(.setSurfaceInterval($0)) }),
                     format: .number,
-                    prompt: "minute",
-                    label: "Surfcae interval",
+                    prompt: L10n.Logbook.Placeholder.minute,
+                    label: L10n.Logbook.surfaceInterval,
                     keyboardType: .decimalPad
                 )
                 .focused($focusedField, equals: .surfaceInterval)
             }
-            Section(header: Text("Depth")) {
+            Section(header: Text(L10n.Logbook.depth)) {
                 LabeledFormattedTextField(
                     value: Binding(
                         get: { store.state.maximumDepth?.rawValue },
                         set: { store.send(.setMaximumDepth($0)) }),
                     format: .number,
-                    prompt: "m",
-                    label: "Maximum",
+                    prompt: L10n.Logbook.Placeholder.meter,
+                    label: L10n.Logbook.maximum,
                     keyboardType: .numberPad
                 )
                 .focused($focusedField, equals: .maximumDepth)
@@ -113,20 +113,20 @@ struct LogbookDetailView: View {
                         get: { store.state.averageDepth?.rawValue },
                         set: { store.send(.setAverageDepth($0)) }),
                     format: .number,
-                    prompt: "m",
-                    label: "Average",
+                    prompt: L10n.Logbook.Placeholder.meter,
+                    label: L10n.Logbook.average,
                     keyboardType: .numberPad
                 )
                 .focused($focusedField, equals: .averageDepth)
             }
-            Section(header: Text("Air pressure")) {
+            Section(header: Text(L10n.Logbook.airPressure)) {
                 LabeledFormattedTextField(
                     value: Binding(
                         get: { store.state.entryAir?.rawValue },
                         set: { store.send(.setEntryAir($0)) }),
                     format: .number,
-                    prompt: "bar",
-                    label: "Entry",
+                    prompt: L10n.Logbook.Placeholder.bar,
+                    label: L10n.Logbook.entry,
                     keyboardType: .numberPad
                 )
                 .focused($focusedField, equals: .entryAir)
@@ -135,20 +135,20 @@ struct LogbookDetailView: View {
                         get: { store.state.exitAir?.rawValue },
                         set: { store.send(.setExitAir($0)) }),
                     format: .number,
-                    prompt: "bar",
-                    label: "Exit",
+                    prompt: L10n.Logbook.Placeholder.bar,
+                    label: L10n.Logbook.exit,
                     keyboardType: .numberPad
                 )
                 .focused($focusedField, equals: .exitAir)
             }
-            Section(header: Text("Temperature")) {
+            Section(header: Text(L10n.Logbook.temperature)) {
                 LabeledFormattedTextField(
                     value: Binding(
                         get: { store.state.surfaceTemperature?.rawValue },
                         set: { store.send(.setSurfaceTemperature($0)) }),
                     format: .number,
                     prompt: "℃",
-                    label: "Surface",
+                    label: L10n.Logbook.surface,
                     keyboardType: .numberPad
                 )
                 .focused($focusedField, equals: .minimumWaterTemperature)
@@ -158,14 +158,14 @@ struct LogbookDetailView: View {
                         set: { store.send(.setBottomTemperature($0)) }),
                     format: .number,
                     prompt: "℃",
-                    label: "Bottom",
+                    label: L10n.Logbook.bottom,
                     keyboardType: .numberPad
                 )
                 .focused($focusedField, equals: .averageWaterTemperature)
             }
             Section {
                 Picker(
-                    "Weather",
+                    L10n.Logbook.weather,
                     selection: store.binding(\.weather, send: { .setWeather($0) })
                 ) {
                     ForEach(Weather.allCases, id: \.self) { weather in
@@ -178,7 +178,7 @@ struct LogbookDetailView: View {
                     }
                 }
                 Picker(
-                    "Feeling",
+                    L10n.Logbook.feeling,
                     selection: store.binding(\.feeling, send: { .setFeeling($0) })
                 ) {
                     ForEach(Feeling.allCases, id: \.self) { feeling in
@@ -187,7 +187,7 @@ struct LogbookDetailView: View {
                     }
                 }
             }
-            Section(header: Text("Notes")) {
+            Section(header: Text(L10n.Logbook.notes)) {
                 TextEditor(
                     text: Binding(
                         get: { notes },
@@ -201,21 +201,19 @@ struct LogbookDetailView: View {
                 .lineSpacing(4)
                 .frame(height: 100)
                 .autocorrectionDisabled()
-                #if os(iOS)
-                    .textInputAutocapitalization(.never)
-                #endif
+                .textInputAutocapitalization(.never)
             }
             Button(role: .destructive) {
                 store.send(.delete)
             } label: {
                 HStack {
                     Spacer()
-                    Text("Delete")
+                    Text(L10n.Common.delete)
                     Spacer()
                 }
             }
         }
-        .navigationTitle("Log")
+        .navigationTitle(L10n.Logbook.detailTitle)
         .navigationBarTitleDisplayMode(.inline)
         .toolbar {
             // FIXME: Invalid frame dimension (negative or non-finite).
@@ -245,7 +243,7 @@ struct LogbookDetailView: View {
         Button {
             store.send(.save)
         } label: {
-            Text("Save")
+            Text(L10n.Common.save)
         }
         .disabled(store.state.saveButtonDisabled)
     }
@@ -254,7 +252,7 @@ struct LogbookDetailView: View {
         Button {
             focusedField = nil
         } label: {
-            Text("Done")
+            Text(L10n.Common.done)
                 .fontWeight(.medium)
         }
     }
