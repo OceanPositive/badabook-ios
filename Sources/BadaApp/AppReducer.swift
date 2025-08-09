@@ -14,12 +14,15 @@ public struct AppReducer: Reducer {
         case background
         case inactive
         case active
+        case load
         case registerUseCases
+        case setIsLoaded(Bool)
     }
 
     public struct State: Sendable, Equatable {
         var scenePhase: ScenePhase = .none
         var isLaunched: Bool = false
+        var isLoaded: Bool = false
 
         public init() {}
     }
@@ -38,11 +41,19 @@ public struct AppReducer: Reducer {
             state.scenePhase = .active
             if !state.isLaunched {
                 state.isLaunched = true
-                return .just(.registerUseCases)
+                return .just(.load)
             }
             return .none
+        case .load:
+            return .concat {
+                AnyEffect.just(.registerUseCases)
+                AnyEffect.just(.setIsLoaded(true))
+            }
         case .registerUseCases:
             registerUseCases()
+            return .none
+        case let .setIsLoaded(isLoaded):
+            state.isLoaded = isLoaded
             return .none
         }
     }

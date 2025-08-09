@@ -10,7 +10,9 @@ import BadaUI
 
 struct SplashView: View {
     var body: some View {
-        Text(L10n.App.title)
-            .font(.title)
+        Image(.appIcon128)
+            .resizable()
+            .aspectRatio(contentMode: .fit)
+            .frame(width: 128, height: 128)
     }
 }
