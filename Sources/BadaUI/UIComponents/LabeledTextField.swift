@@ -29,26 +29,16 @@ package struct LabeledTextField: View {
     }
 
     package var body: some View {
-        #if os(iOS)
-            LabeledContent(label) {
-                TextField(
-                    text: value,
-                    prompt: Text(prompt),
-                    label: { Text(label) }
-                )
-                .multilineTextAlignment(textAlignment)
-                .keyboardType(keyboardType.uiKeyboardType)
-                .autocorrectionDisabled()
-                .textInputAutocapitalization(.never)
-            }
-        #else
+        LabeledContent(label) {
             TextField(
                 text: value,
                 prompt: Text(prompt),
                 label: { Text(label) }
             )
             .multilineTextAlignment(textAlignment)
+            .keyboardType(keyboardType.uiKeyboardType)
             .autocorrectionDisabled()
-        #endif
+            .textInputAutocapitalization(.never)
+        }
     }
 }
