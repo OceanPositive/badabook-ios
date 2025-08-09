@@ -25,6 +25,24 @@ package enum L10n {
         /// Save
         package static let save = String(localized: "COMMON.SAVE", bundle: .module)
     }
+    package enum DiveStyle {
+        /// Beach
+        package static let beach = String(localized: "DIVE_STYLE.BEACH", bundle: .module)
+        /// Boat
+        package static let boat = String(localized: "DIVE_STYLE.BOAT", bundle: .module)
+        /// Double tank
+        package static let doubleTank = String(localized: "DIVE_STYLE.DOUBLE_TANK", bundle: .module)
+        /// DPV
+        package static let dpv = String(localized: "DIVE_STYLE.DPV", bundle: .module)
+        /// Night
+        package static let night = String(localized: "DIVE_STYLE.NIGHT", bundle: .module)
+        /// Side mount
+        package static let sideMount = String(localized: "DIVE_STYLE.SIDE_MOUNT", bundle: .module)
+        /// Training
+        package static let training = String(localized: "DIVE_STYLE.TRAINING", bundle: .module)
+        /// Wreck
+        package static let wreck = String(localized: "DIVE_STYLE.WRECK", bundle: .module)
+    }
     package enum Equipment {
         /// My Equipment
         package static let title = String(localized: "EQUIPMENT.TITLE", bundle: .module)
@@ -86,8 +104,18 @@ package enum L10n {
         package static let exit = String(localized: "LOGBOOK.EXIT", bundle: .module)
         /// Exit time
         package static let exitTime = String(localized: "LOGBOOK.EXIT_TIME", bundle: .module)
-        /// Feeling
-        package static let feeling = String(localized: "LOGBOOK.FEELING", bundle: .module)
+        package enum Feeling {
+            /// Amazing
+            package static let amazing = String(localized: "LOGBOOK.FEELING.AMAZING", bundle: .module)
+            /// Average
+            package static let average = String(localized: "LOGBOOK.FEELING.AVERAGE", bundle: .module)
+            /// Good
+            package static let good = String(localized: "LOGBOOK.FEELING.GOOD", bundle: .module)
+            /// Poor
+            package static let poor = String(localized: "LOGBOOK.FEELING.POOR", bundle: .module)
+            /// Feeling
+            package static let title = String(localized: "LOGBOOK.FEELING.TITLE", bundle: .module)
+        }
         /// Log date
         package static let logDate = String(localized: "LOGBOOK.LOG_DATE", bundle: .module)
         /// Log number
@@ -116,8 +144,22 @@ package enum L10n {
         package static let temperature = String(localized: "LOGBOOK.TEMPERATURE", bundle: .module)
         /// Logbook
         package static let title = String(localized: "LOGBOOK.TITLE", bundle: .module)
-        /// Weather
-        package static let weather = String(localized: "LOGBOOK.WEATHER", bundle: .module)
+        package enum Weather {
+            /// Cloudy
+            package static let cloudy = String(localized: "LOGBOOK.WEATHER.CLOUDY", bundle: .module)
+            /// Partly Cloudy
+            package static let partlyCloudy = String(localized: "LOGBOOK.WEATHER.PARTLY_CLOUDY", bundle: .module)
+            /// Rainy
+            package static let rainy = String(localized: "LOGBOOK.WEATHER.RAINY", bundle: .module)
+            /// Snowy
+            package static let snowy = String(localized: "LOGBOOK.WEATHER.SNOWY", bundle: .module)
+            /// Sunny
+            package static let sunny = String(localized: "LOGBOOK.WEATHER.SUNNY", bundle: .module)
+            /// Weather
+            package static let title = String(localized: "LOGBOOK.WEATHER.TITLE", bundle: .module)
+            /// Windy
+            package static let windy = String(localized: "LOGBOOK.WEATHER.WINDY", bundle: .module)
+        }
     }
     package enum MainTab {
         /// My Equipment

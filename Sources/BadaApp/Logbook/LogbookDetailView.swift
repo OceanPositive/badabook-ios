@@ -165,7 +165,7 @@ struct LogbookDetailView: View {
             }
             Section {
                 Picker(
-                    L10n.Logbook.weather,
+                    L10n.Logbook.Weather.title,
                     selection: store.binding(\.weather, send: { .setWeather($0) })
                 ) {
                     ForEach(Weather.allCases, id: \.self) { weather in
@@ -178,7 +178,7 @@ struct LogbookDetailView: View {
                     }
                 }
                 Picker(
-                    L10n.Logbook.feeling,
+                    L10n.Logbook.Feeling.title,
                     selection: store.binding(\.feeling, send: { .setFeeling($0) })
                 ) {
                     ForEach(Feeling.allCases, id: \.self) { feeling in

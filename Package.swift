@@ -38,6 +38,7 @@ let package = Package(
         .target(
             name: "BadaCore",
             dependencies: [
+                "BadaLocalization",
                 "OneWay",
             ]
         ),
@@ -76,10 +77,14 @@ let package = Package(
             ]
         ),
         .target(
-            name: "BadaUI",
+            name: "BadaLocalization",
             resources: [
                 .process("Resources"),
             ]
+        ),
+        .target(
+            name: "BadaUI",
+            resources: []
         ),
         .testTarget(
             name: "BadaUITests",

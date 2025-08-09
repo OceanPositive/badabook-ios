@@ -5,5 +5,6 @@
 //  Copyright (c) 2024 Seungyeop Yeom ( https://github.com/OceanPositive ).
 //
 
+@_exported import BadaLocalization
 @_exported import Foundation
 @_exported import OneWay

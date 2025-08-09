@@ -86,6 +86,142 @@
         }
       }
     },
+    "DIVE_STYLE.BEACH" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Beach"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "비치 다이빙"
+          }
+        }
+      }
+    },
+    "DIVE_STYLE.BOAT" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Boat"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "보트 다이빙"
+          }
+        }
+      }
+    },
+    "DIVE_STYLE.DOUBLE_TANK" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Double tank"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "더블 탱크 다이빙"
+          }
+        }
+      }
+    },
+    "DIVE_STYLE.DPV" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "DPV"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "DPV 다이빙"
+          }
+        }
+      }
+    },
+    "DIVE_STYLE.NIGHT" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Night"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "나이트 다이빙"
+          }
+        }
+      }
+    },
+    "DIVE_STYLE.SIDE_MOUNT" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Side mount"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "사이드마운트 다이빙"
+          }
+        }
+      }
+    },
+    "DIVE_STYLE.TRAINING" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Training"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "트레이닝"
+          }
+        }
+      }
+    },
+    "DIVE_STYLE.WRECK" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wreck"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "난파선 다이빙"
+          }
+        }
+      }
+    },
     "EQUIPMENT.TITLE" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -545,7 +681,75 @@
         }
       }
     },
-    "LOGBOOK.FEELING" : {
+    "LOGBOOK.FEELING.AMAZING" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Amazing"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "최고예요"
+          }
+        }
+      }
+    },
+    "LOGBOOK.FEELING.AVERAGE" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Average"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "좋아요"
+          }
+        }
+      }
+    },
+    "LOGBOOK.FEELING.GOOD" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Good"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "보통이에요"
+          }
+        }
+      }
+    },
+    "LOGBOOK.FEELING.POOR" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Poor"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "별로예요"
+          }
+        }
+      }
+    },
+    "LOGBOOK.FEELING.TITLE" : {
       "extractionState" : "manual",
       "localizations" : {
         "en" : {
@@ -625,7 +829,7 @@
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "비고"
+            "value" : "노트"
           }
         }
       }
@@ -783,7 +987,92 @@
         }
       }
     },
-    "LOGBOOK.WEATHER" : {
+    "LOGBOOK.WEATHER.CLOUDY" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cloudy"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "흐림"
+          }
+        }
+      }
+    },
+    "LOGBOOK.WEATHER.PARTLY_CLOUDY" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Partly Cloudy"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "구름 조금"
+          }
+        }
+      }
+    },
+    "LOGBOOK.WEATHER.RAINY" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rainy"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "비"
+          }
+        }
+      }
+    },
+    "LOGBOOK.WEATHER.SNOWY" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Snowy"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "눈"
+          }
+        }
+      }
+    },
+    "LOGBOOK.WEATHER.SUNNY" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sunny"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "맑음"
+          }
+        }
+      }
+    },
+    "LOGBOOK.WEATHER.TITLE" : {
       "extractionState" : "manual",
       "localizations" : {
         "en" : {
@@ -796,6 +1085,23 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "날씨"
+          }
+        }
+      }
+    },
+    "LOGBOOK.WEATHER.WINDY" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Windy"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "바람 많음"
           }
         }
       }

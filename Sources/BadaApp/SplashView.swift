@@ -5,6 +5,7 @@
 //  Copyright (c) 2024 Seungyeop Yeom ( https://github.com/OceanPositive ).
 //
 
+import BadaCore
 import BadaUI
 
 struct SplashView: View {

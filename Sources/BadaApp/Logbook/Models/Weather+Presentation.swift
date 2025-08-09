@@ -5,6 +5,7 @@
 //  Copyright (c) 2024 Seungyeop Yeom ( https://github.com/OceanPositive ).
 //
 
+import BadaCore
 import BadaDomain
 import BadaUI
 
@@ -22,12 +23,12 @@ extension Weather {
 
     var description: String {
         switch self {
-        case .sunny: return "Sunny"
-        case .partlyCloudy: return "Partly Cloudy"
-        case .cloudy: return "Cloudy"
-        case .windy: return "Windy"
-        case .rainy: return "Rainy"
-        case .snowy: return "Snowy"
+        case .sunny: return L10n.Logbook.Weather.sunny
+        case .partlyCloudy: return L10n.Logbook.Weather.partlyCloudy
+        case .cloudy: return L10n.Logbook.Weather.cloudy
+        case .windy: return L10n.Logbook.Weather.windy
+        case .rainy: return L10n.Logbook.Weather.rainy
+        case .snowy: return L10n.Logbook.Weather.snowy
         }
     }
 

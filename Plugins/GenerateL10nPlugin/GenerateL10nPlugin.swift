@@ -14,8 +14,8 @@ struct GenerateL10nPlugin: CommandPlugin {
 
     func performCommand(context: PluginContext, arguments: [String]) async throws {
         let packageRoot = context.package.directoryURL
-        let xcstringsPath = packageRoot.appending(path: "Sources/BadaUI/Resources/Localizable.xcstrings")
-        let outputPath = packageRoot.appending(path: "Sources/BadaUI/L10n.swift")
+        let xcstringsPath = packageRoot.appending(path: "Sources/BadaLocalization/Resources/Localizable.xcstrings")
+        let outputPath = packageRoot.appending(path: "Sources/BadaLocalization/L10n.swift")
 
         guard let data = FileManager.default.contents(atPath: xcstringsPath.path()) else {
             Diagnostics.error("Localizable.xcstrings not found at \(xcstringsPath)")

@@ -5,6 +5,7 @@
 //  Copyright (c) 2024 Seungyeop Yeom ( https://github.com/OceanPositive ).
 //
 
+import BadaCore
 import BadaDomain
 
 extension DiveStyle {
@@ -23,14 +24,14 @@ extension DiveStyle {
 
     var description: String {
         switch self {
-        case .boat: return "Boat"
-        case .beach: return "Beach"
-        case .night: return "Night"
-        case .sideMount: return "Side Mount"
-        case .doubleTank: return "Double Tank"
-        case .dpv: return "DPV"
-        case .wreck: return "Wreck"
-        case .training: return "Training"
+        case .boat: return L10n.DiveStyle.boat
+        case .beach: return L10n.DiveStyle.beach
+        case .night: return L10n.DiveStyle.night
+        case .sideMount: return L10n.DiveStyle.sideMount
+        case .doubleTank: return L10n.DiveStyle.doubleTank
+        case .dpv: return L10n.DiveStyle.dpv
+        case .wreck: return L10n.DiveStyle.wreck
+        case .training: return L10n.DiveStyle.training
         }
     }
 }
