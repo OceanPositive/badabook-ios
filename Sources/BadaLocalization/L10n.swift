@@ -12,7 +12,7 @@
 
 package enum L10n {
     package enum App {
-        /// BadaBook
+        /// Badabook
         package static let title = String(localized: "APP.TITLE", bundle: .module)
     }
     package enum Certification {
