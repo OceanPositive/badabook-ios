@@ -21,7 +21,7 @@ struct CertificationAddSheet: View {
             Form {
                 Section {
                     Picker(
-                        "Agency",
+                        L10n.Certification.agency,
                         selection: store.binding(\.agency, send: { .setAgency($0) })
                     ) {
                         ForEach(CertificationAgency.allCases, id: \.self) { agency in
@@ -30,7 +30,7 @@ struct CertificationAddSheet: View {
                         }
                     }
                     Picker(
-                        "Level",
+                        L10n.Certification.level,
                         selection: store.binding(\.level, send: { .setLevel($0) })
                     ) {
                         ForEach(CertificationLevel.allCases, id: \.self) { level in
@@ -39,19 +39,19 @@ struct CertificationAddSheet: View {
                         }
                     }
                     DatePicker(
-                        "Cert. Date",
+                        L10n.Certification.certDate,
                         selection: store.binding(\.date, send: { .setDate($0) }),
                         displayedComponents: .date
                     )
                     LabeledTextField(
                         value: store.binding(\.number, send: { .setNumber($0) }),
-                        prompt: "Certification number",
-                        label: "No.",
+                        prompt: L10n.Certification.certificationNumber,
+                        label: L10n.Certification.number,
                         keyboardType: .default
                     )
                 }
             }
-            .navigationTitle("New Certification")
+            .navigationTitle(L10n.Certification.newTitle)
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .confirmationAction) {
@@ -69,7 +69,7 @@ struct CertificationAddSheet: View {
         Button {
             dismiss()
         } label: {
-            Text("Cancel")
+            Text(L10n.Common.cancel)
         }
     }
 
@@ -77,7 +77,7 @@ struct CertificationAddSheet: View {
         Button {
             store.send(.add)
         } label: {
-            Text("Add")
+            Text(L10n.Common.add)
         }
     }
 

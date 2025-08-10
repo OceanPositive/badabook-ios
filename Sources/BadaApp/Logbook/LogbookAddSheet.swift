@@ -201,7 +201,7 @@ struct LogbookAddSheet: View {
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .confirmationAction) {
-                    saveButton
+                    addButton
                 }
                 ToolbarItem(placement: .cancellationAction) {
                     cancelButton
@@ -231,13 +231,13 @@ struct LogbookAddSheet: View {
         }
     }
 
-    private var saveButton: some View {
+    private var addButton: some View {
         Button {
-            store.send(.save)
+            store.send(.add)
         } label: {
-            Text(L10n.Common.save)
+            Text(L10n.Common.add)
         }
-        .disabled(store.state.saveButtonDisabled)
+        .disabled(store.state.addButtonDisabled)
     }
 
     private var cancelButton: some View {

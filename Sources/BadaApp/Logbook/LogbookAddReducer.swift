@@ -11,7 +11,7 @@ import BadaDomain
 struct LogbookAddReducer: Reducer {
     enum Action: Sendable {
         case load
-        case save
+        case add
         case dismiss
         case setLastDiveLog(DiveLog)
         case setLogNumber(Int?)
@@ -62,6 +62,9 @@ struct LogbookAddReducer: Reducer {
         var isLoading: Bool = false
         var isDiveSiteSearchSheetPresenting: Bool = false
         var shouldDismiss: Bool = false
+        var addButtonDisabled: Bool {
+            logNumber == nil
+        }
     }
 
     @UseCase private var getLastDiveLogUseCase: GetLastDiveLogUseCase
@@ -77,7 +80,7 @@ struct LogbookAddReducer: Reducer {
                 }
                 AnyEffect.just(.setIsLoading(false))
             }
-        case .save:
+        case .add:
             return .single { [state] in
                 await executePostDiveLogUseCase(state: state)
             }
@@ -270,11 +273,5 @@ struct LogbookAddReducer: Reducer {
         case .failure:
             return .none
         }
-    }
-}
-
-extension LogbookAddReducer.State {
-    var saveButtonDisabled: Bool {
-        logNumber == nil
     }
 }

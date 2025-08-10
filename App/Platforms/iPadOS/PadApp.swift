@@ -13,6 +13,7 @@ struct PadApp: App {
     var body: some Scene {
         WindowGroup {
             MainView()
+                .environment(\.appStoreState, store.state)
         }
         .onChange(of: scenePhase, initial: true) { _, newValue in
             switch newValue {

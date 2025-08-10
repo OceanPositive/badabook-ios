@@ -15,7 +15,25 @@ package enum L10n {
         /// BadaBook
         package static let title = String(localized: "APP.TITLE", bundle: .module)
     }
+    package enum Certification {
+        /// Agency
+        package static let agency = String(localized: "CERTIFICATION.AGENCY", bundle: .module)
+        /// Certification number
+        package static let certificationNumber = String(localized: "CERTIFICATION.CERTIFICATION_NUMBER", bundle: .module)
+        /// Cert. Date
+        package static let certDate = String(localized: "CERTIFICATION.CERT_DATE", bundle: .module)
+        /// Level
+        package static let level = String(localized: "CERTIFICATION.LEVEL", bundle: .module)
+        /// New Certification
+        package static let newTitle = String(localized: "CERTIFICATION.NEW_TITLE", bundle: .module)
+        /// No.
+        package static let number = String(localized: "CERTIFICATION.NUMBER", bundle: .module)
+        /// Certification
+        package static let title = String(localized: "CERTIFICATION.TITLE", bundle: .module)
+    }
     package enum Common {
+        /// Add
+        package static let add = String(localized: "COMMON.ADD", bundle: .module)
         /// Cancel
         package static let cancel = String(localized: "COMMON.CANCEL", bundle: .module)
         /// Delete
