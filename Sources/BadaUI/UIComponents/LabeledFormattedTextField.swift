@@ -33,18 +33,7 @@ where Format: ParseableFormatStyle, Format.FormatOutput == String {
     }
 
     package var body: some View {
-        #if os(iOS)
-            LabeledContent(label) {
-                TextField(
-                    value: value,
-                    format: format,
-                    prompt: Text(prompt),
-                    label: { Text(label) }
-                )
-                .multilineTextAlignment(textAlignment)
-                .keyboardType(keyboardType.uiKeyboardType)
-            }
-        #else
+        LabeledContent(label) {
             TextField(
                 value: value,
                 format: format,
@@ -52,6 +41,7 @@ where Format: ParseableFormatStyle, Format.FormatOutput == String {
                 label: { Text(label) }
             )
             .multilineTextAlignment(textAlignment)
-        #endif
+            .keyboardType(keyboardType.uiKeyboardType)
+        }
     }
 }

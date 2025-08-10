@@ -21,22 +21,20 @@ package enum KeyboardType: Int, Sendable {
     case webSearch = 10
     case asciiCapableNumberPad = 11
 
-    #if os(iOS)
-        var uiKeyboardType: UIKeyboardType {
-            switch self {
-            case .default: return .default
-            case .asciiCapable: return .asciiCapable
-            case .numbersAndPunctuation: return .numbersAndPunctuation
-            case .url: return .URL
-            case .numberPad: return .numberPad
-            case .phonePad: return .phonePad
-            case .namePhonePad: return .namePhonePad
-            case .emailAddress: return .emailAddress
-            case .decimalPad: return .decimalPad
-            case .twitter: return .twitter
-            case .webSearch: return .webSearch
-            case .asciiCapableNumberPad: return .asciiCapableNumberPad
-            }
+    var uiKeyboardType: UIKeyboardType {
+        switch self {
+        case .default: return .default
+        case .asciiCapable: return .asciiCapable
+        case .numbersAndPunctuation: return .numbersAndPunctuation
+        case .url: return .URL
+        case .numberPad: return .numberPad
+        case .phonePad: return .phonePad
+        case .namePhonePad: return .namePhonePad
+        case .emailAddress: return .emailAddress
+        case .decimalPad: return .decimalPad
+        case .twitter: return .twitter
+        case .webSearch: return .webSearch
+        case .asciiCapableNumberPad: return .asciiCapableNumberPad
         }
-    #endif
+    }
 }
