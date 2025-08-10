@@ -9,17 +9,21 @@ import BadaCore
 import BadaUI
 
 public struct MainView: View {
+    @Environment(\.appStoreState) private var appStoreState
     @ObservedObject private var navigationStore = NavigationStore.shared
     @StateObject private var store = ViewStore(
         reducer: MainReducer(),
         state: MainReducer.State()
     )
     @State private var mainTab: NavigationState.MainTab = .home
+    private var isAppLoaded: Bool {
+        appStoreState.isLoaded && store.state.isLoaded
+    }
 
     public init() {}
 
     public var body: some View {
-        switch store.state.isLoaded {
+        switch isAppLoaded {
         case true:
             MainTabView(mainTab: $mainTab)
                 .onChange(of: mainTab, onMainTabChange)
@@ -57,7 +61,7 @@ private struct MainTabView: View {
             ) {
                 HomeView()
             }
-            // - TODO: Under development
+            // TODO: Under development
             #if DEBUG
                 Tab(
                     L10n.MainTab.equipment,
