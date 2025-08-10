@@ -27,7 +27,7 @@ struct CertificationEditSheet: View {
             Form {
                 Section {
                     Picker(
-                        "Agency",
+                        L10n.Certification.agency,
                         selection: store.binding(\.agency, send: { .setAgency($0) })
                     ) {
                         ForEach(CertificationAgency.allCases, id: \.self) { agency in
@@ -36,7 +36,7 @@ struct CertificationEditSheet: View {
                         }
                     }
                     Picker(
-                        "Level",
+                        L10n.Certification.level,
                         selection: store.binding(\.level, send: { .setLevel($0) })
                     ) {
                         ForEach(CertificationLevel.allCases, id: \.self) { level in
@@ -45,14 +45,14 @@ struct CertificationEditSheet: View {
                         }
                     }
                     DatePicker(
-                        "Cert. Date",
+                        L10n.Certification.certDate,
                         selection: store.binding(\.date, send: { .setDate($0) }),
                         displayedComponents: .date
                     )
                     LabeledTextField(
                         value: store.binding(\.number, send: { .setNumber($0) }),
-                        prompt: "Certification number",
-                        label: "No.",
+                        prompt: L10n.Certification.certificationNumber,
+                        label: L10n.Certification.number,
                         keyboardType: .default
                     )
                 }
@@ -61,12 +61,12 @@ struct CertificationEditSheet: View {
                 } label: {
                     HStack {
                         Spacer()
-                        Text("Delete")
+                        Text(L10n.Common.delete)
                         Spacer()
                     }
                 }
             }
-            .navigationTitle("Certification")
+            .navigationTitle(L10n.Certification.title)
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .confirmationAction) {
@@ -85,7 +85,7 @@ struct CertificationEditSheet: View {
         Button {
             dismiss()
         } label: {
-            Text("Cancel")
+            Text(L10n.Common.cancel)
         }
     }
 
@@ -93,7 +93,7 @@ struct CertificationEditSheet: View {
         Button {
             store.send(.save)
         } label: {
-            Text("Save")
+            Text(L10n.Common.save)
         }
     }
 
