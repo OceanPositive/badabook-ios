@@ -115,7 +115,7 @@ extension ProfileView {
                     Image(imageResource(certification.agency))
                         .resizable()
                         .aspectRatio(contentMode: .fit)
-                        .shadow(color: .secondary, radius: 1, x: 0, y: 0)
+                        .shadow(color: .secondary, radius: 0.5, x: 0, y: 0)
                         .frame(height: 24)
                         .padding(.vertical, 8)
                 }
