@@ -28,7 +28,6 @@ struct LogbookAddReducer: Reducer {
         case setExitAir(Double?)
         case setMaximumDepth(Double?)
         case setAverageDepth(Double?)
-        case setAirTemperature(Double?)
         case setSurfaceTemperature(Double?)
         case setBottomTemperature(Double?)
         case setWeather(Weather)
@@ -187,13 +186,6 @@ struct LogbookAddReducer: Reducer {
                 state.averageDepth = nil
             }
             return .none
-        case let .setAirTemperature(airTemperature):
-            if let airTemperature {
-                state.airTemperature = .celsius(airTemperature)
-            } else {
-                state.airTemperature = nil
-            }
-            return .none
         case let .setSurfaceTemperature(surfaceTemperature):
             if let surfaceTemperature {
                 state.surfaceTemperature = .celsius(surfaceTemperature)
@@ -251,17 +243,12 @@ struct LogbookAddReducer: Reducer {
             surfaceInterval: state.surfaceInterval,
             entryAir: state.entryAir,
             exitAir: state.exitAir,
-            gasType: nil,
             equipment: nil,
             maximumDepth: state.maximumDepth,
             averageDepth: state.averageDepth,
-            airTemperature: state.airTemperature,
             surfaceTemperature: state.surfaceTemperature,
             bottomTemperature: state.bottomTemperature,
             weather: state.weather,
-            surge: nil,
-            visibility: nil,
-            visibilityDistance: nil,
             feeling: state.feeling,
             companions: [],
             notes: state.notes
