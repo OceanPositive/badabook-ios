@@ -178,17 +178,6 @@ struct LogbookAddReducerTests {
     }
 
     @Test
-    func setAirTemperature() async {
-        let sut = Store(
-            reducer: LogbookAddReducer(),
-            state: LogbookAddReducer.State()
-        )
-        await sut.expect(\.airTemperature, nil)
-        await sut.send(.setAirTemperature(12))
-        await sut.expect(\.airTemperature, .celsius(12))
-    }
-
-    @Test
     func setSurfaceTemperature() async {
         let sut = Store(
             reducer: LogbookAddReducer(),
