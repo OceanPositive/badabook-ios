@@ -3,7 +3,7 @@ import BadaCore
 import BadaUI
 
 @main
-struct PadApp: App {
+struct iOSApp: App {
     @Environment(\.scenePhase) private var scenePhase
     @StateObject private var store = ViewStore(
         reducer: AppReducer(),

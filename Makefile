@@ -1,5 +1,5 @@
 PLATFORM_IOS = iOS Simulator,name=iPhone 16
-PLATFORM_IPADOS = iOS Simulator,name=iPad (10th generation)
+PLATFORM_IPADOS = iOS Simulator,name=iPad (A16)
 
 PROJECT = App/Badabook.xcodeproj
 TEST_SCHEME = AppTests
