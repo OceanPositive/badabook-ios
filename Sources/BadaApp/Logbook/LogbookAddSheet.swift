@@ -65,11 +65,13 @@ struct LogbookAddSheet: View {
                         selection: store.binding(\.entryTime, send: { .setEntryTime($0) }),
                         displayedComponents: .hourAndMinute
                     )
+                    .environment(\.timeZone, TimeZone.gmt)
                     DatePicker(
                         L10n.Logbook.exitTime,
                         selection: store.binding(\.exitTime, send: { .setExitTime($0) }),
                         displayedComponents: .hourAndMinute
                     )
+                    .environment(\.timeZone, TimeZone.gmt)
                     LabeledFormattedTextField(
                         value: Binding(
                             get: { store.state.bottomTime?.rawValue },
@@ -99,7 +101,7 @@ struct LogbookAddSheet: View {
                         format: .number,
                         prompt: L10n.Logbook.Placeholder.meter,
                         label: L10n.Logbook.maximum,
-                        keyboardType: .numberPad
+                        keyboardType: .decimalPad
                     )
                     .focused($focusedField, equals: .maximumDepth)
                     LabeledFormattedTextField(
@@ -109,31 +111,9 @@ struct LogbookAddSheet: View {
                         format: .number,
                         prompt: L10n.Logbook.Placeholder.meter,
                         label: L10n.Logbook.average,
-                        keyboardType: .numberPad
+                        keyboardType: .decimalPad
                     )
                     .focused($focusedField, equals: .averageDepth)
-                }
-                Section(header: Text(L10n.Logbook.airPressure)) {
-                    LabeledFormattedTextField(
-                        value: Binding(
-                            get: { store.state.entryAir?.rawValue },
-                            set: { store.send(.setEntryAir($0)) }),
-                        format: .number,
-                        prompt: L10n.Logbook.Placeholder.bar,
-                        label: L10n.Logbook.entry,
-                        keyboardType: .numberPad
-                    )
-                    .focused($focusedField, equals: .entryAir)
-                    LabeledFormattedTextField(
-                        value: Binding(
-                            get: { store.state.exitAir?.rawValue },
-                            set: { store.send(.setExitAir($0)) }),
-                        format: .number,
-                        prompt: L10n.Logbook.Placeholder.bar,
-                        label: L10n.Logbook.exit,
-                        keyboardType: .numberPad
-                    )
-                    .focused($focusedField, equals: .exitAir)
                 }
                 Section(header: Text(L10n.Logbook.temperature)) {
                     LabeledFormattedTextField(
@@ -143,9 +123,9 @@ struct LogbookAddSheet: View {
                         format: .number,
                         prompt: "℃",
                         label: L10n.Logbook.surface,
-                        keyboardType: .numberPad
+                        keyboardType: .decimalPad
                     )
-                    .focused($focusedField, equals: .minimumWaterTemperature)
+                    .focused($focusedField, equals: .surfaceTemperature)
                     LabeledFormattedTextField(
                         value: Binding(
                             get: { store.state.bottomTemperature?.rawValue },
@@ -153,9 +133,31 @@ struct LogbookAddSheet: View {
                         format: .number,
                         prompt: "℃",
                         label: L10n.Logbook.bottom,
-                        keyboardType: .numberPad
+                        keyboardType: .decimalPad
                     )
-                    .focused($focusedField, equals: .averageWaterTemperature)
+                    .focused($focusedField, equals: .bottomTemperature)
+                }
+                Section(header: Text(L10n.Logbook.airPressure)) {
+                    LabeledFormattedTextField(
+                        value: Binding(
+                            get: { store.state.entryAir?.rawValue },
+                            set: { store.send(.setEntryAir($0)) }),
+                        format: .number,
+                        prompt: L10n.Logbook.Placeholder.bar,
+                        label: L10n.Logbook.entry,
+                        keyboardType: .decimalPad
+                    )
+                    .focused($focusedField, equals: .entryAir)
+                    LabeledFormattedTextField(
+                        value: Binding(
+                            get: { store.state.exitAir?.rawValue },
+                            set: { store.send(.setExitAir($0)) }),
+                        format: .number,
+                        prompt: L10n.Logbook.Placeholder.bar,
+                        label: L10n.Logbook.exit,
+                        keyboardType: .decimalPad
+                    )
+                    .focused($focusedField, equals: .exitAir)
                 }
                 Section {
                     Picker(
@@ -195,6 +197,8 @@ struct LogbookAddSheet: View {
                     .frame(height: 100)
                     .autocorrectionDisabled()
                     .textInputAutocapitalization(.never)
+                    .submitLabel(.return)
+                    .focused($focusedField, equals: .notes)
                 }
             }
             .navigationTitle(L10n.Logbook.addTitle)
@@ -291,13 +295,13 @@ extension LogbookAddSheet {
         case diveCenter
         case bottomTime
         case surfaceInterval
-        case entryAir
-        case exitAir
         case maximumDepth
         case averageDepth
-        case maximumWaterTemperature
-        case minimumWaterTemperature
-        case averageWaterTemperature
+        case surfaceTemperature
+        case bottomTemperature
+        case entryAir
+        case exitAir
+        case notes
 
         var previous: Field? {
             guard let currentIndex = Field.allCases.firstIndex(of: self) else { return nil }

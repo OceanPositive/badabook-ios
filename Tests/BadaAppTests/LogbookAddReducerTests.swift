@@ -90,10 +90,10 @@ struct LogbookAddReducerTests {
             reducer: LogbookAddReducer(),
             state: LogbookAddReducer.State()
         )
-        await sut.expect(\.entryTime, Date(timeIntervalSince1970: 0))
-        await sut.expect(\.exitTime, Date(timeIntervalSince1970: 0))
-        await sut.send(.setEntryTime(Date(timeIntervalSince1970: 2 * 60)))
-        await sut.expect(\.entryTime, Date(timeIntervalSince1970: 2 * 60))
+        await sut.expect(\.entryTime, Date(timeIntervalSince1970: 9 * 60 * 60)) // 9:00 AM
+        await sut.expect(\.exitTime, Date(timeIntervalSince1970: 9 * 60 * 60))
+        await sut.send(.setEntryTime(Date(timeIntervalSince1970: 9 * 60 * 60 + 2 * 60)))
+        await sut.expect(\.entryTime, Date(timeIntervalSince1970: 9 * 60 * 60 + 2 * 60))
         await sut.expect(\.bottomTime, .minute(-2))
     }
 
@@ -103,10 +103,10 @@ struct LogbookAddReducerTests {
             reducer: LogbookAddReducer(),
             state: LogbookAddReducer.State()
         )
-        await sut.expect(\.entryTime, Date(timeIntervalSince1970: 0))
-        await sut.expect(\.exitTime, Date(timeIntervalSince1970: 0))
-        await sut.send(.setExitTime(Date(timeIntervalSince1970: 2 * 60)))
-        await sut.expect(\.exitTime, Date(timeIntervalSince1970: 2 * 60))
+        await sut.expect(\.entryTime, Date(timeIntervalSince1970: 9 * 60 * 60)) // 9:00 AM
+        await sut.expect(\.exitTime, Date(timeIntervalSince1970: 9 * 60 * 60))
+        await sut.send(.setExitTime(Date(timeIntervalSince1970: 9 * 60 * 60 + 2 * 60)))
+        await sut.expect(\.exitTime, Date(timeIntervalSince1970: 9 * 60 * 60 + 2 * 60))
         await sut.expect(\.bottomTime, .minute(2))
     }
 
@@ -119,7 +119,7 @@ struct LogbookAddReducerTests {
         await sut.expect(\.bottomTime, nil)
         await sut.send(.setBottomTime(12))
         await sut.expect(\.bottomTime, .minute(12))
-        await sut.expect(\.exitTime, Date(timeIntervalSince1970: 12 * 60))
+        await sut.expect(\.exitTime, Date(timeIntervalSince1970: 9 * 60 * 60 + 12 * 60))
     }
 
     @Test
