@@ -44,8 +44,8 @@ struct LogbookAddReducer: Reducer {
         var diveSite: DiveSite?
         var diveCenter: String = ""
         var diveStyle: DiveStyle = .boat
-        var entryTime: Date = Date(timeIntervalSince1970: 0)
-        var exitTime: Date = Date(timeIntervalSince1970: 0)
+        var entryTime: Date = Date(timeIntervalSince1970: UnitValue.Time.hour(9).timeInterval)
+        var exitTime: Date = Date(timeIntervalSince1970: UnitValue.Time.hour(9).timeInterval)
         var bottomTime: UnitValue.Time?
         var surfaceInterval: UnitValue.Time?
         var entryAir: UnitValue.Pressure?
