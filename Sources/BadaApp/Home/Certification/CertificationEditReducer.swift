@@ -61,10 +61,18 @@ struct CertificationEditReducer: Reducer {
             return .none
         case let .setCertification(certification):
             return .merge {
-                AnyEffect.just(.setAgency(certification.agency))
-                AnyEffect.just(.setLevel(certification.level))
-                AnyEffect.just(.setNumber(certification.number))
-                AnyEffect.just(.setDate(certification.date))
+                if let agency = certification.agency {
+                    AnyEffect.just(.setAgency(agency))
+                }
+                if let level = certification.level {
+                    AnyEffect.just(.setLevel(level))
+                }
+                if let number = certification.number {
+                    AnyEffect.just(.setNumber(number))
+                }
+                if let date = certification.date {
+                    AnyEffect.just(.setDate(date))
+                }
             }
         case let .setAgency(agency):
             state.agency = agency

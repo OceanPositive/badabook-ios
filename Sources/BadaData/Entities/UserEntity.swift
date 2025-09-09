@@ -11,17 +11,16 @@ import SwiftData
 
 @Model
 final class UserEntity {
-    @Attribute(.unique)
-    var identifier: UserID
-    var name: String
-    var dateOfBirth: Date
-    var insertDate: Date
-    var updateDate: Date
+    var identifier = UserID()
+    var name: String?
+    var dateOfBirth: Date?
+    var insertDate = Date.now
+    var updateDate = Date.now
 
     init(
         identifier: UserID,
-        name: String,
-        dateOfBirth: Date,
+        name: String?,
+        dateOfBirth: Date?,
         insertDate: Date,
         updateDate: Date
     ) {

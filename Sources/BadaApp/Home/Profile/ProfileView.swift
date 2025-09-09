@@ -112,12 +112,14 @@ extension ProfileView {
                         .font(.headline)
                         .foregroundStyle(.primary)
                     Spacer()
-                    Image(imageResource(certification.agency))
-                        .resizable()
-                        .aspectRatio(contentMode: .fit)
-                        .shadow(color: .secondary, radius: 0.5, x: 0, y: 0)
-                        .frame(height: 24)
-                        .padding(.vertical, 8)
+                    if let agency = certification.agency {
+                        Image(imageResource(agency))
+                            .resizable()
+                            .aspectRatio(contentMode: .fit)
+                            .shadow(color: .secondary, radius: 0.5, x: 0, y: 0)
+                            .frame(height: 24)
+                            .padding(.vertical, 8)
+                    }
                 }
                 Spacer()
                     .frame(height: 16)
@@ -126,13 +128,13 @@ extension ProfileView {
                     .foregroundStyle(.primary)
                 Spacer()
                     .frame(height: 8)
-                Text(certification.date.formatted(date: .long, time: .omitted))
+                Text(certification.date?.formatted(date: .long, time: .omitted) ?? .nilText)
                     .font(.footnote)
                     .foregroundStyle(.secondary)
             }
         }
 
-        private func agencyText(_ agency: CertificationAgency) -> String {
+        private func agencyText(_ agency: CertificationAgency?) -> String {
             switch agency {
             case .padi:
                 "PADI"
@@ -146,6 +148,8 @@ extension ProfileView {
                 "TDI"
             case .ssi:
                 "SSI"
+            case .none:
+                String.nilText
             }
         }
 
@@ -166,7 +170,7 @@ extension ProfileView {
             }
         }
 
-        private func levelText(_ level: CertificationLevel) -> String {
+        private func levelText(_ level: CertificationLevel?) -> String {
             switch level {
             case .openWater:
                 "Open water"
@@ -180,6 +184,8 @@ extension ProfileView {
                 "Instructor"
             case .instructorTrainer:
                 "Instructor trainer"
+            case .none:
+                String.nilText
             }
         }
     }

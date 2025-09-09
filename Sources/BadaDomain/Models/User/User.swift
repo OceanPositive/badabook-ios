@@ -9,15 +9,15 @@ import Foundation
 
 package struct User: Equatable {
     package let identifier: UserID
-    package let name: String
-    package let dateOfBirth: Date
+    package let name: String?
+    package let dateOfBirth: Date?
     package let insertDate: Date
     package let updateDate: Date
 
     package init(
         identifier: UserID,
-        name: String,
-        dateOfBirth: Date,
+        name: String?,
+        dateOfBirth: Date?,
         insertDate: Date,
         updateDate: Date
     ) {

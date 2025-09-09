@@ -9,17 +9,17 @@ import Foundation
 
 package struct Certification: Equatable {
     package let identifier: CertificationID
-    package let agency: CertificationAgency
-    package let level: CertificationLevel
-    package let number: String
-    package let date: Date
+    package let agency: CertificationAgency?
+    package let level: CertificationLevel?
+    package let number: String?
+    package let date: Date?
 
     package init(
         identifier: CertificationID,
-        agency: CertificationAgency,
-        level: CertificationLevel,
-        number: String,
-        date: Date
+        agency: CertificationAgency?,
+        level: CertificationLevel?,
+        number: String?,
+        date: Date?
     ) {
         self.identifier = identifier
         self.agency = agency

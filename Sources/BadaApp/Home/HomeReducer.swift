@@ -63,8 +63,12 @@ struct HomeReducer: Reducer {
     }
 
     private func updateCertifications(state: inout State, certifications: [Certification]) {
-        if let latestCertification = certifications.max(by: { $0.date.compare($1.date) == .orderedAscending }) {
-            state.primaryCertificationText = latestCertification.level.description
+        if let latestCertification = certifications.max(by: {
+            guard let lhs = $0.date else { return false }
+            guard let rhs = $1.date else { return false }
+            return lhs.compare(rhs) == .orderedAscending
+        }) {
+            state.primaryCertificationText = latestCertification.level?.description ?? .nilText
         }
         state.certifications = certifications
     }

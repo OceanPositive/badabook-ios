@@ -75,8 +75,12 @@ struct ProfileReducer: Reducer {
         case let .setUser(user):
             state.user = user
             return .merge {
-                AnyEffect.just(.setName(user.name))
-                AnyEffect.just(.setDateOfBirth(user.dateOfBirth))
+                if let name = user.name {
+                    AnyEffect.just(.setName(name))
+                }
+                if let dateOfBirth = user.dateOfBirth {
+                    AnyEffect.just(.setDateOfBirth(dateOfBirth))
+                }
             }
         case let .setName(name):
             state.name = name
@@ -144,7 +148,11 @@ struct ProfileReducer: Reducer {
         let result = await getCertificationsUseCase.execute()
         switch result {
         case let .success(certifications):
-            let sorted = certifications.sorted(by: { $0.date > $1.date })
+            let sorted = certifications.sorted(by: {
+                guard let lhs = $0.date else { return false }
+                guard let rhs = $1.date else { return false }
+                return lhs > rhs
+            })
             return .setCertifications(sorted)
         case .failure:
             return .setCertifications([])
@@ -160,7 +168,11 @@ struct ProfileReducer: Reducer {
         case .success:
             let certifications = state.certifications
                 .filter { $0.identifier != identifier }
-                .sorted(by: { $0.date > $1.date })
+                .sorted(by: {
+                    guard let lhs = $0.date else { return false }
+                    guard let rhs = $1.date else { return false }
+                    return lhs > rhs
+                })
             return .setCertifications(certifications)
         case .failure:
             return .load
