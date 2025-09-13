@@ -16,6 +16,7 @@ struct LogbookListReducer: Reducer {
         case removeMockData
         case setItems([LogbookListRowItem])
         case setIsAddSheetPresenting(Bool)
+        case handleCloudEvent(CloudEvent)
         case none
     }
 
@@ -28,6 +29,11 @@ struct LogbookListReducer: Reducer {
     @UseCase private var deleteDiveLogUseCase: DeleteDiveLogUseCase
     @UseCase private var postMockDiveLogsUseCase: PostMockDiveLogsUseCase
     @UseCase private var deleteMockDiveLogsUseCase: DeleteMockDiveLogsUseCase
+    @UseCase private var connectCloudNotificationUseCase: ConnectCloudNotificationUseCase
+
+    private enum DebounceID {
+        case cloudEvent
+    }
 
     func reduce(state: inout State, action: Action) -> AnyEffect<Action> {
         switch action {
@@ -50,8 +56,28 @@ struct LogbookListReducer: Reducer {
         case let .setIsAddSheetPresenting(isAddSheetPresenting):
             state.isAddSheetPresenting = isAddSheetPresenting
             return .none
+        case let .handleCloudEvent(cloudEvent):
+            switch cloudEvent.type {
+            case .import:
+                return .just(.load)
+                    .debounce(id: DebounceID.cloudEvent, for: .seconds(3))
+            case .setup,
+                 .export:
+                return .none
+            }
         case .none:
             return .none
+        }
+    }
+
+    func bind() -> AnyEffect<Action> {
+        AnyEffect.merge {
+            AnyEffect.sequence { send in
+                let events = await connectCloudNotificationUseCase.execute()
+                for await event in events {
+                    send(.handleCloudEvent(event))
+                }
+            }
         }
     }
 
