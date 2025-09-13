@@ -11,10 +11,9 @@ import SwiftData
 
 @Model
 final class DiveLogEntity {
-    @Attribute(.unique)
-    var identifier: DiveLogID
-    var logNumber: Int
-    var logDate: Date
+    var identifier = DiveLogID()
+    var logNumber = Int.zero
+    var logDate = Date.now
     var diveSite: DiveSite?
     var diveCenter: String?
     var diveStyle: DiveStyle?
@@ -30,10 +29,10 @@ final class DiveLogEntity {
     var bottomTemperature: UnitValue.Temperature?
     var weather: Weather?
     var feeling: Feeling?
-    var companions: [Companion]
+    var companions = [Companion]()
     var notes: String?
-    var insertDate: Date
-    var updateDate: Date
+    var insertDate = Date.now
+    var updateDate = Date.now
 
     init(
         identifier: DiveLogID,
