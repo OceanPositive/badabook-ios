@@ -15,6 +15,7 @@ struct HomeReducer: Reducer {
         case setCertifications([Certification])
         case getDiveLogs
         case setDiveLogs([DiveLog])
+        case handleCloudEvent(CloudEvent)
     }
 
     struct State: Sendable, Equatable {
@@ -30,6 +31,11 @@ struct HomeReducer: Reducer {
 
     @UseCase private var getCertificationsUseCase: GetCertificationsUseCase
     @UseCase private var getDiveLogsUseCase: GetDiveLogsUseCase
+    @UseCase private var connectCloudNotificationUseCase: ConnectCloudNotificationUseCase
+
+    private enum DebounceID {
+        case cloudEvent
+    }
 
     func reduce(state: inout State, action: Action) -> AnyEffect<Action> {
         switch action {
@@ -49,6 +55,26 @@ struct HomeReducer: Reducer {
         case let .setCertifications(certifications):
             updateCertifications(state: &state, certifications: certifications)
             return .none
+        case let .handleCloudEvent(cloudEvent):
+            switch cloudEvent.type {
+            case .import:
+                return .just(.load)
+                    .debounce(id: DebounceID.cloudEvent, for: .seconds(3))
+            case .setup,
+                 .export:
+                return .none
+            }
+        }
+    }
+
+    func bind() -> AnyEffect<Action> {
+        AnyEffect.merge {
+            AnyEffect.sequence { send in
+                let events = await connectCloudNotificationUseCase.execute()
+                for await event in events {
+                    send(.handleCloudEvent(event))
+                }
+            }
         }
     }
 

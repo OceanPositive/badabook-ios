@@ -22,6 +22,13 @@ struct HomeReducerTests {
         container.register {
             GetCertificationsUseCase { .success([]) }
         }
+        container.register {
+            ConnectCloudNotificationUseCase {
+                AsyncStream<CloudEvent> { continuation in
+                    continuation.finish()
+                }
+            }
+        }
         await UseCaseContainer.$instance.withValue(container) {
             let sut = Store(
                 reducer: HomeReducer(),
@@ -47,6 +54,13 @@ struct HomeReducerTests {
         }
         container.register {
             GetCertificationsUseCase { .success([]) }
+        }
+        container.register {
+            ConnectCloudNotificationUseCase {
+                AsyncStream<CloudEvent> { continuation in
+                    continuation.finish()
+                }
+            }
         }
         await UseCaseContainer.$instance.withValue(container) {
             let sut = Store(

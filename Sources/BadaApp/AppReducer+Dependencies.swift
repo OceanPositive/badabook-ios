@@ -118,6 +118,12 @@ extension AppReducer {
                 return await repository.delete(for: identifier)
             }
         }
+        register {
+            ConnectCloudNotificationUseCase {
+                let repository = await CloudNotificationRepository()
+                return await repository.connect()
+            }
+        }
     }
 
     private func register<T: ExecutableUseCase>(
