@@ -846,7 +846,7 @@
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "좋아요"
+            "value" : "보통이에요"
           }
         }
       }
@@ -863,7 +863,7 @@
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "보통이에요"
+            "value" : "좋아요"
           }
         }
       }
