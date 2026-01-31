@@ -11,6 +11,7 @@
 		C305F3B12C8451F90046256D /* BadaUI in Frameworks */ = {isa = PBXBuildFile; productRef = C305F3B02C8451F90046256D /* BadaUI */; };
 		C30EC7BF2C8482E300B46F13 /* BadaApp in Frameworks */ = {isa = PBXBuildFile; productRef = C30EC7BE2C8482E300B46F13 /* BadaApp */; };
 		C364E2BE2DF4303800E18A5E /* InfoPlist.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = C364E2BD2DF4303800E18A5E /* InfoPlist.xcstrings */; };
+		C3B84F3F2F2DDEF1009554F2 /* AppIcon.icon in Resources */ = {isa = PBXBuildFile; fileRef = C3B84F3E2F2DDEF1009554F2 /* AppIcon.icon */; };
 		C3DC6EDB2B78B8E800E1968B /* iOSApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3DC6EDA2B78B8E800E1968B /* iOSApp.swift */; };
 		C3DC6EDF2B78B8E900E1968B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C3DC6EDE2B78B8E900E1968B /* Assets.xcassets */; };
 /* End PBXBuildFile section */
@@ -31,6 +32,7 @@
 /* Begin PBXFileReference section */
 		C303E0B52C99A71500A94738 /* iOS-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "iOS-Info.plist"; sourceTree = "<group>"; };
 		C364E2BD2DF4303800E18A5E /* InfoPlist.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = InfoPlist.xcstrings; sourceTree = "<group>"; };
+		C3B84F3E2F2DDEF1009554F2 /* AppIcon.icon */ = {isa = PBXFileReference; lastKnownFileType = folder.iconcomposer.icon; path = AppIcon.icon; sourceTree = "<group>"; };
 		C3CAD57F2B78C8CA00C7344D /* AppTests.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = AppTests.xctestplan; sourceTree = "<group>"; };
 		C3D2A16C2B6E32340059EADC /* AppPackage */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = AppPackage; path = ..; sourceTree = "<group>"; };
 		C3DC6ED82B78B8E800E1968B /* Badabook.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Badabook.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -81,6 +83,7 @@
 			children = (
 				C3DC6EDA2B78B8E800E1968B /* iOSApp.swift */,
 				C3DC6EDE2B78B8E900E1968B /* Assets.xcassets */,
+				C3B84F3E2F2DDEF1009554F2 /* AppIcon.icon */,
 			);
 			path = iOS;
 			sourceTree = "<group>";
@@ -174,6 +177,7 @@
 			files = (
 				C364E2BE2DF4303800E18A5E /* InfoPlist.xcstrings in Resources */,
 				C3DC6EDF2B78B8E900E1968B /* Assets.xcassets in Resources */,
+				C3B84F3F2F2DDEF1009554F2 /* AppIcon.icon in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
