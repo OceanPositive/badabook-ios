@@ -23,6 +23,79 @@ struct LogbookAddReducerTests {
     }
 
     @Test
+    func load() async {
+        UseCaseContainer.instance.register {
+            GetLastDiveLogUseCase {
+                .success(
+                    DiveLog(
+                        logNumber: 10,
+                        logDate: Date(timeIntervalSince1970: 0),
+                        diveSite: DiveSite(title: "Balicasag", subtitle: "Bohol"),
+                        diveCenter: "Good Diver",
+                        diveStyle: .beach,
+                        entryAir: .bar(200)
+                    )
+                )
+            }
+        }
+        let sut = Store(
+            reducer: LogbookAddReducer(),
+            state: LogbookAddReducer.State()
+        )
+        await sut.send(.load)
+        await sut.expect(\.isLoading, false)
+        await sut.expect(\.logNumber, 11)
+        await sut.expect(\.logDate, Date(timeIntervalSince1970: 0))
+        await sut.expect(\.diveSite, DiveSite(title: "Balicasag", subtitle: "Bohol"))
+        await sut.expect(\.diveCenter, "Good Diver")
+        await sut.expect(\.diveStyle, .beach)
+        await sut.expect(\.entryAir, .bar(200))
+    }
+
+    @Test
+    func add() async {
+        let sut = Store(
+            reducer: LogbookAddReducer(),
+            state: LogbookAddReducer.State(logNumber: 1)
+        )
+        await sut.send(.add)
+        await sut.expect(\.shouldDismiss, true)
+    }
+
+    @Test
+    func dismiss() async {
+        let sut = Store(
+            reducer: LogbookAddReducer(),
+            state: LogbookAddReducer.State()
+        )
+        await sut.send(.dismiss)
+        await sut.expect(\.shouldDismiss, true)
+    }
+
+    @Test
+    func setLastDiveLog() async {
+        let sut = Store(
+            reducer: LogbookAddReducer(),
+            state: LogbookAddReducer.State()
+        )
+        let diveLog = DiveLog(
+            logNumber: 10,
+            logDate: Date(timeIntervalSince1970: 0),
+            diveSite: DiveSite(title: "Balicasag", subtitle: "Bohol"),
+            diveCenter: "Good Diver",
+            diveStyle: .beach,
+            entryAir: .bar(200)
+        )
+        await sut.send(.setLastDiveLog(diveLog))
+        await sut.expect(\.logNumber, 11)
+        await sut.expect(\.logDate, Date(timeIntervalSince1970: 0))
+        await sut.expect(\.diveSite, DiveSite(title: "Balicasag", subtitle: "Bohol"))
+        await sut.expect(\.diveCenter, "Good Diver")
+        await sut.expect(\.diveStyle, .beach)
+        await sut.expect(\.entryAir, .bar(200))
+    }
+
+    @Test
     func setLogNumber() async {
         let sut = Store(
             reducer: LogbookAddReducer(),
@@ -41,6 +114,18 @@ struct LogbookAddReducerTests {
         )
         await sut.send(.setLogDate(Date(timeIntervalSince1970: 12)))
         await sut.expect(\.logDate, Date(timeIntervalSince1970: 12))
+    }
+
+    @Test
+    func setDiveSite() async {
+        let sut = Store(
+            reducer: LogbookAddReducer(),
+            state: LogbookAddReducer.State()
+        )
+        await sut.expect(\.diveSite, nil)
+        await sut.send(.setDiveSite(DiveSite(title: "Balicasag", subtitle: "Bohol")))
+        await sut.expect(\.diveSite?.title, "Balicasag")
+        await sut.expect(\.diveSite?.subtitle, "Bohol")
     }
 
     @Test
@@ -90,7 +175,7 @@ struct LogbookAddReducerTests {
             reducer: LogbookAddReducer(),
             state: LogbookAddReducer.State()
         )
-        await sut.expect(\.entryTime, Date(timeIntervalSince1970: 9 * 60 * 60)) // 9:00 AM
+        await sut.expect(\.entryTime, Date(timeIntervalSince1970: 9 * 60 * 60))  // 9:00 AM
         await sut.expect(\.exitTime, Date(timeIntervalSince1970: 9 * 60 * 60))
         await sut.send(.setEntryTime(Date(timeIntervalSince1970: 9 * 60 * 60 + 2 * 60)))
         await sut.expect(\.entryTime, Date(timeIntervalSince1970: 9 * 60 * 60 + 2 * 60))
@@ -103,7 +188,7 @@ struct LogbookAddReducerTests {
             reducer: LogbookAddReducer(),
             state: LogbookAddReducer.State()
         )
-        await sut.expect(\.entryTime, Date(timeIntervalSince1970: 9 * 60 * 60)) // 9:00 AM
+        await sut.expect(\.entryTime, Date(timeIntervalSince1970: 9 * 60 * 60))  // 9:00 AM
         await sut.expect(\.exitTime, Date(timeIntervalSince1970: 9 * 60 * 60))
         await sut.send(.setExitTime(Date(timeIntervalSince1970: 9 * 60 * 60 + 2 * 60)))
         await sut.expect(\.exitTime, Date(timeIntervalSince1970: 9 * 60 * 60 + 2 * 60))
@@ -230,5 +315,27 @@ struct LogbookAddReducerTests {
         await sut.expect(\.notes, "")
         await sut.send(.setNotes("Hello\nWorld"))
         await sut.expect(\.notes, "Hello\nWorld")
+    }
+
+    @Test
+    func setIsDiveSiteSearchSheetPresenting() async {
+        let sut = Store(
+            reducer: LogbookAddReducer(),
+            state: LogbookAddReducer.State()
+        )
+        await sut.expect(\.isDiveSiteSearchSheetPresenting, false)
+        await sut.send(.setIsDiveSiteSearchSheetPresenting(true))
+        await sut.expect(\.isDiveSiteSearchSheetPresenting, true)
+    }
+
+    @Test
+    func setIsLoading() async {
+        let sut = Store(
+            reducer: LogbookAddReducer(),
+            state: LogbookAddReducer.State()
+        )
+        await sut.expect(\.isLoading, false)
+        await sut.send(.setIsLoading(true))
+        await sut.expect(\.isLoading, true)
     }
 }

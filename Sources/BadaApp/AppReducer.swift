@@ -39,7 +39,7 @@ public struct AppReducer: Reducer {
             return .none
         case .active:
             state.scenePhase = .active
-            if !state.isLaunched {
+            if !state.isLaunched || !state.isLoaded {
                 state.isLaunched = true
                 return .just(.load)
             }

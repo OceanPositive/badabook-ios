@@ -61,7 +61,7 @@ struct HomeReducer: Reducer {
                 return .just(.load)
                     .debounce(id: DebounceID.cloudEvent, for: .seconds(3))
             case .setup,
-                 .export:
+                .export:
                 return .none
             }
         }
@@ -95,6 +95,8 @@ struct HomeReducer: Reducer {
             return lhs.compare(rhs) == .orderedAscending
         }) {
             state.primaryCertificationText = latestCertification.level?.description ?? .nilText
+        } else {
+            state.primaryCertificationText = .nilText
         }
         state.certifications = certifications
     }
