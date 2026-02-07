@@ -1,38 +1,21 @@
 # Badabook
 
+> Your dive, Your story
+
+<a href="https://apps.apple.com/app/badabook/id6751500491">
+  <img alt="Download on the App Store" src="https://img.shields.io/badge/Download-App%20Store-blue?style=flat&logo=apple">
+</a>
 <a href="https://github.com/OceanPositive/badabook-ios/actions">
   <img alt="CI" src="https://github.com/OceanPositive/badabook-ios/workflows/CI/badge.svg">
 </a>
 
-Welcome to **swift-app-package**, a template project designed to kickstart your app development journey using Swift, SwiftUI, and Swift Package Manager (SPM). With this template, you can develop applications for multiple platforms including `iOS`, `iPadOS`, `macOS`, `tvOS`, `visionOS`, and `watchOS` all within a single project. With the use of [SPM](https://github.com/apple/swift-package-manager), we no longer need third-party dependencies such as [Tuist](https://github.com/tuist/tuist), [XcodeGen](https://github.com/yonaskolb/XcodeGen), or [xUnique](https://github.com/truebit/xUnique).
+**Badabook** is an iOS application designed for divers to log and manage their diving activities and equipment. Built with modern Swift technologies, it offers a clean and privacy-focused experience for tracking your underwater adventures.
 
-## Overview
+## Features
 
-- **Targets**: `AppProject` consists of six targets: `iOS`, `iPadOS`, `macOS`, `tvOS`, `visionOS`, and `watchOS`.
-- **Modules**: `AppPackage` includes two default modules: `AppCore` and `AppUI`.
-- **Test Plans**: There are separate test plans for `AppCoreTests` and `AppUITests`, which are integrated into `AppTests`.
-
-## Getting Started
-
-To begin using **swift-app-package**, simply clone or download this repository and start building your app on top of the provided template.
-
-```
-git clone --depth 1 https://github.com/DevYeom/swift-app-package
-```
-
-## Usage
-
-1. Clone or download the repository.
-2. Open the project in Xcode. (`App/AppProject.xcodeproj`)
-3. Start developing your app.
-4. Customize and extend the template to suit your app's requirements.
-5. Build and run your app across various platforms to explore its full potential.
-
-## Advanced
-
-1. **Unit Testing**: Run unit tests based on the test plan by executing `make test`.
-2. **Bundle Identifier Modification**: Modify the bundle identifier using `make id`.
-3. **GitHub Action**: Explore default GitHub Actions settings in `.github/workflows`.
+- **Logbook**: detailed recording of your dives.
+- **Equipment Management**: Keep track of your diving gear and maintenance.
+- **Privacy First**: Your data stays on your device.
 
 ## License
 
