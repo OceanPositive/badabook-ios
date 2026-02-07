@@ -43,8 +43,9 @@ The project is organized as a Swift Package with multiple targets, promoting sep
 ## Development
 
 - **Setup**: Clone the repo and open `App/AppProject.xcodeproj` or the root folder in Xcode.
-- **Running**: Select the `BadaApp` scheme and target a simulator or device.
-- **Tests**: `make test` or run tests via Xcode (Cmd+U).
+- **Running**: Select the `iOS` scheme and target a simulator or device.
+- **Tests**: Run `make test-all` to test for all platforms.
+- **Linting & Formatting**: Run `make lint` to check and fix coding style issues using `swift-format`.
 
 ## Notes for AI Assistant
 

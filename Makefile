@@ -1,4 +1,4 @@
-PLATFORM_IOS = iOS Simulator,name=iPhone 16
+PLATFORM_IOS = iOS Simulator,name=iPhone 17
 PLATFORM_IPADOS = iOS Simulator,name=iPad (A16)
 
 PROJECT = App/Badabook.xcodeproj

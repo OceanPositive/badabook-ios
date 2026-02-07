@@ -62,7 +62,7 @@ struct LogbookListReducer: Reducer {
                 return .just(.load)
                     .debounce(id: DebounceID.cloudEvent, for: .seconds(3))
             case .setup,
-                 .export:
+                .export:
                 return .none
             }
         case .none:

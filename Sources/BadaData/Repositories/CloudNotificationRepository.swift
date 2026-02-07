@@ -10,7 +10,7 @@ import BadaDomain
 import CoreData
 
 package struct CloudNotificationRepository: CloudNotificationRepositoryType {
-    package init() { }
+    package init() {}
 
     package func connect() -> AsyncStream<BadaDomain.CloudEvent> {
         AsyncStream<CloudEvent> { continuation in
