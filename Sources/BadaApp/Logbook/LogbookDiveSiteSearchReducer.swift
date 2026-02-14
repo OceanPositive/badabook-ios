@@ -80,10 +80,11 @@ struct LogbookDiveSiteSearchReducer: Reducer {
     }
 
     private func executeGetLocalSearchResult(for searchCompletion: LocalSearchCompletion) async -> Action {
-        do {
-            let searchResult = try await getLocalSearchResultUseCase.execute(for: searchCompletion)
+        let result = await getLocalSearchResultUseCase.execute(for: searchCompletion)
+        switch result {
+        case let .success(searchResult):
             return .setSearchResult(searchResult)
-        } catch {
+        case let .failure(error):
             switch error {
             case .invalidSearchCompletion:
                 let searchResult = LocalSearchResult(

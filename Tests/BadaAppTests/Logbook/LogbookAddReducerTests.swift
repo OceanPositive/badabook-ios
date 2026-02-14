@@ -24,7 +24,11 @@ struct LogbookAddReducerTests {
 
     @Test
     func load() async {
-        UseCaseContainer.instance.register {
+        let container = UseCaseContainer()
+        container.register {
+            PostDiveLogUseCase { _ in .success(Void()) }
+        }
+        container.register {
             GetLastDiveLogUseCase {
                 .success(
                     DiveLog(
@@ -38,18 +42,20 @@ struct LogbookAddReducerTests {
                 )
             }
         }
-        let sut = Store(
-            reducer: LogbookAddReducer(),
-            state: LogbookAddReducer.State()
-        )
-        await sut.send(.load)
-        await sut.expect(\.isLoading, false)
-        await sut.expect(\.logNumber, 11)
-        await sut.expect(\.logDate, Date(timeIntervalSince1970: 0))
-        await sut.expect(\.diveSite, DiveSite(title: "Balicasag", subtitle: "Bohol"))
-        await sut.expect(\.diveCenter, "Good Diver")
-        await sut.expect(\.diveStyle, .beach)
-        await sut.expect(\.entryAir, .bar(200))
+        await UseCaseContainer.$instance.withValue(container) {
+            let sut = Store(
+                reducer: LogbookAddReducer(),
+                state: LogbookAddReducer.State()
+            )
+            await sut.send(.load)
+            await sut.expect(\.isLoading, false)
+            await sut.expect(\.logNumber, 11)
+            await sut.expect(\.logDate, Date(timeIntervalSince1970: 0))
+            await sut.expect(\.diveSite, DiveSite(title: "Balicasag", subtitle: "Bohol"))
+            await sut.expect(\.diveCenter, "Good Diver")
+            await sut.expect(\.diveStyle, .beach)
+            await sut.expect(\.entryAir, .bar(200))
+        }
     }
 
     @Test

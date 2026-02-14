@@ -8,15 +8,15 @@
 import BadaCore
 
 package struct GetLocalSearchResultUseCase: ExecutableUseCase {
-    private let get: @Sendable (LocalSearchCompletion) async throws(LocalSearchRepositoryError) -> LocalSearchResult
+    private let get: @Sendable (LocalSearchCompletion) async -> Result<LocalSearchResult, LocalSearchRepositoryError>
 
     package init(
-        _ get: @Sendable @escaping (LocalSearchCompletion) async throws(LocalSearchRepositoryError) -> LocalSearchResult
+        _ get: @Sendable @escaping (LocalSearchCompletion) async -> Result<LocalSearchResult, LocalSearchRepositoryError>
     ) {
         self.get = get
     }
 
-    package func execute(for searchCompletion: LocalSearchCompletion) async throws(LocalSearchRepositoryError) -> LocalSearchResult {
-        try await get(searchCompletion)
+    package func execute(for searchCompletion: LocalSearchCompletion) async -> Result<LocalSearchResult, LocalSearchRepositoryError> {
+        await get(searchCompletion)
     }
 }
