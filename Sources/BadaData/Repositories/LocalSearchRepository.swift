@@ -32,9 +32,9 @@ package final class LocalSearchRepository: NSObject, LocalSearchRepositoryType {
 
     package func search(
         for searchCompletion: LocalSearchCompletion
-    ) async throws(LocalSearchRepositoryError) -> LocalSearchResult {
+    ) async -> Result<LocalSearchResult, LocalSearchRepositoryError> {
         guard let searchCompletion = searchCompletion.rawValue else {
-            throw LocalSearchRepositoryError.invalidSearchCompletion
+            return .failure(LocalSearchRepositoryError.invalidSearchCompletion)
         }
         let request = MKLocalSearch.Request(completion: searchCompletion)
         let search = MKLocalSearch(request: request)
@@ -44,7 +44,7 @@ package final class LocalSearchRepository: NSObject, LocalSearchRepositoryType {
                 throw LocalSearchRepositoryError.mapItemNotFound
             }
             if let location = item.placemark.location {
-                return LocalSearchResult(
+                let result = LocalSearchResult(
                     title: searchCompletion.title,
                     subtitle: searchCompletion.subtitle,
                     coordinate: LocalSearchResult.Coordinate(
@@ -52,15 +52,17 @@ package final class LocalSearchRepository: NSObject, LocalSearchRepositoryType {
                         longitude: location.coordinate.longitude
                     )
                 )
+                return .success(result)
             } else {
-                return LocalSearchResult(
+                let result = LocalSearchResult(
                     title: searchCompletion.title,
                     subtitle: searchCompletion.subtitle,
                     coordinate: nil
                 )
+                return .success(result)
             }
         } catch {
-            throw LocalSearchRepositoryError.searchFailed(error.description)
+            return .failure(LocalSearchRepositoryError.searchFailed(error.description))
         }
     }
 }

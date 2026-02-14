@@ -65,9 +65,9 @@ extension AppReducer {
             }
         }
         register {
-            GetLocalSearchResultUseCase { searchCompletion throws(LocalSearchRepositoryError) in
+            GetLocalSearchResultUseCase { searchCompletion in
                 let repository = LocalSearchRepository()
-                return try await repository.search(for: searchCompletion)
+                return await repository.search(for: searchCompletion)
             }
         }
         register {

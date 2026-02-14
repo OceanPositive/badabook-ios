@@ -9,7 +9,7 @@ import BadaCore
 
 package protocol LocalSearchRepositoryType {
     func search(text: String) async -> [LocalSearchCompletion]
-    func search(for result: LocalSearchCompletion) async throws(LocalSearchRepositoryError) -> LocalSearchResult
+    func search(for result: LocalSearchCompletion) async -> Result<LocalSearchResult, LocalSearchRepositoryError>
 }
 
 package enum LocalSearchRepositoryError: Error, Equatable {
