@@ -29,6 +29,7 @@ package enum SystemImage: String {
     case trash = "trash"
     case plusSquareOnSquare = "plus.square.on.square"
     case minusSquare = "minus.square"
+    case magnifyingglass = "magnifyingglass"
 }
 
 extension Image {

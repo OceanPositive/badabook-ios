@@ -100,15 +100,27 @@ struct LogbookListReducerTests {
     }
 
     @Test
+    func search() async {
+        let sut = Store(
+            reducer: LogbookListReducer(),
+            state: LogbookListReducer.State()
+        )
+        await sut.send(.search("1"))
+        await sut.expect(\.searchText, "1", timeout: 1)
+    }
+
+    @Test
     func delete() async {
         let itemToDelete = LogbookListRowItem(
             identifier: UUID(uuidString: "00000000-0000-0000-0000-000000000001")!,
             logNumber: 1,
             logNumberText: "#1",
             diveSiteText: "Site",
+            diveCenterText: "Center",
             maximumDepthText: "10m",
             totalTimeText: "30min",
-            logDateText: "Date"
+            logDateText: "Date",
+            notesText: "Notes"
         )
 
         let initialItems = [itemToDelete]
@@ -164,9 +176,11 @@ struct LogbookListReducerTests {
                 logNumber: 1,
                 logNumberText: "#1",
                 diveSiteText: "Site",
+                diveCenterText: "Center",
                 maximumDepthText: "10m",
                 totalTimeText: "30min",
-                logDateText: "Date"
+                logDateText: "Date",
+                notesText: "Notes"
             )
         ]
 
@@ -186,5 +200,76 @@ struct LogbookListReducerTests {
 
         await sut.send(.setIsAddSheetPresenting(false))
         await sut.expect(\.isAddSheetPresenting, false)
+    }
+
+    @Test
+    func setSearchText() async {
+        let items: [LogbookListRowItem] = [
+            LogbookListRowItem(
+                identifier: UUID(),
+                logNumber: 2,
+                logNumberText: "#2",
+                diveSiteText: "Deep Blue",
+                diveCenterText: "Center A",
+                maximumDepthText: "30m",
+                totalTimeText: "45min",
+                logDateText: "Date 2",
+                notesText: "Good dive"
+            ),
+            LogbookListRowItem(
+                identifier: UUID(),
+                logNumber: 1,
+                logNumberText: "#1",
+                diveSiteText: "Shallow Reef",
+                diveCenterText: "Center B",
+                maximumDepthText: "10m",
+                totalTimeText: "30min",
+                logDateText: "Date 1",
+                notesText: "Bad visibility"
+            )
+        ]
+
+        let sut = Store(
+            reducer: LogbookListReducer(),
+            state: LogbookListReducer.State(items: items)
+        )
+
+        // Initial state
+        await sut.expect(\.filteredItems, items)
+
+        // Search by log number
+        await sut.send(.setSearchText("1"))
+        await sut.expect(\.searchText, "1")
+        await sut.expect(\.filteredItems.count, 1)
+        await sut.expect(\.filteredItems[0].logNumber, 1)
+
+        // Search by dive site
+        await sut.send(.setSearchText("Deep"))
+        await sut.expect(\.searchText, "Deep")
+        await sut.expect(\.filteredItems.count, 1)
+        await sut.expect(\.filteredItems[0].logNumber, 2)
+
+        // Search by dive center
+        await sut.send(.setSearchText("Center A"))
+        await sut.expect(\.searchText, "Center A")
+        await sut.expect(\.filteredItems.count, 1)
+        await sut.expect(\.filteredItems[0].logNumber, 2)
+
+        // Search by notes
+        await sut.send(.setSearchText("visibility"))
+        await sut.expect(\.searchText, "visibility")
+        await sut.expect(\.filteredItems.count, 1)
+        await sut.expect(\.filteredItems[0].logNumber, 1)
+
+        // Search case insensitive
+        await sut.send(.setSearchText("deep"))
+        await sut.expect(\.searchText, "deep")
+        await sut.expect(\.filteredItems.count, 1)
+        await sut.expect(\.filteredItems[0].logNumber, 2)
+
+        // Empty search
+        await sut.send(.setSearchText(""))
+        await sut.expect(\.searchText, "")
+        await sut.expect(\.filteredItems, items)
     }
 }

@@ -55,9 +55,11 @@ struct LogbookListRowItem: Identifiable, Equatable {
     let logNumber: Int
     let logNumberText: String
     let diveSiteText: String?
+    let diveCenterText: String?
     let maximumDepthText: String?
     let totalTimeText: String?
     let logDateText: String?
+    let notesText: String?
 }
 
 #Preview(traits: .sizeThatFitsLayout) {
@@ -67,9 +69,11 @@ struct LogbookListRowItem: Identifiable, Equatable {
             logNumber: 12,
             logNumberText: "#12",
             diveSiteText: "Doljo beach",
+            diveCenterText: "Bohol Divers Club",
             maximumDepthText: "24m",
             totalTimeText: "32min",
-            logDateText: "Oct 31, 2024"
+            logDateText: "Oct 31, 2024",
+            notesText: "Nice dive with turtles."
         )
     )
 }

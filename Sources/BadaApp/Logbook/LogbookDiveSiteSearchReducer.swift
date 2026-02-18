@@ -27,7 +27,7 @@ struct LogbookDiveSiteSearchReducer: Reducer {
     @UseCase private var getLocalSearchCompletionsUseCase: GetLocalSearchCompletionsUseCase
     @UseCase private var getLocalSearchResultUseCase: GetLocalSearchResultUseCase
 
-    enum DebounceID {
+    private enum DebounceID {
         case searchText
     }
 

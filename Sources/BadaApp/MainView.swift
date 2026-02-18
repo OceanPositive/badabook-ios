@@ -78,6 +78,14 @@ private struct MainTabView: View {
             ) {
                 LogbookListView()
             }
+            Tab(
+                L10n.MainTab.search,
+                systemImage: SystemImage.magnifyingglass.rawValue,
+                value: .search,
+                role: .search
+            ) {
+                LogbookListView()
+            }
         }
         .tabViewStyle(.sidebarAdaptable)
     }

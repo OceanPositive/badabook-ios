@@ -36,4 +36,7 @@ lint: install
 	@./swift-format format -irp App Sources Tests
 	@echo "swift-format completed."
 
-.PHONY: test-ios test-ipados test-all install lint
+l10n:
+	swift package --allow-writing-to-package-directory l10n
+
+.PHONY: test-ios test-ipados test-all install lint l10n

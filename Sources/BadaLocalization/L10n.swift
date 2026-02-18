@@ -186,6 +186,8 @@ package enum L10n {
         package static let home = String(localized: "MAIN_TAB.HOME", bundle: .module)
         /// Logbook
         package static let logbook = String(localized: "MAIN_TAB.LOGBOOK", bundle: .module)
+        /// Search
+        package static let search = String(localized: "MAIN_TAB.SEARCH", bundle: .module)
     }
     package enum Profile {
         /// Certifications

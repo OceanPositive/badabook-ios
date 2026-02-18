@@ -11,11 +11,13 @@ import BadaDomain
 struct LogbookListReducer: Reducer {
     enum Action: Sendable {
         case load
+        case search(String)
         case delete(LogbookListRowItem)
         case addMockData
         case removeMockData
         case setItems([LogbookListRowItem])
         case setIsAddSheetPresenting(Bool)
+        case setSearchText(String)
         case handleCloudEvent(CloudEvent)
         case none
     }
@@ -23,6 +25,20 @@ struct LogbookListReducer: Reducer {
     struct State: Sendable, Equatable {
         var items: [LogbookListRowItem] = []
         var isAddSheetPresenting: Bool = false
+        var searchText: String = ""
+
+        var filteredItems: [LogbookListRowItem] {
+            if searchText.isEmpty {
+                return items
+            } else {
+                return items.filter { item in
+                    item.logNumberText.localizedCaseInsensitiveContains(searchText)
+                        || (item.diveSiteText?.localizedCaseInsensitiveContains(searchText) ?? false)
+                        || (item.diveCenterText?.localizedCaseInsensitiveContains(searchText) ?? false)
+                        || (item.notesText?.localizedCaseInsensitiveContains(searchText) ?? false)
+                }
+            }
+        }
     }
 
     @UseCase private var getDiveLogsUseCase: GetDiveLogsUseCase
@@ -33,12 +49,18 @@ struct LogbookListReducer: Reducer {
 
     private enum DebounceID {
         case cloudEvent
+        case search
     }
 
     func reduce(state: inout State, action: Action) -> AnyEffect<Action> {
         switch action {
         case .load:
             return .single { await executeGetDiveLogsUseCase() }
+        case let .search(text):
+            return .single {
+                return .setSearchText(text)
+            }
+            .debounce(id: DebounceID.search, for: .milliseconds(500))
         case let .delete(item):
             return .single { [state] in
                 await executeDeleteDiveLogUseCase(
@@ -55,6 +77,9 @@ struct LogbookListReducer: Reducer {
             return .none
         case let .setIsAddSheetPresenting(isAddSheetPresenting):
             state.isAddSheetPresenting = isAddSheetPresenting
+            return .none
+        case let .setSearchText(searchText):
+            state.searchText = searchText
             return .none
         case let .handleCloudEvent(cloudEvent):
             switch cloudEvent.type {
@@ -91,9 +116,11 @@ struct LogbookListReducer: Reducer {
                     logNumber: diveLog.logNumber,
                     logNumberText: "#\(diveLog.logNumber)",
                     diveSiteText: diveLog.diveSite?.title,
+                    diveCenterText: diveLog.diveCenter,
                     maximumDepthText: formatted(depth: diveLog.maximumDepth),
                     totalTimeText: formattedTotalTime(diveLog.entryTime, diveLog.exitTime),
-                    logDateText: formatted(date: diveLog.logDate)
+                    logDateText: formatted(date: diveLog.logDate),
+                    notesText: diveLog.notes
                 )
             }.sorted { $0.logNumber > $1.logNumber }
             return .setItems(items)

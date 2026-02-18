@@ -103,6 +103,7 @@ extension NavigationReducer.State {
         case home
         case equipment
         case logbook
+        case search
     }
 
     enum HomePath: Hashable {
