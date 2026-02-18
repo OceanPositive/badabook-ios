@@ -8,7 +8,7 @@
 import BadaCore
 import BadaDomain
 
-typealias NavigationStore = ViewStore<NavigationReducer>
+typealias NavigationStore = ViewStore<NavigationReducer, ContinuousClock>
 typealias NavigationState = NavigationReducer.State
 
 extension NavigationStore {

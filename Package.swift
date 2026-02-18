@@ -1,4 +1,4 @@
-// swift-tools-version: 6.0
+// swift-tools-version: 6.2
 
 import PackageDescription
 
@@ -6,7 +6,7 @@ let package = Package(
     name: "AppPackage",
     defaultLocalization: "en",
     platforms: [
-        .iOS(.v18),
+        .iOS(.v26),
     ],
     products: [
         .library(name: "BadaApp", targets: ["BadaApp"]),
@@ -16,7 +16,7 @@ let package = Package(
         .library(name: "BadaUI", targets: ["BadaUI"]),
     ],
     dependencies: [
-        .package(url: "https://github.com/DevYeom/OneWay.git", exact: "2.10.0"),
+        .package(url: "https://github.com/DevYeom/OneWay.git", exact: "3.0.0"),
     ],
     targets: [
         .target(
