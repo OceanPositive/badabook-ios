@@ -22,7 +22,7 @@ struct LogbookListView: View {
                 send: { .setLogbookPaths($0) })
         ) {
             List {
-                ForEach(store.state.items) { item in
+                ForEach(store.state.filteredItems) { item in
                     Button {
                         navigationStore.send(.logbook(.logDetail(id: item.id)))
                     } label: {
@@ -69,6 +69,7 @@ struct LogbookListView: View {
             )
             .onChange(of: store.state.isAddSheetPresenting, onIsAddSheetPresentingChange)
             .onAppear { store.send(.load) }
+            .searchable(text: store.binding(\.searchText, send: { .search($0) }))
         }
     }
 
