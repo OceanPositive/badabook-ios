@@ -11,10 +11,10 @@ import BadaDomain
 extension DiveLogInsertRequest {
     package static var mock: DiveLogInsertRequest {
         DiveLogInsertRequest(
-            logNumber: Int.random(in: 1...1000),
-            logDate: Date.now,
+            logNumber: Int.random(in: 1...200),
+            logDate: Date.now.addingTimeInterval(-86400 * Double.random(in: 14...28)),
             diveSite: DiveSite(
-                title: "Site \(Int.random(in: 1...50))",
+                title: ["Balicasag Island", "Palau", "Doljo", "Great Barrier Reef"].randomElement()!,
                 subtitle: "Country \(Int.random(in: 1...10))",
                 coordinate: .none
             ).domain,
@@ -22,15 +22,14 @@ extension DiveLogInsertRequest {
             diveStyle: [DiveStyle.boat, DiveStyle.beach, DiveStyle.night].randomElement()?.domain,
             entryTime: Date.now,
             exitTime: Date.now.addingTimeInterval(60 * Double(Int.random(in: 1...60))),
-            // 45분 후
-            surfaceInterval: .minute(Double.random(in: 10...90)),
-            entryAir: .bar(Double.random(in: 180...220)),
-            exitAir: .bar(Double.random(in: 20...60)),
+            surfaceInterval: .minute(Double(Int.random(in: 10...90))),
+            entryAir: .bar(Double(Int.random(in: 180...220))),
+            exitAir: .bar(Double(Int.random(in: 20...60))),
             equipment: nil,
-            maximumDepth: .m(Double.random(in: 10...40)),
-            averageDepth: .m(Double.random(in: 5...20)),
-            surfaceTemperature: .celsius(Double.random(in: 20...30)),
-            bottomTemperature: .celsius(Double.random(in: 10...25)),
+            maximumDepth: .m(Double(Int.random(in: 10...40))),
+            averageDepth: .m(Double(Int.random(in: 5...20))),
+            surfaceTemperature: .celsius(Double(Int.random(in: 20...30))),
+            bottomTemperature: .celsius(Double(Int.random(in: 10...25))),
             weather: [Weather.sunny, Weather.cloudy, Weather.rainy].randomElement()?.domain,
             feeling: [Feeling.amazing, Feeling.average, Feeling.good].randomElement()?.domain,
             companions: [
