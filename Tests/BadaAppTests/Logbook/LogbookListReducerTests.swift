@@ -106,7 +106,7 @@ struct LogbookListReducerTests {
             state: LogbookListReducer.State()
         )
         await sut.send(.search("1"))
-        await sut.expect(\.searchText, "1", timeout: 1)
+        await sut.expect(\.searchText, "1")
     }
 
     @Test
