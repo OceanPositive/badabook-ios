@@ -6,6 +6,17 @@
 	<array>
 		<string>en</string>
 		<string>ko</string>
+		<string>ja</string>
+		<string>zh-Hans</string>
+		<string>zh-Hant</string>
+		<string>es</string>
+		<string>fr</string>
+		<string>de</string>
+		<string>it</string>
+		<string>pt-BR</string>
+		<string>ru</string>
+		<string>ar</string>
+		<string>hi</string>
 	</array>
 	<key>UIBackgroundModes</key>
 	<array>
