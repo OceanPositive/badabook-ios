@@ -159,6 +159,17 @@
 				en,
 				Base,
 				ko,
+				ja,
+				"zh-Hans",
+				"zh-Hant",
+				es,
+				fr,
+				de,
+				it,
+				"pt-BR",
+				ru,
+				ar,
+				hi,
 			);
 			mainGroup = C3F0AC432B2EE3A900D2165B;
 			productRefGroup = C3F0AC4D2B2EE3A900D2165B /* Products */;
