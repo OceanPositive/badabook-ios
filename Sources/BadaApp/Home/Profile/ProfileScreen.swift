@@ -9,7 +9,7 @@ import BadaCore
 import BadaDomain
 import BadaUI
 
-struct ProfileView: View {
+struct ProfileScreen: View {
     @Environment(\.dismiss) private var dismiss
     @StateObject private var store = ViewStore(
         reducer: ProfileReducer(),
@@ -101,7 +101,7 @@ struct ProfileView: View {
     }
 }
 
-extension ProfileView {
+extension ProfileScreen {
     private struct CertificationRow: View {
         let certification: Certification
 
@@ -192,5 +192,5 @@ extension ProfileView {
 }
 
 #Preview {
-    ProfileView()
+    ProfileScreen()
 }

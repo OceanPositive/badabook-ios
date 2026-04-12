@@ -8,7 +8,7 @@
 import BadaCore
 import BadaUI
 
-struct LogbookListView: View {
+struct LogbookListScreen: View {
     @ObservedObject private var navigationStore = NavigationStore.shared
     @StateObject private var store = ViewStore(
         reducer: LogbookListReducer(),
@@ -55,7 +55,7 @@ struct LogbookListView: View {
             .navigationDestination(for: NavigationState.LogbookPath.self) { path in
                 switch path {
                 case let .logDetail(id):
-                    LogbookDetailView(id: id)
+                    LogbookDetailScreen(id: id)
                 }
             }
             .toolbar {

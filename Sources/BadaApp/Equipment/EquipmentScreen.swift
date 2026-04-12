@@ -8,7 +8,7 @@
 import BadaCore
 import BadaUI
 
-struct EquipmentView: View {
+struct EquipmentScreen: View {
     @ObservedObject private var navigationStore = NavigationStore.shared
     @StateObject private var store = ViewStore(
         reducer: EquipmentReducer(),

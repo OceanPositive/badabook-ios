@@ -8,7 +8,7 @@
 import BadaCore
 import BadaUI
 
-struct HomeView: View {
+struct HomeScreen: View {
     @ObservedObject private var navigationStore = NavigationStore.shared
     @StateObject private var store = ViewStore(
         reducer: HomeReducer(),
@@ -81,7 +81,7 @@ struct HomeView: View {
             .navigationDestination(for: NavigationState.HomePath.self) { path in
                 switch path {
                 case .profile:
-                    ProfileView()
+                    ProfileScreen()
                 }
             }
             .onAppear { store.send(.load) }
@@ -89,7 +89,7 @@ struct HomeView: View {
     }
 }
 
-extension HomeView {
+extension HomeScreen {
     private struct SectionHeader: View {
         let title: String
         let action: () -> Void
@@ -133,5 +133,5 @@ extension HomeView {
 }
 
 #Preview {
-    HomeView()
+    HomeScreen()
 }
