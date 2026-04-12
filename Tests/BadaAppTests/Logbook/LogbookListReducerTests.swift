@@ -106,6 +106,8 @@ struct LogbookListReducerTests {
             state: LogbookListReducer.State()
         )
         await sut.send(.search("1"))
+        // Wait for debounce
+        try? await Task.sleep(for: .milliseconds(500))
         await sut.expect(\.searchText, "1")
     }
 
@@ -226,7 +228,7 @@ struct LogbookListReducerTests {
                 totalTimeText: "30min",
                 logDateText: "Date 1",
                 notesText: "Bad visibility"
-            )
+            ),
         ]
 
         let sut = Store(

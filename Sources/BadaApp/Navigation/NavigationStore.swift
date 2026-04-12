@@ -25,9 +25,11 @@ struct NavigationReducer: Reducer {
         case setHomePaths([State.HomePath])
         case setEquipmentPaths([State.EquipmentPath])
         case setLogbookPaths([State.LogbookPath])
+        case setSearchPaths([State.SearchPath])
         case home(Home)
         case equipment(Equipment)
         case logbook(Logbook)
+        case search(Search)
     }
 
     struct State: Sendable, Equatable {
@@ -35,6 +37,7 @@ struct NavigationReducer: Reducer {
         var homePaths: [HomePath] = []
         var equipmentPaths: [EquipmentPath] = []
         var logbookPaths: [LogbookPath] = []
+        var searchPaths: [SearchPath] = []
     }
 
     func reduce(state: inout State, action: Action) -> AnyEffect<Action> {
@@ -50,6 +53,9 @@ struct NavigationReducer: Reducer {
             return .none
         case let .setLogbookPaths(paths):
             state.logbookPaths = paths
+            return .none
+        case let .setSearchPaths(paths):
+            state.searchPaths = paths
             return .none
         case let .home(home):
             state.mainTab = .home
@@ -78,6 +84,16 @@ struct NavigationReducer: Reducer {
                 state.logbookPaths = [.logDetail(id: id)]
                 return .none
             }
+        case let .search(search):
+            state.mainTab = .search
+            switch search {
+            case .root:
+                state.searchPaths = []
+                return .none
+            case let .logDetail(id):
+                state.searchPaths = [.logDetail(id: id)]
+                return .none
+            }
         }
     }
 }
@@ -93,6 +109,11 @@ extension NavigationReducer.Action {
     }
 
     enum Logbook {
+        case root
+        case logDetail(id: DiveLogID)
+    }
+
+    enum Search {
         case root
         case logDetail(id: DiveLogID)
     }
@@ -114,6 +135,10 @@ extension NavigationReducer.State {
     }
 
     enum LogbookPath: Hashable {
+        case logDetail(id: DiveLogID)
+    }
+
+    enum SearchPath: Hashable {
         case logDetail(id: DiveLogID)
     }
 }
