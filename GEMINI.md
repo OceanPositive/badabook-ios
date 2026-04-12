@@ -11,7 +11,7 @@
 - **Package Manager**: Swift Package Manager (SPM)
 - **Architecture**: Modular Architecture + Clean Architecture + Unidirectional Data Flow (UDF)
 - **State Management**: [OneWay](https://github.com/DevYeom/OneWay)
-- **Minimum iOS Version**: iOS 18.0
+- **Minimum iOS Version**: iOS 26.0
 
 ## Project Structure
 
