@@ -9,7 +9,7 @@ import BadaCore
 import BadaDomain
 import BadaUI
 
-struct LogbookDetailView: View {
+struct LogbookDetailScreen: View {
     let id: DiveLogID
 
     init(id: DiveLogID) {
@@ -294,7 +294,7 @@ struct LogbookDetailView: View {
     }
 }
 
-extension LogbookDetailView {
+extension LogbookDetailScreen {
     private enum Field: Int, CaseIterable {
         case logNumber = 0
         case diveCenter

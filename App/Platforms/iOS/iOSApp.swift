@@ -12,7 +12,7 @@ struct iOSApp: App {
 
     var body: some Scene {
         WindowGroup {
-            MainView()
+            MainScreen()
                 .environment(\.appStoreState, store.state)
         }
         .onChange(of: scenePhase, initial: true) { _, newValue in

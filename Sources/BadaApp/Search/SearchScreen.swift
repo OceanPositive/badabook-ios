@@ -8,7 +8,7 @@
 import BadaCore
 import BadaUI
 
-struct SearchView: View {
+struct SearchScreen: View {
     @ObservedObject private var navigationStore = NavigationStore.shared
     @StateObject private var store = ViewStore(
         reducer: SearchReducer(),
@@ -50,7 +50,7 @@ struct SearchView: View {
             .navigationDestination(for: NavigationState.SearchPath.self) { path in
                 switch path {
                 case let .logDetail(id):
-                    LogbookDetailView(id: id)
+                    LogbookDetailScreen(id: id)
                 }
             }
             .onAppear { store.send(.load) }

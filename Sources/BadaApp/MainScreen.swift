@@ -8,7 +8,7 @@
 import BadaCore
 import BadaUI
 
-public struct MainView: View {
+public struct MainScreen: View {
     @Environment(\.appStoreState) private var appStoreState
     @ObservedObject private var navigationStore = NavigationStore.shared
     @StateObject private var store = ViewStore(
@@ -59,7 +59,7 @@ private struct MainTabView: View {
                 systemImage: SystemImage.house.rawValue,
                 value: .home
             ) {
-                HomeView()
+                HomeScreen()
             }
             // TODO: Under development
             #if DEBUG
@@ -68,7 +68,7 @@ private struct MainTabView: View {
                     systemImage: SystemImage.doorSlidingRightHandClosed.rawValue,
                     value: .equipment
                 ) {
-                    EquipmentView()
+                    EquipmentScreen()
                 }
             #endif
             Tab(
@@ -76,7 +76,7 @@ private struct MainTabView: View {
                 systemImage: SystemImage.bookPages.rawValue,
                 value: .logbook
             ) {
-                LogbookListView()
+                LogbookListScreen()
             }
             Tab(
                 L10n.MainTab.search,
@@ -84,7 +84,7 @@ private struct MainTabView: View {
                 value: .search,
                 role: .search
             ) {
-                SearchView()
+                SearchScreen()
             }
         }
         .tabViewStyle(.sidebarAdaptable)
