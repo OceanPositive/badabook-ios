@@ -203,4 +203,10 @@ package enum L10n {
         /// Profile
         package static let title = String(localized: "PROFILE.TITLE", bundle: .module)
     }
+    package enum Search {
+        /// Search your dive logs
+        package static let emptyPrompt = String(localized: "SEARCH.EMPTY_PROMPT", bundle: .module)
+        /// No results found
+        package static let noResults = String(localized: "SEARCH.NO_RESULTS", bundle: .module)
+    }
 }

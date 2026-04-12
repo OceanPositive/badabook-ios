@@ -84,7 +84,7 @@ private struct MainTabView: View {
                 value: .search,
                 role: .search
             ) {
-                LogbookListView()
+                SearchView()
             }
         }
         .tabViewStyle(.sidebarAdaptable)

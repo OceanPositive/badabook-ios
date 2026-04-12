@@ -43,6 +43,14 @@ struct LogbookListView: View {
                 }
             }
             .listStyle(.automatic)
+            .overlay {
+                if !store.state.searchText.isEmpty && store.state.filteredItems.isEmpty {
+                    ContentUnavailableView(
+                        L10n.Search.noResults,
+                        systemImage: SystemImage.magnifyingglass.rawValue
+                    )
+                }
+            }
             .navigationTitle(L10n.Logbook.title)
             .navigationDestination(for: NavigationState.LogbookPath.self) { path in
                 switch path {
