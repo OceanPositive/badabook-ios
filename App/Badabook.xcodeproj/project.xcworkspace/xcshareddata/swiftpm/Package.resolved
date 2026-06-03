@@ -1,13 +1,13 @@
 {
-  "originHash" : "8dcad796b5b839a6c5ffd98e3cafe1f402be086800674005688ee159ddde8f38",
+  "originHash" : "26db2755cad02eff034995945c241de4046f4af1d835190c0edf32fe275226fa",
   "pins" : [
     {
       "identity" : "oneway",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/DevYeom/OneWay.git",
       "state" : {
-        "revision" : "5894a6e5c839d67746e4108cecd7e0803314b8a4",
-        "version" : "3.0.0"
+        "revision" : "f5b1c0e40deae6619597e49f72acff6f47047dbd",
+        "version" : "3.1.0"
       }
     }
   ],
