@@ -11,7 +11,7 @@ Follow these instructions to test all actions defined in the `Reducer.Action` en
 ## 1. Prerequisites
 
 -   Ensure you have the `Reducer` file available.
--   Ensure you have the `BadaTesting` module or similar testing utilities available (e.g., `Store`, `UseCaseContainer`).
+-   Ensure you have the `ZellyTesting` module or similar testing utilities available (e.g., `Store`, `UseCaseContainer`).
 -   The test file should be named `<ReducerName>Tests.swift`.
 
 ## 2. Test File Structure
@@ -19,10 +19,10 @@ Follow these instructions to test all actions defined in the `Reducer.Action` en
 Use the following template for your test file. Replace `<ReducerName>` with the actual name of your reducer.
 
 ```swift
-import BadaCore
-import BadaDomain
-import BadaTesting
-@testable import BadaApp // Or the module containing the Reducer
+import ZellyCore
+import ZellyDomain
+import ZellyTesting
+@testable import ZellyApp // Or the module containing the Reducer
 
 @Suite
 struct <ReducerName>Tests {
@@ -141,7 +141,7 @@ struct MyReducerTests {
 ## 4. Verify the test
 
 - Run the test and verify that it passes.
-    - `make test-all`
+    - `make test`
 - If the test fails, fix the test and run it again.
 
 ## 5. Checklist
