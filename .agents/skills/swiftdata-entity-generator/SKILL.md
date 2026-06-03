@@ -5,15 +5,15 @@ description: Generates SwiftData entities, repositories, and use cases following
 
 # SwiftData Entity Generator
 
-This skill automates the creation of the data layer for new features in the Vuvuzelly project, ensuring consistency with Clean Architecture and SwiftData best practices.
+This skill automates the creation of the data layer for new features in the Badabook project, ensuring consistency with Clean Architecture and SwiftData best practices.
 
 ## Workflow
 
-1.  **Define Domain Model**: Create a struct in `Sources/ZellyDomain/Models/{Feature}/{Name}.swift`.
-2.  **Define Repository Interface**: Create a protocol in `Sources/ZellyDomain/Interfaces/{Name}RepositoryType.swift`.
-3.  **Implement SwiftData Entity**: Create a `@Model` class in `Sources/ZellyData/Entities/{Name}Entity.swift`.
-4.  **Implement Repository**: Create a struct in `Sources/ZellyData/Repositories/{Name}Repository.swift`.
-5.  **Create Use Cases**: Create `ExecutableUseCase` structs in `Sources/ZellyDomain/UseCases/{Feature}/`.
+1.  **Define Domain Model**: Create a struct in `Sources/BadaDomain/Models/{Feature}/{Name}.swift`.
+2.  **Define Repository Interface**: Create a protocol in `Sources/BadaDomain/Interfaces/{Name}RepositoryType.swift`.
+3.  **Implement SwiftData Entity**: Create a `@Model` class in `Sources/BadaData/Entities/{Name}Entity.swift`.
+4.  **Implement Repository**: Create a struct in `Sources/BadaData/Repositories/{Name}Repository.swift`.
+5.  **Create Use Cases**: Create `ExecutableUseCase` structs in `Sources/BadaDomain/UseCases/{Feature}/`.
 
 ## Patterns and Templates
 

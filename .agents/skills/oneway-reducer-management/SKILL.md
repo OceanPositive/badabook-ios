@@ -1,11 +1,11 @@
 ---
 name: oneway-reducer-management
-description: Guides the creation and testing of Reducers and Stores using the OneWay library and Clean Architecture in the Vuvuzelly project. Use this skill when implementing new features or fixing bugs in the App layer that involve state management.
+description: Guides the creation and testing of Reducers and Stores using the OneWay library and Clean Architecture in the Badabook project. Use this skill when implementing new features or fixing bugs in the App layer that involve state management.
 ---
 
 # OneWay Reducer Management
 
-This skill provides standardized patterns for implementing and testing Reducers using the [OneWay](https://github.com/DevYeom/OneWay) library within the Vuvuzelly project's Clean Architecture.
+This skill provides standardized patterns for implementing and testing Reducers using the [OneWay](https://github.com/DevYeom/OneWay) library within the Badabook project's Clean Architecture.
 
 ## Core Concepts
 

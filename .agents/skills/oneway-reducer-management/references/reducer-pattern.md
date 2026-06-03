@@ -1,12 +1,12 @@
 # Reducer Pattern
 
-This reference provides a template and common patterns for Reducers in the Vuvuzelly project.
+This reference provides a template and common patterns for Reducers in the Badabook project.
 
 ## Template
 
 ```swift
-import ZellyCore
-import ZellyDomain
+import BadaCore
+import BadaDomain
 
 struct FeatureReducer: Reducer {
     enum Action: Sendable {
