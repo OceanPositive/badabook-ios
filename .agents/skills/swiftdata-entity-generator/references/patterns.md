@@ -1,13 +1,13 @@
 # SwiftData Entity Patterns
 
-This reference documents the code patterns and structures used in the Vuvuzelly project for domain models, SwiftData entities, repositories, and use cases.
+This reference documents the code patterns and structures used in the Badabook project for domain models, SwiftData entities, repositories, and use cases.
 
-## 1. Domain Model (`ZellyDomain/Models`)
+## 1. Domain Model (`BadaDomain/Models`)
 
 Domain models are `package struct` types. They should be `Equatable`.
 
 ```swift
-import ZellyCore
+import BadaCore
 
 package struct {Name}: Equatable {
     package let identifier: {Name}ID
@@ -23,12 +23,12 @@ package struct {Name}: Equatable {
 }
 ```
 
-## 2. Repository Interface (`ZellyDomain/Interfaces`)
+## 2. Repository Interface (`BadaDomain/Interfaces`)
 
 Define errors and the repository protocol. **Important: Always mark the protocol with `@Repository` to ensure it is isolated to the Repository global actor.**
 
 ```swift
-import ZellyCore
+import BadaCore
 
 package enum {Name}RepositoryError: Error {
     case insertFailed(String)
@@ -47,13 +47,13 @@ package protocol {Name}RepositoryType: Sendable {
 }
 ```
 
-## 3. SwiftData Entity (`ZellyData/Entities`)
+## 3. SwiftData Entity (`BadaData/Entities`)
 
 The entity is a `@Model final class`. It implements `DomainConvertible`.
 
 ```swift
-import ZellyCore
-import ZellyDomain
+import BadaCore
+import BadaDomain
 import SwiftData
 
 @Model
@@ -71,14 +71,14 @@ final class {Name}Entity {
 }
 
 extension {Name}Entity: DomainConvertible {
-    var domain: ZellyDomain.{Name} {
-        ZellyDomain.{Name}(
+    var domain: BadaDomain.{Name} {
+        BadaDomain.{Name}(
             identifier: identifier,
             // ...
         )
     }
 
-    convenience init(domain: ZellyDomain.{Name}) {
+    convenience init(domain: BadaDomain.{Name}) {
         self.init(
             identifier: domain.identifier,
             // ...
@@ -87,13 +87,13 @@ extension {Name}Entity: DomainConvertible {
 }
 ```
 
-## 4. Repository Implementation (`ZellyData/Repositories`)
+## 4. Repository Implementation (`BadaData/Repositories`)
 
 Implements the interface using `ModelContext`.
 
 ```swift
-import ZellyCore
-import ZellyDomain
+import BadaCore
+import BadaDomain
 import SwiftData
 
 package struct {Name}Repository: {Name}RepositoryType {
@@ -118,7 +118,7 @@ package struct {Name}Repository: {Name}RepositoryType {
 }
 ```
 
-## 5. Use Cases (`ZellyDomain/UseCases`)
+## 5. Use Cases (`BadaDomain/UseCases`)
 
 Use cases are simple `ExecutableUseCase` structs wrapping a closure. Follow the Get, Post, Put, Delete naming conventions.
 

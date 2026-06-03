@@ -1,17 +1,17 @@
 # Reducer Test Pattern
 
-This reference provides a template and common patterns for testing Reducers in the Vuvuzelly project.
+This reference provides a template and common patterns for testing Reducers in the Badabook project.
 
 ## Template
 
 ```swift
-import ZellyCore
-import ZellyDomain
-import ZellyTesting
+import BadaCore
+import BadaDomain
+import BadaTesting
 import Foundation
 import Testing
 
-@testable import ZellyApp
+@testable import BadaApp
 
 @Suite
 struct FeatureReducerTests {
